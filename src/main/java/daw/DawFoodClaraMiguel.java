@@ -11,6 +11,11 @@ package daw;
 public class DawFoodClaraMiguel {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        /*
+                    Wok and Roll
+        Proyecto de un TPV enfocado en un restaurante de comida asiática
+        
+        
+        */
     }
 }
