@@ -33,7 +33,7 @@ public class Comida extends Producto {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Comida{");
+        sb.append(super.toString());
         sb.append("Descripción: ").append(descripcionComida);
         sb.append('}');
         return sb.toString();
