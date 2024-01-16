@@ -11,14 +11,17 @@ package daw;
 public class Comida extends Producto {
     //atributos
     private String descripcionComida;
+    private TipoComida tipoComida;
     
     //constructor
-    public Comida(String descripcionComida, String codProducto, String nombre, 
-            double precioSinIVA, double precioConIVA) {
+
+    public Comida(String descripcionComida, TipoComida tipoComida, 
+            String codProducto, String nombre, double precioSinIVA, double precioConIVA) {
         super(codProducto, nombre, precioSinIVA, precioConIVA);
         this.descripcionComida = descripcionComida;
+        this.tipoComida = tipoComida;
     }
-    
+
     //getter y setter
     public String getDescripcionComida() {
         return descripcionComida;
@@ -27,16 +30,26 @@ public class Comida extends Producto {
     public void setDescripcionComida(String descripcionComida) {
         this.descripcionComida = descripcionComida;
     }
-    
+
+    public TipoComida getTipoComida() {
+        return tipoComida;
+    }
+
+    public void setTipoComida(TipoComida tipoComida) {
+        this.tipoComida = tipoComida;
+    }
+
     //toString
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
-        sb.append("Descripción: ").append(descripcionComida);
+        sb.append("descripción: ").append(descripcionComida);
+        sb.append(", tipo: ").append(tipoComida);
         sb.append('}');
         return sb.toString();
     }
+    
     
 }
