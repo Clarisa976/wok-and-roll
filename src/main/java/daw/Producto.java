@@ -9,5 +9,12 @@ package daw;
  * @author clara
  */
 public class Producto {
+    //atributos
+    private String codProducto;
+    private String nombre;
+    private double precioSinIVA;
+    private double precioConIVA;
+    
+    
     
 }
