@@ -84,8 +84,6 @@ public class Producto {
         sb.append("código del producto: ").append(codProducto);
         sb.append(", nombre ").append(nombre);
         sb.append(", precio sin IVA: ").append(precioSinIVA);
-        sb.append(", precio con IVA: ").append(IVA);
-        sb.append('}');
         return sb.toString();
     }
 

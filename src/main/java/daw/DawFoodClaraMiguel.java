@@ -17,5 +17,9 @@ public class DawFoodClaraMiguel {
         
         
         */
+        
+        Producto p1 = new Bebida("coca cola zero", 2.5,
+                250, TipoBebida.REFRESCOS);
+        System.out.println(p1);
     }
 }
