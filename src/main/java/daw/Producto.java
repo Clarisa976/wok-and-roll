@@ -16,15 +16,17 @@ public class Producto {
     private final String codProducto;
     private String nombre;
     private double precioSinIVA;
-    private final double IVA = 10;//en la restauración es el 10%
+    private final TipoIVA tipoIVA;//21% para las bebidas alcohólicas y 10% para el resto
     
     //constructor
-    public Producto(String nombre, double precioSinIVA) {
+    public Producto(String nombre, double precioSinIVA, TipoIVA tipoIVA) {
         this.codProducto = RandomStringUtils.randomNumeric(5);
         this.nombre = nombre;
         this.precioSinIVA = precioSinIVA;
+        this.tipoIVA = tipoIVA;
     }
-    
+
+   
     //getters
     public String getCodProducto() {
         return codProducto;
@@ -38,9 +40,6 @@ public class Producto {
         return precioSinIVA;
     }
 
-    public double getIVA() {
-        return IVA;
-    }
     
     //setters
     public void setNombre(String nombre) {

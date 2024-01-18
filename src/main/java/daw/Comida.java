@@ -14,12 +14,14 @@ public class Comida extends Producto {
     private TipoComida tipoComida;
     
     //constructor
-    public Comida(String nombre, double precioSinIVA, String descripcionComida, 
-            TipoComida tipoComida) {
-        super(nombre, precioSinIVA);
+
+    public Comida(String nombre,String descripcionComida, TipoComida tipoComida,
+            double precioSinIVA, TipoIVA tipoIVA) {
+        super(nombre, precioSinIVA, tipoIVA);
         this.descripcionComida = descripcionComida;
         this.tipoComida = tipoComida;
     }
+    
 
     //getter y setter
     public String getDescripcionComida() {

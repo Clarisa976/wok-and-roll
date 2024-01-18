@@ -16,13 +16,13 @@ public class Postre extends Producto{
     
     //constructor
 
-    public Postre(String nombre, double precioSinIVA,int kcal, 
-            TipoPostre tipoPostre) {
-        super(nombre, precioSinIVA);
+    public Postre(String nombre, int kcal, TipoPostre tipoPostre, 
+            double precioSinIVA, TipoIVA tipoIVA) {
+        super(nombre, precioSinIVA, tipoIVA);
         this.kcal = kcal;
         this.tipoPostre = tipoPostre;
     }
-    
+
     
     //getter
     public int getKcal() {
