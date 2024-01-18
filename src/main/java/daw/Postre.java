@@ -8,6 +8,18 @@ package daw;
  *
  * @author miguel
  */
-public class Postre {
+public class Postre extends Producto{
+    
+    //atributos
+    private int kcal; //kilocalorías
+    private TipoPostre tipoPostre; //Mochi, Frutita u Otros
+    
+    //constructor
+    public Postre(int kcal, TipoPostre tipoPostre, String codProducto, 
+            String nombre, double precioSinIVA, double precioConIVA) {
+        super(codProducto, nombre, precioSinIVA, precioConIVA);
+        this.kcal = kcal;
+        this.tipoPostre = tipoPostre;
+    }
     
 }
