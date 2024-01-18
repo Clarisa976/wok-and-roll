@@ -5,6 +5,7 @@
 package daw;
 
 import java.util.Objects;
+import org.apache.commons.lang3.RandomStringUtils;
 
 /**
  *
@@ -15,14 +16,13 @@ public class Producto {
     private final String codProducto;
     private String nombre;
     private double precioSinIVA;
-    private final double IVA;//en la restauración es el 10%
+    private final double IVA = 10;//en la restauración es el 10%
     
     //constructor
-    public Producto(String codProducto, String nombre, double precioSinIVA, double IVA) {
-        this.codProducto = codProducto;
+    public Producto(String nombre, double precioSinIVA) {
+        this.codProducto = RandomStringUtils.randomNumeric(5);
         this.nombre = nombre;
         this.precioSinIVA = precioSinIVA;
-        this.IVA = IVA;
     }
     
     //getters
@@ -88,5 +88,5 @@ public class Producto {
         sb.append('}');
         return sb.toString();
     }
-    
+
 }
