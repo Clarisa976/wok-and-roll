@@ -8,17 +8,16 @@ package daw;
  *
  * @author miguel
  */
-public class Bebida extends Producto{
-    
+public class Bebida extends Producto {
+
     // atributos
     private int tamanioBebida;
     private TipoBebida tipoBebida;
 
     //cosntructor 
-    public Bebida(int tamanioBebida, TipoBebida tipoBebida, String codProducto, 
-            String nombre, double precioSinIVA, double precioConIVA) {
-        super(codProducto, nombre, precioSinIVA, precioConIVA);
-        
+    public Bebida(String nombre, double precioSinIVA, int tamanioBebida, 
+            TipoBebida tipoBebida) {
+        super(nombre, precioSinIVA);
         this.tamanioBebida = tamanioBebida;
         this.tipoBebida = tipoBebida;
     }

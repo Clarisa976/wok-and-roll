@@ -14,10 +14,9 @@ public class Comida extends Producto {
     private TipoComida tipoComida;
     
     //constructor
-
-    public Comida(String descripcionComida, TipoComida tipoComida, 
-            String codProducto, String nombre, double precioSinIVA, double precioConIVA) {
-        super(codProducto, nombre, precioSinIVA, precioConIVA);
+    public Comida(String nombre, double precioSinIVA, String descripcionComida, 
+            TipoComida tipoComida) {
+        super(nombre, precioSinIVA);
         this.descripcionComida = descripcionComida;
         this.tipoComida = tipoComida;
     }
