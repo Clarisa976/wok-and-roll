@@ -15,14 +15,14 @@ public class Producto {
     private final String codProducto;
     private String nombre;
     private double precioSinIVA;
-    private double IVA;//en la restauración es el 10%
+    private final double IVA;//en la restauración es el 10%
     
     //constructor
-    public Producto(String codProducto, String nombre, double precioSinIVA, double precioConIVA) {
+    public Producto(String codProducto, String nombre, double precioSinIVA, double IVA) {
         this.codProducto = codProducto;
         this.nombre = nombre;
         this.precioSinIVA = precioSinIVA;
-        this.IVA = precioConIVA;
+        this.IVA = IVA;
     }
     
     //getters
@@ -51,10 +51,6 @@ public class Producto {
         this.precioSinIVA = precioSinIVA;
     }
 
-    public void setIVA(double IVA) {
-        this.IVA = IVA;
-    }
-    
     //hashcode
     @Override
     public int hashCode() {
