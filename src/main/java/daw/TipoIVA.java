@@ -10,8 +10,8 @@ package daw;
  */
 public enum TipoIVA {
     //tipos de IVA
-    DIEZ("IVA del 10% para comidas y bebidas no alcohólicas"),
-    VEINTIUNO("IVA del 21% para bebidas alcohólicas");
+    IVA_DIEZ("IVA del 10% para comidas y bebidas no alcohólicas"),
+    IVA_VEINTIUNO("IVA del 21% para bebidas alcohólicas");
     
     //atributos
     private final String descripcion;

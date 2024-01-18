@@ -40,7 +40,10 @@ public class Producto {
         return precioSinIVA;
     }
 
-    
+    public TipoIVA getTipoIVA() {
+        return tipoIVA;
+    }
+
     //setters
     public void setNombre(String nombre) {
         this.nombre = nombre;
