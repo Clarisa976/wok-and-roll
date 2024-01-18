@@ -15,14 +15,14 @@ public class Producto {
     private final String codProducto;
     private String nombre;
     private double precioSinIVA;
-    private double precioConIVA;
+    private double IVA;//en la restauración es el 10%
     
     //constructor
     public Producto(String codProducto, String nombre, double precioSinIVA, double precioConIVA) {
         this.codProducto = codProducto;
         this.nombre = nombre;
         this.precioSinIVA = precioSinIVA;
-        this.precioConIVA = precioConIVA;
+        this.IVA = precioConIVA;
     }
     
     //getters
@@ -38,8 +38,8 @@ public class Producto {
         return precioSinIVA;
     }
 
-    public double getPrecioConIVA() {
-        return precioConIVA;
+    public double getIVA() {
+        return IVA;
     }
     
     //setters
@@ -51,8 +51,8 @@ public class Producto {
         this.precioSinIVA = precioSinIVA;
     }
 
-    public void setPrecioConIVA(double precioConIVA) {
-        this.precioConIVA = precioConIVA;
+    public void setIVA(double IVA) {
+        this.IVA = IVA;
     }
     
     //hashcode
@@ -88,7 +88,7 @@ public class Producto {
         sb.append("código del producto: ").append(codProducto);
         sb.append(", nombre ").append(nombre);
         sb.append(", precio sin IVA: ").append(precioSinIVA);
-        sb.append(", precio con IVA: ").append(precioConIVA);
+        sb.append(", precio con IVA: ").append(IVA);
         sb.append('}');
         return sb.toString();
     }
