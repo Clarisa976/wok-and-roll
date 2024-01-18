@@ -22,4 +22,33 @@ public class Postre extends Producto{
         this.tipoPostre = tipoPostre;
     }
     
+    //getter
+    public int getKcal() {
+        return kcal;
+    }
+
+    public TipoPostre getTipoPostre() {
+        return tipoPostre;
+    }
+    
+    //setter
+    public void setKcal(int kcal) {
+        this.kcal = kcal;
+    }
+
+    public void setTipoPostre(TipoPostre tipoPostre) {
+        this.tipoPostre = tipoPostre;
+    }
+    
+    //toString
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
+        sb.append("kcal: ").append(kcal);
+        sb.append(", tipo de postre: ").append(tipoPostre);
+        sb.append('}');
+        return sb.toString();
+    }
+    
 }
