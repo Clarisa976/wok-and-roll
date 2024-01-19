@@ -59,19 +59,6 @@ public class CatalogoProductos {
     }
     
 
-    //método para calcular el precio con iva
-    public static double calcularPrecio(Producto aux) {
-        //tipos de IVA
-        final int DIEZ = 10;
-        final int VEINTIUNO = 21;
-        int porcentaje = (aux.getTipoIVA()
-                .equals(TipoIVA.IVA_DIEZ)) ? DIEZ : VEINTIUNO;
 
-        //V+((P/100)*V
-        double precioFinal = aux.getPrecioSinIVA() + ((porcentaje / 100)
-                + aux.getPrecioSinIVA());
-
-        return precioFinal;
-    }
 
 }

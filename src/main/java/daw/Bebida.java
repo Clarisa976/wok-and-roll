@@ -15,8 +15,7 @@ public class Bebida extends Producto {
     private TipoBebida tipoBebida;
 
     //cosntructor 
-
-    public Bebida(String nombre,int tamanioBebida, TipoBebida tipoBebida, 
+    public Bebida(String nombre, int tamanioBebida, TipoBebida tipoBebida, 
             double precioSinIVA, TipoIVA tipoIVA) {
         super(nombre, precioSinIVA, tipoIVA);
         this.tamanioBebida = tamanioBebida;

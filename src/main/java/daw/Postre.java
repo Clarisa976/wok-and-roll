@@ -8,22 +8,20 @@ package daw;
  *
  * @author miguel
  */
-public class Postre extends Producto{
-    
+public class Postre extends Producto {
+
     //atributos
     private int kcal; //kilocalorías
     private TipoPostre tipoPostre; //Mochi, Frutita u Otros
-    
-    //constructor
 
-    public Postre(String nombre, int kcal, TipoPostre tipoPostre, 
-            double precioSinIVA, TipoIVA tipoIVA) {
+    //constructor
+      public Postre(String nombre, int kcal, TipoPostre tipoPostre, double precioSinIVA, 
+            TipoIVA tipoIVA) {
         super(nombre, precioSinIVA, tipoIVA);
         this.kcal = kcal;
         this.tipoPostre = tipoPostre;
     }
 
-    
     //getter
     public int getKcal() {
         return kcal;
@@ -32,7 +30,7 @@ public class Postre extends Producto{
     public TipoPostre getTipoPostre() {
         return tipoPostre;
     }
-    
+
     //setter
     public void setKcal(int kcal) {
         this.kcal = kcal;
@@ -41,7 +39,7 @@ public class Postre extends Producto{
     public void setTipoPostre(TipoPostre tipoPostre) {
         this.tipoPostre = tipoPostre;
     }
-    
+
     //toString
     @Override
     public String toString() {
@@ -52,5 +50,5 @@ public class Postre extends Producto{
         sb.append('}');
         return sb.toString();
     }
-    
+
 }
