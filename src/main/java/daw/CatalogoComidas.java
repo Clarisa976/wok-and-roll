@@ -14,7 +14,7 @@ import java.util.List;
 public final class CatalogoComidas {
 
     //atributos
-    private List<Producto> listaComidas;
+    private final List<Producto> listaComidas;
 
     //constructor
     public CatalogoComidas() {
