@@ -20,12 +20,10 @@ public class DawFoodClaraMiguel {
             
         */
         
-//        CatalogoProductos c1 = new CatalogoProductos();
-//        
-//        for (CatalogoProductos cat: Producto) {
-//            
-//        }
+        CatalogoComidas c1 = new CatalogoComidas();
         
+        c1.toString();
        
+        System.out.println(c1);
     }
 }

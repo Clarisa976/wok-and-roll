@@ -11,66 +11,69 @@ import java.util.List;
  *
  * @author clara
  */
-public class CatalogoProductos {
+public final class CatalogoComidas {
 
     //atributos
-    private final List<Producto> listaProductos;
+    private List<Producto> listaComidas;
 
     //constructor
-        public CatalogoProductos(List<Producto> listaProductos) {
-        this.listaProductos = new ArrayList<>();
+    public CatalogoComidas() {
+        this.listaComidas = cartaComidas();
     }
 
     //getter
-    public List<Producto> getListaProductos() {
-        return listaProductos;
+    public List<Producto> getListaComidas() {
+        return listaComidas;
     }
 
     //toString
     @Override
     public String toString() {
+
         StringBuilder sb = new StringBuilder();
-        sb.append("CatalogoProductos{");
-        sb.append("listaProductos=").append(listaProductos);
-        sb.append('}');
+
+        for (Producto producto : listaComidas) {
+            sb.append(producto).append("\n");
+        }
+
         return sb.toString();
     }
-    
+
     //método de cartaComida
-     public List<Producto> cartaComidas(){
+    public List<Producto> cartaComidas() {
         List<Producto> cartaComidas = new ArrayList<>();
         //creamos nueve comidas
-        Producto c1 = new Comida("Ramen de curry", 
+        Producto c1 = new Comida("Ramen de curry",
                 "Delicioso ramen con fideos udon, tonkatsu "
-                        + "y sopa de curry ", TipoComida.RAMEN,
-                9.50, TipoIVA.IVA_DIEZ);        
-        Producto c2 = new Comida("Ramen de pollo", 
+                + "y sopa de curry ", TipoComida.RAMEN,
+                9.50, TipoIVA.IVA_DIEZ);
+        Producto c2 = new Comida("Ramen de pollo",
                 "Clásico ramen de pollo ", TipoComida.RAMEN,
                 8, TipoIVA.IVA_DIEZ);
-        Producto c3 = new Comida("Ramen de miso", 
+        Producto c3 = new Comida("Ramen de miso",
                 "Ramen de miso sosillo", TipoComida.RAMEN,
                 6, TipoIVA.IVA_DIEZ);
-        
-        Producto c4 = new Comida("Nigiri de salmón", 
+
+        Producto c4 = new Comida("Nigiri de salmón",
                 "Dos piezas de nigiri de salmón", TipoComida.SUSHI,
                 3, TipoIVA.IVA_DIEZ);
         Producto c5 = new Comida("Nigiri de atún",
-                "Dos piezas de nigiri de atún rojo de remolacha", 
+                "Dos piezas de nigiri de atún rojo de remolacha",
                 TipoComida.SUSHI,
-                2.50, TipoIVA.IVA_DIEZ);        
-        Producto c6 = new Comida("Uramame de pollo crujiente", 
+                2.50, TipoIVA.IVA_DIEZ);
+        Producto c6 = new Comida("Uramame de pollo crujiente",
                 "Rollo de arroz relleno de pollo rebozado con "
-                        + "panko y alga nori", TipoComida.SUSHI,
+                + "panko y alga nori", TipoComida.SUSHI,
                 2, TipoIVA.IVA_DIEZ);
-        
-        Producto c7 = new Comida("Veruras","Wok de verduritas",
-                TipoComida.WOK,4, TipoIVA.IVA_DIEZ);        
-        Producto c8 = new Comida("Carne", "Wok de carnecita", 
+
+        Producto c7 = new Comida("Veruras", "Wok de verduritas",
+                TipoComida.WOK, 4, TipoIVA.IVA_DIEZ);
+        Producto c8 = new Comida("Carne", "Wok de carnecita",
                 TipoComida.WOK, 4.50, TipoIVA.IVA_DIEZ);
-        Producto c9 = new Comida("Marisco", 
+        Producto c9 = new Comida("Marisco",
                 "Wok de gambas de Cádiz", TipoComida.WOK,
                 5.50, TipoIVA.IVA_DIEZ);
-        
+
         cartaComidas.add(c1);
         cartaComidas.add(c2);
         cartaComidas.add(c3);
@@ -80,7 +83,7 @@ public class CatalogoProductos {
         cartaComidas.add(c7);
         cartaComidas.add(c8);
         cartaComidas.add(c9);
-        
+
         return cartaComidas;
     }
 }
