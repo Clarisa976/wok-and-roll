@@ -20,6 +20,11 @@ public class DawFoodClaraMiguel {
             
         */
         
+//        CatalogoProductos c1 = new CatalogoProductos();
+//        
+//        for (CatalogoProductos cat: Producto) {
+//            
+//        }
         
        
     }

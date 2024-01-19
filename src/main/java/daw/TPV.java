@@ -13,11 +13,12 @@ import java.util.List;
  */
 public class TPV {
     
-    private String numeroSerieTPV;
-    private String contraseniaTPV;
-    private String DireccionTPV;
-    private LocalDateTime fechaHora;
-    private CatalogoProductos catalogoProductos;
-    private List<Tarjeta> listaTarjetasRegistradas;
+//    private String numeroSerieTPV;
+//    private String contraseniaTPV;
+//    private String DireccionTPV;
+//    private LocalDateTime fechaHora;
+//    private CatalogoProductos catalogoProductos;
+//    private List<Tarjeta> listaTarjetasRegistradas;
+//    private List<Ticket>
     
 }

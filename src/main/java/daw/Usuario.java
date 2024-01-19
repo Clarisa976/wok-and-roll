@@ -10,4 +10,5 @@ package daw;
  */
 public class Usuario {
     
+    
 }

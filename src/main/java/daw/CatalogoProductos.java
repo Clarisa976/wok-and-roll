@@ -17,9 +17,9 @@ public class CatalogoProductos {
     public List<Producto> listaProductos;
 
     //constructor
-//    public CatalogoProductos(List<Producto> listaProductos) {
-//        this.listaProductos = new ArrayList<>();
-//    }
+    public CatalogoProductos() {
+        this.listaProductos = cartaComidas();
+    }
     
     public List<Producto> cartaComidas(){
         List<Producto> cartaComidas = new ArrayList<>();
@@ -54,11 +54,26 @@ public class CatalogoProductos {
         Producto c9 = new Comida("Marisco", 
                 "Wok de gambas de Cádiz", TipoComida.WOK,
                 5.50, TipoIVA.IVA_DIEZ);
-
+        
+        cartaComidas.add(c1);
+        cartaComidas.add(c2);
+        cartaComidas.add(c3);
+        cartaComidas.add(c4);
+        cartaComidas.add(c5);
+        cartaComidas.add(c6);
+        cartaComidas.add(c7);
+        cartaComidas.add(c8);
+        cartaComidas.add(c9);
+        
         return cartaComidas;
     }
-    
 
-
-
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("CatalogoProductos{");
+        sb.append("listaProductos=").append(listaProductos);
+        sb.append('}');
+        return sb.toString();
+    }
 }
