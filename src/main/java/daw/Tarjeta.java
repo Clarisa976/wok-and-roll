@@ -13,18 +13,32 @@ import java.util.Objects;
  */
 public class Tarjeta {
     
+    private String nombreTitularTarjeta;
     private String numeroTarjeta;
     private LocalDate fechaCaducidadTarjeta;
     private String Cvv;
+    private Double SaldoTarjeta;
 
     //constructor parametrizado
-    public Tarjeta(String numeroTarjeta, LocalDate fechaCaducidadTarjeta, String Cvv) {
+
+    public Tarjeta(String nombreTitularTarjeta, String numeroTarjeta, LocalDate fechaCaducidadTarjeta, String Cvv, Double SaldoTarjeta) {
+        this.nombreTitularTarjeta = nombreTitularTarjeta;
         this.numeroTarjeta = numeroTarjeta;
         this.fechaCaducidadTarjeta = fechaCaducidadTarjeta;
         this.Cvv = Cvv;
+        this.SaldoTarjeta = SaldoTarjeta;
+    }
+    
+    
+    // Getter y setter
+    public String getNombreTitularTarjeta() {
+        return nombreTitularTarjeta;
     }
 
-    // Getter y setter de todo
+    public void setNombreTitularTarjeta(String nombreTitularTarjeta) {    
+        this.nombreTitularTarjeta = nombreTitularTarjeta;
+    }
+
     public String getNumeroTarjeta() {
         return numeroTarjeta;
     }
@@ -47,6 +61,14 @@ public class Tarjeta {
 
     public void setCvv(String Cvv) {
         this.Cvv = Cvv;
+    }
+
+    public Double getSaldoTarjeta() {
+        return SaldoTarjeta;
+    }
+
+    public void setSaldoTarjeta(Double SaldoTarjeta) {
+        this.SaldoTarjeta = SaldoTarjeta;
     }
 
     // método equals y hashcode de numeroTarjeta y CVV
@@ -77,13 +99,16 @@ public class Tarjeta {
     }
 
     // método to-string (creo que no es necesario)
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Tarjeta{");
-        sb.append("numeroTarjeta=").append(numeroTarjeta);
+        sb.append("nombreTitularTarjeta=").append(nombreTitularTarjeta);
+        sb.append(", numeroTarjeta=").append(numeroTarjeta);
         sb.append(", fechaCaducidadTarjeta=").append(fechaCaducidadTarjeta);
         sb.append(", Cvv=").append(Cvv);
+        sb.append(", SaldoTarjeta=").append(SaldoTarjeta);
         sb.append('}');
         return sb.toString();
     }
