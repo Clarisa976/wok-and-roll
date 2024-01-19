@@ -28,13 +28,7 @@ public class Producto {
         this.tipoIVA = tipoIVA;
         this.precioConIVA = calcularPrecio();
     }
-//
-//    public Producto(String nombre, double precioSinIVA, TipoIVA tipoIVA) {
-//        
-//        this.nombre = nombre;
-//        this.precioSinIVA = precioSinIVA;
-//        this.tipoIVA = tipoIVA;
-//    }
+
 
     //getters
     public String getCodProducto() {
