@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author clara
  */
-public class CatalogoBebidas {
+public final class CatalogoBebidas {
 
     //lista de bebidas
     private final List<Producto> listaBebidas;
