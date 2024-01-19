@@ -74,6 +74,17 @@ public final class CatalogoBebidas {
                 TipoBebida.ALCOHOLICAS, 2.3, 
                 TipoIVA.IVA_VEINTIUNO);
         
+        //añadimos los productos a la lista
+        cartaBebidas.add(b1);
+        cartaBebidas.add(b2);
+        cartaBebidas.add(b3);
+        cartaBebidas.add(b4);
+        cartaBebidas.add(b5);
+        cartaBebidas.add(b6);
+        cartaBebidas.add(b7);
+        cartaBebidas.add(b8);
+        cartaBebidas.add(b9);
+        
         return cartaBebidas;
     }
 }
