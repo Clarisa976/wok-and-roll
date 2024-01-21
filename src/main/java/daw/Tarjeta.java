@@ -5,6 +5,8 @@
 package daw;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -12,13 +14,15 @@ import java.util.Objects;
  * @author miguel
  */
 public class Tarjeta {
-    
+
     private String nombreTitularTarjeta;
     private String numeroTarjeta;
     private LocalDate fechaCaducidadTarjeta;
     private String Cvv;
     private Double SaldoTarjeta;
 
+    //lista de tarjetas registradas en la pasarela
+    private static List<Tarjeta> tarjetasRegistradas;
     //constructor parametrizado
 
     public Tarjeta(String nombreTitularTarjeta, String numeroTarjeta, LocalDate fechaCaducidadTarjeta, String Cvv, Double SaldoTarjeta) {
@@ -28,14 +32,13 @@ public class Tarjeta {
         this.Cvv = Cvv;
         this.SaldoTarjeta = SaldoTarjeta;
     }
-    
-    
+
     // Getter y setter
     public String getNombreTitularTarjeta() {
         return nombreTitularTarjeta;
     }
 
-    public void setNombreTitularTarjeta(String nombreTitularTarjeta) {    
+    public void setNombreTitularTarjeta(String nombreTitularTarjeta) {
         this.nombreTitularTarjeta = nombreTitularTarjeta;
     }
 
@@ -99,7 +102,6 @@ public class Tarjeta {
     }
 
     // método to-string (creo que no es necesario)
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -111,5 +113,65 @@ public class Tarjeta {
         sb.append(", SaldoTarjeta=").append(SaldoTarjeta);
         sb.append('}');
         return sb.toString();
+    }
+
+    //método de una Lista con tarjetas
+    private List<Tarjeta> tarjetasRegistradasBD() {
+        List<Tarjeta> listaTarjetas = new ArrayList<>();
+        //creamos tarjetas
+        Tarjeta t1 = new Tarjeta("Juan Perez", "1234567812345678", LocalDate.of(2025, 12, 31), "123", 1000.0);
+        Tarjeta t2 = new Tarjeta("Maria Lopez", "2345678923456789", LocalDate.of(2024, 6, 30), "456", 500.0);
+        Tarjeta t3 = new Tarjeta("Carlos Rodriguez", "3456789034567890", LocalDate.of(2023, 4, 15), "789", 200.0);
+        Tarjeta t4 = new Tarjeta("Ana Garcia", "4567890145678901", LocalDate.of(2026, 8, 28), "234", 1500.0);
+        Tarjeta t5 = new Tarjeta("Pedro Sanchez", "5678901256789012", LocalDate.of(2024, 10, 10), "567", 800.0);
+
+        //las añadimos a la lista
+        listaTarjetas.add(t1);
+        listaTarjetas.add(t2);
+        listaTarjetas.add(t3);
+        listaTarjetas.add(t4);
+        listaTarjetas.add(t5);
+        return listaTarjetas;
+    }
+
+    // método para verificar si una tarjeta es válida y tiene saldo suficiente
+    public boolean verificarTarjeta(Double importeTotal) {
+        //comprobar si la tarjeta está registrada
+        Tarjeta tarjetaRegistrada = buscarTarjeta(numeroTarjeta);
+        if (tarjetaRegistrada == null) {
+            return false; //la tarjeta no está registrada
+        }
+
+        //comprobar si los últimos 4 dígitos coinciden
+        if (!numeroTarjeta.endsWith(tarjetaRegistrada.numeroTarjeta.substring(12))) {
+            return false; //los últimos 4 dígitos no coinciden
+        }
+
+        //comprobar si la fecha de caducidad es válida (no posterior a la fecha actual)
+        if (fechaCaducidadTarjeta.isAfter(LocalDate.now())) {
+            return false; //la fecha de caducidad es posterior a la fecha actual
+        }
+
+        //comprobar si el CVV coincide
+        if (!Cvv.equals(tarjetaRegistrada.Cvv)) {
+            return false; //el CVV no coincide
+        }
+
+        //comprobar si el saldo es suficiente para el importeTotal del ticket
+        if (SaldoTarjeta < importeTotal) {
+            return false; //el saldo no es suficiente
+        }
+
+        return true; //la tarjeta es válida y tiene saldo suficiente
+    }
+
+    //método auxiliar para buscar una tarjeta por número en la lista de tarjetas registradas
+    private Tarjeta buscarTarjeta(String numero) {
+        for (Tarjeta tarjeta : tarjetasRegistradas) {
+            if (tarjeta.numeroTarjeta.equals(numero)) {
+                return tarjeta;
+            }
+        }
+        return null; //tarjeta no encontrada
     }
 }
