@@ -94,7 +94,7 @@ public class Producto {
         StringBuilder sb = new StringBuilder();
         sb.append("Producto{");
         sb.append("código del producto: ").append(codProducto);
-        sb.append(", nombre ").append(nombre);
+        sb.append(", nombre: ").append(nombre);
         sb.append(", precio sin IVA: ").append(precioSinIVA);
         sb.append(", tipo de IVA: ").append(tipoIVA);
         sb.append(", precio con IVA: ").append(precioConIVA);

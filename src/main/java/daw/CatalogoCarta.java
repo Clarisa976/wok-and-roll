@@ -20,8 +20,8 @@ public class CatalogoCarta {
     //constructor
     public CatalogoCarta() {
         this.listaComida = cartaComidas();
-        this.listaBebida = listaBebida;
-        this.listaPostre = listaPostre;
+        this.listaBebida = cartaBebidas();
+        this.listaPostre = cartaPostres();
     }
     //gettes
     public List<Producto> getListaComida() {
