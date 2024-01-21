@@ -26,5 +26,27 @@ public class DawFoodClaraMiguel {
        
         System.out.println(c1);
         System.out.println(c1.getListaComida());
+        List<Producto> productos = new ArrayList<>();
+        
+        Producto co1 = new Comida("Ramen de curry",
+                "Delicioso ramen con fideos udon, tonkatsu "
+                + "y sopa de curry ", TipoComida.RAMEN,
+                9.50, TipoIVA.IVA_DIEZ);
+        Producto c2 = new Comida("Ramen de pollo",
+                "Clásico ramen de pollo ", TipoComida.RAMEN,
+                8, TipoIVA.IVA_DIEZ);
+        Producto c3 = new Comida("Ramen de miso",
+                "Ramen de miso sosillo", TipoComida.RAMEN,
+                6, TipoIVA.IVA_DIEZ);
+        productos.add(c3);
+       /* productos.add(co1);
+        productos.add(c2);*/
+        List<Integer> cantidad = new ArrayList<>();
+        cantidad.add(0);
+       /* cantidad.add(6);
+        cantidad.add(2);*/
+        Ticket t1 = new Ticket(productos, cantidad);
+        
+        System.out.println(t1.toString());
     }
 }
