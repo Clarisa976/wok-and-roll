@@ -137,23 +137,17 @@ public class Tarjeta {
     // método para verificar si una tarjeta es válida y tiene saldo suficiente
     public boolean verificarTarjeta(Double importeTotal) {
         //comprobar si la tarjeta está registrada
-        Tarjeta tarjetaRegistrada = buscarTarjeta(numeroTarjeta);
-        if (tarjetaRegistrada == null) {
+       if (!verificarTarjetaRegistrada()) {
             return false; //la tarjeta no está registrada
         }
 
-        //comprobar si los últimos 4 dígitos coinciden
-        if (!numeroTarjeta.endsWith(tarjetaRegistrada.numeroTarjeta.substring(12))) {
-            return false; //los últimos 4 dígitos no coinciden
-        }
-
         //comprobar si la fecha de caducidad es válida (no posterior a la fecha actual)
-        if (fechaCaducidadTarjeta.isAfter(LocalDate.now())) {
+         if (fechaCaducidadTarjeta.isAfter(LocalDate.now())) {
             return false; //la fecha de caducidad es posterior a la fecha actual
         }
 
         //comprobar si el CVV coincide
-        if (!Cvv.equals(tarjetaRegistrada.Cvv)) {
+        if (!Cvv.equals(buscarTarjeta(numeroTarjeta).Cvv)) {
             return false; //el CVV no coincide
         }
 
@@ -168,10 +162,14 @@ public class Tarjeta {
     //método auxiliar para buscar una tarjeta por número en la lista de tarjetas registradas
     private Tarjeta buscarTarjeta(String numero) {
         for (Tarjeta tarjeta : tarjetasRegistradas) {
-            if (tarjeta.numeroTarjeta.equals(numero)) {
+            if (tarjeta.numeroTarjeta.endsWith(numero)) {
                 return tarjeta;
             }
         }
         return null; //tarjeta no encontrada
+    }
+     //método para verificar si la tarjeta está registrada en la base de datos por los últimos 4 dígitos
+    public boolean verificarTarjetaRegistrada() {
+        return buscarTarjeta(numeroTarjeta.substring(numeroTarjeta.length() - 4)) != null;
     }
 }
