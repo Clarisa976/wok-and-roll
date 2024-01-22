@@ -46,7 +46,7 @@ public class TPV {
 
        private static String generarPass(){
            // Expresión regular para validar el patrón
-        String regexp = "^[A-Z]{2}[0-9]{2}[*!][a-z]{2}$";
+        String regexp = "^[A-Z]{2}[0-9]{2}[*#$%&()*+,-.:;<=>@][a-z]{2}$";
         
        }
 }
