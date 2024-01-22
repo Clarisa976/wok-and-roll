@@ -7,6 +7,7 @@ package daw;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -41,5 +42,11 @@ public class TPV {
 //    private List<Ticket>
 
 
-    
+    //método para generar una contraseña apartir de una expresión regular
+
+       private static String generarPass(){
+           // Expresión regular para validar el patrón
+        String regexp = "^[A-Z]{2}[0-9]{2}[*!][a-z]{2}$";
+        
+       }
 }
