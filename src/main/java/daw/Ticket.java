@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import org.apache.commons.lang3.RandomStringUtils;
 
 /**
  *
@@ -18,11 +19,12 @@ public class Ticket {
 
     //atributos    
     private static int contadorTickets = 0;
-    private final int numeroPedido;//random de 4 dígitos
+    private int idPedido;
+    private final String numeroPedido;//random de 4 dígitos
     private final List<Producto> productos;
     private final List<Integer> cantidad; //por cada producto elegido
     private final double importeTotal; //el precio de cada producto (con iva) * cantidad
-    private final LocalDateTime fechaEmision;
+    private LocalDateTime fechaEmision;
 
     //constructor
     public Ticket(List<Producto> productos, List<Integer> cantidad) {
@@ -30,7 +32,8 @@ public class Ticket {
         if (productos.size() != cantidad.size()) {
             throw new IllegalArgumentException("Algo no coincide.");
         }
-        this.numeroPedido = contadorTickets++;
+        this.idPedido = contadorTickets++;
+        this.numeroPedido = RandomStringUtils.randomNumeric(4);
         this.productos = productos;
         this.cantidad = cantidad;
         this.importeTotal = calcularImporteTotal();
@@ -42,26 +45,23 @@ public class Ticket {
         return contadorTickets;
     }
 
-    public int getNumeroPedido() {
-        return numeroPedido;
+    public static void setContadorTickets(int contadorTickets) {
+        Ticket.contadorTickets = contadorTickets;
     }
 
-    public List<Producto> getProductos() {
-        return productos;
+    public int getIdPedido() {
+        return idPedido;
     }
 
-    public List<Integer> getCantidad() {
-        return cantidad;
-    }
-
-    public double getImporteTotal() {
-        return importeTotal;
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
     }
 
     public LocalDateTime getFechaEmision() {
         return fechaEmision;
     }
-
+    
+    
     //toString
     @Override
     public String toString() {
@@ -94,7 +94,12 @@ public class Ticket {
     
      public void imprimirTicket(Ticket ticket){
     
-        String rutaArchivo = "./tickets/Ticket_" + ticket.getNumeroPedido();
+        String rutaArchivo = "tickets/ticket" + ticket.getIdPedido() 
+                + "_" + ticket.getFechaEmision().getDayOfMonth()
+                + "-" + ticket.getFechaEmision().getMonthValue()
+                + "-" + ticket.getFechaEmision().getYear()
+                + "_" + ticket.getFechaEmision().getHour()
+                + ":" + ticket.getFechaEmision().getMinute();
         
         try (FileWriter writer = new FileWriter(rutaArchivo)) {
 
