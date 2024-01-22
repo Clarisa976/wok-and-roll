@@ -4,10 +4,18 @@
  */
 package daw;
 
+import java.util.List;
+
 /**
  *
- * @author Usagi
+ * @author clara
  */
-public class Carta {
+public class MetodosAdmin {
+    //atributos
+    private List<Producto> menuProductos;
     
+    //constructor
+    public MetodosAdmin() {
+        this.menuProductos = menuProductos;
+    }
 }

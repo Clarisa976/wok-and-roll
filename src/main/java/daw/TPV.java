@@ -24,6 +24,7 @@ public class TPV {
     private List<Producto> productos;// CatalogoCarta
     private List<Producto> carrito;
     private List<Ticket> listaTickets;
+    //Si la compra se realiza satisfactoriamente queda registrada en el TPV.
 
     //constructor
     public TPV() {
