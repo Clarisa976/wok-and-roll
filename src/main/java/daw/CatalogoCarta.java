@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class CatalogoCarta {
     //atributos
-    private List<Producto> listaComida;
+    public static List<Producto> listaComida = cartaComidas();
     private List<Producto> listaBebida;
     private List<Producto> listaPostre;
     
@@ -59,7 +59,7 @@ public class CatalogoCarta {
         return sb.toString();
     }
     //método de cartaComida
-    private List<Producto> cartaComidas() {
+    private static List<Producto> cartaComidas() {
         List<Producto> cartaComidas = new ArrayList<>();
         //creamos nueve comidas
         Producto c1 = new Comida("Ramen de curry",
