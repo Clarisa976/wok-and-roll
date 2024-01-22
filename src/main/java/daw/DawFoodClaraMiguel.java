@@ -31,13 +31,13 @@ public class DawFoodClaraMiguel {
         Producto co1 = new Comida("Ramen de curry",
                 "Delicioso ramen con fideos udon, tonkatsu "
                 + "y sopa de curry ", TipoComida.RAMEN,
-                9.50, TipoIVA.IVA_DIEZ);
+                9.50, TipoIVA.IVA_DIEZ, 20);
         Producto c2 = new Comida("Ramen de pollo",
                 "Clásico ramen de pollo ", TipoComida.RAMEN,
-                8, TipoIVA.IVA_DIEZ);
+                8, TipoIVA.IVA_DIEZ, 20);
         Producto c3 = new Comida("Ramen de miso",
                 "Ramen de miso sosillo", TipoComida.RAMEN,
-                6, TipoIVA.IVA_DIEZ);
+                6, TipoIVA.IVA_DIEZ, 20);
         productos.add(c3);
        /* productos.add(co1);
         productos.add(c2);*/
@@ -47,6 +47,6 @@ public class DawFoodClaraMiguel {
         cantidad.add(2);*/
         Ticket t1 = new Ticket(productos, cantidad);
         
-        System.out.println(t1.toString());
+        t1.imprimirTicket(t1);
     }
 }

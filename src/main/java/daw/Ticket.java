@@ -4,10 +4,11 @@
  */
 package daw;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import org.apache.commons.lang3.RandomStringUtils;
 
 /**
  *
@@ -89,5 +90,18 @@ public class Ticket {
             total += productos.get(i).getPrecioConIVA() * cantidad.get(i);
         }
         return total;
+    }
+    
+     public void imprimirTicket(Ticket ticket){
+    
+        String rutaArchivo = "./tickets/Ticket_" + ticket.getNumeroPedido();
+        
+        try (FileWriter writer = new FileWriter(rutaArchivo)) {
+
+            writer.write(ticket.toString());
+            System.out.println("Objeto escrito en el archivo correctamente.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

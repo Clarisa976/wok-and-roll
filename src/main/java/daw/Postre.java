@@ -16,8 +16,8 @@ public class Postre extends Producto {
 
     //constructor
       public Postre(String nombre, int kcal, TipoPostre tipoPostre, double precioSinIVA, 
-            TipoIVA tipoIVA) {
-        super(nombre, precioSinIVA, tipoIVA);
+            TipoIVA tipoIVA, int stock) {
+        super(nombre, precioSinIVA, tipoIVA, stock);
         this.kcal = kcal;
         this.tipoPostre = tipoPostre;
     }
