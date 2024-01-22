@@ -32,7 +32,8 @@ public class Ticket {
         if (productos.size() != cantidad.size()) {
             throw new IllegalArgumentException("Algo no coincide.");
         }
-        this.idPedido = contadorTickets++;
+        this.idPedido = contadorTickets;
+        contadorTickets++;
         this.numeroPedido = RandomStringUtils.randomNumeric(4);
         this.productos = productos;
         this.cantidad = cantidad;
