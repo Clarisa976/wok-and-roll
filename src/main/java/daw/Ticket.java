@@ -69,6 +69,7 @@ public class Ticket {
         sb.append("================================\n");
         sb.append("          TICKET DE COMPRA       \n");
         sb.append("================================\n");
+        sb.append("ID del Pedido: ").append(idPedido).append("\n");
         sb.append("Número de Pedido: ").append(numeroPedido).append("\n");
         sb.append("Fecha de Emisión: ").append(fechaEmision.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))).append("\n");
         sb.append("================================\n");
