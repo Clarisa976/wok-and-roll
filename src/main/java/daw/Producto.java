@@ -17,7 +17,7 @@ public class Producto {
     private final String codProducto;
     private String nombre;
     private double precioSinIVA;
-    private final TipoIVA tipoIVA;//21% para las bebidas alcohólicas y 10% para el resto
+    private TipoIVA tipoIVA;//21% para las bebidas alcohólicas y 10% para el resto
     private double precioConIVA;
     private int stock;
 
@@ -72,6 +72,10 @@ public class Producto {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public void setTipoIVA(TipoIVA tipoIVA) {
+        this.tipoIVA = tipoIVA;
     }
     
     //hashcode

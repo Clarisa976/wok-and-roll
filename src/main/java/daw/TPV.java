@@ -105,7 +105,7 @@ public class TPV {
 
     //método para generar una contraseña 
     private static String generarPass() {
-        //String regexp = "^[A-Z]{2}[0-9]{2}[*#$%&()*+,-.:;<=>@][a-z]{2}$";
+        //String regexp = "^[A-Z]{2}[0-9]{1}[*#$%&()*+,-.:;<=>@][a-z]{2}$";
         Random random = new Random();
         int aMayuscula = 65;
         int aMinuscula = 97;
@@ -118,7 +118,6 @@ public class TPV {
 
         //generamos dos dígitos aleatorios
         int digito1 = random.nextInt(10);
-        int digito2 = random.nextInt(10);
 
         //se elige un carácter especial aleatorio de la lista permitida
         String caracteresEspeciales = "*#$%&()*+,-.:;<=>@";
@@ -130,7 +129,7 @@ public class TPV {
 
         //se construye la contraseña como una cadena de caracteres
         String pass = "" + letra4 + letra2 + digito1 + caracterEspecial
-                + letra3 + letra1 + digito2;
+                + letra3 + letra1;
 
         //mostramos la contraseña
         System.out.println(pass);
