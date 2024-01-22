@@ -119,11 +119,26 @@ public class Tarjeta {
     private List<Tarjeta> tarjetasRegistradasBD() {
         List<Tarjeta> listaTarjetas = new ArrayList<>();
         //creamos tarjetas
-        Tarjeta t1 = new Tarjeta("Juan Perez", "1234567812345678", LocalDate.of(2025, 12, 31), "123", 1000.0);
-        Tarjeta t2 = new Tarjeta("Maria Lopez", "2345678923456789", LocalDate.of(2024, 6, 30), "456", 500.0);
-        Tarjeta t3 = new Tarjeta("Carlos Rodriguez", "3456789034567890", LocalDate.of(2023, 4, 15), "789", 200.0);
-        Tarjeta t4 = new Tarjeta("Ana Garcia", "4567890145678901", LocalDate.of(2026, 8, 28), "234", 1500.0);
-        Tarjeta t5 = new Tarjeta("Pedro Sanchez", "5678901256789012", LocalDate.of(2024, 10, 10), "567", 800.0);
+        Tarjeta t1 = new Tarjeta("Juan Perez",
+                "1234567812345678", 
+                LocalDate.of(2025, 12, 31),
+                "123", 1000.0);
+        Tarjeta t2 = new Tarjeta("Maria Lopez", 
+                "2345678923456789", 
+                LocalDate.of(2024, 6, 30), 
+                "456", 500.0);
+        Tarjeta t3 = new Tarjeta("Carlos Rodriguez", 
+                "3456789034567890", 
+                LocalDate.of(2023, 4, 15),
+                "789", 200.0);
+        Tarjeta t4 = new Tarjeta("Ana Garcia", 
+                "4567890145678901", 
+                LocalDate.of(2026, 8, 28),
+                "234", 1500.0);
+        Tarjeta t5 = new Tarjeta("Pedro Sanchez", 
+                "5678901256789012", 
+                LocalDate.of(2024, 10, 10),
+                "567", 800.0);
 
         //las añadimos a la lista
         listaTarjetas.add(t1);
@@ -152,7 +167,7 @@ public class Tarjeta {
         }
 
         //comprobar si el saldo es suficiente para el importeTotal del ticket
-        if (SaldoTarjeta < importeTotal) {
+        if (SaldoTarjeta <= importeTotal) {
             return false; //el saldo no es suficiente
         }
 
@@ -170,6 +185,7 @@ public class Tarjeta {
     }
      //método para verificar si la tarjeta está registrada en la base de datos por los últimos 4 dígitos
     public boolean verificarTarjetaRegistrada() {
-        return buscarTarjeta(numeroTarjeta.substring(numeroTarjeta.length() - 4)) != null;
+        return buscarTarjeta(numeroTarjeta.substring
+        (numeroTarjeta.length() - 4)) != null;
     }
 }
