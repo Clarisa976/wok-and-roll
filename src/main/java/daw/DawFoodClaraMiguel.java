@@ -53,6 +53,5 @@ public class DawFoodClaraMiguel {
         System.out.println(t2);
         t3.imprimirTicket();
         System.out.println(t3);
-        
     }
 }
