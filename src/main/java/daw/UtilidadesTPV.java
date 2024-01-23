@@ -4,7 +4,9 @@
  */
 package daw;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -67,11 +69,34 @@ public class UtilidadesTPV {
         }
         /*------------------------*/
         
-        if (tarjeta.verificarTarjeta(importeTotal)) {
-            
-            //Ticket ticketCompra = new Ticket(carritoTmp, cantidad);
+        Map<Producto, Integer> mapCantidadProductos = new HashMap<>();
+
+        // Iterar sobre la lista y agregar objetos al mapa
+        for (Producto producto : carritoTmp) {
+            // Si el producto ya está en el mapa, incrementa la cantidad
+            // Si no está, agrega el producto al mapa con una cantidad inicial de 1
+            mapCantidadProductos.put(producto, mapCantidadProductos
+                    .getOrDefault(producto, 0) + 1);
         }
         
+        // Meto en cada lista los productos y las cantidades de estos 
+        List<Producto> listaDeProductos = List.copyOf(
+                mapCantidadProductos.keySet());
+        List<Integer> listaDeCantidades = List.copyOf(
+                mapCantidadProductos.values());
+        
+        if (tarjeta.verificarTarjeta(importeTotal)) {
+            
+            Ticket ticketCompra = new Ticket(listaDeProductos, 
+                    listaDeCantidades);
+            
+            ticketCompra.imprimirTicket();
+            
+        } else{
+            System.out.println("No tiene saldo suficente en la tarjeta para realizar"
+                    + " la compra o la tarjeta no existe");
+        }
+
         carritoTmp.removeAll(carritoTmp);
         
         tpv.setCarrito(carritoTmp);

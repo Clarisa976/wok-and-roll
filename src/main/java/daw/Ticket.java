@@ -21,8 +21,8 @@ public class Ticket {
     private static int contadorTickets = 0;
     private int idPedido;
     private final String numeroPedido;//random de 4 dígitos
-    private final List<Producto> productos;
-    private final List<Integer> cantidad; //por cada producto elegido
+    private List<Producto> productos;
+    private List<Integer> cantidad; //por cada producto elegido
     private final double importeTotal; //el precio de cada producto (con iva) * cantidad
     private LocalDateTime fechaEmision;
 
