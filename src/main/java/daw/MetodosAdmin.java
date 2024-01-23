@@ -22,14 +22,14 @@ import javax.swing.JOptionPane;
 
  */
 public class MetodosAdmin {
-
-    //atributos
-    private List<Producto> menuProductos;
-
-    //constructor
-    public MetodosAdmin() {
-        this.menuProductos = menuProductos;
-    }
+//
+//    //atributos
+//    private List<Producto> menuProductos;
+//
+//    //constructor
+//    public MetodosAdmin() {
+//        this.menuProductos = menuProductos;
+//    }
 
     //método para cambiar cualquier dato de los productos a excepción de su ID
     public void modificarProducto(Producto aux) {
@@ -63,32 +63,6 @@ public class MetodosAdmin {
 
     //método para dar de alta un nuevo producto
     public void altaProducto() {
-        try {
-//            String nuevoNombre = null;// = JOptionPane.showInputDialog(null, "Ingrese el nuevo nombre del producto:", aux.getNombre());
-//            if (nuevoNombre != null) {
-//                String precioSinIVAStr = null;
-//                if (precioSinIVAStr != null) {
-//                    double precioSinIVA = Double.parseDouble(precioSinIVAStr);
-//                    String stockStr = null;
-//                    if (stockStr != null) {
-//                        int stock = Integer.parseInt(stockStr);
-//                        String tipoIVAString = null;
-//                        if (tipoIVAString != null) {
-//                            TipoIVA tipoIVA = tipoIVAString.equals("21%") ? TipoIVA.IVA_VEINTIUNO : TipoIVA.IVA_DIEZ;
-//                            //creamos un nuevo producto
-//                            Producto aux = new Producto(nuevoNombre,
-//                                    precioSinIVA, tipoIVA,
-//                                    stock);
-//                            //lo añadimos
-//                            CatalogoCarta.listaComida.add(aux);
-//                            
-//                        }
-//                    }
-//                }
-//            }
 
-        } catch (NumberFormatException nfe) {
-
-        }
     }
 }
