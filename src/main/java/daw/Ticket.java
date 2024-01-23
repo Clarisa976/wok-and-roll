@@ -94,18 +94,18 @@ public class Ticket {
         return total;
     }
     
-     public void imprimirTicket(Ticket ticket){
+     public void imprimirTicket(){
     
-        String rutaArchivo = "tickets/ticket" + ticket.getIdPedido() 
-                + "_" + ticket.getFechaEmision().getDayOfMonth()
-                + "-" + ticket.getFechaEmision().getMonthValue()
-                + "-" + ticket.getFechaEmision().getYear()
-                + "_" + ticket.getFechaEmision().getHour()
-                + ":" + ticket.getFechaEmision().getMinute();
+        String rutaArchivo = "tickets/ticket" + this.getIdPedido() 
+                + "_" + this.getFechaEmision().getDayOfMonth()
+                + "-" + this.getFechaEmision().getMonthValue()
+                + "-" + this.getFechaEmision().getYear()
+                + "_" + this.getFechaEmision().getHour()
+                + ":" + this.getFechaEmision().getMinute();
         
         try (FileWriter writer = new FileWriter(rutaArchivo)) {
 
-            writer.write(ticket.toString());
+            writer.write(this.toString());
             System.out.println("Objeto escrito en el archivo correctamente.");
         } catch (IOException e) {
             e.printStackTrace();

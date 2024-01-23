@@ -47,11 +47,11 @@ public class DawFoodClaraMiguel {
         Ticket t1 = new Ticket(productos, cantidad);
         Ticket t2 = new Ticket(productos, cantidad);        
         Ticket t3 = new Ticket(productos, cantidad);
-        t1.imprimirTicket(t1);
+        t1.imprimirTicket();
         System.out.println(t1);
-        t2.imprimirTicket(t2);
+        t2.imprimirTicket();
         System.out.println(t2);
-        t3.imprimirTicket(t3);
+        t3.imprimirTicket();
         System.out.println(t3);
         
     }
