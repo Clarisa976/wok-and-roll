@@ -24,7 +24,7 @@ public class DawFoodClaraMiguel {
         c1.toString();
 
         System.out.println(c1);
-        System.out.println(c1.getListaComida());
+        System.out.println(c1.getCarta());
         List<Producto> productos = new ArrayList<>();
 
         Producto co1 = new Comida("Ramen de curry",
