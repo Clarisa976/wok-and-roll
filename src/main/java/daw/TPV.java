@@ -32,7 +32,7 @@ public class TPV {
         this.passAdministrador = generarPass();
         this.direccion = "Calle Falsa, 123";
         this.fechaHora = LocalDateTime.now();
-        this.productos = CatalogoCarta.listaComida;
+        this.productos = CatalogoCarta.cartaMenu();
         this.carrito = new ArrayList<>();
         this.listaTickets = new ArrayList<>();
     }
