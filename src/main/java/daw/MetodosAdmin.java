@@ -32,7 +32,7 @@ public class MetodosAdmin {
 //    }
 
     //método para cambiar cualquier dato de los productos a excepción de su ID
-    public void modificarProducto(Producto aux) {
+    public static void modificarProducto(Producto aux) {
         try {
             String nuevoNombre = null;// = JOptionPane.showInputDialog(null, "Ingrese el nuevo nombre del producto:", aux.getNombre());
             //controlamos que no sea nulo
