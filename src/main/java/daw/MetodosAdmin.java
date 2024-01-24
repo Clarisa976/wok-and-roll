@@ -62,7 +62,63 @@ public class MetodosAdmin {
     }
 
     //método para dar de alta un nuevo producto
-    public void altaProducto() {
+    public void altaProducto(CatalogoCarta catalogoCarta, Producto productoNuevo) {
+        
+        List<Producto> catalogoCartaTmp = catalogoCarta.getCarta();
+        
+        catalogoCartaTmp.add(productoNuevo);
+        
+        catalogoCarta.setCarta(catalogoCartaTmp);       
+    }
+    
+    //método para dar de alta un nuevo producto
+    public void bajaProducto(CatalogoCarta catalogoCarta, Producto productoABorrar) {
+        
+        List<Producto> catalogoCartaTmp = catalogoCarta.getCarta();
+        
+        for (Producto producto : catalogoCartaTmp) {
+            if (productoABorrar.equals(producto)) {
+                catalogoCartaTmp.remove(productoABorrar);
+            }
+        }
+        
+        catalogoCarta.setCarta(catalogoCartaTmp);
+    }
+    
+    //consultar todos los tickets del tpv
+    public List<Ticket> consultarTickets(TPV tpv){
+        
+        return tpv.getListaTickets();
+    }
+    
+    //consultar tickets del tpv segun un dia concreto
+    public List<Ticket> consultarTicketsDia(TPV tpv, int diaDelMes){
+        
+        List<Ticket> listaTickets = tpv.getListaTickets();
+        List<Ticket> listaTicketsDia = new ArrayList<>();
+        
+        for (Ticket ticket : listaTickets) {
+            
+            if (ticket.getFechaEmision().getDayOfMonth() == diaDelMes) {
+                 listaTicketsDia.add(ticket);
+            }
+        }
 
+        return listaTicketsDia;
+    }
+    
+    //consultar tickets del tpv segun un dia concreto
+    public List<Ticket> consultarTicketsFecha(TPV tpv, LocalDateTime fecha){
+        
+        List<Ticket> listaTickets = tpv.getListaTickets();
+        List<Ticket> listaTicketsFecha = new ArrayList<>();
+        
+        for (Ticket ticket : listaTickets) {
+            if (ticket.getFechaEmision().isEqual(fecha)) {
+               listaTicketsFecha.add(ticket);
+            }
+        }
+
+        return listaTicketsFecha;
     }
 }
