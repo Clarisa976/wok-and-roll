@@ -7,6 +7,7 @@ package daw;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,28 +48,28 @@ public class UtilidadesTPV {
         }
     }
 
-    public void cancelarCompra(TPV tpv){
-    
+    public void cancelarCompra(TPV tpv) {
+
         List<Producto> carritoTmp = tpv.getCarrito();
-        
+
         carritoTmp.removeAll(carritoTmp);
-        
+
         tpv.setCarrito(carritoTmp);
     }
-    
-    public void finalizarCompra(TPV tpv, Tarjeta tarjeta){
-    
+
+    public void finalizarCompra(TPV tpv, Tarjeta tarjeta) {
+
         List<Producto> carritoTmp = tpv.getCarrito();
-        
+
         /*calculo el importe total*/
-        double importeTotal = 0; 
-        
+        double importeTotal = 0;
+
         for (Producto producto : carritoTmp) {
-            
+
             importeTotal += producto.getPrecioConIVA();
         }
         /*------------------------*/
-        
+
         Map<Producto, Integer> mapCantidadProductos = new HashMap<>();
 
         // Iterar sobre la lista y agregar objetos al mapa
@@ -78,32 +79,62 @@ public class UtilidadesTPV {
             mapCantidadProductos.put(producto, mapCantidadProductos
                     .getOrDefault(producto, 0) + 1);
         }
-        
+
         // Meto en cada lista los productos y las cantidades de estos 
         List<Producto> listaDeProductos = List.copyOf(
                 mapCantidadProductos.keySet());
         List<Integer> listaDeCantidades = List.copyOf(
                 mapCantidadProductos.values());
-        
+
         if (tarjeta.verificarTarjeta(importeTotal)) {
-            
-            Ticket ticketCompra = new Ticket(listaDeProductos, 
+
+            Ticket ticketCompra = new Ticket(listaDeProductos,
                     listaDeCantidades);
-            
+
             ticketCompra.imprimirTicket();
-            
-        } else{
+
+        } else {
             System.out.println("No tiene saldo suficente en la tarjeta para realizar"
                     + " la compra o la tarjeta no existe");
         }
 
         carritoTmp.removeAll(carritoTmp);
-        
+
         tpv.setCarrito(carritoTmp);
     }
-    
-    public TPV encenderTpv() {
 
-        return new TPV();
+    //método para encender el tpv
+    public void encenderTPV() {
+        //generamos y mostrabmos la contraseña del administrador
+        System.out.println("Contraseña: " + TPV.generarPass());
+
+        //las opciones a mostrar
+        String[] opcionesInicioTPV = {"Usuario", "Administrador", "Salir"};
+
+        //mensaje de JOption para seleccionar una de las opciones
+        int opcionInicioTPV = JOptionPane.showOptionDialog(null,
+                "Bienvenido \tPor favor seleccione una opción", "TPV",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE, null,
+                opcionesInicioTPV, opcionesInicioTPV[0]);
+
+        //booleano para el bucle
+        boolean salirTPV = false;
+        //bucle para poder elegir entre usuario o administrador hasta que le den a salir
+        do {
+            switch (opcionesInicioTPV[opcionInicioTPV]) {
+                //si elige la opción usuario se llamará al método usuario para mostrar sus opciones
+                case "Usuario":
+                    System.out.println("Modo usuario");
+                //si elige la opción administrador se mostrará el método que contiene las opciones de administrador    
+                case "Administrador":
+                    System.out.println("Modo admin");
+                //si elige salir se apagará el programa
+                case "Salir":
+                    System.out.println("Apagar TPV");
+
+            }
+
+        } while (!salirTPV);
     }
 }
