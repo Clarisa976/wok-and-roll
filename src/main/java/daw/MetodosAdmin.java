@@ -24,14 +24,7 @@ import javax.swing.JOptionPane;
 
  */
 public class MetodosAdmin {
-//
-//    //atributos
-//    private List<Producto> menuProductos;
-//
-//    //constructor
-//    public MetodosAdmin() {
-//        this.menuProductos = menuProductos;
-//    }
+
 
     //método para cambiar cualquier dato de los productos a excepción de su ID
     public static void modificarProducto(Producto aux) {
@@ -64,7 +57,7 @@ public class MetodosAdmin {
     }
 
     //método para dar de alta un nuevo producto
-    public void altaProducto(CatalogoCarta catalogoCarta, Producto productoNuevo) {
+    public static void altaProducto(CatalogoCarta catalogoCarta, Producto productoNuevo) {
         
         List<Producto> catalogoCartaTmp = catalogoCarta.getCarta();
         
@@ -74,7 +67,7 @@ public class MetodosAdmin {
     }
     
     //método para dar de alta un nuevo producto
-    public void bajaProducto(CatalogoCarta catalogoCarta, Producto productoABorrar) {
+    public static void bajaProducto(CatalogoCarta catalogoCarta, Producto productoABorrar) {
         
         List<Producto> catalogoCartaTmp = catalogoCarta.getCarta();
         
@@ -88,13 +81,13 @@ public class MetodosAdmin {
     }
     
     //consultar todos los tickets del tpv
-    public List<Ticket> consultarTickets(TPV tpv){
+    public static List<Ticket> consultarTickets(TPV tpv){
         
         return tpv.getListaTickets();
     }
     
     //consultar tickets del tpv segun un dia concreto
-    public List<Ticket> consultarTicketsDia(TPV tpv, int diaDelMes){
+    public static List<Ticket> consultarTicketsDia(TPV tpv, int diaDelMes){
         
         List<Ticket> listaTickets = tpv.getListaTickets();
         List<Ticket> listaTicketsDia = new ArrayList<>();
@@ -110,7 +103,7 @@ public class MetodosAdmin {
     }
     
     //consultar tickets del tpv segun un dia concreto
-    public List<Ticket> consultarTicketsFecha(TPV tpv, LocalDateTime fecha){
+    public static List<Ticket> consultarTicketsFecha(TPV tpv, LocalDateTime fecha){
         
         List<Ticket> listaTickets = tpv.getListaTickets();
         List<Ticket> listaTicketsFecha = new ArrayList<>();
