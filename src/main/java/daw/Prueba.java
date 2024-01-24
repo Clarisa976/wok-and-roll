@@ -17,35 +17,37 @@ public class Prueba {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        List<Producto> catalogo = CatalogoCarta.cartaMenu();
-        Producto seleccionProducto = (Producto)JOptionPane.showInputDialog(null,
-                "Selecciona un producto",
-                "Elegir producto",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                catalogo.toArray(),
-                catalogo.get(0));
-        if (seleccionProducto != null) {
-            Object[] botones = {"Ver precio", "Añadir al carrito"};
-            int seleccionAccion = JOptionPane.showOptionDialog(null,
-                    "Selecciona una acción para " + seleccionProducto.getNombre() + ":",
-                    "Acciones",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.QUESTION_MESSAGE,
-                    null,
-                    botones,
-                    botones[0]);
-
-            if (seleccionAccion == 0) {
-                // Lógica para "Ver precio"
-                System.out.println("aaaaaaaa");
-            } else if (seleccionAccion == 1) {
-                // Lógica para "Añadir al carrito"
-                UtilidadesTPV.agregarAlCarrito(tpv, seleccionProducto);
-            }
-        }
-    }
+        TPV tpv1 = new TPV();
+        
+        UtilidadesTPV.encenderTPV();
+//        List<Producto> catalogo = CatalogoCarta.cartaMenu();
+//        Producto seleccionProducto = (Producto)JOptionPane.showInputDialog(null,
+//                "Selecciona un producto",
+//                "Elegir producto",
+//                JOptionPane.QUESTION_MESSAGE,
+//                null,
+//                catalogo.toArray(),
+//                catalogo.get(0));
+//        if (seleccionProducto != null) {
+//            Object[] botones = {"Ver precio", "Añadir al carrito"};
+//            int seleccionAccion = JOptionPane.showOptionDialog(null,
+//                    "Selecciona una acción para " + seleccionProducto.getNombre() + ":",
+//                    "Acciones",
+//                    JOptionPane.DEFAULT_OPTION,
+//                    JOptionPane.QUESTION_MESSAGE,
+//                    null,
+//                    botones,
+//                    botones[0]);
+//
+//            if (seleccionAccion == 0) {
+//                // Lógica para "Ver precio"
+//                System.out.println("aaaaaaaa");
+//            } else if (seleccionAccion == 1) {
+//                // Lógica para "Añadir al carrito"
+//                UtilidadesTPV.agregarAlCarrito(tpv, seleccionProducto);
+//            }
+//        }
+//    }
         
 //        String[] opcionUsuario = {"Usuario", "Administrador"};
 //        //muestra el cuadro de diálogo con el desplegable de opciones
@@ -103,5 +105,6 @@ public class Prueba {
 //        }
 
     }
+}
 
 

@@ -104,34 +104,38 @@ public class UtilidadesTPV {
     }
 
     //método para encender el tpv
-    public void encenderTPV() {
+    public static void encenderTPV() {
         //generamos y mostrabmos la contraseña del administrador
         System.out.println("Contraseña: " + TPV.generarPass());
-
-        //las opciones a mostrar
-        String[] opcionesInicioTPV = {"Usuario", "Administrador", "Salir"};
-
-        //mensaje de JOption para seleccionar una de las opciones
-        int opcionInicioTPV = JOptionPane.showOptionDialog(null,
-                "Bienvenido \tPor favor seleccione una opción", "TPV",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.PLAIN_MESSAGE, null,
-                opcionesInicioTPV, opcionesInicioTPV[0]);
 
         //booleano para el bucle
         boolean salirTPV = false;
         //bucle para poder elegir entre usuario o administrador hasta que le den a salir
         do {
+            //las opciones a mostrar
+            String[] opcionesInicioTPV = {"Usuario", "Administrador", "Salir"};
+
+            //mensaje de JOption para seleccionar una de las opciones
+            int opcionInicioTPV = JOptionPane.showOptionDialog(null,
+                    "Bienvenido \tPor favor seleccione una opción", "TPV",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null,
+                    opcionesInicioTPV, opcionesInicioTPV[0]);
+
+            
             switch (opcionesInicioTPV[opcionInicioTPV]) {
                 //si elige la opción usuario se llamará al método usuario para mostrar sus opciones
                 case "Usuario":
                     System.out.println("Modo usuario");
+                    break;
                 //si elige la opción administrador se mostrará el método que contiene las opciones de administrador    
                 case "Administrador":
                     System.out.println("Modo admin");
+                    break;
                 //si elige salir se apagará el programa
                 case "Salir":
                     System.out.println("Apagar TPV");
+                    return;
 
             }
 
