@@ -77,7 +77,7 @@ public class Producto {
     public void setTipoIVA(TipoIVA tipoIVA) {
         this.tipoIVA = tipoIVA;
     }
-    
+
     //hashcode
     @Override
     public int hashCode() {

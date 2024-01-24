@@ -4,8 +4,6 @@
  */
 package daw;
 
-import java.util.AbstractList;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +29,6 @@ public class UtilidadesTPV {
 
             System.out.println("No queda Stock del artículo seleccionado.");
         }
-
     }
 
     public void quitarDelCarrito(TPV tpv, Producto producto) {
@@ -107,8 +104,11 @@ public class UtilidadesTPV {
 
     //método para encender el tpv
     public static void encenderTPV() {
+
+        TPV tpv = new TPV();
+
         //generamos y mostrabmos la contraseña del administrador
-        System.out.println("Contraseña: " + TPV.generarPass());
+        System.out.println("Contraseña: " + tpv.getPassAdministrador());
 
         //booleano para el bucle
         boolean salirTPV = false;
@@ -129,7 +129,7 @@ public class UtilidadesTPV {
                 //si elige la opción usuario se llamará al método usuario para mostrar sus opciones
                 case "Usuario":
                     System.out.println("Modo usuario");
-                    modoUsuario();
+                    modoUsuario(tpv);
                     break;
                 //si elige la opción administrador se mostrará el método que contiene las opciones de administrador    
                 case "Administrador":
@@ -145,7 +145,7 @@ public class UtilidadesTPV {
     }
 
     //método para las opciones del usuario
-    private static void modoUsuario() {
+    private static void modoUsuario(TPV tpv) {
         boolean salirUsuario = false;
 
         //iniciamos el bucle
@@ -165,21 +165,25 @@ public class UtilidadesTPV {
             switch (opcionesUsuario[opcionUsuario]) {
                 //con cada opcion llamamos a su método correspondiente 
                 case "Ver comidas":
-                    verCategorias("Comidas");
+                    verCategorias("comidas", tpv);
                     System.out.println("comidas");
                     break;
                 case "Ver bebidas":
+                    verCategorias("bebidas", tpv);
                     System.out.println("bebidas");
                     break;
                 case "Ver postres":
+                    verCategorias("postres", tpv);
                     System.out.println("postre");
                     break;
                 case "Ver carrito":
+                    verCarrito(tpv);
                     System.out.println("carrito");
                     break;
                 //si elige salir vuelve al menú de inicio
                 case "Salir":
                     System.out.println("volver a inicio");
+                    salirUsuario = true;
                     return;
             }
 
@@ -189,7 +193,35 @@ public class UtilidadesTPV {
     /*método del usuario para ver las clases hijas de la clase Producto
     pasandole un String con el tipo de categoría, que optenemos en el switch del 
     modoUsuario.*/
-    private static void verCategorias(String nombreCategoria) {
+    private static void verCarrito(TPV tpv) {
+
+        //Producto productotmp = new Producto("lo que sea", 3, TipoIVA.IVA_DIEZ, 2);
+        //agregarAlCarrito(tpv, productotmp);
+        List<Producto> listaCarrito = tpv.getCarrito();
+
+        if (!listaCarrito.isEmpty()) {
+            String[] opcionesProductos = new String[listaCarrito.size()];
+
+            for (int i = 0; i < listaCarrito.size(); i++) {
+                Producto producto = listaCarrito.get(i);
+                opcionesProductos[i] = producto.getNombre() + " - Precio: " + producto.getPrecioConIVA() + "€";
+            }
+
+            String seleccionProducto = (String) JOptionPane.showInputDialog(null,
+                    "Este es tu carrito actualmente:",
+                    "Elegir producto",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    opcionesProductos,
+                    opcionesProductos[0]);
+        } else{
+            JOptionPane.showMessageDialog(null, "El carrito esta vacío...");;
+            modoUsuario(tpv);
+        }
+
+    }
+
+    private static void verCategorias(String nombreCategoria, TPV tpv) {
         //atributo boolean para el bucle
         boolean salirCategorias = false;
 
@@ -225,6 +257,7 @@ public class UtilidadesTPV {
                                 null,
                                 opcionesProductos,
                                 opcionesProductos[0]);
+
                         if (seleccionProducto != null) {
                             // El usuario seleccionó un producto
                             int opcionElegida = JOptionPane.showOptionDialog(null,
@@ -237,21 +270,79 @@ public class UtilidadesTPV {
                                     "Añadir al carrito");
 
                             if (opcionElegida == 0) {
-                                // El usuario eligió "Añadir al carrito"
-                                // Aquí puedes agregar la lógica para añadir el producto al carrito
+
+//                                List<Producto> listaComida = CatalogoCarta.comidasBD();
+//                                String[] opcionesProductos = new String[listaComida.size()];
                             } else if (opcionElegida == 1) {
                                 // El usuario eligió "Volver"
                                 // Aquí puedes agregar la lógica para volver al menú anterior
                             }
                         }
-                    
 
 //                    List<Producto> listaCompleta = filtarProducto(nombreCategoria);
-                    System.out.println("toda la lista");
-                    break;
-            }
+                        System.out.println("toda la lista");
+                        break;
+                    } else if (nombreCategoria.equalsIgnoreCase("bebidas")) {
 
-          case "Ver subcategoria":
+                        List<Producto> listaBebida = CatalogoCarta.bebidasBD();
+                        String[] opcionesProductos = new String[listaBebida.size()];
+
+                        for (int i = 0; i < listaBebida.size(); i++) {
+                            Producto producto = listaBebida.get(i);
+                            opcionesProductos[i] = producto.getNombre() + " - Precio: " + producto.getPrecioConIVA() + "€";
+                        }
+
+                        String seleccionProducto = (String) JOptionPane.showInputDialog(null,
+                                "Selecciona un producto",
+                                "Elegir producto",
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                opcionesProductos,
+                                opcionesProductos[0]);
+
+                        if (seleccionProducto != null) {
+                            // El usuario seleccionó un producto
+                            int opcionElegida = JOptionPane.showOptionDialog(null,
+                                    "¿Qué deseas hacer con este producto?",
+                                    "Opciones",
+                                    JOptionPane.YES_NO_OPTION,
+                                    JOptionPane.QUESTION_MESSAGE,
+                                    null,
+                                    new String[]{"Añadir al carrito", "Volver"},
+                                    "Añadir al carrito");
+                        }
+                    } else if (nombreCategoria.equalsIgnoreCase("postres")) {
+
+                        List<Producto> listaPostre = CatalogoCarta.postresBD();
+                        String[] opcionesProductos = new String[listaPostre.size()];
+
+                        for (int i = 0; i < listaPostre.size(); i++) {
+                            Producto producto = listaPostre.get(i);
+                            opcionesProductos[i] = producto.getNombre() + " - Precio: " + producto.getPrecioConIVA() + "€";
+                        }
+
+                        String seleccionProducto = (String) JOptionPane.showInputDialog(null,
+                                "Selecciona un producto",
+                                "Elegir producto",
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                opcionesProductos,
+                                opcionesProductos[0]);
+
+                        if (seleccionProducto != null) {
+                            // El usuario seleccionó un producto
+                            int opcionElegida = JOptionPane.showOptionDialog(null,
+                                    "¿Qué deseas hacer con este producto?",
+                                    "Opciones",
+                                    JOptionPane.YES_NO_OPTION,
+                                    JOptionPane.QUESTION_MESSAGE,
+                                    null,
+                                    new String[]{"Añadir al carrito", "Volver"},
+                                    "Añadir al carrito");
+                        }
+                    }
+
+                case "Ver subcategoria":
                     System.out.println("enums");
                     break;
                 //si elige salir vuelve al menú de anterior
@@ -260,12 +351,6 @@ public class UtilidadesTPV {
                     return;
             }
 
-        
+        } while (!salirCategorias);
     }
-    while (!salirCategorias
-
-);
-
-        }
-
-    }
+}

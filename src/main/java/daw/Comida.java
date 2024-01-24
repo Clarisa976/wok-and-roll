@@ -49,5 +49,4 @@ public class Comida extends Producto {
         sb.append('}');
         return sb.toString();
     }
-
 }

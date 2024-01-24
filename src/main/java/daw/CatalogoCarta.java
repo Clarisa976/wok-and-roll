@@ -234,7 +234,9 @@ public class CatalogoCarta {
         carta.add(c9);
         return carta;
     }
-    public List<Producto> bebidasBD(){
+    public static List<Producto> bebidasBD(){
+        
+        List<Producto> carta = new ArrayList<>();
         //bebidas
         //creamos nueve bebidas
         Producto b1 = new Bebida("Coca cola Zero", 33,
@@ -279,8 +281,10 @@ public class CatalogoCarta {
         carta.add(b9);
         return carta;
     }
-    public List<Producto> postresBD(){
-       //postre
+    public static List<Producto> postresBD(){
+        
+        List<Producto> carta = new ArrayList<>();
+        //postre
         //creamos los postres
         Producto p1 = new Postre("Bol de fresitas con nata", 185,
                 TipoPostre.FRUTITA, 2.70, TipoIVA.IVA_DIEZ, 20);
