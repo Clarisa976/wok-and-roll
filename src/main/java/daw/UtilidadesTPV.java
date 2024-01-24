@@ -209,11 +209,49 @@ public class UtilidadesTPV {
             switch (opcionesCategorias[opcionCategorias]) {
                 //con cada opcion llamamos a su método correspondiente 
                 case "Ver todo":
- 
+                    if (nombreCategoria.equalsIgnoreCase("comidas")) {
+                        List<Producto> listaComida = CatalogoCarta.comidasBD();
+                        String[] opcionesProductos = new String[listaComida.size()];
+
+                        for (int i = 0; i < listaComida.size(); i++) {
+                            Producto producto = listaComida.get(i);
+                            opcionesProductos[i] = producto.getNombre() + " - Precio: " + producto.getPrecioConIVA() + "€";
+                        }
+
+                        String seleccionProducto = (String) JOptionPane.showInputDialog(null,
+                                "Selecciona un producto",
+                                "Elegir producto",
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                opcionesProductos,
+                                opcionesProductos[0]);
+                        if (seleccionProducto != null) {
+                            // El usuario seleccionó un producto
+                            int opcionElegida = JOptionPane.showOptionDialog(null,
+                                    "¿Qué deseas hacer con este producto?",
+                                    "Opciones",
+                                    JOptionPane.YES_NO_OPTION,
+                                    JOptionPane.QUESTION_MESSAGE,
+                                    null,
+                                    new String[]{"Añadir al carrito", "Volver"},
+                                    "Añadir al carrito");
+
+                            if (opcionElegida == 0) {
+                                // El usuario eligió "Añadir al carrito"
+                                // Aquí puedes agregar la lógica para añadir el producto al carrito
+                            } else if (opcionElegida == 1) {
+                                // El usuario eligió "Volver"
+                                // Aquí puedes agregar la lógica para volver al menú anterior
+                            }
+                        }
+                    
+
 //                    List<Producto> listaCompleta = filtarProducto(nombreCategoria);
                     System.out.println("toda la lista");
                     break;
-                case "Ver subcategoria":
+            }
+
+          case "Ver subcategoria":
                     System.out.println("enums");
                     break;
                 //si elige salir vuelve al menú de anterior
@@ -222,11 +260,12 @@ public class UtilidadesTPV {
                     return;
             }
 
-        } while (!salirCategorias);
+        
+    }
+    while (!salirCategorias
+
+);
+
+        }
 
     }
-
-  
-    
-
-}

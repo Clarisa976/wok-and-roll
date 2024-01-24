@@ -188,7 +188,7 @@ public class CatalogoCarta {
         return carta;
     }
     //Las tres listas con los datos cargados aparte
-    public List<Producto> comidasBD(){
+    public static List<Producto> comidasBD(){
         List<Producto> carta = new ArrayList<>();
         //comidas
         //creamos nueve comidas
