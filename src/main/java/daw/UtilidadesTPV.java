@@ -117,12 +117,12 @@ public class UtilidadesTPV {
 
             //mensaje de JOption para seleccionar una de las opciones
             int opcionInicioTPV = JOptionPane.showOptionDialog(null,
-                    "Bienvenido \tPor favor seleccione una opción", "TPV",
+                    "Bienvenido \nPor favor seleccione una opción", "TPV",
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.PLAIN_MESSAGE, null,
                     opcionesInicioTPV, opcionesInicioTPV[0]);
-
-            
+           
+            //switch con las diferentes opciones dadas
             switch (opcionesInicioTPV[opcionInicioTPV]) {
                 //si elige la opción usuario se llamará al método usuario para mostrar sus opciones
                 case "Usuario":
@@ -136,9 +136,49 @@ public class UtilidadesTPV {
                 case "Salir":
                     System.out.println("Apagar TPV");
                     return;
-
             }
 
         } while (!salirTPV);
+    }
+
+    //método para las opciones del usuario
+    public static void modoUsuario() {
+        boolean salirUsuario = false;
+
+        //iniciamos el bucle
+        do {
+            //creamos las opciones del usuario
+            String[] opcionesUsuario = {"Ver comidas", "Ver bebidas",
+                "Ver postres", "Ver carrito", "Salir"};
+            //mensaje de JOptionPane par mostrar dichas opciones
+            int opcionUsuario = JOptionPane.showOptionDialog(null, 
+                    "Seleccione una opción", 
+                    "Wok and Roll -- DAWFOOD -- Modo Usuario",
+                    JOptionPane.DEFAULT_OPTION, 
+                    JOptionPane.PLAIN_MESSAGE, null, 
+                    opcionesUsuario, opcionesUsuario[0]);
+            
+            //switch con las diferentes opciones dadas
+            switch (opcionesUsuario[opcionUsuario]) {
+                //con cada opcion llamamos a su método correspondiente 
+                case "Ver comidas":
+                    System.out.println("comidas");
+                    break;
+                case "Ver bebidas":
+                    System.out.println("bebidas");
+                    break;
+                    case "Ver postres":
+                    System.out.println("postre");
+                    break;
+                    case "Ver carroto":
+                    System.out.println("carrito");
+                    break;
+                //si elige salir vuelve al menú de inicio
+                case "Salir":
+                    System.out.println("volver a inicio");
+                    return;
+            }
+            
+        } while (!salirUsuario);
     }
 }
