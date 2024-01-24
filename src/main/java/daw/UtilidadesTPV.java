@@ -121,12 +121,13 @@ public class UtilidadesTPV {
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.PLAIN_MESSAGE, null,
                     opcionesInicioTPV, opcionesInicioTPV[0]);
-           
+
             //switch con las diferentes opciones dadas
             switch (opcionesInicioTPV[opcionInicioTPV]) {
                 //si elige la opción usuario se llamará al método usuario para mostrar sus opciones
                 case "Usuario":
                     System.out.println("Modo usuario");
+                    modoUsuario();
                     break;
                 //si elige la opción administrador se mostrará el método que contiene las opciones de administrador    
                 case "Administrador":
@@ -142,7 +143,7 @@ public class UtilidadesTPV {
     }
 
     //método para las opciones del usuario
-    public static void modoUsuario() {
+    private static void modoUsuario() {
         boolean salirUsuario = false;
 
         //iniciamos el bucle
@@ -151,26 +152,27 @@ public class UtilidadesTPV {
             String[] opcionesUsuario = {"Ver comidas", "Ver bebidas",
                 "Ver postres", "Ver carrito", "Salir"};
             //mensaje de JOptionPane par mostrar dichas opciones
-            int opcionUsuario = JOptionPane.showOptionDialog(null, 
-                    "Seleccione una opción", 
+            int opcionUsuario = JOptionPane.showOptionDialog(null,
+                    "Seleccione una opción",
                     "Wok and Roll -- DAWFOOD -- Modo Usuario",
-                    JOptionPane.DEFAULT_OPTION, 
-                    JOptionPane.PLAIN_MESSAGE, null, 
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null,
                     opcionesUsuario, opcionesUsuario[0]);
-            
+
             //switch con las diferentes opciones dadas
             switch (opcionesUsuario[opcionUsuario]) {
                 //con cada opcion llamamos a su método correspondiente 
                 case "Ver comidas":
+                    verCategorias("Comidas");
                     System.out.println("comidas");
                     break;
                 case "Ver bebidas":
                     System.out.println("bebidas");
                     break;
-                    case "Ver postres":
+                case "Ver postres":
                     System.out.println("postre");
                     break;
-                    case "Ver carroto":
+                case "Ver carrito":
                     System.out.println("carrito");
                     break;
                 //si elige salir vuelve al menú de inicio
@@ -178,7 +180,48 @@ public class UtilidadesTPV {
                     System.out.println("volver a inicio");
                     return;
             }
-            
+
         } while (!salirUsuario);
+    }
+
+    /*método del usuario para ver las clases hijas de la clase Producto
+    pasandole un String con el tipo de categoría, que optenemos en el switch del 
+    modoUsuario.*/
+    private static void verCategorias(String nombreCategoria) {
+        //atributo boolean para el bucle
+        boolean salirCategorias = false;
+
+        //iniciamos el bucle 
+        do {
+            //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
+            String[] opcionesCategorias = {"Ver todo", "Ver subcategorías", "Volver"};
+            //mensaje de JOptionPane par mostrar dichas opciones
+            int opcionCategorias = JOptionPane.showOptionDialog(null,
+                    "Seleccione una opción",
+                    "Wok and Roll -- DAWFOOD -- Modo Usuario",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null,
+                    opcionesCategorias, opcionesCategorias[0]);
+
+            //switch con las diferentes opciones dadas
+            switch (opcionesCategorias[opcionCategorias]) {
+                //con cada opcion llamamos a su método correspondiente 
+                case "Ver todo":
+                    System.out.println("toda la lista");
+                    break;
+                case "Ver subcategoria":
+                    System.out.println("enums");
+                    break;
+                case "Ver postres":
+                    System.out.println("postre");
+                    break;
+                //si elige salir vuelve al menú de anterior
+                case "Salir":
+                    System.out.println("volver a categorías");
+                    return;
+            }
+
+        } while (!salirCategorias);
+
     }
 }
