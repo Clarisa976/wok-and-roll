@@ -215,6 +215,27 @@ public class UtilidadesTPV {
                     null,
                     opcionesProductos,
                     opcionesProductos[0]);
+            if (seleccionProducto != null) {
+                // El usuario seleccionó un producto
+                //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
+                String[] opcionesElegidas = {"Pagar", "Volver"};
+                int opcionElegida = JOptionPane.showOptionDialog(null,
+                        "¿Qué deseas hacer con este producto?",
+                        "Wok and Roll -- DAWFOOD --",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        opcionesElegidas,
+                        opcionesElegidas[0]);
+
+                if (opcionElegida != 1) {
+
+                    System.out.println("pagando");
+                } else if (opcionElegida != 0) {
+                    System.out.println("volver");
+                    return;
+                }
+            }
         } else {
             JOptionPane.showMessageDialog(null, "El carrito esta vacío...");;
             modoUsuario(tpv);
@@ -242,7 +263,7 @@ public class UtilidadesTPV {
             switch (opcionesCategorias[opcionCategorias]) {
                 //con cada opcion llamamos a su método correspondiente 
                 case "Ver todo":
-                    
+
                     if (nombreCategoria.equalsIgnoreCase("comidas")) {
                         List<Producto> listaComida = CatalogoCarta.comidasBD();
                         String[] opcionesProductos = new String[listaComida.size()];
@@ -265,7 +286,7 @@ public class UtilidadesTPV {
                         if (seleccionProducto != null) {
                             // El usuario seleccionó un producto
                             //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                        String[] opcionesElegidas = {"Agregar al carrito",  "Volver"};
+                            String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
                             int opcionElegida = JOptionPane.showOptionDialog(null,
                                     "¿Qué deseas hacer con este producto?",
                                     "Wok and Roll -- DAWFOOD --",
@@ -309,10 +330,10 @@ public class UtilidadesTPV {
                                 opcionesProductos,
                                 opcionesProductos[0]);
 
-                       if (seleccionProducto != null) {
+                        if (seleccionProducto != null) {
                             // El usuario seleccionó un producto
                             //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                        String[] opcionesElegidas = {"Agregar al carrito",  "Volver"};
+                            String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
                             int opcionElegida = JOptionPane.showOptionDialog(null,
                                     "¿Qué deseas hacer con este producto?",
                                     "Wok and Roll -- DAWFOOD --",
@@ -332,7 +353,7 @@ public class UtilidadesTPV {
                                 System.out.println("volver");
                                 return;
                             }
-                        
+
                         }
                     } else if (nombreCategoria.equalsIgnoreCase("postres")) {
 
@@ -356,7 +377,7 @@ public class UtilidadesTPV {
                         if (seleccionProducto != null) {
                             // El usuario seleccionó un producto
                             //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                        String[] opcionesElegidas = {"Agregar al carrito",  "Volver"};
+                            String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
                             int opcionElegida = JOptionPane.showOptionDialog(null,
                                     "¿Qué deseas hacer con este producto?",
                                     "Wok and Roll -- DAWFOOD --",
