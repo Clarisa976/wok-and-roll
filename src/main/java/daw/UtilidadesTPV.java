@@ -4,6 +4,8 @@
  */
 package daw;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -194,7 +196,7 @@ public class UtilidadesTPV {
         //iniciamos el bucle 
         do {
             //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-            String[] opcionesCategorias = {"Ver todo", "Ver subcategorías", "Volver"};
+            String[] opcionesCategorias = {"Ver todo", "Ver subcategorias", "Volver"};
             //mensaje de JOptionPane par mostrar dichas opciones
             int opcionCategorias = JOptionPane.showOptionDialog(null,
                     "Seleccione una opción",
@@ -207,16 +209,15 @@ public class UtilidadesTPV {
             switch (opcionesCategorias[opcionCategorias]) {
                 //con cada opcion llamamos a su método correspondiente 
                 case "Ver todo":
+ 
+//                    List<Producto> listaCompleta = filtarProducto(nombreCategoria);
                     System.out.println("toda la lista");
                     break;
                 case "Ver subcategoria":
                     System.out.println("enums");
                     break;
-                case "Ver postres":
-                    System.out.println("postre");
-                    break;
                 //si elige salir vuelve al menú de anterior
-                case "Salir":
+                case "Volver":
                     System.out.println("volver a categorías");
                     return;
             }
@@ -224,4 +225,8 @@ public class UtilidadesTPV {
         } while (!salirCategorias);
 
     }
+
+  
+    
+
 }

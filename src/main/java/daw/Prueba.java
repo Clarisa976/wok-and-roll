@@ -19,6 +19,7 @@ public class Prueba {
     public static void main(String[] args) {
         //creamos un TPV
         TPV tpv1 = new TPV();
+        List<Producto> a = CatalogoCarta.cartaMenu();
         //lo encendemos
         UtilidadesTPV.encenderTPV();
 //        List<Producto> catalogo = CatalogoCarta.cartaMenu();
