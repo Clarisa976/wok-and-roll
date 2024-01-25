@@ -470,15 +470,26 @@ public class UtilidadesTPV {
             }
         }
     }
-    public static String pedirEnteroString(String mensaje) {
+    private static String pedirEnteroString(String mensaje) {
         while (true) {
-            try {
-                String aux = JOptionPane.showInputDialog(mensaje);
-                Integer.parseInt(aux); // Intentamos convertir a entero para validar la entrada
-                return aux; // Si no se lanza una excepción, la entrada es válida como cadena.
-            } catch (NumberFormatException e) {
+//            try {
+                if(esEntero(mensaje)){
+                    return mensaje;
+                }else{
+//                String aux = JOptionPane.showInputDialog(mensaje);
+//                Integer.parseInt(aux); // Intentamos convertir a entero para validar la entrada
+//                return aux; // Si no se lanza una excepción, la entrada es válida como cadena.
+//            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
             }
+        }
+    }
+    private static boolean esEntero(String mensaje){
+        try {
+            Integer.parseInt(mensaje);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 }
