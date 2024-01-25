@@ -4,10 +4,13 @@
  */
 package daw;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,7 +51,7 @@ public class UtilidadesTPV {
         }
     }
 
-    public void cancelarCompra(TPV tpv) {
+    public static void cancelarCompra(TPV tpv) {
 
         List<Producto> carritoTmp = tpv.getCarrito();
 
@@ -57,7 +60,7 @@ public class UtilidadesTPV {
         tpv.setCarrito(carritoTmp);
     }
 
-    public void finalizarCompra(TPV tpv, Tarjeta tarjeta) {
+    public static void finalizarCompra(TPV tpv, Tarjeta tarjeta) {
 
         List<Producto> carritoTmp = tpv.getCarrito();
 
@@ -164,28 +167,28 @@ public class UtilidadesTPV {
 
             //switch con las diferentes opciones dadas
             switch (opcionesUsuario[opcionUsuario]) {
-                //con cada opcion llamamos a su método correspondiente 
-                case "Ver comidas":
+                //con cada opcion llamamos a su método correspondiente
+                //si elige salir vuelve al menú de inicio
+                case "Ver comidas" -> {
                     verCategorias("comidas", tpv);
                     System.out.println("comidas");
-                    break;
-                case "Ver bebidas":
+                }
+                case "Ver bebidas" -> {
                     verCategorias("bebidas", tpv);
                     System.out.println("bebidas");
-                    break;
-                case "Ver postres":
+                }
+                case "Ver postres" -> {
                     verCategorias("postres", tpv);
                     System.out.println("postre");
-                    break;
-                case "Ver carrito":
+                }
+                case "Ver carrito" -> {
                     verCarrito(tpv);
                     System.out.println("carrito");
-                    break;
-                //si elige salir vuelve al menú de inicio
-                case "Salir":
+                }
+                case "Salir" -> {
                     System.out.println("volver a inicio");
-                    salirUsuario = true;
                     return;
+                }
             }
 
         } while (!salirUsuario);
@@ -218,7 +221,7 @@ public class UtilidadesTPV {
             if (seleccionProducto != null) {
                 // El usuario seleccionó un producto
                 //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                String[] opcionesElegidas = {"Pagar", "Volver"};
+                String[] opcionesElegidas = {"Pagar","Cancelar compra", "Volver"};
                 int opcionElegida = JOptionPane.showOptionDialog(null,
                         "¿Qué deseas hacer con este producto?",
                         "Wok and Roll -- DAWFOOD --",
@@ -227,14 +230,29 @@ public class UtilidadesTPV {
                         null,
                         opcionesElegidas,
                         opcionesElegidas[0]);
-
-                if (opcionElegida != 1) {
-
-                    System.out.println("pagando");
-                } else if (opcionElegida != 0) {
-                    System.out.println("volver");
-                    return;
+                switch (opcionesElegidas[opcionElegida]) {
+                    case "Pagar":
+                        Tarjeta aux = pedirTarjeta();
+                        UtilidadesTPV.finalizarCompra(tpv, aux);
+                        System.out.println("Pagando");
+                        break;
+                        case "Cancelar compra":
+                        UtilidadesTPV.cancelarCompra(tpv);
+                        break;
+                        case "Volver":
+                            System.out.println("Volver");
+                        return;
+                    
                 }
+//                if (opcionElegida != 1) {
+//
+//                    System.out.println("pagando");
+//                } else if (opcionElegida != 0) {
+//                    System.out.println("volver");
+//                    return;
+//                }else{
+//                    
+//                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "El carrito esta vacío...");;
@@ -419,6 +437,48 @@ public class UtilidadesTPV {
             Producto producto = aux.get(i);
             opciones[i] = producto.getNombre() + " - Precio: "
                     + producto.getPrecioConIVA() + "€";
+        }
+    }
+    
+    private static Tarjeta pedirTarjeta(){
+        Tarjeta aux;
+        String mensajeNumero = JOptionPane.showInputDialog("Introduce los cuatro últimos dígitos de tu tarjeta.");
+        String numeroTarjeta = pedirEnteroString(mensajeNumero);
+        String mensajeCVV = JOptionPane.showInputDialog("Introduce el CVV de tu tarjeta.");
+        String CVVTarjeta = pedirEnteroString(mensajeCVV);
+        
+        String diaNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
+        int diaTarjeta = pedirEntero(diaNumero);
+        String mesNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
+        int mesTarjeta = pedirEntero(mesNumero);
+        String anioNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
+        int anioTarjeta = pedirEntero(anioNumero);
+        
+        LocalDate fechaTarjeta = LocalDate.of(anioTarjeta, mesTarjeta, diaTarjeta);
+        
+        aux = new Tarjeta(numeroTarjeta, fechaTarjeta, CVVTarjeta);
+        return aux;
+    }
+    public static int pedirEntero(String mensaje) {
+        while (true) {
+            try {
+                String entrada = JOptionPane.showInputDialog(mensaje);
+                int numero = Integer.parseInt(entrada);
+                return numero;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
+            }
+        }
+    }
+    public static String pedirEnteroString(String mensaje) {
+        while (true) {
+            try {
+                String aux = JOptionPane.showInputDialog(mensaje);
+                Integer.valueOf(aux); // Intentamos convertir a entero para validar la entrada
+                return aux; // Si no se lanza una excepción, la entrada es válida como cadena.
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
+            }
         }
     }
 }
