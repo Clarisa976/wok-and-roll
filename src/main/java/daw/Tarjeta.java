@@ -33,6 +33,13 @@ public class Tarjeta {
         this.SaldoTarjeta = SaldoTarjeta;
     }
 
+    public Tarjeta(String numeroTarjeta, LocalDate fechaCaducidadTarjeta, String Cvv) {
+        this.numeroTarjeta = numeroTarjeta;
+        this.fechaCaducidadTarjeta = fechaCaducidadTarjeta;
+        this.Cvv = Cvv;
+        
+    }
+
     // Getter y setter
     public String getNombreTitularTarjeta() {
         return nombreTitularTarjeta;
