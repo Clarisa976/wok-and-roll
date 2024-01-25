@@ -39,12 +39,11 @@ public class Tarjeta {
         this.numeroTarjeta = numeroTarjeta;
         this.fechaCaducidadTarjeta = fechaCaducidadTarjeta;
         this.Cvv = Cvv;
-        
+
     }
 
     public Tarjeta() {
     }
-    
 
     // Getter y setter
     public String getNombreTitularTarjeta() {
@@ -133,23 +132,23 @@ public class Tarjeta {
         List<Tarjeta> listaTarjetas = new ArrayList<>();
         //creamos tarjetas
         Tarjeta t1 = new Tarjeta("Juan Perez",
-                "1234567812345678", 
+                "1234567812345678",
                 LocalDate.of(2025, 12, 31),
                 "123", 1000.0);
-        Tarjeta t2 = new Tarjeta("Maria Lopez", 
-                "2345678923456789", 
-                LocalDate.of(2024, 6, 30), 
+        Tarjeta t2 = new Tarjeta("Maria Lopez",
+                "2345678923456789",
+                LocalDate.of(2024, 6, 30),
                 "456", 500.0);
-        Tarjeta t3 = new Tarjeta("Carlos Rodriguez", 
-                "3456789034567890", 
+        Tarjeta t3 = new Tarjeta("Carlos Rodriguez",
+                "3456789034567890",
                 LocalDate.of(2023, 4, 15),
                 "789", 200.0);
-        Tarjeta t4 = new Tarjeta("Ana Garcia", 
-                "4567890145678901", 
+        Tarjeta t4 = new Tarjeta("Ana Garcia",
+                "4567890145678901",
                 LocalDate.of(2026, 8, 28),
                 "234", 1500.0);
-        Tarjeta t5 = new Tarjeta("Pedro Sanchez", 
-                "5678901256789012", 
+        Tarjeta t5 = new Tarjeta("Pedro Sanchez",
+                "5678901256789012",
                 LocalDate.of(2024, 10, 10),
                 "567", 800.0);
 
@@ -186,7 +185,6 @@ public class Tarjeta {
 //
 //        return true; //la tarjeta es válida y tiene saldo suficiente
 //    }
-
     //método auxiliar para buscar una tarjeta por número en la lista de tarjetas registradas
     private Tarjeta buscarTarjeta(String numero) {
         for (Tarjeta tarjeta : tarjetasRegistradas) {
@@ -196,11 +194,12 @@ public class Tarjeta {
         }
         return null; //tarjeta no encontrada
     }
-     //método para verificar si la tarjeta está registrada en la base de datos por los últimos 4 dígitos
+    //método para verificar si la tarjeta está registrada en la base de datos por los últimos 4 dígitos
+
     public static boolean verificarTarjetaRegistrada(String numeroTarjeta) {
         boolean esValida = false;
         List<Tarjeta> tarjetaBD = tarjetasRegistradasBD();
-        
+
         for (int i = 0; i < tarjetaBD.size(); i++) {
 
             if (numeroTarjeta.equals(tarjetaBD.get(i)
@@ -213,6 +212,7 @@ public class Tarjeta {
         }
         return esValida;
     }
+
     //método para pedirle la tarjeta al cliente
     public static Tarjeta obtenerTarjetaCliente(String digitosCliente) {
         List<Tarjeta> tarjetaBD = tarjetasRegistradasBD();
@@ -228,22 +228,23 @@ public class Tarjeta {
         }
         return tarjetaCliente;
     }
-    
+
     //método para pedir la fecha al cliente
-    public static LocalDate pedirFechaTarjeta(){
+    public static LocalDate pedirFechaTarjeta() {
         String diaNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
         int diaTarjeta = pedirEntero(diaNumero);
         String mesNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
         int mesTarjeta = pedirEntero(mesNumero);
         String anioNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
         int anioTarjeta = pedirEntero(anioNumero);
-        
+
         LocalDate fechaTarjeta = LocalDate.of(anioTarjeta, mesTarjeta, diaTarjeta);
-        
+
         return fechaTarjeta;
     }
+
     //método para verificar la fecha de la tarjeta
-    public static boolean verificarFecha(LocalDate fecha, String numeroCliente){
+    public static boolean verificarFecha(LocalDate fecha, String numeroCliente) {
         boolean esValida = false;
         Tarjeta tarjetaCliente = obtenerTarjetaCliente(numeroCliente);
 
@@ -252,13 +253,32 @@ public class Tarjeta {
         //en los datos de la tarjeta de nuestra base de datos
         if (fecha.isAfter(LocalDate.now())
                 && fecha.equals(tarjetaCliente.getFechaCaducidadTarjeta())) {
-            
+
         }
-        
+
         return esValida;
     }
-    
-  
+
+    //método para pedir el CVV
+    public static String pedirCVV() {
+        String mensajeCVV = JOptionPane.showInputDialog("Introduce el CVV de tu tarjeta.");
+        String CVVTarjeta = pedirEnteroString(mensajeCVV);
+        return CVVTarjeta;
+    }
+
+    //método para verificar el CVV
+    public static boolean verificarCVV(String CVV, String numeroCliente) {
+        boolean esValida = false;
+        Tarjeta tarjetaCliente = obtenerTarjetaCliente(numeroCliente);
+
+        if (CVV.equals(tarjetaCliente.getCvv())) {
+            esValida = true;
+            return esValida;
+        }
+
+        return esValida;
+    }
+
     //método para pedir un entero y controlar excepciones
     public static int pedirEntero(String mensaje) {
         while (true) {
@@ -268,6 +288,30 @@ public class Tarjeta {
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
             }
+        }
+    }
+
+    private static String pedirEnteroString(String mensaje) {
+        while (true) {
+//            try {
+            if (esEntero(mensaje)) {
+                return mensaje;
+            } else {
+//                String aux = JOptionPane.showInputDialog(mensaje);
+//                Integer.parseInt(aux); // Intentamos convertir a entero para validar la entrada
+//                return aux; // Si no se lanza una excepción, la entrada es válida como cadena.
+//            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
+            }
+        }
+    }
+
+    private static boolean esEntero(String mensaje) {
+        try {
+            Integer.parseInt(mensaje);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 }
