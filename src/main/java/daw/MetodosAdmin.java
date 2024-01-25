@@ -116,4 +116,45 @@ public class MetodosAdmin {
 
         return listaTicketsFecha;
     }
+    
+    public static void modoAdministrador (TPV tpv){
+        boolean salirAdmin = false;
+
+        //iniciamos el bucle
+        do {
+            //creamos las opciones del usuario
+            String[] opcionesUsuario = {"Modificar producto", "Dar de alta un producto",
+                "Borrar producto", "Ver ventas", "Salir"};
+            //mensaje de JOptionPane par mostrar dichas opciones
+            int opcionUsuario = JOptionPane.showOptionDialog(null,
+                    "Seleccione una opción",
+                    "Wok and Roll -- DAWFOOD -- Modo Usuario",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null,
+                    opcionesUsuario, opcionesUsuario[0]);
+
+            //switch con las diferentes opciones dadas
+            switch (opcionesUsuario[opcionUsuario]) {
+                //con cada opcion llamamos a su método correspondiente
+                //si elige salir vuelve al menú de inicio
+                case "Modificar producto" -> {
+                    
+                }
+                case "Dar de alta un producto" -> {
+                    
+                }
+                case "Borrar producto" -> {
+                    
+                }
+                case "Ver ventas" -> {
+                    
+                }
+                case "Salir" -> {
+                    System.out.println("volver a inicio");
+                    return;
+                }
+            }
+
+        } while (!salirAdmin);
+    }
 }
