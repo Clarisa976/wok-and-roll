@@ -230,7 +230,7 @@ public class Tarjeta {
     }
     
     //método para pedir la fecha al cliente
-    public static LocalDate pedirFechaTarjeta(int dia, int mes, int anio){
+    public static LocalDate pedirFechaTarjeta(){
         String diaNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
         int diaTarjeta = pedirEntero(diaNumero);
         String mesNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
@@ -257,6 +257,8 @@ public class Tarjeta {
         
         return esValida;
     }
+    
+  
     //método para pedir un entero y controlar excepciones
     public static int pedirEntero(String mensaje) {
         while (true) {
