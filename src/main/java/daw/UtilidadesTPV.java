@@ -462,8 +462,8 @@ public class UtilidadesTPV {
     public static int pedirEntero(String mensaje) {
         while (true) {
             try {
-                String entrada = JOptionPane.showInputDialog(mensaje);
-                int numero = Integer.parseInt(entrada);
+//                String entrada = JOptionPane.showInputDialog(mensaje);
+                int numero = Integer.parseInt(mensaje);
                 return numero;
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
@@ -474,7 +474,7 @@ public class UtilidadesTPV {
         while (true) {
             try {
                 String aux = JOptionPane.showInputDialog(mensaje);
-                Integer.valueOf(aux); // Intentamos convertir a entero para validar la entrada
+                Integer.parseInt(aux); // Intentamos convertir a entero para validar la entrada
                 return aux; // Si no se lanza una excepción, la entrada es válida como cadena.
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
