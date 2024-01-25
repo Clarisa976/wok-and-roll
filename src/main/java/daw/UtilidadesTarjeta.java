@@ -14,9 +14,14 @@ import javax.swing.JOptionPane;
  * @author clara
  */
 public class UtilidadesTarjeta {
-        //método para verificar si la tarjeta está registrada en la base de datos por los últimos 4 dígitos
-
-    public static boolean verificarTarjetaRegistrada(String numeroTarjeta) {
+    //método para pedir la tarjeta
+    public static String pedirTarjeta(){
+        String mensajeNumero = JOptionPane.showInputDialog("Introduce los cuatro últimos dígitos de tu tarjeta.");
+        String numeroTarjeta = pedirEnteroString(mensajeNumero);
+        return numeroTarjeta;
+    }
+    //método para verificar si la tarjeta está registrada en la base de datos por los últimos 4 dígitos
+    public static boolean verificarTarjeta(String numeroTarjeta) {
         boolean esValida = false;
         List<Tarjeta> tarjetaBD = tarjetasRegistradasBD();
 
@@ -134,47 +139,55 @@ public class UtilidadesTarjeta {
             return false;
         }
     }
-    
-    
-    //método para pagar verificando la tarjeta
-    private static void pagar (TPV tpv, double importe){
-        
+
+    //método que verifica si hay saldo suficiente
+    public static boolean saldoSuficiente(String numeroCliente, double totalPagar) {
+        Tarjeta tarjetaCliente = obtenerTarjetaCliente(numeroCliente);
+        if (tarjetaCliente.getSaldoTarjeta() >= totalPagar) {
+            return true;
+        }
+        return false;
     }
-    /*
-    if (UtilidadesTarjeta.fechaCaducidadYCVVValidos(digitosTarjeta, fechaCaducidad, cvv.getText())) {
 
-                        if (UtilidadesTarjeta.saldoSuficiente(digitosTarjeta, totalPagar)) {
-                            for (int i = 0; i < UtilidadesTarjeta.baseDatosTarjeta().size(); i++) {
-                                if (digitosTarjeta.equals(UtilidadesTarjeta.baseDatosTarjeta().get(i)
-                                        .getNumTarjeta()
-                                        .substring(UtilidadesTarjeta.baseDatosTarjeta().get(i).getNumTarjeta().length() - 4,
-                                                UtilidadesTarjeta.baseDatosTarjeta().get(i).getNumTarjeta().length()))) {
+//    //método para pagar verificando la tarjeta
+//    private static void pagar(TPV tpv, double importe) {
+//        String numeroTarjeta = pedirTarjeta();
+//        if(UtilidadesTarjeta.verificarTarjetaRegistrada(numeroTarjeta)){
+//            String numeroCVV = pedirCVV();
+//            if(UtilidadesTarjeta.verificarCVV(numeroCVV, numeroTarjeta)){
+//                LocalDate fecha = pedirFechaTarjeta();
+//                if(UtilidadesTarjeta.verificarFecha(fecha, numeroTarjeta)){
+//                
+//            }
+//        }
+//    }
+    // método para verificar si una tarjeta es válida y tiene saldo suficiente
+    public static boolean verificarTarjeta(Double importeTotal) {
+        String numeroTarjeta = pedirTarjeta();
+        LocalDate fecha = pedirFechaTarjeta();
+        String numeroCVV = pedirCVV();
+        
+        //comprobar si la tarjeta está registrada
+       if (!UtilidadesTarjeta.verificarTarjeta(numeroTarjeta)) {
+            return false; //la tarjeta no está registrada
+        }
 
-                                    UtilidadesTarjeta.baseDatosTarjeta().get(i).setSaldo(
-                                            UtilidadesTarjeta.baseDatosTarjeta().get(i).getSaldo() - totalPagar);
-                                }
-                            }
+        //comprobar si la fecha de caducidad es válida (no posterior a la fecha actual)
+         if (!UtilidadesTarjeta.verificarFecha(fecha, numeroTarjeta)) {
+            return false; //la fecha de caducidad es posterior a la fecha actual
+        }
 
-                            for (Producto p1 : tpv.getCarrito()) {
-                                for (Producto p2 : tpv.getCartaProductos()) {
-                                    if(p1.equals(p2)){
-                                        p2.setStock(p2.getStock() - p1.getStock());
-                                    }
-                                }
-                            }
+        //comprobar si el CVV coincide
+        if (!UtilidadesTarjeta.verificarCVV(numeroCVV, numeroCVV)) {
+            return false; //el CVV no coincide
+        }
 
-                            Ticket t = new Ticket(new ArrayList<Producto>(tpv.getCarrito()),
-                                    totalPagar, LocalDate.now(),
-                                    LocalTime.now());
-                            tpv.getBaseDatosTicket().add(t);
-                            tpv.getCarrito().clear();
+        //comprobar si el saldo es suficiente para el importeTotal del ticket
+        if (!UtilidadesTarjeta.saldoSuficiente(numeroCVV, importeTotal)) {
+            return false; //el saldo no es suficiente
+        }
 
-                            String[] opciones = {"Aceptar"};
-
-                            JOptionPane.showOptionDialog(null,
-                                    t, "TPV", JOptionPane.DEFAULT_OPTION,
-                                    JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
-                            seleccionarCategoría(tpv);
+        return true; //la tarjeta es válida y tiene saldo suficiente
+    }
     
-    */
 }
