@@ -161,30 +161,7 @@ public class Tarjeta {
         return listaTarjetas;
     }
 
-//    // método para verificar si una tarjeta es válida y tiene saldo suficiente
-//    public boolean verificarTarjeta(Double importeTotal) {
-//        //comprobar si la tarjeta está registrada
-//       if (!verificarTarjetaRegistrada()) {
-//            return false; //la tarjeta no está registrada
-//        }
-//
-//        //comprobar si la fecha de caducidad es válida (no posterior a la fecha actual)
-//         if (fechaCaducidadTarjeta.isAfter(LocalDate.now())) {
-//            return false; //la fecha de caducidad es posterior a la fecha actual
-//        }
-//
-//        //comprobar si el CVV coincide
-//        if (!Cvv.equals(buscarTarjeta(numeroTarjeta).Cvv)) {
-//            return false; //el CVV no coincide
-//        }
-//
-//        //comprobar si el saldo es suficiente para el importeTotal del ticket
-//        if (SaldoTarjeta <= importeTotal) {
-//            return false; //el saldo no es suficiente
-//        }
-//
-//        return true; //la tarjeta es válida y tiene saldo suficiente
-//    }
+
     //método auxiliar para buscar una tarjeta por número en la lista de tarjetas registradas
     private Tarjeta buscarTarjeta(String numero) {
         for (Tarjeta tarjeta : tarjetasRegistradas) {
