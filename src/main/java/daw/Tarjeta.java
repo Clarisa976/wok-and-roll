@@ -123,7 +123,7 @@ public class Tarjeta {
     }
 
     //método de una Lista con tarjetas
-    private List<Tarjeta> tarjetasRegistradasBD() {
+    private static List<Tarjeta> tarjetasRegistradasBD() {
         List<Tarjeta> listaTarjetas = new ArrayList<>();
         //creamos tarjetas
         Tarjeta t1 = new Tarjeta("Juan Perez",
@@ -192,7 +192,21 @@ public class Tarjeta {
     }
      //método para verificar si la tarjeta está registrada en la base de datos por los últimos 4 dígitos
     public boolean verificarTarjetaRegistrada() {
-        return buscarTarjeta(numeroTarjeta.substring
-        (numeroTarjeta.length() - 4)) != null;
+        boolean esValida = false;
+        List<Tarjeta> tarjetaBD = tarjetasRegistradasBD();
+        
+        for (int i = 0; i < tarjetaBD.size(); i++) {
+
+            if (numeroTarjeta.equals(tarjetaBD.get(i)
+                    .getNumeroTarjeta()
+                    .substring(tarjetaBD.get(i).getNumeroTarjeta().length() - 4,
+                            tarjetaBD.get(i).getNumeroTarjeta().length()))) {
+                esValida = true;
+                return esValida;
+            }
+        }
+        return esValida;
     }
+    
+    
 }
