@@ -205,12 +205,18 @@ public class UtilidadesTPV {
 
         if (!listaCarrito.isEmpty()) {
             String[] opcionesProductos = new String[listaCarrito.size()];
-
+            
+            double totalPagar = 0;
             for (int i = 0; i < listaCarrito.size(); i++) {
                 Producto producto = listaCarrito.get(i);
-                opcionesProductos[i] = producto.getNombre() + " - Precio: " + producto.getPrecioConIVA() + "€";
+                opcionesProductos[i] = producto.getNombre() + " - Precio: " 
+                        + producto.getPrecioConIVA() + "€";
+                totalPagar += producto.getPrecioConIVA();
             }
-
+            
+            
+            
+            //mensajes para elegir
             String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                     "Este es tu carrito actualmente:",
                     "Elegir producto",
@@ -230,6 +236,8 @@ public class UtilidadesTPV {
                         null,
                         opcionesElegidas,
                         opcionesElegidas[0]);
+                
+                //opciones de elección
                 switch (opcionesElegidas[opcionElegida]) {
                     case "Pagar":
                         Tarjeta aux = pedirTarjeta();
@@ -237,9 +245,10 @@ public class UtilidadesTPV {
                         System.out.println("Pagando");
                         break;
                         case "Cancelar compra":
-                        UtilidadesTPV.cancelarCompra(tpv);
+                        tpv.getCarrito().clear();//vaciamos el carrito
                         break;
                         case "Volver":
+                            
                             System.out.println("Volver");
                         return;
                     

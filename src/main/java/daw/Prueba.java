@@ -50,7 +50,7 @@ public class Prueba {
 //            }
 //        }
 //    }
-        
+
 //        String[] opcionUsuario = {"Usuario", "Administrador"};
 //        //muestra el cuadro de diálogo con el desplegable de opciones
 //        String seleccionUsuario = (String) JOptionPane.showInputDialog(
@@ -105,8 +105,5 @@ public class Prueba {
 ////                MetodosAdmin.modificarProducto(aux);
 //            }
 //        }
-
     }
 }
-
-
