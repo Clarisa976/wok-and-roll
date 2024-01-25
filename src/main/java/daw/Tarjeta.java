@@ -191,7 +191,7 @@ public class Tarjeta {
         return null; //tarjeta no encontrada
     }
      //método para verificar si la tarjeta está registrada en la base de datos por los últimos 4 dígitos
-    public boolean verificarTarjetaRegistrada() {
+    public static boolean verificarTarjetaRegistrada(String numeroTarjeta) {
         boolean esValida = false;
         List<Tarjeta> tarjetaBD = tarjetasRegistradasBD();
         
