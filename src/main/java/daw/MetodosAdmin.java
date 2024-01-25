@@ -122,7 +122,7 @@ public class MetodosAdmin {
 
         //iniciamos el bucle
         do {
-            //creamos las opciones del usuario
+            //creamos las opciones del admin
             String[] opcionesUsuario = {"Modificar producto", "Dar de alta un producto",
                 "Borrar producto", "Ver ventas", "Salir"};
             //mensaje de JOptionPane par mostrar dichas opciones
@@ -139,15 +139,16 @@ public class MetodosAdmin {
                 //si elige salir vuelve al menú de inicio
                 case "Modificar producto" -> {
                     
+                    MetodosAdmin.altaProducto(tpv.getProductos(), productoNuevo);
                 }
                 case "Dar de alta un producto" -> {
-                    
+                    MetodosAdmin.altaProducto(tpv.getProductos(), productoNuevo);
                 }
                 case "Borrar producto" -> {
-                    
+                    MetodosAdmin.bajaProducto(tpv.getProductos(), productoABorrar);
                 }
                 case "Ver ventas" -> {
-                    
+                    MetodosAdmin.consultarTicketsFecha(tpv, LocalDateTime.now());
                 }
                 case "Salir" -> {
                     System.out.println("volver a inicio");
