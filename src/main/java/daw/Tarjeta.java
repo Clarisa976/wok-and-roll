@@ -4,10 +4,12 @@
  */
 package daw;
 
+import static daw.UtilidadesTPV.pedirEntero;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,6 +41,10 @@ public class Tarjeta {
         this.Cvv = Cvv;
         
     }
+
+    public Tarjeta() {
+    }
+    
 
     // Getter y setter
     public String getNombreTitularTarjeta() {
@@ -156,30 +162,30 @@ public class Tarjeta {
         return listaTarjetas;
     }
 
-    // método para verificar si una tarjeta es válida y tiene saldo suficiente
-    public boolean verificarTarjeta(Double importeTotal) {
-        //comprobar si la tarjeta está registrada
-       if (!verificarTarjetaRegistrada()) {
-            return false; //la tarjeta no está registrada
-        }
-
-        //comprobar si la fecha de caducidad es válida (no posterior a la fecha actual)
-         if (fechaCaducidadTarjeta.isAfter(LocalDate.now())) {
-            return false; //la fecha de caducidad es posterior a la fecha actual
-        }
-
-        //comprobar si el CVV coincide
-        if (!Cvv.equals(buscarTarjeta(numeroTarjeta).Cvv)) {
-            return false; //el CVV no coincide
-        }
-
-        //comprobar si el saldo es suficiente para el importeTotal del ticket
-        if (SaldoTarjeta <= importeTotal) {
-            return false; //el saldo no es suficiente
-        }
-
-        return true; //la tarjeta es válida y tiene saldo suficiente
-    }
+//    // método para verificar si una tarjeta es válida y tiene saldo suficiente
+//    public boolean verificarTarjeta(Double importeTotal) {
+//        //comprobar si la tarjeta está registrada
+//       if (!verificarTarjetaRegistrada()) {
+//            return false; //la tarjeta no está registrada
+//        }
+//
+//        //comprobar si la fecha de caducidad es válida (no posterior a la fecha actual)
+//         if (fechaCaducidadTarjeta.isAfter(LocalDate.now())) {
+//            return false; //la fecha de caducidad es posterior a la fecha actual
+//        }
+//
+//        //comprobar si el CVV coincide
+//        if (!Cvv.equals(buscarTarjeta(numeroTarjeta).Cvv)) {
+//            return false; //el CVV no coincide
+//        }
+//
+//        //comprobar si el saldo es suficiente para el importeTotal del ticket
+//        if (SaldoTarjeta <= importeTotal) {
+//            return false; //el saldo no es suficiente
+//        }
+//
+//        return true; //la tarjeta es válida y tiene saldo suficiente
+//    }
 
     //método auxiliar para buscar una tarjeta por número en la lista de tarjetas registradas
     private Tarjeta buscarTarjeta(String numero) {
@@ -207,6 +213,59 @@ public class Tarjeta {
         }
         return esValida;
     }
+    //método para pedirle la tarjeta al cliente
+    public static Tarjeta obtenerTarjetaCliente(String digitosCliente) {
+        List<Tarjeta> tarjetaBD = tarjetasRegistradasBD();
+        Tarjeta tarjetaCliente = new Tarjeta();
+
+        for (int i = 0; i < tarjetaBD.size(); i++) {
+            if (digitosCliente.equals(tarjetaBD.get(i)
+                    .getNumeroTarjeta()
+                    .substring(tarjetaBD.get(i).getNumeroTarjeta().length() - 4,
+                            tarjetaBD.get(i).getNumeroTarjeta().length()))) {
+                tarjetaCliente = tarjetaBD.get(i);
+            }
+        }
+        return tarjetaCliente;
+    }
     
-    
+    //método para pedir la fecha al cliente
+    public static LocalDate pedirFechaTarjeta(int dia, int mes, int anio){
+        String diaNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
+        int diaTarjeta = pedirEntero(diaNumero);
+        String mesNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
+        int mesTarjeta = pedirEntero(mesNumero);
+        String anioNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
+        int anioTarjeta = pedirEntero(anioNumero);
+        
+        LocalDate fechaTarjeta = LocalDate.of(anioTarjeta, mesTarjeta, diaTarjeta);
+        
+        return fechaTarjeta;
+    }
+    //método para verificar la fecha de la tarjeta
+    public static boolean verificarFecha(LocalDate fecha, String numeroCliente){
+        boolean esValida = false;
+        Tarjeta tarjetaCliente = obtenerTarjetaCliente(numeroCliente);
+
+        //comprobamos que la fecha introducida no esté pasada (caducada)
+        //y que la fecha introducida es la misma que está guardada
+        //en los datos de la tarjeta de nuestra base de datos
+        if (fecha.isAfter(LocalDate.now())
+                && fecha.equals(tarjetaCliente.getFechaCaducidadTarjeta())) {
+            
+        }
+        
+        return esValida;
+    }
+    //método para pedir un entero y controlar excepciones
+    public static int pedirEntero(String mensaje) {
+        while (true) {
+            try {
+                int numero = Integer.parseInt(mensaje);
+                return numero;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
+            }
+        }
+    }
 }
