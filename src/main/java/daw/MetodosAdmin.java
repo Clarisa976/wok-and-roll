@@ -139,7 +139,7 @@ public class MetodosAdmin {
                 //si elige salir vuelve al menú de inicio
                 case "Modificar producto" -> {
                     
-                    MetodosAdmin.altaProducto(tpv.getProductos(), productoNuevo);
+                    MetodosAdmin.modificarProducto(aux);
                 }
                 case "Dar de alta un producto" -> {
                     MetodosAdmin.altaProducto(tpv.getProductos(), productoNuevo);
@@ -158,4 +158,7 @@ public class MetodosAdmin {
 
         } while (!salirAdmin);
     }
+    
+    //método para pedir los datos para crear un producto
+    
 }
