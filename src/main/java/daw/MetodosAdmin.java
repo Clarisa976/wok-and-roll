@@ -156,7 +156,7 @@ public class MetodosAdmin {
                             //mensaje de JOptionPane par mostrar las opciones de comida
                             int opcionSubCategorias = JOptionPane.showOptionDialog(null,
                                     "Seleccione una opción",
-                                    "Wok and Roll -- DAWFOOD -- Modo Usuario",
+                                    "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                     JOptionPane.DEFAULT_OPTION,
                                     JOptionPane.PLAIN_MESSAGE, null,
                                     opcionesSubCategorias, opcionesSubCategorias[0]);
@@ -182,7 +182,7 @@ public class MetodosAdmin {
 
                                     String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                             "Selecciona un producto: Ramen",
-                                            "Wok and Roll -- DAWFOOD --",
+                                            "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                             JOptionPane.QUESTION_MESSAGE,
                                             null,
                                             opcionesProductosRamen,
@@ -191,10 +191,10 @@ public class MetodosAdmin {
                                     if (seleccionProducto != null) {
                                         // El usuario seleccionó un producto
                                         //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                        String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
+                                        String[] opcionesElegidas = {"Modificar", "Volver"};
                                         int opcionElegida = JOptionPane.showOptionDialog(null,
                                                 "¿Qué deseas hacer con este producto?",
-                                                "Wok and Roll -- DAWFOOD --",
+                                                "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                                 JOptionPane.YES_NO_OPTION,
                                                 JOptionPane.QUESTION_MESSAGE,
                                                 null,
@@ -204,9 +204,9 @@ public class MetodosAdmin {
                                         if (opcionElegida != 1) {
                                             /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                            Producto productoSeleccionadoRamen = listaRamen.get(Arrays.asList(opcionesProductosRamen).indexOf(seleccionProducto));
-                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                            System.out.println("producto añadido");
+//                                            Producto productoSeleccionadoRamen = listaRamen.get(Arrays.asList(opcionesProductosRamen).indexOf(seleccionProducto));
+//                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
+                                            System.out.println("producto añadido pa modificar");
                                         } else if (opcionElegida != 0) {
                                             System.out.println("volver");
                                             return;
@@ -228,7 +228,7 @@ public class MetodosAdmin {
 
                                     String seleccionProductoSushi = (String) JOptionPane.showInputDialog(null,
                                             "Selecciona un producto: Sushi",
-                                            "Wok and Roll -- DAWFOOD --",
+                                            "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                             JOptionPane.QUESTION_MESSAGE,
                                             null,
                                             opcionesProductosSushi,
@@ -240,7 +240,7 @@ public class MetodosAdmin {
                                         String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
                                         int opcionElegida = JOptionPane.showOptionDialog(null,
                                                 "¿Qué deseas hacer con este producto?",
-                                                "Wok and Roll -- DAWFOOD --",
+                                                "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                                 JOptionPane.YES_NO_OPTION,
                                                 JOptionPane.QUESTION_MESSAGE,
                                                 null,
@@ -250,9 +250,9 @@ public class MetodosAdmin {
                                         if (opcionElegida != 1) {
                                             /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                            Producto productoSeleccionado = listaSushi.get(Arrays.asList(opcionesProductosSushi).indexOf(seleccionProductoSushi));
-                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado);
-                                            System.out.println("producto añadido");
+//                                            Producto productoSeleccionado = listaSushi.get(Arrays.asList(opcionesProductosSushi).indexOf(seleccionProductoSushi));
+//                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado);
+                                            System.out.println("producto añadido pa modificar");
                                         } else if (opcionElegida != 0) {
                                             break;
                                         }
@@ -273,7 +273,7 @@ public class MetodosAdmin {
 
                                     String seleccionProductoWok = (String) JOptionPane.showInputDialog(null,
                                             "Selecciona un producto: Wok",
-                                            "Wok and Roll -- DAWFOOD --",
+                                            "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                             JOptionPane.QUESTION_MESSAGE,
                                             null,
                                             opcionesProductosWok,
@@ -282,10 +282,10 @@ public class MetodosAdmin {
                                     if (seleccionProductoWok != null) {
                                         // El usuario seleccionó un producto
                                         //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                        String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
+                                        String[] opcionesElegidas = {"Modificar", "Volver"};
                                         int opcionElegida = JOptionPane.showOptionDialog(null,
                                                 "¿Qué deseas hacer con este producto?",
-                                                "Wok and Roll -- DAWFOOD --",
+                                                "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                                 JOptionPane.YES_NO_OPTION,
                                                 JOptionPane.QUESTION_MESSAGE,
                                                 null,
@@ -295,9 +295,9 @@ public class MetodosAdmin {
                                         if (opcionElegida != 1) {
                                             /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                            Producto productoSeleccionadoRamen = listaWok.get(Arrays.asList(opcionesProductosWok).indexOf(seleccionProductoWok));
-                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                            System.out.println("producto añadido");
+//                                            Producto productoSeleccionadoRamen = listaWok.get(Arrays.asList(opcionesProductosWok).indexOf(seleccionProductoWok));
+//                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
+                                            System.out.println("producto pa modificar");
                                         } else if (opcionElegida != 0) {
                                             break;
                                         }
@@ -313,7 +313,7 @@ public class MetodosAdmin {
                             //mensaje de JOptionPane par mostrar las opciones de comida
                             int opcionSubCategorias = JOptionPane.showOptionDialog(null,
                                     "Seleccione una opción",
-                                    "Wok and Roll -- DAWFOOD -- Modo Usuario",
+                                    "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                     JOptionPane.DEFAULT_OPTION,
                                     JOptionPane.PLAIN_MESSAGE, null,
                                     opcionesSubCategorias, opcionesSubCategorias[0]);
@@ -339,7 +339,7 @@ public class MetodosAdmin {
 
                                     String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                             "Selecciona un producto: Refrescos",
-                                            "Wok and Roll -- DAWFOOD --",
+                                            "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                             JOptionPane.QUESTION_MESSAGE,
                                             null,
                                             opcionesProductosRefresco,
@@ -348,10 +348,10 @@ public class MetodosAdmin {
                                     if (seleccionProducto != null) {
                                         // El usuario seleccionó un producto
                                         //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                        String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
+                                        String[] opcionesElegidas = {"Modificar", "Volver"};
                                         int opcionElegida = JOptionPane.showOptionDialog(null,
                                                 "¿Qué deseas hacer con este producto?",
-                                                "Wok and Roll -- DAWFOOD --",
+                                                "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                                 JOptionPane.YES_NO_OPTION,
                                                 JOptionPane.QUESTION_MESSAGE,
                                                 null,
@@ -361,9 +361,9 @@ public class MetodosAdmin {
                                         if (opcionElegida != 1) {
                                             /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                            Producto productoSeleccionadoRamen = listaRefrescos.get(Arrays.asList(opcionesProductosRefresco).indexOf(seleccionProducto));
-                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                            System.out.println("producto añadido");
+//                                            Producto productoSeleccionadoRamen = listaRefrescos.get(Arrays.asList(opcionesProductosRefresco).indexOf(seleccionProducto));
+//                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
+                                            System.out.println("producto añadido pa modificar");
                                         } else if (opcionElegida != 0) {
                                             System.out.println("volver");
                                             return;
@@ -384,7 +384,7 @@ public class MetodosAdmin {
 
                                     String seleccionAlcoholicas = (String) JOptionPane.showInputDialog(null,
                                             "Selecciona un producto: Alcoholicas",
-                                            "Wok and Roll -- DAWFOOD --",
+                                            "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                             JOptionPane.QUESTION_MESSAGE,
                                             null,
                                             opcionesProductosAlcoholicas,
@@ -393,7 +393,7 @@ public class MetodosAdmin {
                                     if (seleccionAlcoholicas != null) {
                                         // El usuario seleccionó un producto
                                         //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                        String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
+                                        String[] opcionesElegidas = {"Modificar", "Volver"};
                                         int opcionElegida = JOptionPane.showOptionDialog(null,
                                                 "¿Qué deseas hacer con este producto?",
                                                 "Wok and Roll -- DAWFOOD --",
@@ -406,9 +406,9 @@ public class MetodosAdmin {
                                         if (opcionElegida != 1) {
                                             /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                            Producto productoSeleccionadoRamen = listaAlcoholicas.get(Arrays.asList(opcionesProductosAlcoholicas).indexOf(seleccionAlcoholicas));
-                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                            System.out.println("producto añadido");
+//                                            Producto productoSeleccionadoRamen = listaAlcoholicas.get(Arrays.asList(opcionesProductosAlcoholicas).indexOf(seleccionAlcoholicas));
+//                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
+                                            System.out.println("producto añadido pa modificar");
                                         } else if (opcionElegida != 0) {
                                             System.out.println("volver");
                                             return;
@@ -429,7 +429,7 @@ public class MetodosAdmin {
 
                                     String seleccionOtras = (String) JOptionPane.showInputDialog(null,
                                             "Selecciona un producto: Alcoholicas",
-                                            "Wok and Roll -- DAWFOOD --",
+                                            "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                             JOptionPane.QUESTION_MESSAGE,
                                             null,
                                             opcionesProductosOtras,
@@ -438,10 +438,10 @@ public class MetodosAdmin {
                                     if (seleccionOtras != null) {
                                         // El usuario seleccionó un producto
                                         //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                        String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
+                                        String[] opcionesElegidas = {"Modificar", "Volver"};
                                         int opcionElegida = JOptionPane.showOptionDialog(null,
                                                 "¿Qué deseas hacer con este producto?",
-                                                "Wok and Roll -- DAWFOOD --",
+                                                "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                                 JOptionPane.YES_NO_OPTION,
                                                 JOptionPane.QUESTION_MESSAGE,
                                                 null,
@@ -451,9 +451,9 @@ public class MetodosAdmin {
                                         if (opcionElegida != 1) {
                                             /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                            Producto productoSeleccionadoRamen = listaOtras.get(Arrays.asList(opcionesProductosOtras).indexOf(seleccionOtras));
-                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                            System.out.println("producto añadido");
+//                                            Producto productoSeleccionadoRamen = listaOtras.get(Arrays.asList(opcionesProductosOtras).indexOf(seleccionOtras));
+//                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
+                                            System.out.println("producto añadido pa modificar");
                                         } else if (opcionElegida != 0) {
                                             System.out.println("volver");
                                             return;
@@ -469,7 +469,7 @@ public class MetodosAdmin {
                             //mensaje de JOptionPane par mostrar las opciones de comida
                             int opcionSubCategorias = JOptionPane.showOptionDialog(null,
                                     "Seleccione una opción",
-                                    "Wok and Roll -- DAWFOOD -- Modo Usuario",
+                                    "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                     JOptionPane.DEFAULT_OPTION,
                                     JOptionPane.PLAIN_MESSAGE, null,
                                     opcionesSubCategorias, opcionesSubCategorias[0]);
@@ -495,7 +495,7 @@ public class MetodosAdmin {
 
                                     String seleccionProductoPostre = (String) JOptionPane.showInputDialog(null,
                                             "Selecciona un producto: Mochis",
-                                            "Wok and Roll -- DAWFOOD --",
+                                            "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                             JOptionPane.QUESTION_MESSAGE,
                                             null,
                                             opcionesProductosMochi,
@@ -504,10 +504,10 @@ public class MetodosAdmin {
                                     if (seleccionProductoPostre != null) {
                                         // El usuario seleccionó un producto
                                         //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                        String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
+                                        String[] opcionesElegidas = {"Modificar", "Volver"};
                                         int opcionElegida = JOptionPane.showOptionDialog(null,
                                                 "¿Qué deseas hacer con este producto?",
-                                                "Wok and Roll -- DAWFOOD --",
+                                                "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                                 JOptionPane.YES_NO_OPTION,
                                                 JOptionPane.QUESTION_MESSAGE,
                                                 null,
@@ -517,9 +517,9 @@ public class MetodosAdmin {
                                         if (opcionElegida != 1) {
                                             /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                            Producto productoSeleccionadoMochi = listaPostres.get(Arrays.asList(opcionesProductosMochi).indexOf(seleccionProductoPostre));
-                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoMochi);
-                                            System.out.println("producto añadido");
+//                                            Producto productoSeleccionadoMochi = listaPostres.get(Arrays.asList(opcionesProductosMochi).indexOf(seleccionProductoPostre));
+//                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoMochi);
+                                            System.out.println("producto añadido pa modificar");
                                         } else if (opcionElegida != 0) {
                                             System.out.println("volver");
                                             return;
@@ -541,7 +541,7 @@ public class MetodosAdmin {
 
                                     String seleccionFrutitas = (String) JOptionPane.showInputDialog(null,
                                             "Selecciona un producto: Frutitas",
-                                            "Wok and Roll -- DAWFOOD --",
+                                            "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                             JOptionPane.QUESTION_MESSAGE,
                                             null,
                                             opcionesProductosFrutitas,
@@ -550,10 +550,10 @@ public class MetodosAdmin {
                                     if (seleccionFrutitas != null) {
                                         // El usuario seleccionó un producto
                                         //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                        String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
+                                        String[] opcionesElegidas = {"Modificar", "Volver"};
                                         int opcionElegida = JOptionPane.showOptionDialog(null,
                                                 "¿Qué deseas hacer con este producto?",
-                                                "Wok and Roll -- DAWFOOD --",
+                                                "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                                 JOptionPane.YES_NO_OPTION,
                                                 JOptionPane.QUESTION_MESSAGE,
                                                 null,
@@ -563,9 +563,9 @@ public class MetodosAdmin {
                                         if (opcionElegida != 1) {
                                             /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                            Producto productoSeleccionadoRamen = listaFrutitas.get(Arrays.asList(opcionesProductosFrutitas).indexOf(seleccionFrutitas));
-                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                            System.out.println("producto añadido");
+//                                            Producto productoSeleccionadoRamen = listaFrutitas.get(Arrays.asList(opcionesProductosFrutitas).indexOf(seleccionFrutitas));
+//                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
+                                            System.out.println("producto añadido pa modificar");
                                         } else if (opcionElegida != 0) {
                                             System.out.println("volver");
                                             return;
@@ -586,7 +586,7 @@ public class MetodosAdmin {
 
                                     String seleccionOtros = (String) JOptionPane.showInputDialog(null,
                                             "Selecciona un producto: Otros",
-                                            "Wok and Roll -- DAWFOOD --",
+                                            "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                             JOptionPane.QUESTION_MESSAGE,
                                             null,
                                             opcionesProductosOtros,
@@ -595,10 +595,10 @@ public class MetodosAdmin {
                                     if (seleccionOtros != null) {
                                         // El usuario seleccionó un producto
                                         //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                        String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
+                                        String[] opcionesElegidas = {"Modificar", "Volver"};
                                         int opcionElegida = JOptionPane.showOptionDialog(null,
                                                 "¿Qué deseas hacer con este producto?",
-                                                "Wok and Roll -- DAWFOOD --",
+                                                "Wok and Roll -- DAWFOOD -- Modo Administrador",
                                                 JOptionPane.YES_NO_OPTION,
                                                 JOptionPane.QUESTION_MESSAGE,
                                                 null,
@@ -608,9 +608,9 @@ public class MetodosAdmin {
                                         if (opcionElegida != 1) {
                                             /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                            Producto productoSeleccionadoOtros = listaOtras.get(Arrays.asList(opcionesProductosOtros).indexOf(seleccionOtros));
-                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoOtros);
-                                            System.out.println("producto añadido");
+//                                            Producto productoSeleccionadoOtros = listaOtras.get(Arrays.asList(opcionesProductosOtros).indexOf(seleccionOtros));
+//                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoOtros);
+                                            System.out.println("producto añadido pa modificar");
                                         } else if (opcionElegida != 0) {
                                             System.out.println("volver");
                                             return;
@@ -650,344 +650,7 @@ public class MetodosAdmin {
     }
 
     //aaaaaaaaaaaaaaaaaaaaa
-    private static void verCategorias(String nombreCategoria, TPV tpv) {
-        //atributo boolean para el bucle
-        boolean salirCategorias = false;
-
-        //iniciamos el bucle 
-        do {
-            //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-            String[] opcionesCategorias = {"Ver todo", "Ver subcategorias", "Volver"};
-            //mensaje de JOptionPane par mostrar dichas opciones
-            int opcionCategorias = JOptionPane.showOptionDialog(null,
-                    "Seleccione una opción",
-                    "Wok and Roll -- DAWFOOD -- Modo Usuario",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.PLAIN_MESSAGE, null,
-                    opcionesCategorias, opcionesCategorias[0]);
-
-            //switch con las diferentes opciones dadas
-            switch (opcionesCategorias[opcionCategorias]) {
-
-                case "Ver subcategorias":
-                    //si selecciona comida →
-                    if (nombreCategoria.equalsIgnoreCase("comidas")) {
-
-                        String[] opcionesSubCategorias = {"Ramen", "Sushi", "Wok"};
-                        //mensaje de JOptionPane par mostrar las opciones de comida
-                        int opcionSubCategorias = JOptionPane.showOptionDialog(null,
-                                "Seleccione una opción",
-                                "Wok and Roll -- DAWFOOD -- Modo Usuario",
-                                JOptionPane.DEFAULT_OPTION,
-                                JOptionPane.PLAIN_MESSAGE, null,
-                                opcionesSubCategorias, opcionesSubCategorias[0]);
-
-                        //switch segun el tipo de comida
-                        List<Comida> listaComidaTmp = CatalogoCarta.comidasBD();
-
-                        switch (opcionesSubCategorias[opcionSubCategorias]) {
-
-                            case "Ramen":
-
-                                listaComidaTmp = CatalogoCarta.comidasBD();
-                                List<Comida> listaRamen = new ArrayList<>();
-
-                                for (Comida comida : listaComidaTmp) {
-                                    if (comida.getTipoComida().equals(TipoComida.RAMEN)) {
-                                        listaRamen.add(comida);
-                                    }
-                                }
-
-                                String[] opcionesProductosRamen = new String[listaRamen.size()];
-                                mostrarProdComida(listaRamen, opcionesProductosRamen);
-
-                                String seleccionProducto = (String) JOptionPane.showInputDialog(null,
-                                        "Selecciona un producto: Ramen",
-                                        "Wok and Roll -- DAWFOOD --",
-                                        JOptionPane.QUESTION_MESSAGE,
-                                        null,
-                                        opcionesProductosRamen,
-                                        opcionesProductosRamen[0]);
-
-                                if (seleccionProducto != null) {
-                                    // El usuario seleccionó un producto
-                                    //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                    String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
-                                    int opcionElegida = JOptionPane.showOptionDialog(null,
-                                            "¿Qué deseas hacer con este producto?",
-                                            "Wok and Roll -- DAWFOOD --",
-                                            JOptionPane.YES_NO_OPTION,
-                                            JOptionPane.QUESTION_MESSAGE,
-                                            null,
-                                            opcionesElegidas,
-                                            opcionesElegidas[0]);
-
-                                    if (opcionElegida != 1) {
-                                        /*creamos un producto auxiliar para poder 
-                                                    añadir el producto seleccionado al carrito*/
-                                        Producto productoSeleccionadoRamen = listaRamen.get(Arrays.asList(opcionesProductosRamen).indexOf(seleccionProducto));
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                        System.out.println("producto añadido");
-                                    } else if (opcionElegida != 0) {
-                                        System.out.println("volver");
-                                        return;
-                                    }
-                                }
-                            case "Sushi":
-
-                                listaComidaTmp = CatalogoCarta.comidasBD();
-                                List<Comida> listaSushi = new ArrayList<>();
-
-                                for (Comida comida : listaComidaTmp) {
-                                    if (comida.getTipoComida().equals(TipoComida.SUSHI)) {
-                                        listaSushi.add(comida);
-                                    }
-                                }
-
-                                String[] opcionesProductosSushi = new String[listaSushi.size()];
-                                mostrarProdComida(listaSushi, opcionesProductosSushi);
-
-                                String seleccionProductoSushi = (String) JOptionPane.showInputDialog(null,
-                                        "Selecciona un producto: Sushi",
-                                        "Wok and Roll -- DAWFOOD --",
-                                        JOptionPane.QUESTION_MESSAGE,
-                                        null,
-                                        opcionesProductosSushi,
-                                        opcionesProductosSushi[0]);
-
-                                if (seleccionProductoSushi != null) {
-                                    // El usuario seleccionó un producto
-                                    //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                    String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
-                                    int opcionElegida = JOptionPane.showOptionDialog(null,
-                                            "¿Qué deseas hacer con este producto?",
-                                            "Wok and Roll -- DAWFOOD --",
-                                            JOptionPane.YES_NO_OPTION,
-                                            JOptionPane.QUESTION_MESSAGE,
-                                            null,
-                                            opcionesElegidas,
-                                            opcionesElegidas[0]);
-
-                                    if (opcionElegida != 1) {
-                                        /*creamos un producto auxiliar para poder 
-                                                    añadir el producto seleccionado al carrito*/
-                                        Producto productoSeleccionado = listaSushi.get(Arrays.asList(opcionesProductosSushi).indexOf(seleccionProductoSushi));
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado);
-                                        System.out.println("producto añadido");
-                                    } else if (opcionElegida != 0) {
-                                        break;
-                                    }
-                                }
-                            case "Wok":
-
-                                listaComidaTmp = CatalogoCarta.comidasBD();
-                                List<Comida> listaWok = new ArrayList<>();
-
-                                for (Comida comida : listaComidaTmp) {
-                                    if (comida.getTipoComida().equals(TipoComida.WOK)) {
-                                        listaWok.add(comida);
-                                    }
-                                }
-
-                                String[] opcionesProductosWok = new String[listaWok.size()];
-                                mostrarProdComida(listaWok, opcionesProductosWok);
-
-                                String seleccionProductoWok = (String) JOptionPane.showInputDialog(null,
-                                        "Selecciona un producto: Wok",
-                                        "Wok and Roll -- DAWFOOD --",
-                                        JOptionPane.QUESTION_MESSAGE,
-                                        null,
-                                        opcionesProductosWok,
-                                        opcionesProductosWok[0]);
-
-                                if (seleccionProductoWok != null) {
-                                    // El usuario seleccionó un producto
-                                    //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                    String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
-                                    int opcionElegida = JOptionPane.showOptionDialog(null,
-                                            "¿Qué deseas hacer con este producto?",
-                                            "Wok and Roll -- DAWFOOD --",
-                                            JOptionPane.YES_NO_OPTION,
-                                            JOptionPane.QUESTION_MESSAGE,
-                                            null,
-                                            opcionesElegidas,
-                                            opcionesElegidas[0]);
-
-                                    if (opcionElegida != 1) {
-                                        /*creamos un producto auxiliar para poder 
-                                                    añadir el producto seleccionado al carrito*/
-                                        Producto productoSeleccionadoRamen = listaWok.get(Arrays.asList(opcionesProductosWok).indexOf(seleccionProductoWok));
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                        System.out.println("producto añadido");
-                                    } else if (opcionElegida != 0) {
-                                        break;
-                                    }
-                                }
-                                break;
-
-                        }
-                    } else if (nombreCategoria.equalsIgnoreCase("bebidas")) {
-                        String[] opcionesSubCategorias = {"Refrescos", "Alcoholicas", "Otras"};
-                        //mensaje de JOptionPane par mostrar las opciones de comida
-                        int opcionSubCategorias = JOptionPane.showOptionDialog(null,
-                                "Seleccione una opción",
-                                "Wok and Roll -- DAWFOOD -- Modo Usuario",
-                                JOptionPane.DEFAULT_OPTION,
-                                JOptionPane.PLAIN_MESSAGE, null,
-                                opcionesSubCategorias, opcionesSubCategorias[0]);
-
-                        //switch segun el tipo de bebida
-                        List<Bebida> listaBebidaTmp = new ArrayList<>();
-
-                        switch (opcionesSubCategorias[opcionSubCategorias]) {
-
-                            case "Refrescos":
-
-                                listaBebidaTmp = CatalogoCarta.bebidasBD();
-                                List<Bebida> listaRefrescos = new ArrayList<>();
-
-                                for (Bebida bebida : listaBebidaTmp) {
-                                    if (bebida.getTipoBebida().equals(TipoBebida.REFRESCOS)) {
-                                        listaRefrescos.add(bebida);
-                                    }
-                                }
-
-                                String[] opcionesProductosRefresco = new String[listaRefrescos.size()];
-                                mostrarProdBebida(listaRefrescos, opcionesProductosRefresco);
-
-                                String seleccionProducto = (String) JOptionPane.showInputDialog(null,
-                                        "Selecciona un producto: Refrescos",
-                                        "Wok and Roll -- DAWFOOD --",
-                                        JOptionPane.QUESTION_MESSAGE,
-                                        null,
-                                        opcionesProductosRefresco,
-                                        opcionesProductosRefresco[0]);
-
-                                if (seleccionProducto != null) {
-                                    // El usuario seleccionó un producto
-                                    //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                    String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
-                                    int opcionElegida = JOptionPane.showOptionDialog(null,
-                                            "¿Qué deseas hacer con este producto?",
-                                            "Wok and Roll -- DAWFOOD --",
-                                            JOptionPane.YES_NO_OPTION,
-                                            JOptionPane.QUESTION_MESSAGE,
-                                            null,
-                                            opcionesElegidas,
-                                            opcionesElegidas[0]);
-
-                                    if (opcionElegida != 1) {
-                                        /*creamos un producto auxiliar para poder 
-                                                    añadir el producto seleccionado al carrito*/
-                                        Producto productoSeleccionadoRamen = listaRefrescos.get(Arrays.asList(opcionesProductosRefresco).indexOf(seleccionProducto));
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                        System.out.println("producto añadido");
-                                    } else if (opcionElegida != 0) {
-                                        System.out.println("volver");
-                                        return;
-                                    }
-                                }
-                            case "Alcoholicas":
-                                listaBebidaTmp = CatalogoCarta.bebidasBD();
-                                List<Bebida> listaAlcoholicas = new ArrayList<>();
-
-                                for (Bebida bebida : listaBebidaTmp) {
-                                    if (bebida.getTipoBebida().equals(TipoBebida.ALCOHOLICAS)) {
-                                        listaAlcoholicas.add(bebida);
-                                    }
-                                }
-
-                                String[] opcionesProductosAlcoholicas = new String[listaAlcoholicas.size()];
-                                mostrarProdBebida(listaAlcoholicas, opcionesProductosAlcoholicas);
-
-                                String seleccionAlcoholicas = (String) JOptionPane.showInputDialog(null,
-                                        "Selecciona un producto: Alcoholicas",
-                                        "Wok and Roll -- DAWFOOD --",
-                                        JOptionPane.QUESTION_MESSAGE,
-                                        null,
-                                        opcionesProductosAlcoholicas,
-                                        opcionesProductosAlcoholicas[0]);
-
-                                if (seleccionAlcoholicas != null) {
-                                    // El usuario seleccionó un producto
-                                    //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                    String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
-                                    int opcionElegida = JOptionPane.showOptionDialog(null,
-                                            "¿Qué deseas hacer con este producto?",
-                                            "Wok and Roll -- DAWFOOD --",
-                                            JOptionPane.YES_NO_OPTION,
-                                            JOptionPane.QUESTION_MESSAGE,
-                                            null,
-                                            opcionesElegidas,
-                                            opcionesElegidas[0]);
-
-                                    if (opcionElegida != 1) {
-                                        /*creamos un producto auxiliar para poder 
-                                                    añadir el producto seleccionado al carrito*/
-                                        Producto productoSeleccionadoRamen = listaAlcoholicas.get(Arrays.asList(opcionesProductosAlcoholicas).indexOf(seleccionAlcoholicas));
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                        System.out.println("producto añadido");
-                                    } else if (opcionElegida != 0) {
-                                        System.out.println("volver");
-                                        return;
-                                    }
-                                }
-                            case "Otras":
-                                listaBebidaTmp = CatalogoCarta.bebidasBD();
-                                List<Bebida> listaOtras = new ArrayList<>();
-
-                                for (Bebida bebida : listaBebidaTmp) {
-                                    if (bebida.getTipoBebida().equals(TipoBebida.OTROS)) {
-                                        listaOtras.add(bebida);
-                                    }
-                                }
-
-                                String[] opcionesProductosOtras = new String[listaOtras.size()];
-                                mostrarProdBebida(listaOtras, opcionesProductosOtras);
-
-                                String seleccionOtras = (String) JOptionPane.showInputDialog(null,
-                                        "Selecciona un producto: Alcoholicas",
-                                        "Wok and Roll -- DAWFOOD --",
-                                        JOptionPane.QUESTION_MESSAGE,
-                                        null,
-                                        opcionesProductosOtras,
-                                        opcionesProductosOtras[0]);
-
-                                if (seleccionOtras != null) {
-                                    // El usuario seleccionó un producto
-                                    //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                    String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
-                                    int opcionElegida = JOptionPane.showOptionDialog(null,
-                                            "¿Qué deseas hacer con este producto?",
-                                            "Wok and Roll -- DAWFOOD --",
-                                            JOptionPane.YES_NO_OPTION,
-                                            JOptionPane.QUESTION_MESSAGE,
-                                            null,
-                                            opcionesElegidas,
-                                            opcionesElegidas[0]);
-
-                                    if (opcionElegida != 1) {
-                                        /*creamos un producto auxiliar para poder 
-                                                    añadir el producto seleccionado al carrito*/
-                                        Producto productoSeleccionadoRamen = listaOtras.get(Arrays.asList(opcionesProductosOtras).indexOf(seleccionOtras));
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                        System.out.println("producto añadido");
-                                    } else if (opcionElegida != 0) {
-                                        System.out.println("volver");
-                                        return;
-                                    }
-                                }
-                                break;
-
-                        }
-                    }
-                    System.out.println("enums");
-                    break;
-            }
-
-        } while (!salirCategorias);
-    }
-
+   
     private static void mostrarProd(List<Producto> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
             Producto producto = aux.get(i);
