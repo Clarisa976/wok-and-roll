@@ -188,38 +188,38 @@ public class CatalogoCarta {
         return carta;
     }
     //Las tres listas con los datos cargados aparte
-    public static List<Producto> comidasBD(){
-        List<Producto> carta = new ArrayList<>();
+    public static List<Comida> comidasBD(){
+        List<Comida> carta = new ArrayList<>();
         //comidas
         //creamos nueve comidas
-        Producto c1 = new Comida("Ramen de curry",
+        Comida c1 = new Comida("Ramen de curry",
                 "Delicioso ramen con fideos udon, tonkatsu "
                 + "y sopa de curry ", TipoComida.RAMEN,
                 9.50, TipoIVA.IVA_DIEZ, 20);
-        Producto c2 = new Comida("Ramen de pollo",
+        Comida c2 = new Comida("Ramen de pollo",
                 "Clásico ramen de pollo ", TipoComida.RAMEN,
                 8, TipoIVA.IVA_DIEZ, 20);
-        Producto c3 = new Comida("Ramen de miso",
+        Comida c3 = new Comida("Ramen de miso",
                 "Ramen de miso sosillo", TipoComida.RAMEN,
                 6, TipoIVA.IVA_DIEZ, 20);
 
-        Producto c4 = new Comida("Nigiri de salmón",
+        Comida c4 = new Comida("Nigiri de salmón",
                 "Dos piezas de nigiri de salmón", TipoComida.SUSHI,
                 3, TipoIVA.IVA_DIEZ, 20);
-        Producto c5 = new Comida("Nigiri de atún",
+        Comida c5 = new Comida("Nigiri de atún",
                 "Dos piezas de nigiri de atún rojo de remolacha",
                 TipoComida.SUSHI,
                 2.50, TipoIVA.IVA_DIEZ, 20);
-        Producto c6 = new Comida("Uramame de pollo crujiente",
+        Comida c6 = new Comida("Uramame de pollo crujiente",
                 "Rollo de arroz relleno de pollo rebozado con "
                 + "panko y alga nori", TipoComida.SUSHI,
                 2, TipoIVA.IVA_DIEZ, 20);
 
-        Producto c7 = new Comida("Veruras", "Wok de verduritas",
+        Comida c7 = new Comida("Veruras", "Wok de verduritas",
                 TipoComida.WOK, 4, TipoIVA.IVA_DIEZ, 20);
-        Producto c8 = new Comida("Carne", "Wok de carnecita",
+        Comida c8 = new Comida("Carne", "Wok de carnecita",
                 TipoComida.WOK, 4.50, TipoIVA.IVA_DIEZ, 20);
-        Producto c9 = new Comida("Marisco",
+        Comida c9 = new Comida("Marisco",
                 "Wok de gambas de Cádiz", TipoComida.WOK,
                 5.50, TipoIVA.IVA_DIEZ, 20);
 
@@ -234,38 +234,38 @@ public class CatalogoCarta {
         carta.add(c9);
         return carta;
     }
-    public static List<Producto> bebidasBD(){
+    public static List<Bebida> bebidasBD(){
         
-        List<Producto> carta = new ArrayList<>();
+        List<Bebida> carta = new ArrayList<>();
         //bebidas
         //creamos nueve bebidas
-        Producto b1 = new Bebida("Coca cola Zero", 33,
+        Bebida b1 = new Bebida("Coca cola Zero", 33,
                 TipoBebida.REFRESCOS, 1.66,
                 TipoIVA.IVA_DIEZ, 20);
-        Producto b2 = new Bebida("Nestea de maracuyá", 45,
+        Bebida b2 = new Bebida("Nestea de maracuyá", 45,
                 TipoBebida.REFRESCOS, 2,
                 TipoIVA.IVA_DIEZ, 20);
-        Producto b3 = new Bebida("Fanta de limón", 45,
+        Bebida b3 = new Bebida("Fanta de limón", 45,
                 TipoBebida.REFRESCOS, 1.89,
                 TipoIVA.IVA_DIEZ, 20);
 
-        Producto b4 = new Bebida("Colacao", 20,
+        Bebida b4 = new Bebida("Colacao", 20,
                 TipoBebida.OTROS, 1,
                 TipoIVA.IVA_DIEZ, 20);
-        Producto b5 = new Bebida("Té rojo", 20,
+        Bebida b5 = new Bebida("Té rojo", 20,
                 TipoBebida.OTROS, 0.8,
                 TipoIVA.IVA_DIEZ, 20);
-        Producto b6 = new Bebida("Café con leche", 20,
+        Bebida b6 = new Bebida("Café con leche", 20,
                 TipoBebida.OTROS, 0.9,
                 TipoIVA.IVA_DIEZ, 20);
 
-        Producto b7 = new Bebida("Cerveza Victoria", 33,
+        Bebida b7 = new Bebida("Cerveza Victoria", 33,
                 TipoBebida.ALCOHOLICAS, 1.2,
                 TipoIVA.IVA_VEINTIUNO, 20);
-        Producto b8 = new Bebida("Cerveza Kirin de importación",
+        Bebida b8 = new Bebida("Cerveza Kirin de importación",
                 35, TipoBebida.ALCOHOLICAS, 3,
                 TipoIVA.IVA_VEINTIUNO, 20);
-        Producto b9 = new Bebida("Cerveza Alhambra Roja", 33,
+        Bebida b9 = new Bebida("Cerveza Alhambra Roja", 33,
                 TipoBebida.ALCOHOLICAS, 2.3,
                 TipoIVA.IVA_VEINTIUNO, 20);
 
@@ -325,4 +325,3 @@ public class CatalogoCarta {
         return carta;
     }
 }
-
