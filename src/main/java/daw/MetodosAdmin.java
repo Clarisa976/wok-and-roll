@@ -25,7 +25,6 @@ import javax.swing.JOptionPane;
  */
 public class MetodosAdmin {
 
-
     //método para cambiar cualquier dato de los productos a excepción de su ID
     public static void modificarProducto(Producto aux) {
         try {
@@ -58,96 +57,120 @@ public class MetodosAdmin {
 
     //método para dar de alta un nuevo producto
     public static void altaProducto(CatalogoCarta catalogoCarta, Producto productoNuevo) {
-        
+
         List<Producto> catalogoCartaTmp = catalogoCarta.getCarta();
-        
+
         catalogoCartaTmp.add(productoNuevo);
-        
-        catalogoCarta.setCarta(catalogoCartaTmp);       
+
+        catalogoCarta.setCarta(catalogoCartaTmp);
     }
-    
+
     //método para dar de alta un nuevo producto
     public static void bajaProducto(CatalogoCarta catalogoCarta, Producto productoABorrar) {
-        
+
         List<Producto> catalogoCartaTmp = catalogoCarta.getCarta();
-        
+
         for (Producto producto : catalogoCartaTmp) {
             if (productoABorrar.equals(producto)) {
                 catalogoCartaTmp.remove(productoABorrar);
             }
         }
-        
+
         catalogoCarta.setCarta(catalogoCartaTmp);
     }
-    
+
     //consultar todos los tickets del tpv
-    public static List<Ticket> consultarTickets(TPV tpv){
-        
+    public static List<Ticket> consultarTickets(TPV tpv) {
+
         return tpv.getListaTickets();
     }
-    
+
     //consultar tickets del tpv segun un dia concreto
-    public static List<Ticket> consultarTicketsDia(TPV tpv, int diaDelMes){
-        
+    public static List<Ticket> consultarTicketsDia(TPV tpv, int diaDelMes) {
+
         List<Ticket> listaTickets = tpv.getListaTickets();
         List<Ticket> listaTicketsDia = new ArrayList<>();
-        
+
         for (Ticket ticket : listaTickets) {
-            
+
             if (ticket.getFechaEmision().getDayOfMonth() == diaDelMes) {
-                 listaTicketsDia.add(ticket);
+                listaTicketsDia.add(ticket);
             }
         }
 
         return listaTicketsDia;
     }
-    
+
     //consultar tickets del tpv segun un dia concreto
-    public static List<Ticket> consultarTicketsFecha(TPV tpv, LocalDateTime fecha){
-        
+    public static List<Ticket> consultarTicketsFecha(TPV tpv, LocalDateTime fecha) {
+
         List<Ticket> listaTickets = tpv.getListaTickets();
         List<Ticket> listaTicketsFecha = new ArrayList<>();
-        
+
         for (Ticket ticket : listaTickets) {
             if (ticket.getFechaEmision().isEqual(fecha)) {
-               listaTicketsFecha.add(ticket);
+                listaTicketsFecha.add(ticket);
             }
         }
 
         return listaTicketsFecha;
     }
-    
-    public static void modoAdministrador (TPV tpv){
+
+    public static void modoAdministrador(TPV tpv) {
         boolean salirAdmin = false;
 
         //iniciamos el bucle
         do {
             //creamos las opciones del admin
-            String[] opcionesUsuario = {"Modificar producto", "Dar de alta un producto",
+            String[] opcionesUsuarioAdmin = {"Modificar producto", "Dar de alta un producto",
                 "Borrar producto", "Ver ventas", "Salir"};
             //mensaje de JOptionPane par mostrar dichas opciones
-            int opcionUsuario = JOptionPane.showOptionDialog(null,
+            int opcionUsuarioAdmin = JOptionPane.showOptionDialog(null,
                     "Seleccione una opción",
-                    "Wok and Roll -- DAWFOOD -- Modo Usuario",
+                    "Wok and Roll -- DAWFOOD -- Modo Administrador",
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.PLAIN_MESSAGE, null,
-                    opcionesUsuario, opcionesUsuario[0]);
+                    opcionesUsuarioAdmin, opcionesUsuarioAdmin[0]);
 
             //switch con las diferentes opciones dadas
-            switch (opcionesUsuario[opcionUsuario]) {
+            switch (opcionesUsuarioAdmin[opcionUsuarioAdmin]) {
                 //con cada opcion llamamos a su método correspondiente
                 //si elige salir vuelve al menú de inicio
                 case "Modificar producto" -> {
+                    //creamos las opciones del usuario
+                    String[] opcionesAdmin = {"Comidas", "Bebidas",
+                        "Postres", "Salir"};
+                    //mensaje de JOptionPane par mostrar dichas opciones
+                    int opcionAdmin = JOptionPane.showOptionDialog(null,
+                            "¿En qué categoría está el producto que quieres cambiar?",
+                            "Wok and Roll -- DAWFOOD -- Modo Administrador",
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.PLAIN_MESSAGE, null,
+                            opcionesAdmin, opcionesAdmin[0]);
                     
-                    MetodosAdmin.modificarProducto(aux);
+                    switch(opcionesAdmin[opcionAdmin]){
+                        case "Comidas" ->{}
+                        case "Bebidas" ->{}
+                        case "Postres" ->{}
+                        case "Salir" ->{
+                            System.out.println("volviendo");
+                            return;
+                        }
+                    }
+
+                    System.out.println("Modificar producto");
+//                    MetodosAdmin.modificarProducto(aux);
                 }
                 case "Dar de alta un producto" -> {
-                    MetodosAdmin.altaProducto(tpv.getProductos(), productoNuevo);
+                    System.out.println("Dar de alta un producto");
+//                    MetodosAdmin.altaProducto(tpv.getProductos(), productoNuevo);
                 }
                 case "Borrar producto" -> {
-                    MetodosAdmin.bajaProducto(tpv.getProductos(), productoABorrar);
+                    System.out.println("Dar de baja un producto");
+//                    MetodosAdmin.bajaProducto(tpv.getProductos(), productoABorrar);
                 }
                 case "Ver ventas" -> {
+                    System.out.println("Ver ventas de hoy");
                     MetodosAdmin.consultarTicketsFecha(tpv, LocalDateTime.now());
                 }
                 case "Salir" -> {
@@ -158,7 +181,6 @@ public class MetodosAdmin {
 
         } while (!salirAdmin);
     }
-    
+
     //método para pedir los datos para crear un producto
-    
 }
