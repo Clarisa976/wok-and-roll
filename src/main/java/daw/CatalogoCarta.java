@@ -281,36 +281,36 @@ public class CatalogoCarta {
         carta.add(b9);
         return carta;
     }
-    public static List<Producto> postresBD(){
+    public static List<Postre> postresBD(){
         
-        List<Producto> carta = new ArrayList<>();
+        List<Postre> carta = new ArrayList<>();
         //postre
         //creamos los postres
-        Producto p1 = new Postre("Bol de fresitas con nata", 185,
+        Postre p1 = new Postre("Bol de fresitas con nata", 185,
                 TipoPostre.FRUTITA, 2.70, TipoIVA.IVA_DIEZ, 20);
 
-        Producto p2 = new Postre("Bol de kiwi con leche y muesli", 97,
+        Postre p2 = new Postre("Bol de kiwi con leche y muesli", 97,
                 TipoPostre.FRUTITA, 2.50, TipoIVA.IVA_DIEZ, 20);
 
-        Producto p3 = new Postre("Bol de piña con leche de coco y nata", 231,
+        Postre p3 = new Postre("Bol de piña con leche de coco y nata", 231,
                 TipoPostre.FRUTITA, 3, TipoIVA.IVA_DIEZ, 20);
 
-        Producto p4 = new Postre("Mochi de helado de mango (2 unidades)", 203,
+        Postre p4 = new Postre("Mochi de helado de mango (2 unidades)", 203,
                 TipoPostre.MOCHI, 2.1, TipoIVA.IVA_DIEZ, 20);
 
-        Producto p5 = new Postre("Mochi de helado de coco (2 unidades)", 214,
+        Postre p5 = new Postre("Mochi de helado de coco (2 unidades)", 214,
                 TipoPostre.MOCHI, 2, TipoIVA.IVA_DIEZ, 20);
 
-        Producto p6 = new Postre("Mochi de helado de oreo (2 unidades)", 278,
+        Postre p6 = new Postre("Mochi de helado de oreo (2 unidades)", 278,
                 TipoPostre.MOCHI, 2.5, TipoIVA.IVA_DIEZ, 20);
 
-        Producto p7 = new Postre("Helado de pistacho y chocolate con nata", 430,
+        Postre p7 = new Postre("Helado de pistacho y chocolate con nata", 430,
                 TipoPostre.OTROS, 2.8, TipoIVA.IVA_DIEZ, 20);
 
-        Producto p8 = new Postre("Helado de limón y mango", 367,
+        Postre p8 = new Postre("Helado de limón y mango", 367,
                 TipoPostre.OTROS, 2.3, TipoIVA.IVA_DIEZ, 20);
 
-        Producto p9 = new Postre("Helado de matcha con vainilla", 391,
+        Postre p9 = new Postre("Helado de matcha con vainilla", 391,
                 TipoPostre.OTROS, 3.5, TipoIVA.IVA_DIEZ, 20);
 
         carta.add(p1);

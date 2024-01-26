@@ -90,8 +90,6 @@ public class UtilidadesTPV {
         List<Integer> listaDeCantidades = List.copyOf(
                 mapCantidadProductos.values());
 
-        
-        
         if (tarjeta.verificarTarjeta(importeTotal)) {
 
             Ticket ticketCompra = new Ticket(listaDeProductos,
@@ -200,6 +198,7 @@ public class UtilidadesTPV {
     /*método del usuario para ver las clases hijas de la clase Producto
     pasandole un String con el tipo de categoría, que optenemos en el switch del 
     modoUsuario.*/
+    @SuppressWarnings("empty-statement")
     private static void verCarrito(TPV tpv) {
 
         //Producto productotmp = new Producto("lo que sea", 3, TipoIVA.IVA_DIEZ, 2);
@@ -252,20 +251,10 @@ public class UtilidadesTPV {
 
                         System.out.println("Volver");
                         return;
-
                 }
-//                if (opcionElegida != 1) {
-//
-//                    System.out.println("pagando");
-//                } else if (opcionElegida != 0) {
-//                    System.out.println("volver");
-//                    return;
-//                }else{
-//                    
-//                }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "El carrito esta vacío...");;
+            JOptionPane.showMessageDialog(null, "El carrito esta vacío...");
             modoUsuario(tpv);
         }
 
@@ -296,12 +285,6 @@ public class UtilidadesTPV {
                         List<Comida> listaComida = CatalogoCarta.comidasBD();
                         String[] opcionesProductos = new String[listaComida.size()];
                         mostrarProdComida(listaComida, opcionesProductos);
-//                        for (int i = 0; i < listaComida.size(); i++) {
-//                            Producto producto = listaComida.get(i);
-//                            opcionesProductos[i] = producto.getNombre()
-//                                    + " - Precio: " + producto.getPrecioConIVA()
-//                                    + "€";
-//                        }
 
                         String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                 "Selecciona un producto",
@@ -379,14 +362,9 @@ public class UtilidadesTPV {
                         }
                     } else if (nombreCategoria.equalsIgnoreCase("postres")) {
 
-                        List<Producto> listaPostre = CatalogoCarta.postresBD();
+                        List<Postre> listaPostre = CatalogoCarta.postresBD();
                         String[] opcionesProductos = new String[listaPostre.size()];
-                        mostrarProd(listaPostre, opcionesProductos);
-//                        for (int i = 0; i < listaPostre.size(); i++) {
-//                            Producto producto = listaPostre.get(i);
-//                            opcionesProductos[i] = producto.getNombre() + " - Precio: "
-//                                    + producto.getPrecioConIVA() + "€";
-//                        }
+                        mostrarProdPostre(listaPostre, opcionesProductos);
 
                         String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                 "Selecciona un producto",
@@ -737,6 +715,164 @@ public class UtilidadesTPV {
                                 throw new AssertionError();
                         }
                     }
+                    else if (nombreCategoria.equalsIgnoreCase("postres")) {
+                        String[] opcionesSubCategorias = {"Mochis", "Frutitas", "Otros"};
+                        //mensaje de JOptionPane par mostrar las opciones de comida
+                        int opcionSubCategorias = JOptionPane.showOptionDialog(null,
+                                "Seleccione una opción",
+                                "Wok and Roll -- DAWFOOD -- Modo Usuario",
+                                JOptionPane.DEFAULT_OPTION,
+                                JOptionPane.PLAIN_MESSAGE, null,
+                                opcionesSubCategorias, opcionesSubCategorias[0]);
+
+                        //switch segun el tipo de bebida
+                        List<Postre> listaPostreTmp = new ArrayList<>();
+
+                        switch (opcionesSubCategorias[opcionSubCategorias]) {
+
+                            case "Mochis":
+
+                                listaPostreTmp = CatalogoCarta.postresBD();
+                                List<Postre> listaPostres = new ArrayList<>();
+
+                                for (Postre postre : listaPostreTmp) {
+                                    if (postre.getTipoPostre().equals(TipoPostre.MOCHI)) {
+                                        listaPostres.add(postre);
+                                    }
+                                }
+
+                                String[] opcionesProductosMochi = new String[listaPostres.size()];
+                                mostrarProdPostre(listaPostres, opcionesProductosMochi);
+
+                                String seleccionProductoPostre = (String) JOptionPane.showInputDialog(null,
+                                        "Selecciona un producto: Mochis",
+                                        "Wok and Roll -- DAWFOOD --",
+                                        JOptionPane.QUESTION_MESSAGE,
+                                        null,
+                                        opcionesProductosMochi,
+                                        opcionesProductosMochi[0]);
+
+                                if (seleccionProductoPostre != null) {
+                                    // El usuario seleccionó un producto
+                                    //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
+                                    String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
+                                    int opcionElegida = JOptionPane.showOptionDialog(null,
+                                            "¿Qué deseas hacer con este producto?",
+                                            "Wok and Roll -- DAWFOOD --",
+                                            JOptionPane.YES_NO_OPTION,
+                                            JOptionPane.QUESTION_MESSAGE,
+                                            null,
+                                            opcionesElegidas,
+                                            opcionesElegidas[0]);
+
+                                    if (opcionElegida != 1) {
+                                        /*creamos un producto auxiliar para poder 
+                                                    añadir el producto seleccionado al carrito*/
+                                        Producto productoSeleccionadoMochi = listaPostres.get(Arrays.asList(opcionesProductosMochi).indexOf(seleccionProductoPostre));
+                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoMochi);
+                                        System.out.println("producto añadido");
+                                    } else if (opcionElegida != 0) {
+                                        System.out.println("volver");
+                                        return;
+                                    }
+                                }
+
+                            case "Frutitas":
+                                listaPostreTmp = CatalogoCarta.postresBD();
+                                List<Postre> listaFrutitas = new ArrayList<>();
+
+                                for (Postre postre : listaPostreTmp) {
+                                    if (postre.getTipoPostre().equals(TipoPostre.FRUTITA)) {
+                                        listaFrutitas.add(postre);
+                                    }
+                                }
+
+                                String[] opcionesProductosFrutitas = new String[listaFrutitas.size()];
+                                mostrarProdPostre(listaFrutitas, opcionesProductosFrutitas);
+
+                                String seleccionFrutitas = (String) JOptionPane.showInputDialog(null,
+                                        "Selecciona un producto: Frutitas",
+                                        "Wok and Roll -- DAWFOOD --",
+                                        JOptionPane.QUESTION_MESSAGE,
+                                        null,
+                                        opcionesProductosFrutitas,
+                                        opcionesProductosFrutitas[0]);
+
+                                if (seleccionFrutitas != null) {
+                                    // El usuario seleccionó un producto
+                                    //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
+                                    String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
+                                    int opcionElegida = JOptionPane.showOptionDialog(null,
+                                            "¿Qué deseas hacer con este producto?",
+                                            "Wok and Roll -- DAWFOOD --",
+                                            JOptionPane.YES_NO_OPTION,
+                                            JOptionPane.QUESTION_MESSAGE,
+                                            null,
+                                            opcionesElegidas,
+                                            opcionesElegidas[0]);
+
+                                    if (opcionElegida != 1) {
+                                        /*creamos un producto auxiliar para poder 
+                                                    añadir el producto seleccionado al carrito*/
+                                        Producto productoSeleccionadoRamen = listaFrutitas.get(Arrays.asList(opcionesProductosFrutitas).indexOf(seleccionFrutitas));
+                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
+                                        System.out.println("producto añadido");
+                                    } else if (opcionElegida != 0) {
+                                        System.out.println("volver");
+                                        return;
+                                    }
+                                }
+                            case "Otros":
+                                listaPostreTmp = CatalogoCarta.postresBD();
+                                List<Postre> listaOtras = new ArrayList<>();
+
+                                for (Postre postre : listaPostreTmp) {
+                                    if (postre.getTipoPostre().equals(TipoPostre.OTROS)) {
+                                        listaOtras.add(postre);
+                                    }
+                                }
+
+                                String[] opcionesProductosOtros = new String[listaOtras.size()];
+                                mostrarProdPostre(listaOtras, opcionesProductosOtros);
+
+                                String seleccionOtros = (String) JOptionPane.showInputDialog(null,
+                                        "Selecciona un producto: Otros",
+                                        "Wok and Roll -- DAWFOOD --",
+                                        JOptionPane.QUESTION_MESSAGE,
+                                        null,
+                                        opcionesProductosOtros,
+                                        opcionesProductosOtros[0]);
+
+                                if (seleccionOtros != null) {
+                                    // El usuario seleccionó un producto
+                                    //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
+                                    String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
+                                    int opcionElegida = JOptionPane.showOptionDialog(null,
+                                            "¿Qué deseas hacer con este producto?",
+                                            "Wok and Roll -- DAWFOOD --",
+                                            JOptionPane.YES_NO_OPTION,
+                                            JOptionPane.QUESTION_MESSAGE,
+                                            null,
+                                            opcionesElegidas,
+                                            opcionesElegidas[0]);
+
+                                    if (opcionElegida != 1) {
+                                        /*creamos un producto auxiliar para poder 
+                                                    añadir el producto seleccionado al carrito*/
+                                        Producto productoSeleccionadoOtros = listaOtras.get(Arrays.asList(opcionesProductosOtros).indexOf(seleccionOtros));
+                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoOtros);
+                                        System.out.println("producto añadido");
+                                    } else if (opcionElegida != 0) {
+                                        System.out.println("volver");
+                                        return;
+                                    }
+                                }
+                                break;
+
+                            default:
+                                throw new AssertionError();
+                        }
+                    }
                     System.out.println("enums");
                     break;
                 //si elige salir vuelve al menú de anterior
@@ -769,6 +905,14 @@ public class UtilidadesTPV {
             Bebida bebida = aux.get(i);
             opciones[i] = bebida.getNombre() + " - Precio: "
                     + bebida.getPrecioConIVA() + "€";
+        }
+    }
+    
+    private static void mostrarProdPostre(List<Postre> aux, String[] opciones) {
+        for (int i = 0; i < aux.size(); i++) {
+            Postre postre = aux.get(i);
+            opciones[i] = postre.getNombre() + " - Precio: "
+                    + postre.getPrecioConIVA() + "€";
         }
     }
 
