@@ -90,7 +90,7 @@ public class UtilidadesTPV {
         List<Integer> listaDeCantidades = List.copyOf(
                 mapCantidadProductos.values());
 
-        if (tarjeta.verificarTarjeta(importeTotal)) {
+        if (UtilidadesTarjeta.verificarTarjeta(importeTotal)) {
 
             Ticket ticketCompra = new Ticket(listaDeProductos,
                     listaDeCantidades);
