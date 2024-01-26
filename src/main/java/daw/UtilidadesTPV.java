@@ -4,14 +4,11 @@
  */
 package daw;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.swing.JOptionPane;
 
 /**
@@ -90,7 +87,7 @@ public class UtilidadesTPV {
         List<Integer> listaDeCantidades = List.copyOf(
                 mapCantidadProductos.values());
 
-        if (UtilidadesTarjeta.verificarTarjeta(importeTotal)) {
+        if (UtilidadesTarjeta.verificarTarjetaCompleto(importeTotal)) {
 
             Ticket ticketCompra = new Ticket(listaDeProductos,
                     listaDeCantidades);
@@ -199,7 +196,6 @@ public class UtilidadesTPV {
     /*método del usuario para ver las clases hijas de la clase Producto
     pasandole un String con el tipo de categoría, que optenemos en el switch del 
     modoUsuario.*/
-    @SuppressWarnings("empty-statement")
     private static void verCarrito(TPV tpv) {
 
         //Producto productotmp = new Producto("lo que sea", 3, TipoIVA.IVA_DIEZ, 2);
@@ -241,10 +237,14 @@ public class UtilidadesTPV {
                 //opciones de elección
                 switch (opcionesElegidas[opcionElegida]) {
                     case "Pagar":
-                        Tarjeta aux = pedirTarjeta();
-                        UtilidadesTPV.finalizarCompra(tpv, aux);
+//                        String aux = UtilidadesTarjeta.pedirTarjeta();
+                        
+                        Tarjeta tarjetaAux = UtilidadesTarjeta.eTarjetaDefinitiva(totalPagar);
+                        
+                        UtilidadesTPV.finalizarCompra(tpv, tarjetaAux);
                         System.out.println("Pagando");
                         break;
+
                     case "Cancelar compra":
                         tpv.getCarrito().clear();//vaciamos el carrito
                         break;
@@ -885,14 +885,6 @@ public class UtilidadesTPV {
         } while (!salirCategorias);
     }
 
-    private static void mostrarProd(List<Producto> aux, String[] opciones) {
-        for (int i = 0; i < aux.size(); i++) {
-            Producto producto = aux.get(i);
-            opciones[i] = producto.getNombre() + " - Precio: "
-                    + producto.getPrecioConIVA() + "€";
-        }
-    }
-
     private static void mostrarProdComida(List<Comida> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
             Comida comida = aux.get(i);
@@ -915,26 +907,6 @@ public class UtilidadesTPV {
             opciones[i] = postre.getNombre() + " - Precio: "
                     + postre.getPrecioConIVA() + "€";
         }
-    }
-
-    private static Tarjeta pedirTarjeta() {
-        Tarjeta aux;
-        String mensajeNumero = JOptionPane.showInputDialog("Introduce los cuatro últimos dígitos de tu tarjeta.");
-        String numeroTarjeta = pedirEnteroString(mensajeNumero);
-        String mensajeCVV = JOptionPane.showInputDialog("Introduce el CVV de tu tarjeta.");
-        String CVVTarjeta = pedirEnteroString(mensajeCVV);
-
-        String diaNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
-        int diaTarjeta = pedirEntero(diaNumero);
-        String mesNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
-        int mesTarjeta = pedirEntero(mesNumero);
-        String anioNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
-        int anioTarjeta = pedirEntero(anioNumero);
-
-        LocalDate fechaTarjeta = LocalDate.of(anioTarjeta, mesTarjeta, diaTarjeta);
-
-        aux = new Tarjeta(numeroTarjeta, fechaTarjeta, CVVTarjeta);
-        return aux;
     }
 
     public static int pedirEntero(String mensaje) {

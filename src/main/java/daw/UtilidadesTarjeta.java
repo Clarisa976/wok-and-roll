@@ -14,12 +14,14 @@ import javax.swing.JOptionPane;
  * @author clara
  */
 public class UtilidadesTarjeta {
+
     //método para pedir la tarjeta
-    public static String pedirTarjeta(){
+    public static String pedirTarjeta() {
         String mensajeNumero = JOptionPane.showInputDialog("Introduce los cuatro últimos dígitos de tu tarjeta.");
         String numeroTarjeta = pedirEnteroString(mensajeNumero);
         return numeroTarjeta;
     }
+
     //método para verificar si la tarjeta está registrada en la base de datos por los últimos 4 dígitos
     public static boolean verificarTarjeta(String numeroTarjeta) {
         boolean esValida = false;
@@ -117,18 +119,18 @@ public class UtilidadesTarjeta {
     }
 
     private static String pedirEnteroString(String mensaje) {
-        while (true) {
-//            try {
+
+        boolean esVerda = false;
+
+        do {
             if (esEntero(mensaje)) {
+                esVerda = true;
                 return mensaje;
             } else {
-//                String aux = JOptionPane.showInputDialog(mensaje);
-//                Integer.parseInt(aux); // Intentamos convertir a entero para validar la entrada
-//                return aux; // Si no se lanza una excepción, la entrada es válida como cadena.
-//            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
             }
-        }
+        } while (!esVerda);
+        return null;
     }
 
     private static boolean esEntero(String mensaje) {
@@ -142,51 +144,73 @@ public class UtilidadesTarjeta {
 
     //método que verifica si hay saldo suficiente
     public static boolean saldoSuficiente(String numeroCliente, double totalPagar) {
-        Tarjeta tarjetaCliente = obtenerTarjetaCliente(numeroCliente);
+        Tarjeta tarjetaCliente = new Tarjeta();
+        
+        List<Tarjeta> listaTmp = Tarjeta.tarjetasRegistradasBD();
+        
+        for (Tarjeta tarjeta : listaTmp) {
+            if (tarjeta.getNumeroTarjeta().equals(numeroCliente)) {
+                tarjetaCliente = tarjeta;
+            }
+        }
+        
         if (tarjetaCliente.getSaldoTarjeta() >= totalPagar) {
             return true;
         }
         return false;
     }
 
-//    //método para pagar verificando la tarjeta
-//    private static void pagar(TPV tpv, double importe) {
-//        String numeroTarjeta = pedirTarjeta();
-//        if(UtilidadesTarjeta.verificarTarjetaRegistrada(numeroTarjeta)){
-//            String numeroCVV = pedirCVV();
-//            if(UtilidadesTarjeta.verificarCVV(numeroCVV, numeroTarjeta)){
-//                LocalDate fecha = pedirFechaTarjeta();
-//                if(UtilidadesTarjeta.verificarFecha(fecha, numeroTarjeta)){
-//                
-//            }
-//        }
-//    }
     // método para verificar si una tarjeta es válida y tiene saldo suficiente
-    public static boolean verificarTarjeta(Double importeTotal) {
+    public static boolean verificarTarjetaCompleto(double importeTotal) {
+
         String numeroTarjeta = pedirTarjeta();
         LocalDate fecha = pedirFechaTarjeta();
         String numeroCVV = pedirCVV();
+
+        Tarjeta tarjetaAux = new Tarjeta(numeroTarjeta, fecha, numeroCVV);
+
+        boolean estaBien = true;
+
+        do {
+            //comprobar si la tarjeta está registrada
+            if (UtilidadesTarjeta.verificarTarjeta(numeroTarjeta)) {
+                tarjetaAux.setNumeroTarjeta(numeroTarjeta);
+            }
+
+            //comprobar si la fecha de caducidad es válida (no posterior a la fecha actual)
+            if (UtilidadesTarjeta.verificarFecha(fecha, numeroTarjeta)) {
+                tarjetaAux.setFechaCaducidadTarjeta(fecha);
+            }
+
+            //comprobar si el CVV coincide
+            if (UtilidadesTarjeta.verificarCVV(numeroCVV, numeroCVV)) {
+                tarjetaAux.setCvv(numeroCVV);
+            }
+
+            //comprobar si el saldo es suficiente para el importeTotal del ticket
+            if (!UtilidadesTarjeta.saldoSuficiente(numeroCVV, importeTotal)) {
+                estaBien = false;
+            }
+
+        } while (!estaBien);
+
+        return estaBien;
+    }
+
+    //aaaaaaaaaaaaaa
+    public static Tarjeta eTarjetaDefinitiva(double importeTotal) {
+
+        Tarjeta tarjetaAux = new Tarjeta();
         
-        //comprobar si la tarjeta está registrada
-       if (!UtilidadesTarjeta.verificarTarjeta(numeroTarjeta)) {
-            return false; //la tarjeta no está registrada
-        }
+        if (verificarTarjetaCompleto(importeTotal)) {
+            
+            String numeroTarjeta = pedirTarjeta();
+            LocalDate fecha = pedirFechaTarjeta();
+            String numeroCVV = pedirCVV();
 
-        //comprobar si la fecha de caducidad es válida (no posterior a la fecha actual)
-         if (!UtilidadesTarjeta.verificarFecha(fecha, numeroTarjeta)) {
-            return false; //la fecha de caducidad es posterior a la fecha actual
+            tarjetaAux = new Tarjeta(numeroTarjeta, fecha, numeroCVV);
         }
+        return tarjetaAux;
 
-        //comprobar si el CVV coincide
-        if (!UtilidadesTarjeta.verificarCVV(numeroCVV, numeroCVV)) {
-            return false; //el CVV no coincide
-        }
-
-        //comprobar si el saldo es suficiente para el importeTotal del ticket
-        if (!UtilidadesTarjeta.saldoSuficiente(numeroCVV, importeTotal)) {
-            return false; //el saldo no es suficiente
-        }
-
-        return true; //la tarjeta es válida y tiene saldo suficiente
     }
 }
