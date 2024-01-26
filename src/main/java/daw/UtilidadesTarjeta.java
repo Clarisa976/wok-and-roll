@@ -56,11 +56,11 @@ public class UtilidadesTarjeta {
 
     //método para pedir la fecha al cliente
     public static LocalDate pedirFechaTarjeta() {
-        String diaNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
+        String diaNumero = JOptionPane.showInputDialog("Introduce el día en el que caduca tu tarjeta.");
         int diaTarjeta = pedirEntero(diaNumero);
-        String mesNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
+        String mesNumero = JOptionPane.showInputDialog("Introduce el mes en el que caduca tu tarjeta.");
         int mesTarjeta = pedirEntero(mesNumero);
-        String anioNumero = JOptionPane.showInputDialog("Introduce ed día en el que caduca tu tarjeta.");
+        String anioNumero = JOptionPane.showInputDialog("Introduce el año en el que caduca tu tarjeta.");
         int anioTarjeta = pedirEntero(anioNumero);
 
         LocalDate fechaTarjeta = LocalDate.of(anioTarjeta, mesTarjeta, diaTarjeta);
