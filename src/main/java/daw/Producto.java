@@ -123,9 +123,8 @@ public class Producto {
         int porcentaje = (this.tipoIVA
                 .equals(TipoIVA.IVA_DIEZ)) ? DIEZ : VEINTIUNO;
 
-        //V+((P/100)*V
         double precioFinal = this.precioSinIVA + ((porcentaje / 100)
-                + this.precioSinIVA);
+                * this.precioSinIVA);
 
         return precioFinal;
     }

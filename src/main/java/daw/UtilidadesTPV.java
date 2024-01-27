@@ -69,7 +69,6 @@ public class UtilidadesTPV {
 
             importeTotal += producto.getPrecioConIVA();
         }
-        /*------------------------*/
 
         Map<Producto, Integer> mapCantidadProductos = new HashMap<>();
 
@@ -86,6 +85,12 @@ public class UtilidadesTPV {
                 mapCantidadProductos.keySet());
         List<Integer> listaDeCantidades = List.copyOf(
                 mapCantidadProductos.values());
+        
+        for (Map.Entry<Producto, Integer> entry : mapCantidadProductos.entrySet()) {
+            Object key = entry.getKey();
+            Object val = entry.getValue();
+            
+        }
 
         if (UtilidadesTarjeta.verificarTarjetaCompleto(importeTotal)) {
 
@@ -236,9 +241,7 @@ public class UtilidadesTPV {
 
                 //opciones de elección
                 switch (opcionesElegidas[opcionElegida]) {
-                    case "Pagar":
-//                        String aux = UtilidadesTarjeta.pedirTarjeta();
-                        
+                    case "Pagar":                        
                         Tarjeta tarjetaAux = UtilidadesTarjeta.eTarjetaDefinitiva(totalPagar);
                         
                         UtilidadesTPV.finalizarCompra(tpv, tarjetaAux);
