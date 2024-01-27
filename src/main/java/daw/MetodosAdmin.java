@@ -6,7 +6,6 @@ package daw;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -202,8 +201,7 @@ public class MetodosAdmin {
                                                 opcionesElegidas[0]);
 
                                         if (opcionElegida != 1) {
-                                            /*creamos un producto auxiliar para poder 
-                                                    añadir el producto seleccionado al carrito*/
+                                            /*creamos un producto auxiliar para poder añadir el producto seleccionado al carrito*/
 //                                            Producto productoSeleccionadoRamen = listaRamen.get(Arrays.asList(opcionesProductosRamen).indexOf(seleccionProducto));
 //                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
                                             System.out.println("producto añadido pa modificar");
@@ -633,7 +631,9 @@ public class MetodosAdmin {
 //                    MetodosAdmin.altaProducto(tpv.getProductos(), productoNuevo);
                 }
                 case "Borrar producto" -> {
-                    System.out.println("Dar de baja un producto");
+                    
+//                    CatalogoCarta catalogo = CatalogoCarta getCarta();
+//                    
 //                    MetodosAdmin.bajaProducto(tpv.getProductos(), productoABorrar);
                 }
                 case "Ver ventas" -> {
@@ -642,14 +642,13 @@ public class MetodosAdmin {
                 }
                 case "Salir" -> {
                     System.out.println("volver a inicio");
-                    return;
+                    salirAdmin = true;
                 }
             }
 
         } while (!salirAdmin);
     }
 
-    //aaaaaaaaaaaaaaaaaaaaa
    
     private static void mostrarProd(List<Producto> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
@@ -682,5 +681,4 @@ public class MetodosAdmin {
                     + postre.getPrecioConIVA() + "€";
         }
     }
-
 }
