@@ -697,3 +697,60 @@ public class MetodosAdmin {
             return opcionCategoria = "Salir";
         }
     }
+
+    public static String elegirSubcategoriaComida() {
+        String[] opcionesSubcategoriaComdia = {"Ramen", "Sushi", "Wok"};
+
+        String opcionSubcategoriaComdia = (String) JOptionPane.showInputDialog(null,
+                "Seleccione una opción",
+                "Wok and Roll -- DAWFOOD",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opcionesSubcategoriaComdia, opcionesSubcategoriaComdia[0]);
+        if (!opcionSubcategoriaComdia.equals(null)) {
+            return opcionSubcategoriaComdia;
+        } else {
+            return opcionSubcategoriaComdia = "Salir";
+        }
+    }
+
+    public static String elegirSubcategoriaBebidas() {
+        String[] opcionesSubcategoriaBebidas = {"Refrescos", "Alcoholicas", "Otras"};
+
+        String opcionSubcategoria = (String) JOptionPane.showInputDialog(null,
+                "Seleccione una opción",
+                "Wok and Roll -- DAWFOOD",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opcionesSubcategoriaBebidas, opcionesSubcategoriaBebidas[0]);
+        if (!opcionSubcategoria.equals(null)) {
+            return opcionSubcategoria;
+        } else {
+            return opcionSubcategoria = "Salir";
+        }
+    }
+
+    public static String elegirSubcategoriaPostres() {
+        String[] opcionesSubcategoriaPostre = {"Mochis", "Frutitas", "Otros"};
+
+        String opcionSubcategoria = (String) JOptionPane.showInputDialog(null,
+                "Seleccione una opción",
+                "Wok and Roll -- DAWFOOD",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opcionesSubcategoriaPostre, opcionesSubcategoriaPostre[0]);
+        if (!opcionSubcategoria.equals(null)) {
+            return opcionSubcategoria;
+        } else {
+            return opcionSubcategoria = "Salir";
+        }
+    }
+}
+/*
+ring[] opcionesSubCategorias = {"Ramen", "Sushi", "Wok"};
+                        //mensaje de JOptionPane par mostrar las opciones de comida
+                        int opcionSubCategorias = JOptionPane.showOptionDialog(null,
+                                "Seleccione una opción",
+                                "Wok and Roll -- DAWFOOD -- Modo Usuario",
+                                JOptionPane.DEFAULT_OPTION,
+                                JOptionPane.PLAIN_MESSAGE, null,
+                                opcionesSubCategorias, opcionesSubCategorias[0]);
+
+ */
