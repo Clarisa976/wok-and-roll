@@ -166,11 +166,10 @@ public class MetodosAdmin {
                                     Producto productoSeleccionado = tpv.getProductos()
                                             .get(Arrays.asList(opcionesProductos)
                                                     .indexOf(seleccionProducto));
+
                                     //metodos para pedir que modificar y tal
-                                    
-                                    MetodosAdmin.modificarComida((Comida)productoSeleccionado, 
+                                    MetodosAdmin.modificarComida((Comida) productoSeleccionado,
                                             MetodosProductos.elegirCategoriaACambiarComdia());
-                                    System.out.println("producto añadido pa modificar");
                                 } else if (opcionElegida != 0) {
                                     System.out.println("volver");
                                     return;
@@ -178,10 +177,9 @@ public class MetodosAdmin {
                             }
                             break;
                         case "Ver bebidas":
-                            List<Bebida> listaBebida = CatalogoCarta.bebidasBD();
-                            String[] opcionesProductosBebidas = new String[listaBebida.size()];
-
-                            MetodosProductos.mostrarProdBebida(listaBebida, opcionesProductosBebidas);
+                            List<Producto> listaBebidas = tpv.getProductos();
+                            String[] opcionesProductosBebidas = new String[listaBebidas.size()];
+                            MetodosProductos.mostrarProductos(listaBebidas, opcionesProductosBebidas);
 
                             String seleccionProductoBebidas = (String) JOptionPane.showInputDialog(null,
                                     "Selecciona un producto",
@@ -206,11 +204,13 @@ public class MetodosAdmin {
 
                                 if (opcionElegida != 1) {
                                     //creamos un producto auxiliar para modificarlo
-                                    Producto productoSeleccionado = listaBebida
-                                            .get(Arrays.asList(seleccionProductoBebidas)
+                                    Producto productoSeleccionado = tpv.getProductos()
+                                            .get(Arrays.asList(opcionesProductosBebidas)
                                                     .indexOf(opcionesProductosBebidas));
+
                                     //metodos para pedir que modificar y tal
-                                    System.out.println("producto añadido pa modificar");
+                                    MetodosAdmin.modificarBebida((Bebida) productoSeleccionado,
+                                            MetodosProductos.elegirCategoriaACambiarBebida());
                                 } else if (opcionElegida != 0) {
                                     System.out.println("volver");
                                     return;
@@ -220,17 +220,17 @@ public class MetodosAdmin {
 
                         case "Ver postres":
 
-                            List<Postre> listaPostre = CatalogoCarta.postresBD();
-                            String[] opcionesProductosPostres = new String[listaPostre.size()];
-                            MetodosProductos.mostrarProdPostre(listaPostre, opcionesProductosPostres);
+                            List<Producto> listaPostre = tpv.getProductos();
+                            String[] opcionesProductosPostre = new String[listaPostre.size()];
+                            MetodosProductos.mostrarProductos(listaPostre, opcionesProductosPostre);
 
                             String seleccionProductoPostre = (String) JOptionPane.showInputDialog(null,
                                     "Selecciona un producto",
                                     "Wok and Roll -- DAWFOOD --",
                                     JOptionPane.QUESTION_MESSAGE,
                                     null,
-                                    opcionesProductosPostres,
-                                    opcionesProductosPostres[0]);
+                                    opcionesProductosPostre,
+                                    opcionesProductosPostre[0]);
 
                             if (seleccionProductoPostre != null) {
                                 // El usuario seleccionó un producto
@@ -246,13 +246,14 @@ public class MetodosAdmin {
                                         opcionesElegidas[0]);
 
                                 if (opcionElegida != 1) {
-                                    //creamos un producto auxiliar para modificarlo
-                                    Producto productoSeleccionado = listaPostre
-                                            .get(Arrays.asList(seleccionProductoPostre)
-                                                    .indexOf(opcionesProductosPostres));
-                                    
+                                   //creamos un producto auxiliar para modificarlo
+                                    Producto productoSeleccionado = tpv.getProductos()
+                                            .get(Arrays.asList(opcionesProductosPostre)
+                                                    .indexOf(opcionesProductosPostre));
+
                                     //metodos para pedir que modificar y tal
-                                    System.out.println("producto añadido pa modificar");
+                                    MetodosAdmin.modificarPostre((Postre) productoSeleccionado,
+                                            MetodosProductos.elegirCategoriaACambiarPostre());
                                 } else if (opcionElegida != 0) {
                                     System.out.println("volver");
                                     return;
@@ -290,9 +291,7 @@ public class MetodosAdmin {
         } while (!salirAdmin);
     }
 
-    //métodos
-
-
+    //método para ver las opciones del usuario administrador
     public static String opcionesUsuarioAdministrador() {
         //creamos las opciones del admin
         String[] opcionesUsuarioAdmin = {"Modificar producto", "Dar de alta un producto",
@@ -309,14 +308,15 @@ public class MetodosAdmin {
             return opcionUsuarioAdmin = "Salir";
         }
     }
-//método que le pasas un Producto de tipo Comida y un String aux y elige que atributos de la comida cambiar
+
+    //método que le pasas un Producto de tipo Comida y un String aux y elige que atributos de la comida cambiar
     public static void modificarComida(Comida comidaAux, String tmp) {
         //si deja algo en null no se cambiará
         if (comidaAux != null && tmp != null) {
             switch (tmp) {
                 case "Nombre" -> {
                     String nuevoNombre = JOptionPane.showInputDialog(
-                            "Introduce el nuevo nombre para " 
+                            "Introduce el nuevo nombre para "
                             + comidaAux.getNombre());
                     comidaAux.setNombre(nuevoNombre);
                 }
@@ -359,21 +359,21 @@ public class MetodosAdmin {
                         System.out.println("Introduce un número entero");
                     }
                     comidaAux.setStock(nuevoStock);
-                }                
+                }
             }
         }
     }
-        //método que le pasas un Producto de tipo Bebida y un String aux y elige que atributos de la bebida cambiar
-        public static void modificarBebida(Comida comidaAux, String tmp) {
+    //método que le pasas un Producto de tipo Bebida y un String aux y elige que atributos de la bebida cambiar
+
+    public static void modificarBebida(Bebida bebidaAux, String tmp) {
         //si deja algo en null no se cambiará
-        if (comidaAux != null && tmp != null) {
+        if (bebidaAux != null && tmp != null) {
             switch (tmp) {
                 case "Nombre" -> {
                     String nuevoNombre = JOptionPane.showInputDialog(
-                            "Introduce el nuevo nombre para " 
-                            + comidaAux.getNombre());
-                    comidaAux.setNombre(nuevoNombre);
-                    System.out.println(comidaAux.getNombre());
+                            "Introduce el nuevo nombre para "
+                            + bebidaAux.getNombre());
+                    bebidaAux.setNombre(nuevoNombre);
                 }
                 //atributo propio de la bebida
                 case "Tamanio Bebida" -> {
@@ -385,8 +385,8 @@ public class MetodosAdmin {
                     } catch (NumberFormatException nfe) {
                         System.out.println("Introduce un número entero");
                     }
-                    comidaAux.setStock(nuevoStock);
-                }            
+                    bebidaAux.setStock(nuevoStock);
+                }
                 case "Precio sin IVA" -> {
                     double nuevoPrecioSinIVA;
                     try {
@@ -395,7 +395,7 @@ public class MetodosAdmin {
                         if (nuevoPrecio != null) {
                             //parseamos el string introducido para comprobar que es un double
                             nuevoPrecioSinIVA = Double.parseDouble(nuevoPrecio);
-                            comidaAux.setPrecioSinIVA(nuevoPrecioSinIVA);
+                            bebidaAux.setPrecioSinIVA(nuevoPrecioSinIVA);
                         } else {
                             System.out.println("No has introducido número decimal");
                         }
@@ -404,10 +404,10 @@ public class MetodosAdmin {
                     }
                 }
                 case "IVA" -> {
-                    comidaAux.setTipoIVA(MetodosProductos.elegirTipoIVA());
+                    bebidaAux.setTipoIVA(MetodosProductos.elegirTipoIVA());
                 }
                 case "Tipo de Bebida" -> {
-                    comidaAux.setTipoComida(MetodosProductos.elegirTipoComida());
+                    bebidaAux.setTipoBebida(MetodosProductos.elegirTipoBebida());
                 }
                 case "Stock" -> {
                     int nuevoStock = 0;
@@ -418,8 +418,68 @@ public class MetodosAdmin {
                     } catch (NumberFormatException nfe) {
                         System.out.println("Introduce un número entero");
                     }
-                    comidaAux.setStock(nuevoStock);
-                }                
+                    bebidaAux.setStock(nuevoStock);
+                }
+            }
+        }
+    }
+
+    //método que le pasas un Producto de tipo Postre y un String aux y elige que atributos de la postre cambiar
+    public static void modificarPostre(Postre postreAux, String tmp) {
+        //si deja algo en null no se cambiará
+        if (postreAux != null && tmp != null) {
+            switch (tmp) {
+                case "Nombre" -> {
+                    String nuevoNombre = JOptionPane.showInputDialog(
+                            "Introduce el nuevo nombre para "
+                            + postreAux.getNombre());
+                    postreAux.setNombre(nuevoNombre);
+                }
+                //atributo propio de la bebida
+                case "Kcal" -> {
+                    int nuevoStock = 0;
+                    try {
+                        nuevoStock = Integer.parseInt(
+                                JOptionPane.showInputDialog(
+                                        "Introduce el nuevo tamaño del producto"));
+                    } catch (NumberFormatException nfe) {
+                        System.out.println("Introduce un número entero");
+                    }
+                    postreAux.setStock(nuevoStock);
+                }
+                case "Precio sin IVA" -> {
+                    double nuevoPrecioSinIVA;
+                    try {
+                        String nuevoPrecio = JOptionPane.showInputDialog(
+                                "Introduce el nuevo precio sin IVA");
+                        if (nuevoPrecio != null) {
+                            //parseamos el string introducido para comprobar que es un double
+                            nuevoPrecioSinIVA = Double.parseDouble(nuevoPrecio);
+                            postreAux.setPrecioSinIVA(nuevoPrecioSinIVA);
+                        } else {
+                            System.out.println("No has introducido número decimal");
+                        }
+                    } catch (NumberFormatException nfe) {
+                        System.out.println("No has introducido número decimal");
+                    }
+                }
+                case "IVA" -> {
+                    postreAux.setTipoIVA(MetodosProductos.elegirTipoIVA());
+                }
+                case "Tipo de Postre" -> {
+                    postreAux.setTipoPostre(MetodosProductos.elegirTipoPostre());
+                }
+                case "Stock" -> {
+                    int nuevoStock = 0;
+                    try {
+                        nuevoStock = Integer.parseInt(
+                                JOptionPane.showInputDialog(
+                                        "Introduce el nuevo stock del producto"));
+                    } catch (NumberFormatException nfe) {
+                        System.out.println("Introduce un número entero");
+                    }
+                    postreAux.setStock(nuevoStock);
+                }
             }
         }
     }
