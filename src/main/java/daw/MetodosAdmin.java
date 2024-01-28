@@ -4,7 +4,6 @@
  */
 package daw;
 
-import static daw.UtilidadesTPV.mostrarProdComida;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -162,12 +161,15 @@ public class MetodosAdmin {
                                         opcionesElegidas,
                                         opcionesElegidas[0]);
 
-                                if (opcionElegida != 1) {
+                                if (opcionElegida == 0) {
                                     //creamos un producto auxiliar para modificarlo
-                                    Producto productoSeleccionado = listaComida
+                                    Comida productoSeleccionado = CatalogoCarta.comidasBD()
                                             .get(Arrays.asList(opcionesProductos)
                                                     .indexOf(seleccionProducto));
                                     //metodos para pedir que modificar y tal
+                                    
+                                    MetodosAdmin.modificarComida(productoSeleccionado, 
+                                            MetodosAdmin.elegirCategoriaACambiar());
                                     System.out.println("producto añadido pa modificar");
                                 } else if (opcionElegida != 0) {
                                     System.out.println("volver");
@@ -248,6 +250,7 @@ public class MetodosAdmin {
                                     Producto productoSeleccionado = listaPostre
                                             .get(Arrays.asList(seleccionProductoPostre)
                                                     .indexOf(opcionesProductosPostres));
+                                    
                                     //metodos para pedir que modificar y tal
                                     System.out.println("producto añadido pa modificar");
                                 } else if (opcionElegida != 0) {
@@ -257,7 +260,7 @@ public class MetodosAdmin {
                             }
                             break;
 
-                            //si elige salir vuelve al menú de anterior
+                        //si elige salir vuelve al menú de anterior
                         case "Volver":
                             System.out.println("volver a categorías");
                             return;
@@ -288,14 +291,6 @@ public class MetodosAdmin {
             }
 
         } while (!salirAdmin);
-    }
-
-    private static void mostrarProd(List<Producto> aux, String[] opciones) {
-        for (int i = 0; i < aux.size(); i++) {
-            Producto producto = aux.get(i);
-            opciones[i] = producto.getNombre() + " - Precio: "
-                    + producto.getPrecioConIVA() + "€";
-        }
     }
 
     private static void mostrarProdComida(List<Comida> aux, String[] opciones) {
@@ -401,13 +396,132 @@ public class MetodosAdmin {
         }
     }
 
-    public static String opcionesAdministradorModificar() {
-        String[] opcionesElegidas = {"Modificar", "Volver"};
+    public static void modificarComida(Comida comidaAux, String tmp) {
+        //si deja algo en null no se cambiará
+        if (comidaAux != null && tmp != null) {
+            switch (tmp) {
+                case "Nombre" -> {
+                    String nuevoNombre = JOptionPane.showInputDialog(
+                            "Introduce el nuevo nombre para " 
+                            + comidaAux.getNombre());
+                    comidaAux.setNombre(nuevoNombre);
+                    System.out.println(comidaAux.getNombre());
+                }
+                case "Descripcion" -> {
+                    String nuevaDescripcion = JOptionPane.showInputDialog(
+                            "Introduce la nueva descripción del producto");
+                    comidaAux.setDescripcionComida(nuevaDescripcion);
+                }
+                case "Precio sin IVA" -> {
+                    double nuevoPrecioSinIVA;
+                    try {
+                        String nuevoPrecio = JOptionPane.showInputDialog(
+                                "Introduce el nuevo precio sin IVA");
+                        if (nuevoPrecio != null) {
+                            //parseamos el string introducido para comprobar que es un double
+                            nuevoPrecioSinIVA = Double.parseDouble(nuevoPrecio);
+                            comidaAux.setPrecioSinIVA(nuevoPrecioSinIVA);
+                        } else {
+                            System.out.println("No has introducido número decimal");
+                        }
+                    } catch (NumberFormatException nfe) {
+                        System.out.println("No has introducido número decimal");
+                    }
+                }
+                case "IVA" -> {
+                    comidaAux.setTipoIVA(elegirTipoIVA());
+                }
+                case "Tipo de Comida" -> {
+                    comidaAux.setTipoComida(MetodosAdmin.elegirTipoComida());
+                }
+                case "Stock" -> {
+                    int nuevoStock = 0;
+                    try {
+                        nuevoStock = Integer.parseInt(
+                                JOptionPane.showInputDialog(
+                                        "Introduce el nuevo stock del producto"));
+                    } catch (NumberFormatException nfe) {
+                        System.out.println("Introduce un número entero");
+                    }
+                    comidaAux.setStock(nuevoStock);
+                }
+
+
+                
+            }
+        }
+//
+//        String[] opcionesElegidas = {"Nombre", "Descripcion", "Precio sin IVA", "IVA",
+//            "Tipo de Comida", "Stock", "Volver"};
+//        String opcionElegida = (String) JOptionPane.showInputDialog(null,
+//                "¿Qué deseas Modificar?",
+//                "Wok and Roll -- DAWFOOD -- Modo Mantenimiento",
+//                JOptionPane.QUESTION_MESSAGE, null,
+//                opcionesElegidas, opcionesElegidas[0]);
+//        if (!opcionesElegidas.equals(null)) {
+//            return opcionElegida;
+//        } else {
+//            return opcionElegida = "Volver";
+//        }
+
+
+//        int opcionElegida = JOptionPane.showOptionDialog(null,
+//                "¿Qué deseas modificar?",
+//                "Wok and Roll -- DAWFOOD --",
+//                JOptionPane.YES_NO_OPTION,
+//                JOptionPane.QUESTION_MESSAGE,
+//                null,
+//                opcionesElegidas,
+//                opcionesElegidas[0]);
+//        if (opcionElegida != 1) {
+//            /*creamos un producto auxiliar para poder 
+//                                añadir el producto seleccionado al carrito*/
+//            Producto productoSeleccionado = listaComida.get(Arrays.asList(opcionesProductos).indexOf(seleccionProducto));
+//            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado);
+//            System.out.println("producto añadido");
+//        } else if (opcionElegida != 0) {
+//            System.out.println("volver");
+//            return;
+//        }
+    }
+//Método para mostrar un desplegable de subcategoría comida
+
+    public static TipoComida elegirTipoComida() {
+        //Creamos un array de String para hacer un desplegable y que elija qué
+        //es lo que quiere cambiar
+        Object[] opciones = TipoComida.values();
+
+        TipoComida eleccion = (TipoComida) JOptionPane.showInputDialog(null,
+                "Elige la subcategoría",
+                "Selección de subcategoría",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opciones, opciones[0]);
+        return eleccion;
+    }
+     public static TipoIVA elegirTipoIVA() {
+        //Creamos un array de String para hacer un desplegable y que elija qué
+        //es lo que quiere cambiar
+        TipoIVA[] opciones = TipoIVA.values();
+
+        TipoIVA eleccion = (TipoIVA) JOptionPane.showInputDialog(null,
+                "Elige el IVA",
+                "Selección del IVA",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opciones, opciones[0]);
+        return eleccion;
+    }
+    
+        public static String elegirCategoriaACambiar() {
+
+        String[] opcionesElegidas = {"Nombre", "Descripcion", "Precio sin IVA", "IVA",
+            "Tipo de Comida", "Stock", "Volver"};
+
         String opcionElegida = (String) JOptionPane.showInputDialog(null,
-                "¿Qué deseas hacer con este producto?",
-                "Wok and Roll -- DAWFOOD -- Modo Mantenimiento",
+                "Elige el campo que quiere modificar:",
+                "Seleccione para modificar",
                 JOptionPane.QUESTION_MESSAGE, null,
                 opcionesElegidas, opcionesElegidas[0]);
+
         if (!opcionesElegidas.equals(null)) {
             return opcionElegida;
         } else {
