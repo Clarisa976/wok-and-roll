@@ -42,7 +42,7 @@ public class UtilidadesTarjetaPrueba {
         String numeroTarjeta = pedirNumeroString(mensajeNumero);
         return numeroTarjeta;
     }
-    
+
     //método apra pedir números en String que ignora los datos que no sean números
     private static String pedirNumeroString(String mensaje) {
         String numero = null;
@@ -50,13 +50,31 @@ public class UtilidadesTarjetaPrueba {
         while (!esValido) {
             try {
                 numero = mensaje;
-                    esValido = true;
+                esValido = true;
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null,
                         "Introduce un número entero válido.");
             }
         }
         return numero;
+    }
+
+    /*método Tarjeta para obtejer la tarjeta del cliente creando una nueva
+    tarjeta temporal que guardará la tarjeta si está en base de datos de tarjetas
+    que tenemos creada*/
+    public static Tarjeta obtenerTarjeta(String numeroTarjetaCliente) {
+        List<Tarjeta> tarjetasBD = Tarjeta.tarjetasRegistradasBD();
+        Tarjeta tarjetaTmp = new Tarjeta();
+        //verificamos la tarjeta
+        for (int i = 0; i < tarjetasBD.size(); i++) {
+            if (numeroTarjetaCliente.equals(tarjetasBD.get(i).getNumeroTarjeta()
+                    .substring(tarjetasBD.get(i).getNumeroTarjeta().length() - 4,
+                            tarjetasBD.get(i).getNumeroTarjeta().length()))) {
+                tarjetaTmp = tarjetasBD.get(i);
+            }
+
+        }
+        return tarjetaTmp;
     }
 //
 //    //método para verificar si la tarjeta está registrada en la base de datos por los últimos 4 dígitos

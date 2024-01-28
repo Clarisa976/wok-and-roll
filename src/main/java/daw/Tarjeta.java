@@ -133,23 +133,23 @@ public class Tarjeta {
         //creamos tarjetas
         Tarjeta t1 = new Tarjeta("Juan Perez",
                 "1234567812345678",
-                LocalDate.of(2025, 12, 31),
+                LocalDate.of(2025, 12, LocalDate.MAX.getDayOfMonth()),
                 "123", 1000.0);
         Tarjeta t2 = new Tarjeta("Maria Lopez",
                 "2345678923456789",
-                LocalDate.of(2024, 6, 30),
+                LocalDate.of(2024, 6, LocalDate.MAX.getDayOfMonth()),
                 "456", 500.0);
         Tarjeta t3 = new Tarjeta("Carlos Rodriguez",
                 "3456789034567890",
-                LocalDate.of(2023, 4, 15),
+                LocalDate.of(2023, 4, LocalDate.MAX.getDayOfMonth()),
                 "789", 200.0);
         Tarjeta t4 = new Tarjeta("Ana Garcia",
                 "4567890145678901",
-                LocalDate.of(2026, 8, 28),
+                LocalDate.of(2026, 8, LocalDate.MAX.getDayOfMonth()),
                 "234", 1500.0);
         Tarjeta t5 = new Tarjeta("Pedro Sanchez",
                 "5678901256789012",
-                LocalDate.of(2024, 10, 10),
+                LocalDate.of(2024, 10, LocalDate.MAX.getDayOfMonth()),
                 "567", 800.0);
 
         //las añadimos a la lista
