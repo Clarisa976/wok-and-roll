@@ -204,6 +204,7 @@ public class MetodosAdmin {
 
                                 if (opcionElegida != 1) {
                                     //creamos un producto auxiliar para modificarlo
+                                    /*AQUI PETA*/
                                     Producto productoSeleccionado = tpv.getProductos()
                                             .get(Arrays.asList(opcionesProductosBebidas)
                                                     .indexOf(opcionesProductosBebidas));
