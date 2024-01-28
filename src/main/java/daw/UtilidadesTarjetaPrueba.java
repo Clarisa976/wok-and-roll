@@ -35,26 +35,22 @@ public class UtilidadesTarjetaPrueba {
         }
         return estaRegistrada;
     }
-//método para pedir la tarjeta al usuario usando JOptionPane
 
+    //método para pedir la tarjeta al usuario usando JOptionPane
     public static String pedirTarjeta() {
         String mensajeNumero = JOptionPane.showInputDialog("Introduce los cuatro últimos dígitos de tu tarjeta.");
         String numeroTarjeta = pedirNumeroString(mensajeNumero);
         return numeroTarjeta;
     }
-
+    
+    //método apra pedir números en String que ignora los datos que no sean números
     private static String pedirNumeroString(String mensaje) {
         String numero = null;
         boolean esValido = false;
         while (!esValido) {
             try {
                 numero = mensaje;
-                if (numero.length() <= 5) {
                     esValido = true;
-                } else {
-                    JOptionPane.showMessageDialog(null,
-                            "Intoduzca solo cuatro dígitos");
-                }
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null,
                         "Introduce un número entero válido.");
