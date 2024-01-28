@@ -179,14 +179,39 @@ public class MetodosProductos {
         }
     }
 
-    public static void mostrarProductos(List<Producto> aux, String[] opciones) {
+    public static void mostrarProductosComida(List<Producto> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
             Producto tmp = aux.get(i);
             if (tmp instanceof Comida comidaAux) {
                 opciones[i] = comidaAux.getNombre() + " - Precio: "
                         + comidaAux.getPrecioConIVA() + "€" + " - Stock: "
                         + comidaAux.getStock();
+
             }
+        }
+    }
+
+    public static void mostrarProductosBebida(List<Producto> aux, String[] opciones) {
+        for (int i = 0; i < aux.size(); i++) {
+            Producto tmp = aux.get(i);
+            if (tmp instanceof Bebida bebidaAux) {
+                opciones[i] = bebidaAux.getNombre() + " - Precio: "
+                        + bebidaAux.getPrecioConIVA() + "€" + " - Stock: "
+                        + bebidaAux.getStock();
+
+            }
+        }
+    }
+
+    public static void mostrarProductosPostre(List<Producto> aux, String[] opciones) {
+        for (int i = 0; i < aux.size(); i++) {
+            Producto tmp = aux.get(i);
+            if (tmp instanceof Postre postreAux) {
+                opciones[i] = postreAux.getNombre() + " - Precio: "
+                        + postreAux.getPrecioConIVA() + "€" + " - Stock: "
+                        + postreAux.getStock();
+            }
+
         }
     }
 

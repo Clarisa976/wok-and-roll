@@ -139,7 +139,7 @@ public class MetodosAdmin {
                         case "Ver comidas":
                             List<Producto> lista = tpv.getProductos();
                             String[] opcionesProductos = new String[lista.size()];
-                            MetodosProductos.mostrarProductos(lista, opcionesProductos);
+                            MetodosProductos.mostrarProductosComida(lista, opcionesProductos);
 
                             String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                     "Selecciona un producto",
@@ -179,7 +179,7 @@ public class MetodosAdmin {
                         case "Ver bebidas":
                             List<Producto> listaBebidas = tpv.getProductos();
                             String[] opcionesProductosBebidas = new String[listaBebidas.size()];
-                            MetodosProductos.mostrarProductos(listaBebidas, opcionesProductosBebidas);
+                            MetodosProductos.mostrarProductosBebida(listaBebidas, opcionesProductosBebidas);
 
                             String seleccionProductoBebidas = (String) JOptionPane.showInputDialog(null,
                                     "Selecciona un producto",
@@ -222,7 +222,7 @@ public class MetodosAdmin {
 
                             List<Producto> listaPostre = tpv.getProductos();
                             String[] opcionesProductosPostre = new String[listaPostre.size()];
-                            MetodosProductos.mostrarProductos(listaPostre, opcionesProductosPostre);
+                            MetodosProductos.mostrarProductosPostre(listaPostre, opcionesProductosPostre);
 
                             String seleccionProductoPostre = (String) JOptionPane.showInputDialog(null,
                                     "Selecciona un producto",
