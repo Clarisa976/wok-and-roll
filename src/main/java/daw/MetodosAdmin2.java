@@ -267,7 +267,11 @@ public class MetodosAdmin2 {
                 }
                 case "Ver ventas" -> {
                     System.out.println("Ver ventas de hoy");
-                    MetodosAdmin2.consultarTicketsFecha(tpv, LocalDateTime.now());
+
+                    List<Ticket> ventasHoy = MetodosAdmin2
+                            .consultarTicketsFecha(tpv, LocalDateTime.now());
+                    ventasHoy.toString();
+                    
                 }
                 case "Salir" -> {
                     System.out.println("volver a inicio");
@@ -620,4 +624,3 @@ public class MetodosAdmin2 {
         return postreAux;
     }
 }
-
