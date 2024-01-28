@@ -22,6 +22,9 @@ public class Postre extends Producto {
         this.tipoPostre = tipoPostre;
     }
 
+    public Postre() {
+    }
+
     //getter
     public int getKcal() {
         return kcal;

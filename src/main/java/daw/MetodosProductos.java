@@ -184,7 +184,7 @@ public class MetodosProductos {
             Producto tmp = aux.get(i);
             if (tmp instanceof Comida comidaAux) {
                 opciones[i] = comidaAux.getNombre() + " - Precio: "
-                        + comidaAux.getPrecioConIVA() + "€" + " - Stock: "
+                        + comidaAux.getPrecio() + "€" + " - Stock: "
                         + comidaAux.getStock();
 
             }
@@ -196,7 +196,7 @@ public class MetodosProductos {
             Producto tmp = aux.get(i);
             if (tmp instanceof Bebida bebidaAux) {
                 opciones[i] = bebidaAux.getNombre() + " - Precio: "
-                        + bebidaAux.getPrecioConIVA() + "€" + " - Stock: "
+                        + bebidaAux.getPrecio() + "€" + " - Stock: "
                         + bebidaAux.getStock();
 
             }
@@ -208,7 +208,7 @@ public class MetodosProductos {
             Producto tmp = aux.get(i);
             if (tmp instanceof Postre postreAux) {
                 opciones[i] = postreAux.getNombre() + " - Precio: "
-                        + postreAux.getPrecioConIVA() + "€" + " - Stock: "
+                        + postreAux.getPrecio() + "€" + " - Stock: "
                         + postreAux.getStock();
             }
 
@@ -219,7 +219,7 @@ public class MetodosProductos {
         for (int i = 0; i < aux.size(); i++) {
             Comida comida = aux.get(i);
             opciones[i] = comida.getNombre() + " - Precio: "
-                    + comida.getPrecioConIVA() + "€" + " - Stock: " + comida.getStock();
+                    + comida.getPrecio() + "€" + " - Stock: " + comida.getStock();
         }
     }
 
@@ -227,7 +227,7 @@ public class MetodosProductos {
         for (int i = 0; i < aux.size(); i++) {
             Bebida bebida = aux.get(i);
             opciones[i] = bebida.getNombre() + " - Precio: "
-                    + bebida.getPrecioConIVA() + "€";
+                    + bebida.getPrecio() + "€";
         }
     }
 
@@ -235,7 +235,7 @@ public class MetodosProductos {
         for (int i = 0; i < aux.size(); i++) {
             Postre postre = aux.get(i);
             opciones[i] = postre.getNombre() + " - Precio: "
-                    + postre.getPrecioConIVA() + "€";
+                    + postre.getPrecio() + "€";
         }
     }
 

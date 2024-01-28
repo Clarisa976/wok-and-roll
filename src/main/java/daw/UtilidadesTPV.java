@@ -67,7 +67,7 @@ public class UtilidadesTPV {
 
         for (Producto producto : carritoTmp) {
 
-            importeTotal += producto.getPrecioConIVA();
+            importeTotal += producto.getPrecio();
         }
 
         Map<Producto, Integer> mapCantidadProductos = new HashMap<>();
@@ -142,7 +142,7 @@ public class UtilidadesTPV {
                 case "Administrador":
                     String pedirPass = MetodosAdmin.pedirContrasenia();
                     if(tpv.getPassAdministrador().equals(pedirPass)){
-                        MetodosAdmin.modoMantenimiento(tpv);
+                        MetodosAdmin2.modoMantenimiento(tpv);
                         
                     System.out.println("Modo admin");
                     }else{
@@ -222,8 +222,8 @@ public class UtilidadesTPV {
             for (int i = 0; i < listaCarrito.size(); i++) {
                 Producto producto = listaCarrito.get(i);
                 opcionesProductos[i] = producto.getNombre() + " - Precio: "
-                        + producto.getPrecioConIVA() + "€";
-                totalPagar += producto.getPrecioConIVA();
+                        + producto.getPrecio() + "€";
+                totalPagar += producto.getPrecio();
             }
 
             //mensajes para elegir

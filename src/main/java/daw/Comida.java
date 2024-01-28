@@ -22,6 +22,10 @@ public class Comida extends Producto {
         this.tipoComida = tipoComida;
     }
 
+    public Comida() {
+        super();
+    }
+
     //getter y setter
     public String getDescripcionComida() {
         return descripcionComida;

@@ -21,6 +21,9 @@ public class Bebida extends Producto {
         this.tamanioBebida = tamanioBebida;
         this.tipoBebida = tipoBebida;
     }
+
+    public Bebida() {
+    }
     
 
     public int getTamanioBebida() {

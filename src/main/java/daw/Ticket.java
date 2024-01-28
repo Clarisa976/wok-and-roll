@@ -89,7 +89,7 @@ public class Ticket {
     private double calcularImporteTotal() {
         double total = 0;
         for (int i = 0; i < productos.size(); i++) {
-            total += productos.get(i).getPrecioConIVA() * cantidad.get(i);
+            total += productos.get(i).getPrecio() * cantidad.get(i);
         }
         return total;
     }
