@@ -27,12 +27,15 @@ public class UtilidadesTarjetaPrueba {
         for (int i = 0; i < tarjetasBD.size(); i++) {
             if (numeroCliente.equals(tarjetasBD.get(i).getNumeroTarjeta()
                     .substring(tarjetasBD.get(i).getNumeroTarjeta().length() - 4,
-                            tarjetasBD.get(i).getNumeroTarjeta().length())));
-            estaRegistrada = true;
-            return estaRegistrada;
+                            tarjetasBD.get(i).getNumeroTarjeta().length()))) {
+                estaRegistrada = true;
+                return estaRegistrada;
+            }
+            
         }
         return estaRegistrada;
     }
+
 //
 //    //método para pedir la tarjeta
 //    public static String pedirTarjeta() {
