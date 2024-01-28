@@ -31,8 +31,6 @@ public class MetodosAdmin {
         return contrasenia;
     }
 
-    
-
     //método para dar de alta un nuevo producto
     public static void altaProducto(CatalogoCarta catalogoCarta, Producto productoNuevo) {
 
@@ -219,7 +217,7 @@ public class MetodosAdmin {
                                         opcionesElegidas[0]);
 
                                 if (opcionElegida != 1) {
-                                   //creamos un producto auxiliar para modificarlo
+                                    //creamos un producto auxiliar para modificarlo
                                     Producto productoSeleccionado = tpv.getProductos()
                                             .get(Arrays.asList(opcionesProductosPostre)
                                                     .indexOf(opcionesProductosPostre));
@@ -243,15 +241,18 @@ public class MetodosAdmin {
                 case "Dar de alta un producto" -> {
                     System.out.println("Dar de alta un producto");
                     String elegirCategoria = MetodosProductos.elegirCategoria();
-                    switch(elegirCategoria){
+                    switch (elegirCategoria) {
                         case "Comidas" -> {
-                    }
+                            Comida nueva = crearComida();
+                            tpv.getProductos().add(nueva);
+                            
+                        }
                         case "Bebidas" -> {
-                    }
+                        }
                         case "Postres" -> {
-                    }
+                        }
                         case "Salir" -> {
-                    }
+                        }
                     }
 //                    MetodosAdmin.altaProducto(tpv.getProductos(), productoNuevo);
                 }
@@ -299,8 +300,7 @@ public class MetodosAdmin {
             switch (tmp) {
                 case "Nombre" -> {
                     String nuevoNombre = JOptionPane.showInputDialog(
-                            "Introduce el nuevo nombre para "
-                            + comidaAux.getNombre());
+                            "Introduce el nuevo nombre");
                     comidaAux.setNombre(nuevoNombre);
                 }
                 //atributo propio de la comida
@@ -466,4 +466,57 @@ public class MetodosAdmin {
             }
         }
     }
+
+    //método para crear un nuevo Producto de tipo Comida introduciendo los datos
+    public static Comida crearComida() {
+        Comida comidaNueva = null;
+        //si deja algo en null no se cambiará
+        try {
+            String nuevoNombre = JOptionPane.showInputDialog(
+                    "Introduce el nuevo nombre");
+            comidaNueva.setNombre(nuevoNombre);
+            
+        } catch (NullPointerException npe) {
+            System.out.println("No dejes nada en blanco");
+            try {
+
+            //atributo propio de la comida
+            String nuevaDescripcion = JOptionPane.showInputDialog(
+                    "Introduce la nueva descripción del producto");
+            comidaNueva.setDescripcionComida(nuevaDescripcion);
+        } catch (NullPointerException np) {
+            System.out.println("No dejes nada en blanco");
+
+            int nuevoStock = 0;
+            try {
+                nuevoStock = Integer.parseInt(
+                        JOptionPane.showInputDialog(
+                                "Introduce el nuevo stock del producto"));
+            } catch (NumberFormatException nfe) {
+                System.out.println("Introduce un número entero");
+            }
+            comidaNueva.setStock(nuevoStock);
+
+            double nuevoPrecioSinIVA;
+            try {
+                String nuevoPrecio = JOptionPane.showInputDialog(
+                        "Introduce el nuevo precio sin IVA");
+                if (nuevoPrecio != null) {
+                    //parseamos el string introducido para comprobar que es un double
+                    nuevoPrecioSinIVA = Double.parseDouble(nuevoPrecio);
+                    comidaNueva.setPrecioSinIVA(nuevoPrecioSinIVA);
+                } else {
+                    System.out.println("No has introducido número decimal");
+                }
+            } catch (NumberFormatException nfe) {
+                System.out.println("No has introducido número decimal");
+            }
+            comidaNueva.setTipoIVA(MetodosProductos.elegirTipoIVA());
+            comidaNueva.setTipoComida(MetodosProductos.elegirTipoComida());
+        }
+       
+    } 
+        return comidaNueva;
 }
+}
+
