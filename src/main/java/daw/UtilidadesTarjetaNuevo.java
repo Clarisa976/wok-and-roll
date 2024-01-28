@@ -81,19 +81,36 @@ public class UtilidadesTarjetaNuevo {
     public static LocalDate pedirFechaTarjeta() {
 
         int diaTarjeta = LocalDate.MIN.getDayOfMonth();
+        int mesTarjeta = 0;
+        int anioTarjeta = 0;
 
-        String mesNumero = JOptionPane.showInputDialog("Introduce el mes en el que caduca tu tarjeta.");
-        int mesTarjeta = pedirNumeroEntero(mesNumero);
-        if (mesTarjeta < 1 || mesTarjeta > 12) {
-            throw new IllegalArgumentException("Has introducido un mes no válido");
+        try {
+            String mesNumero = JOptionPane.showInputDialog(
+                    "Introduce el mes en el que caduca tu tarjeta");
+            mesTarjeta = pedirNumeroEntero(mesNumero);
+            if (mesTarjeta < 1 || mesTarjeta > 12) {
+                throw new IllegalArgumentException("Has introducido un mes no válido");
+            }
+        } catch (IllegalArgumentException iae) {
+            JOptionPane.showMessageDialog(null, 
+                    "Has introducido un mes no válido. "
+                            + "Por favor, introduce un número entre 1 y 12");
         }
-        String anioNumero = JOptionPane.showInputDialog("Introduce el año en el que caduca tu tarjeta.");
-        int anioTarjeta = pedirNumeroEntero(anioNumero);
-        LocalDate fechaActual = LocalDate.now();
-        int anioActual = fechaActual.getYear();
-        if (anioTarjeta <= anioActual) {
-            throw new IllegalArgumentException("El año debe ser posterior al año actual.");
+
+        try {
+            String anioNumero = JOptionPane.showInputDialog(
+                    "Introduce el año en el que caduca tu tarjeta");
+            anioTarjeta = pedirNumeroEntero(anioNumero);
+            LocalDate fechaActual = LocalDate.now();
+            int anioActual = fechaActual.getYear();
+            if (anioTarjeta <= anioActual) {
+                throw new IllegalArgumentException("El año debe ser posterior al año actual");
+            }
+        } catch (IllegalArgumentException iae) {
+            JOptionPane.showMessageDialog(null, 
+                    "El año debe ser posterior al año actual");
         }
+
         LocalDate fechaTarjeta = LocalDate.of(anioTarjeta, mesTarjeta, diaTarjeta);
 
         return fechaTarjeta;
@@ -143,9 +160,8 @@ public class UtilidadesTarjetaNuevo {
         }
         return esValida;
     }
-//
-//    //método para pedir un entero y controlar excepciones
 
+    //método para pedir un entero y controlar excepciones
     public static int pedirNumeroEntero(String mensaje) {
         while (true) {
             try {
@@ -157,14 +173,11 @@ public class UtilidadesTarjetaNuevo {
         }
     }
 
-//    // método para verificar si una tarjeta es válida y tiene saldo suficiente
+    // método para verificar si una tarjeta es válida y tiene saldo suficiente
     public static boolean verificarTarjetaCompleto(double importeTotal) {
 
-//
-//        Tarjeta tarjetaAux = new Tarjeta(numeroTarjeta, fecha, numeroCVV);
-//
-        boolean estaBien = true;
-//
+        boolean estaBien = false;
+
         do {
             String numeroTarjetaCliente = UtilidadesTarjetaNuevo.pedirTarjeta();
             boolean esValidoNumeroTarjeta = UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjetaCliente);
@@ -191,8 +204,6 @@ public class UtilidadesTarjetaNuevo {
 
         return estaBien;
     }
-//
-    //aaaaaaaaaaaaaa
 
     public static Tarjeta TarjetaDefinitiva(double importe) {
         List<Tarjeta> tarjetasBD = Tarjeta.tarjetasRegistradasBD();
@@ -201,7 +212,7 @@ public class UtilidadesTarjetaNuevo {
         String numeroTarjetaCliente = UtilidadesTarjetaNuevo.pedirTarjeta();
         boolean esValidoNumeroTarjeta = UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjetaCliente);
 
-        if (verificarTarjetaCompleto(importe)) {
+        if (esValidoNumeroTarjeta && verificarTarjetaCompleto(importe)) {
 
             for (int i = 0; i < tarjetasBD.size(); i++) {
                 if (numeroTarjetaCliente.equals(tarjetasBD.get(i).getNumeroTarjeta()
@@ -213,5 +224,23 @@ public class UtilidadesTarjetaNuevo {
             }
         }
         return tarjetaTmp;
+//        List<Tarjeta> tarjetasBD = Tarjeta.tarjetasRegistradasBD();
+//        Tarjeta tarjetaTmp = new Tarjeta();
+//
+//        String numeroTarjetaCliente = UtilidadesTarjetaNuevo.pedirTarjeta();
+//        boolean esValidoNumeroTarjeta = UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjetaCliente);
+//
+//        if (verificarTarjetaCompleto(importe)) {
+//
+//            for (int i = 0; i < tarjetasBD.size(); i++) {
+//                if (numeroTarjetaCliente.equals(tarjetasBD.get(i).getNumeroTarjeta()
+//                        .substring(tarjetasBD.get(i).getNumeroTarjeta().length() - 4,
+//                                tarjetasBD.get(i).getNumeroTarjeta().length()))) {
+//                    tarjetaTmp = tarjetasBD.get(i);
+//                }
+//
+//            }
+//        }
+//        return tarjetaTmp;
     }
 }
