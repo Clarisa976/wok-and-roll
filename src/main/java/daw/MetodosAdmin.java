@@ -31,35 +31,7 @@ public class MetodosAdmin {
         return contrasenia;
     }
 
-    //método para cambiar cualquier dato de los productos a excepción de su ID
-    public static void modificarProducto(Producto aux) {
-        try {
-            String nuevoNombre = null;// = JOptionPane.showInputDialog(null, "Ingrese el nuevo nombre del producto:", aux.getNombre());
-            //controlamos que no sea nulo
-            if (nuevoNombre != null) {
-                aux.setNombre(nuevoNombre);
-            }
-            String nuevoPrecioSinIVAStr = null;
-            if (nuevoPrecioSinIVAStr != null) {
-                double nuevoPrecioSinIVA = Double.parseDouble(nuevoPrecioSinIVAStr);
-                aux.setPrecioSinIVA(nuevoPrecioSinIVA);
-            }
-            String tipoIVAString = null;// = JOptionPane.showInputDialog(null, "Ingrese el tipo de IVA del producto (21% o 10%):");
-            if (tipoIVAString != null) {
-                TipoIVA nuevoTipoIVA = tipoIVAString.equals("21%") ? TipoIVA.IVA_VEINTIUNO : TipoIVA.IVA_DIEZ;
-                aux.setTipoIVA(nuevoTipoIVA);
-            }
-            String nuevoStockStr = null;
-            if (nuevoStockStr != null) {
-                int nuevoStock = Integer.parseInt(nuevoStockStr);
-                aux.setStock(nuevoStock);
-            }
-
-            //JOptionPane.showMessageDialog(null, "Producto modificado con éxito.");
-        } catch (NumberFormatException nfe) {
-            // JOptionPane.showMessageDialog(null, "Valores no válidos.");
-        }
-    }
+    
 
     //método para dar de alta un nuevo producto
     public static void altaProducto(CatalogoCarta catalogoCarta, Producto productoNuevo) {
@@ -136,7 +108,7 @@ public class MetodosAdmin {
                 case "Modificar producto" -> {
                     String opciones = MetodosProductos.elegirCategoria();
                     switch (opciones) {
-                        case "Ver comidas":
+                        case "Comidas":
                             List<Producto> lista = tpv.getProductos();
                             String[] opcionesProductos = new String[lista.size()];
                             MetodosProductos.mostrarProductosComida(lista, opcionesProductos);
@@ -176,7 +148,7 @@ public class MetodosAdmin {
                                 }
                             }
                             break;
-                        case "Ver bebidas":
+                        case "Bebidas":
                             List<Producto> listaBebidas = tpv.getProductos();
                             String[] opcionesProductosBebidas = new String[listaBebidas.size()];
                             MetodosProductos.mostrarProductosBebida(listaBebidas, opcionesProductosBebidas);
@@ -219,7 +191,7 @@ public class MetodosAdmin {
                             }
                             break;
 
-                        case "Ver postres":
+                        case "Postres":
 
                             List<Producto> listaPostre = tpv.getProductos();
                             String[] opcionesProductosPostre = new String[listaPostre.size()];
@@ -260,10 +232,9 @@ public class MetodosAdmin {
                                     return;
                                 }
                             }
-                            break;
 
                         //si elige salir vuelve al menú de anterior
-                        case "Volver":
+                        case "Salir":
                             System.out.println("volver a categorías");
                             return;
                     }
@@ -271,6 +242,17 @@ public class MetodosAdmin {
 
                 case "Dar de alta un producto" -> {
                     System.out.println("Dar de alta un producto");
+                    String elegirCategoria = MetodosProductos.elegirCategoria();
+                    switch(elegirCategoria){
+                        case "Comidas" -> {
+                    }
+                        case "Bebidas" -> {
+                    }
+                        case "Postres" -> {
+                    }
+                        case "Salir" -> {
+                    }
+                    }
 //                    MetodosAdmin.altaProducto(tpv.getProductos(), productoNuevo);
                 }
                 case "Borrar producto" -> {

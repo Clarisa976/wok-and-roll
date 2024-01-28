@@ -164,8 +164,8 @@ public class MetodosProductos {
     }
 
     public static String elegirCategoria() {
-        String[] opcionesCategoria = {"Ver comidas", "Ver bebidas",
-            "Ver postres", "Salir"};
+        String[] opcionesCategoria = {"Comidas", "Bebidas",
+            "Postres", "Salir"};
         //mensaje de JOptionPane par mostrar dichas opciones
         String opcionCategoria = (String) JOptionPane.showInputDialog(null,
                 "Seleccione una opción",
