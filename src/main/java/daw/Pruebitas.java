@@ -17,6 +17,7 @@ public class Pruebitas {
      */
     public static void main(String[] args) {
         String numeroPrueba = "5678";
+        numeroPrueba = UtilidadesTarjetaPrueba.pedirTarjeta();
         
         boolean esValido = UtilidadesTarjetaPrueba.numeroTarjetaValido(numeroPrueba);
         System.out.println("Es válido el número?" + esValido);

@@ -31,18 +31,37 @@ public class UtilidadesTarjetaPrueba {
                 estaRegistrada = true;
                 return estaRegistrada;
             }
-            
+
         }
         return estaRegistrada;
     }
+//método para pedir la tarjeta al usuario usando JOptionPane
 
-//
-//    //método para pedir la tarjeta
-//    public static String pedirTarjeta() {
-//        String mensajeNumero = JOptionPane.showInputDialog("Introduce los cuatro últimos dígitos de tu tarjeta.");
-//        String numeroTarjeta = pedirEnteroString(mensajeNumero);
-//        return numeroTarjeta;
-//    }
+    public static String pedirTarjeta() {
+        String mensajeNumero = JOptionPane.showInputDialog("Introduce los cuatro últimos dígitos de tu tarjeta.");
+        String numeroTarjeta = pedirNumeroString(mensajeNumero);
+        return numeroTarjeta;
+    }
+
+    private static String pedirNumeroString(String mensaje) {
+        String numero = null;
+        boolean esValido = false;
+        while (!esValido) {
+            try {
+                numero = mensaje;
+                if (numero.length() < 5) {
+                    esValido = true;
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Por favor, intoduzca solo cuatro dígitos");
+                }
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(null,
+                        "Introduce un número entero válido.");
+            }
+        }
+        return numero;
+    }
 //
 //    //método para verificar si la tarjeta está registrada en la base de datos por los últimos 4 dígitos
 //    public static boolean verificarTarjeta(String numeroTarjeta) {
@@ -129,29 +148,30 @@ public class UtilidadesTarjetaPrueba {
 //    }
 //
 //    //método para pedir un entero y controlar excepciones
-//    public static int pedirEntero(String mensaje) {
-//        while (true) {
-//            try {
-//                int numero = Integer.parseInt(mensaje);
-//                return numero;
-//            } catch (NumberFormatException e) {
-//                JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
-//            }
-//        }
-//    }
-//
+
+    public static int pedirNumeroEntero(String mensaje) {
+        while (true) {
+            try {
+                int numero = Math.abs(Integer.parseInt(mensaje));
+                return numero;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
+            }
+        }
+    }
+
 //    private static String pedirEnteroString(String mensaje) {
 //
-//        boolean esVerda = false;
+//        boolean  = false;
 //
 //        do {
 //            if (esEntero(mensaje)) {
-//                esVerda = true;
+//                esEntero = true;
 //                return mensaje;
 //            } else {
 //                JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
 //            }
-//        } while (!esVerda);
+//        } while (!esEntero);
 //        return null;
 //    }
 //
@@ -159,7 +179,7 @@ public class UtilidadesTarjetaPrueba {
 //        try {
 //            Integer.parseInt(mensaje);
 //            return true;
-//        } catch (NumberFormatException e) {
+//        } catch (NumberFormatException nfe) {
 //            return false;
 //        }
 //    }
