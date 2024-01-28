@@ -76,6 +76,43 @@ public class UtilidadesTarjetaPrueba {
         }
         return tarjetaTmp;
     }
+
+
+    //método para pedir la fecha de caducidad al cliente
+    public static LocalDate pedirFechaTarjeta() {
+        
+        int diaTarjeta = LocalDate.MIN.getDayOfMonth();
+
+        String mesNumero = JOptionPane.showInputDialog("Introduce el mes en el que caduca tu tarjeta.");
+        int mesTarjeta = pedirNumeroEntero(mesNumero);
+        if (mesTarjeta < 1 || mesTarjeta > 12) {
+            throw new IllegalArgumentException("Has introducido un mes no válido");
+        }
+        String anioNumero = JOptionPane.showInputDialog("Introduce el año en el que caduca tu tarjeta.");
+        int anioTarjeta = pedirNumeroEntero(anioNumero);
+        LocalDate fechaActual = LocalDate.now();
+        int anioActual = fechaActual.getYear();
+        if (anioTarjeta <= anioActual) {
+            throw new IllegalArgumentException("El año debe ser posterior al año actual.");
+        }
+        LocalDate fechaTarjeta = LocalDate.of(anioTarjeta, mesTarjeta, diaTarjeta);
+
+        return fechaTarjeta;
+    }
+
+    //método para verificar la fecha de la tarjeta
+    public static boolean verificarFecha(LocalDate fecha, String numeroCliente) {
+        boolean esValida = false;
+        Tarjeta tarjetaCliente = obtenerTarjeta(numeroCliente);
+
+        //comprobamos que la fecha introducida es la misma que está guardada
+        //en los datos de la tarjeta de nuestra base de datos
+        if (fecha.equals(tarjetaCliente.getFechaCaducidadTarjeta())) {
+            esValida = true;
+        }
+
+        return esValida;
+    }
 //
 //    //método para verificar si la tarjeta está registrada en la base de datos por los últimos 4 dígitos
 //    public static boolean verificarTarjeta(String numeroTarjeta) {
@@ -94,52 +131,9 @@ public class UtilidadesTarjetaPrueba {
 //        }
 //        return esValida;
 //    }
-//
-//    //método para pedirle la tarjeta al cliente
-//    public static Tarjeta obtenerTarjetaCliente(String digitosCliente) {
-//        List<Tarjeta> tarjetaBD = tarjetasRegistradasBD();
-//        Tarjeta tarjetaCliente = new Tarjeta();
-//
-//        for (int i = 0; i < tarjetaBD.size(); i++) {
-//            if (digitosCliente.equals(tarjetaBD.get(i)
-//                    .getNumeroTarjeta()
-//                    .substring(tarjetaBD.get(i).getNumeroTarjeta().length() - 4,
-//                            tarjetaBD.get(i).getNumeroTarjeta().length()))) {
-//                tarjetaCliente = tarjetaBD.get(i);
-//            }
-//        }
-//        return tarjetaCliente;
-//    }
+
 //
 //    //método para pedir la fecha al cliente
-//    public static LocalDate pedirFechaTarjeta() {
-//        String diaNumero = JOptionPane.showInputDialog("Introduce el día en el que caduca tu tarjeta.");
-//        int diaTarjeta = pedirEntero(diaNumero);
-//        String mesNumero = JOptionPane.showInputDialog("Introduce el mes en el que caduca tu tarjeta.");
-//        int mesTarjeta = pedirEntero(mesNumero);
-//        String anioNumero = JOptionPane.showInputDialog("Introduce el año en el que caduca tu tarjeta.");
-//        int anioTarjeta = pedirEntero(anioNumero);
-//
-//        LocalDate fechaTarjeta = LocalDate.of(anioTarjeta, mesTarjeta, diaTarjeta);
-//
-//        return fechaTarjeta;
-//    }
-//
-//    //método para verificar la fecha de la tarjeta
-//    public static boolean verificarFecha(LocalDate fecha, String numeroCliente) {
-//        boolean esValida = false;
-//        Tarjeta tarjetaCliente = obtenerTarjetaCliente(numeroCliente);
-//
-//        //comprobamos que la fecha introducida no esté pasada (caducada)
-//        //y que la fecha introducida es la misma que está guardada
-//        //en los datos de la tarjeta de nuestra base de datos
-//        if (fecha.isAfter(LocalDate.now())
-//                && fecha.equals(tarjetaCliente.getFechaCaducidadTarjeta())) {
-//
-//        }
-//
-//        return esValida;
-//    }
 //
 //    //método para pedir el CVV
 //    public static String pedirCVV() {
@@ -162,7 +156,6 @@ public class UtilidadesTarjetaPrueba {
 //    }
 //
 //    //método para pedir un entero y controlar excepciones
-
     public static int pedirNumeroEntero(String mensaje) {
         while (true) {
             try {
