@@ -140,7 +140,7 @@ public class UtilidadesTPV {
                     break;
                 //si elige la opción administrador se mostrará el método que contiene las opciones de administrador    
                 case "Administrador":
-                    MetodosAdmin.modoAdministrador(tpv);
+                    MetodosAdmin.modoMantenimiento(tpv);
                     System.out.println("Modo admin");
                     break;
                 //si elige salir se apagará el programa

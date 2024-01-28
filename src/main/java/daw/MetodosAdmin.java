@@ -116,7 +116,7 @@ public class MetodosAdmin {
         return listaTicketsFecha;
     }
 
-    public static void modoAdministrador(TPV tpv) {
+    public static void modoMantenimiento(TPV tpv) {
         boolean salirAdmin = false;
 
         //iniciamos el bucle
@@ -127,7 +127,7 @@ public class MetodosAdmin {
             //mensaje de JOptionPane par mostrar dichas opciones
             int opcionUsuarioAdmin = JOptionPane.showOptionDialog(null,
                     "Seleccione una opción",
-                    "Wok and Roll -- DAWFOOD -- Modo Administrador",
+                    "Wok and Roll -- DAWFOOD -- Modo Mantenimiento",
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.PLAIN_MESSAGE, null,
                     opcionesUsuarioAdmin, opcionesUsuarioAdmin[0]);
@@ -235,7 +235,7 @@ public class MetodosAdmin {
                                     if (seleccionProductoSushi != null) {
                                         // El usuario seleccionó un producto
                                         //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                        String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
+                                        String[] opcionesElegidas = {"Modificar", "Volver"};
                                         int opcionElegida = JOptionPane.showOptionDialog(null,
                                                 "¿Qué deseas hacer con este producto?",
                                                 "Wok and Roll -- DAWFOOD -- Modo Administrador",
@@ -631,7 +631,7 @@ public class MetodosAdmin {
 //                    MetodosAdmin.altaProducto(tpv.getProductos(), productoNuevo);
                 }
                 case "Borrar producto" -> {
-                    
+
 //                    CatalogoCarta catalogo = CatalogoCarta getCarta();
 //                    
 //                    MetodosAdmin.bajaProducto(tpv.getProductos(), productoABorrar);
@@ -649,7 +649,6 @@ public class MetodosAdmin {
         } while (!salirAdmin);
     }
 
-   
     private static void mostrarProd(List<Producto> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
             Producto producto = aux.get(i);
@@ -673,7 +672,7 @@ public class MetodosAdmin {
                     + bebida.getPrecioConIVA() + "€";
         }
     }
-     
+
     private static void mostrarProdPostre(List<Postre> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
             Postre postre = aux.get(i);
@@ -681,4 +680,20 @@ public class MetodosAdmin {
                     + postre.getPrecioConIVA() + "€";
         }
     }
-}
+
+    //métodos
+    public static String elegirCategoria() {
+        String[] opcionesCategoria = {"Ver comidas", "Ver bebidas",
+            "Ver postres", "Ver carrito", "Salir"};
+        //mensaje de JOptionPane par mostrar dichas opciones
+        String opcionCategoria = (String) JOptionPane.showInputDialog(null,
+                "Seleccione una opción",
+                "Wok and Roll -- DAWFOOD",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opcionesCategoria, opcionesCategoria[0]);
+        if (!opcionCategoria.equals(null)) {
+            return opcionCategoria;
+        } else {
+            return opcionCategoria = "Salir";
+        }
+    }
