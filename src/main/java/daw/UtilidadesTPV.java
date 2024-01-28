@@ -143,6 +143,7 @@ public class UtilidadesTPV {
                     String pedirPass = MetodosAdmin.pedirContrasenia();
                     if(tpv.getPassAdministrador().equals(pedirPass)){
                         MetodosAdmin.modoMantenimiento(tpv);
+                        
                     System.out.println("Modo admin");
                     }else{
                         JOptionPane.showMessageDialog(null,"No deberías de estar por aquí.");
@@ -332,7 +333,7 @@ public class UtilidadesTPV {
                             }
                         }
 
-                        System.out.println("toda la lista");
+
                         break;
                     } else if (nombreCategoria.equalsIgnoreCase("bebidas")) {
 
@@ -896,7 +897,7 @@ public class UtilidadesTPV {
         } while (!salirCategorias);
     }
 
-    private static void mostrarProdComida(List<Comida> aux, String[] opciones) {
+    public static void mostrarProdComida(List<Comida> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
             Comida comida = aux.get(i);
             opciones[i] = comida.getNombre() + " - Precio: "
