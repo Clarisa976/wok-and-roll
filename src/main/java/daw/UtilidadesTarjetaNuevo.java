@@ -201,20 +201,6 @@ public class UtilidadesTarjetaNuevo {
         String numeroTarjetaCliente = UtilidadesTarjetaNuevo.pedirTarjeta();
         boolean esValidoNumeroTarjeta = UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjetaCliente);
 
-//        LocalDate fecha = null;
-//        try {
-//            fecha = UtilidadesTarjetaNuevo.pedirFechaTarjeta();
-//
-//        } catch (IllegalArgumentException iae) {
-//            System.out.println("Te has colado con la fecha");
-//        }
-//        boolean esFechaValida = UtilidadesTarjetaNuevo.verificarFecha(fecha, numeroTarjetaCliente);
-//
-//        String numeroCVV = UtilidadesTarjetaNuevo.pedirCVV();
-//        boolean esValidoCVV = UtilidadesTarjetaNuevo.verificarCVV(numeroCVV, numeroTarjetaCliente);
-//
-//        boolean sePuedePagar = UtilidadesTarjetaNuevo.saldoSuficiente(numeroTarjetaCliente, importe);
-
         if (verificarTarjetaCompleto(importe)) {
 
             for (int i = 0; i < tarjetasBD.size(); i++) {

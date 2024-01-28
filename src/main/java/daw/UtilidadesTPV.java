@@ -298,7 +298,7 @@ public class UtilidadesTPV {
                     if (nombreCategoria.equalsIgnoreCase("comidas")) {
                         List<Comida> listaComida = CatalogoCarta.comidasBD();
                         String[] opcionesProductos = new String[listaComida.size()];
-                        mostrarProdComida(listaComida, opcionesProductos);
+                        MetodosProductos.mostrarProdComida(listaComida, opcionesProductos);
 
                         String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                 "Selecciona un producto",
@@ -340,7 +340,7 @@ public class UtilidadesTPV {
                         List<Bebida> listaBebida = CatalogoCarta.bebidasBD();
                         String[] opcionesProductos = new String[listaBebida.size()];
 
-                        mostrarProdBebida(listaBebida, opcionesProductos);
+                        MetodosProductos.mostrarProdBebida(listaBebida, opcionesProductos);
 
                         String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                 "Selecciona un producto",
@@ -378,7 +378,7 @@ public class UtilidadesTPV {
 
                         List<Postre> listaPostre = CatalogoCarta.postresBD();
                         String[] opcionesProductos = new String[listaPostre.size()];
-                        mostrarProdPostre(listaPostre, opcionesProductos);
+                        MetodosProductos.mostrarProdPostre(listaPostre, opcionesProductos);
 
                         String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                 "Selecciona un producto",
@@ -445,7 +445,7 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosRamen = new String[listaRamen.size()];
-                                mostrarProdComida(listaRamen, opcionesProductosRamen);
+                                MetodosProductos.mostrarProdComida(listaRamen, opcionesProductosRamen);
 
                                 String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Ramen",
@@ -491,7 +491,7 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosSushi = new String[listaSushi.size()];
-                                mostrarProdComida(listaSushi, opcionesProductosSushi);
+                                MetodosProductos.mostrarProdComida(listaSushi, opcionesProductosSushi);
 
                                 String seleccionProductoSushi = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Sushi",
@@ -536,7 +536,7 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosWok = new String[listaWok.size()];
-                                mostrarProdComida(listaWok, opcionesProductosWok);
+                                MetodosProductos.mostrarProdComida(listaWok, opcionesProductosWok);
 
                                 String seleccionProductoWok = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Wok",
@@ -600,7 +600,7 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosRefresco = new String[listaRefrescos.size()];
-                                mostrarProdBebida(listaRefrescos, opcionesProductosRefresco);
+                                MetodosProductos.mostrarProdBebida(listaRefrescos, opcionesProductosRefresco);
 
                                 String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Refrescos",
@@ -645,7 +645,7 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosAlcoholicas = new String[listaAlcoholicas.size()];
-                                mostrarProdBebida(listaAlcoholicas, opcionesProductosAlcoholicas);
+                                MetodosProductos.mostrarProdBebida(listaAlcoholicas, opcionesProductosAlcoholicas);
 
                                 String seleccionAlcoholicas = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Alcoholicas",
@@ -690,7 +690,7 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosOtras = new String[listaOtras.size()];
-                                mostrarProdBebida(listaOtras, opcionesProductosOtras);
+                                MetodosProductos.mostrarProdBebida(listaOtras, opcionesProductosOtras);
 
                                 String seleccionOtras = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Alcoholicas",
@@ -755,7 +755,7 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosMochi = new String[listaPostres.size()];
-                                mostrarProdPostre(listaPostres, opcionesProductosMochi);
+                                MetodosProductos.mostrarProdPostre(listaPostres, opcionesProductosMochi);
 
                                 String seleccionProductoPostre = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Mochis",
@@ -801,7 +801,7 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosFrutitas = new String[listaFrutitas.size()];
-                                mostrarProdPostre(listaFrutitas, opcionesProductosFrutitas);
+                                MetodosProductos.mostrarProdPostre(listaFrutitas, opcionesProductosFrutitas);
 
                                 String seleccionFrutitas = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Frutitas",
@@ -846,7 +846,7 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosOtros = new String[listaOtras.size()];
-                                mostrarProdPostre(listaOtras, opcionesProductosOtros);
+                                MetodosProductos.mostrarProdPostre(listaOtras, opcionesProductosOtros);
 
                                 String seleccionOtros = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Otros",
@@ -896,64 +896,40 @@ public class UtilidadesTPV {
 
         } while (!salirCategorias);
     }
-
-    public static void mostrarProdComida(List<Comida> aux, String[] opciones) {
-        for (int i = 0; i < aux.size(); i++) {
-            Comida comida = aux.get(i);
-            opciones[i] = comida.getNombre() + " - Precio: "
-                    + comida.getPrecioConIVA() + "€";
-        }
-    }
-
-    private static void mostrarProdBebida(List<Bebida> aux, String[] opciones) {
-        for (int i = 0; i < aux.size(); i++) {
-            Bebida bebida = aux.get(i);
-            opciones[i] = bebida.getNombre() + " - Precio: "
-                    + bebida.getPrecioConIVA() + "€";
-        }
-    }
-
-    private static void mostrarProdPostre(List<Postre> aux, String[] opciones) {
-        for (int i = 0; i < aux.size(); i++) {
-            Postre postre = aux.get(i);
-            opciones[i] = postre.getNombre() + " - Precio: "
-                    + postre.getPrecioConIVA() + "€";
-        }
-    }
-
-    public static int pedirEntero(String mensaje) {
-        while (true) {
-            try {
-//                String entrada = JOptionPane.showInputDialog(mensaje);
-                int numero = Integer.parseInt(mensaje);
-                return numero;
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
-            }
-        }
-    }
-
-    private static String pedirEnteroString(String mensaje) {
-        while (true) {
+//
+//    public static int pedirEntero(String mensaje) {
+//        while (true) {
 //            try {
-            if (esEntero(mensaje)) {
-                return mensaje;
-            } else {
-//                String aux = JOptionPane.showInputDialog(mensaje);
-//                Integer.parseInt(aux); // Intentamos convertir a entero para validar la entrada
-//                return aux; // Si no se lanza una excepción, la entrada es válida como cadena.
+////                String entrada = JOptionPane.showInputDialog(mensaje);
+//                int numero = Integer.parseInt(mensaje);
+//                return numero;
 //            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
-            }
-        }
-    }
-
-    private static boolean esEntero(String mensaje) {
-        try {
-            Integer.parseInt(mensaje);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
+//                JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
+//            }
+//        }
+//    }
+//
+//    private static String pedirEnteroString(String mensaje) {
+//        while (true) {
+////            try {
+//            if (esEntero(mensaje)) {
+//                return mensaje;
+//            } else {
+////                String aux = JOptionPane.showInputDialog(mensaje);
+////                Integer.parseInt(aux); // Intentamos convertir a entero para validar la entrada
+////                return aux; // Si no se lanza una excepción, la entrada es válida como cadena.
+////            } catch (NumberFormatException e) {
+//                JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
+//            }
+//        }
+//    }
+//
+//    private static boolean esEntero(String mensaje) {
+//        try {
+//            Integer.parseInt(mensaje);
+//            return true;
+//        } catch (NumberFormatException e) {
+//            return false;
+//        }
+//    }
 }

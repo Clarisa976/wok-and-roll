@@ -4,13 +4,11 @@
  */
 package daw;
 
-import static daw.UtilidadesTPV.pedirEntero;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author miguel
