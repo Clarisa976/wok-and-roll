@@ -57,8 +57,13 @@ public class MetodosProductos {
     public static void mostrarProductos(List<Producto> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
             Producto tmp = aux.get(i);
-            opciones[i] = tmp.getNombre() + " - Precio: "
-                    + tmp.getPrecioConIVA() + "€" + " - Stock: " + tmp.getStock();
+            if(tmp instanceof Comida comidaAux){
+                opciones[i] = comidaAux.getNombre() + " - Precio: "
+                    + comidaAux.getPrecioConIVA() + "€" + " - Stock: " 
+                        + comidaAux.getStock();
+            }
+//            opciones[i] = tmp.getNombre() + " - Precio: "
+//                    + tmp.getPrecioConIVA() + "€" + " - Stock: " + tmp.getStock();
         }
     }
 
