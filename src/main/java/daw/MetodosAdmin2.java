@@ -32,16 +32,6 @@ public class MetodosAdmin2 {
     }
 
     //método para dar de alta un nuevo producto
-    public static void altaProducto(CatalogoCarta catalogoCarta, Producto productoNuevo) {
-
-        List<Producto> catalogoCartaTmp = catalogoCarta.getCarta();
-
-        catalogoCartaTmp.add(productoNuevo);
-
-        catalogoCarta.setCarta(catalogoCartaTmp);
-    }
-
-    //método para dar de alta un nuevo producto
     public static void bajaProducto(CatalogoCarta catalogoCarta, Producto productoABorrar) {
 
         List<Producto> catalogoCartaTmp = catalogoCarta.getCarta();
@@ -56,9 +46,17 @@ public class MetodosAdmin2 {
     }
 
     //consultar todos los tickets del tpv
-    public static List<Ticket> consultarTickets(TPV tpv) {
+    public static void consultarTickets(TPV tpv) {
+        tpv.getListaTickets();
+        if (!(tpv.getListaTickets().isEmpty())) {
+            Ticket TodasLasVentas = (Ticket) JOptionPane.showInputDialog(null,
+                    "Consultar las ventas", "Wok and roll -- DAWFOOD", JOptionPane.QUESTION_MESSAGE,
+                    null, tpv.getListaTickets().toArray(),
+                    tpv.getListaTickets().get(0));
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha vendido nada");
+        }
 
-        return tpv.getListaTickets();
     }
 
     //consultar tickets del tpv segun un dia concreto
@@ -268,10 +266,8 @@ public class MetodosAdmin2 {
                 case "Ver ventas" -> {
                     System.out.println("Ver ventas de hoy");
 
-                    List<Ticket> ventasHoy = MetodosAdmin2
-                            .consultarTicketsFecha(tpv, LocalDateTime.now());
-                    ventasHoy.toString();
-                    
+                    MetodosAdmin2.consultarTickets(tpv);
+
                 }
                 case "Salir" -> {
                     System.out.println("volver a inicio");

@@ -96,7 +96,8 @@ public class UtilidadesTPV {
 
             Ticket ticketCompra = new Ticket(listaDeProductos,
                     listaDeCantidades);
-
+            //se añade el nuevo ticket a la lista de tickets
+            tpv.getListaTickets().add(ticketCompra);
             ticketCompra.imprimirTicket();
 
         } else {
