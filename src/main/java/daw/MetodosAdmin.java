@@ -169,7 +169,7 @@ public class MetodosAdmin {
                                     //metodos para pedir que modificar y tal
                                     
                                     MetodosAdmin.modificarComida((Comida)productoSeleccionado, 
-                                            MetodosProductos.elegirCategoriaACambiar());
+                                            MetodosProductos.elegirCategoriaACambiarComdia());
                                     System.out.println("producto añadido pa modificar");
                                 } else if (opcionElegida != 0) {
                                     System.out.println("volver");

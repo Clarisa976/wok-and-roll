@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class MetodosProductos {
 
-    //método para mostrar un desplegable de subcategoría comida
+    //método para mostrar un desplegable del enum de comida
     public static TipoComida elegirTipoComida() {
         Object[] opciones = TipoComida.values();
 
@@ -25,51 +25,7 @@ public class MetodosProductos {
         return eleccion;
     }
 
-    public static TipoIVA elegirTipoIVA() {
-        TipoIVA[] opciones = TipoIVA.values();
-
-        TipoIVA eleccion = (TipoIVA) JOptionPane.showInputDialog(null,
-                "Elige el IVA",
-                "Selección del IVA",
-                JOptionPane.QUESTION_MESSAGE, null,
-                opciones, opciones[0]);
-        return eleccion;
-    }
-
-    public static String elegirCategoriaACambiar() {
-
-        String[] opcionesElegidas = {"Nombre", "Descripcion", "Precio sin IVA", "IVA",
-            "Tipo de Comida", "Stock", "Volver"};
-
-        String opcionElegida = (String) JOptionPane.showInputDialog(null,
-                "Elige el campo que quiere modificar:",
-                "Seleccione para modificar",
-                JOptionPane.QUESTION_MESSAGE, null,
-                opcionesElegidas, opcionesElegidas[0]);
-
-        if (!opcionesElegidas.equals(null)) {
-            return opcionElegida;
-        } else {
-            return opcionElegida = "Volver";
-        }
-    }
-    
-        public static String elegirCategoria() {
-        String[] opcionesCategoria = {"Ver comidas", "Ver bebidas",
-            "Ver postres", "Salir"};
-        //mensaje de JOptionPane par mostrar dichas opciones
-        String opcionCategoria = (String) JOptionPane.showInputDialog(null,
-                "Seleccione una opción",
-                "Wok and Roll -- DAWFOOD",
-                JOptionPane.QUESTION_MESSAGE, null,
-                opcionesCategoria, opcionesCategoria[0]);
-        if (!opcionCategoria.equals(null)) {
-            return opcionCategoria;
-        } else {
-            return opcionCategoria = "Salir";
-        }
-    }
-
+    //mismo método pero en lugar de un enum sale un String
     public static String elegirSubcategoriaComida() {
         String[] opcionesSubcategoriaComdia = {"Ramen", "Sushi", "Wok"};
 
@@ -85,21 +41,19 @@ public class MetodosProductos {
         }
     }
 
-    public static String elegirSubcategoriaBebidas() {
-        String[] opcionesSubcategoriaBebidas = {"Refrescos", "Alcoholicas", "Otras"};
+    //método para mostrar un desplegable del enum de postre
+    public static TipoPostre elegirTipoPostre() {
+        Object[] opciones = TipoPostre.values();
 
-        String opcionSubcategoria = (String) JOptionPane.showInputDialog(null,
-                "Seleccione una opción",
-                "Wok and Roll -- DAWFOOD",
+        TipoPostre eleccion = (TipoPostre) JOptionPane.showInputDialog(null,
+                "Elige la subcategoría",
+                "Selección de subcategoría",
                 JOptionPane.QUESTION_MESSAGE, null,
-                opcionesSubcategoriaBebidas, opcionesSubcategoriaBebidas[0]);
-        if (!opcionSubcategoria.equals(null)) {
-            return opcionSubcategoria;
-        } else {
-            return opcionSubcategoria = "Salir";
-        }
+                opciones, opciones[0]);
+        return eleccion;
     }
 
+    //mismo método pero con un String en lugar del enum
     public static String elegirSubcategoriaPostres() {
         String[] opcionesSubcategoriaPostre = {"Mochis", "Frutitas", "Otros"};
 
@@ -115,12 +69,122 @@ public class MetodosProductos {
         }
     }
 
+    //método para mostrar un desplegable del enum de bebida
+    public static TipoBebida elegirTipoBebida() {
+        Object[] opciones = TipoBebida.values();
+
+        TipoBebida eleccion = (TipoBebida) JOptionPane.showInputDialog(null,
+                "Elige la subcategoría",
+                "Selección de subcategoría",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opciones, opciones[0]);
+        return eleccion;
+    }
+
+    //mismo método pero para que salga un string en lugar del enum
+    public static String elegirSubcategoriaBebidas() {
+        String[] opcionesSubcategoriaBebidas = {"Refrescos", "Alcoholicas", "Otras"};
+
+        String opcionSubcategoria = (String) JOptionPane.showInputDialog(null,
+                "Seleccione una opción",
+                "Wok and Roll -- DAWFOOD",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opcionesSubcategoriaBebidas, opcionesSubcategoriaBebidas[0]);
+        if (!opcionSubcategoria.equals(null)) {
+            return opcionSubcategoria;
+        } else {
+            return opcionSubcategoria = "Salir";
+        }
+    }
+
+    //método par amostrar un desplegable con el enum del IVA
+    public static TipoIVA elegirTipoIVA() {
+        TipoIVA[] opciones = TipoIVA.values();
+
+        TipoIVA eleccion = (TipoIVA) JOptionPane.showInputDialog(null,
+                "Elige el IVA",
+                "Selección del IVA",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opciones, opciones[0]);
+        return eleccion;
+    }
+
+    //método string para elegir las opciones de la Comida
+    public static String elegirCategoriaACambiarComdia() {
+        String[] opcionesElegidas = {"Nombre", "Descripcion", "Precio sin IVA", "IVA",
+            "Tipo de Comida", "Stock", "Volver"};
+
+        String opcionElegida = (String) JOptionPane.showInputDialog(null,
+                "Elige el campo que quiere modificar:",
+                "Seleccione para modificar",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opcionesElegidas, opcionesElegidas[0]);
+
+        if (!opcionesElegidas.equals(null)) {
+            return opcionElegida;
+        } else {
+            return opcionElegida = "Volver";
+        }
+    }
+
+    //método string para elegir las opciones del Postre
+    public static String elegirCategoriaACambiarPostre() {
+        String[] opcionesElegidas = {"Nombre", "Kcal", "Precio sin IVA", "IVA",
+            "Tipo de Postre", "Stock", "Volver"};
+
+        String opcionElegida = (String) JOptionPane.showInputDialog(null,
+                "Elige el campo que quiere modificar:",
+                "Seleccione para modificar",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opcionesElegidas, opcionesElegidas[0]);
+
+        if (!opcionesElegidas.equals(null)) {
+            return opcionElegida;
+        } else {
+            return opcionElegida = "Volver";
+        }
+    }
+
+    //método string para elegir las opciones de la Bebida
+    public static String elegirCategoriaACambiarBebida() {
+        String[] opcionesElegidas = {"Nombre", "Tamanio Bebida", "Precio sin IVA", "IVA",
+            "Tipo de Bebida", "Stock", "Volver"};
+
+        String opcionElegida = (String) JOptionPane.showInputDialog(null,
+                "Elige el campo que quiere modificar:",
+                "Seleccione para modificar",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opcionesElegidas, opcionesElegidas[0]);
+
+        if (!opcionesElegidas.equals(null)) {
+            return opcionElegida;
+        } else {
+            return opcionElegida = "Volver";
+        }
+    }
+
+    public static String elegirCategoria() {
+        String[] opcionesCategoria = {"Ver comidas", "Ver bebidas",
+            "Ver postres", "Salir"};
+        //mensaje de JOptionPane par mostrar dichas opciones
+        String opcionCategoria = (String) JOptionPane.showInputDialog(null,
+                "Seleccione una opción",
+                "Wok and Roll -- DAWFOOD",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opcionesCategoria, opcionesCategoria[0]);
+        if (!opcionCategoria.equals(null)) {
+            return opcionCategoria;
+        } else {
+            return opcionCategoria = "Salir";
+        }
+    }
+
     public static void mostrarProductos(List<Producto> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
             Producto tmp = aux.get(i);
-            if(tmp instanceof Comida comidaAux){
+            if (tmp instanceof Comida comidaAux) {
                 opciones[i] = comidaAux.getNombre() + " - Precio: "
-                    + comidaAux.getPrecioConIVA() + "€" + " - Stock: " 
+                        + comidaAux.getPrecioConIVA() + "€" + " - Stock: "
                         + comidaAux.getStock();
             }
         }
