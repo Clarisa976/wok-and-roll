@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  *
  * @author clara
  */
-public class UtilidadesTarjetaPrueba {
+public class UtilidadesTarjetaNuevo {
 
     /*buscamos que el número introducido por el cliente coincida con los ultimos
     cuatro dígitos de alguna de las tarjetas ya guardadas en nuestro sistema. 
@@ -166,22 +166,22 @@ public class UtilidadesTarjetaPrueba {
         boolean estaBien = true;
 //
         do {
-            String numeroTarjetaCliente = UtilidadesTarjetaPrueba.pedirTarjeta();
-            boolean esValidoNumeroTarjeta = UtilidadesTarjetaPrueba.numeroTarjetaValido(numeroTarjetaCliente);
+            String numeroTarjetaCliente = UtilidadesTarjetaNuevo.pedirTarjeta();
+            boolean esValidoNumeroTarjeta = UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjetaCliente);
 
             LocalDate fecha = null;
             try {
-                fecha = UtilidadesTarjetaPrueba.pedirFechaTarjeta();
+                fecha = UtilidadesTarjetaNuevo.pedirFechaTarjeta();
 
             } catch (IllegalArgumentException iae) {
                 System.out.println("Te has colado con la fecha");
             }
-            boolean esFechaValida = UtilidadesTarjetaPrueba.verificarFecha(fecha, numeroTarjetaCliente);
+            boolean esFechaValida = UtilidadesTarjetaNuevo.verificarFecha(fecha, numeroTarjetaCliente);
 
-            String numeroCVV = UtilidadesTarjetaPrueba.pedirCVV();
-            boolean esValidoCVV = UtilidadesTarjetaPrueba.verificarCVV(numeroCVV, numeroTarjetaCliente);
+            String numeroCVV = UtilidadesTarjetaNuevo.pedirCVV();
+            boolean esValidoCVV = UtilidadesTarjetaNuevo.verificarCVV(numeroCVV, numeroTarjetaCliente);
 
-            boolean sePuedePagar = UtilidadesTarjetaPrueba.saldoSuficiente(numeroTarjetaCliente, importeTotal);
+            boolean sePuedePagar = UtilidadesTarjetaNuevo.saldoSuficiente(numeroTarjetaCliente, importeTotal);
 
             if (esValidoNumeroTarjeta && esFechaValida && esValidoCVV & sePuedePagar) {
                 estaBien = true;
@@ -198,22 +198,22 @@ public class UtilidadesTarjetaPrueba {
         List<Tarjeta> tarjetasBD = Tarjeta.tarjetasRegistradasBD();
         Tarjeta tarjetaTmp = new Tarjeta();
 
-        String numeroTarjetaCliente = UtilidadesTarjetaPrueba.pedirTarjeta();
-        boolean esValidoNumeroTarjeta = UtilidadesTarjetaPrueba.numeroTarjetaValido(numeroTarjetaCliente);
+        String numeroTarjetaCliente = UtilidadesTarjetaNuevo.pedirTarjeta();
+        boolean esValidoNumeroTarjeta = UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjetaCliente);
 
 //        LocalDate fecha = null;
 //        try {
-//            fecha = UtilidadesTarjetaPrueba.pedirFechaTarjeta();
+//            fecha = UtilidadesTarjetaNuevo.pedirFechaTarjeta();
 //
 //        } catch (IllegalArgumentException iae) {
 //            System.out.println("Te has colado con la fecha");
 //        }
-//        boolean esFechaValida = UtilidadesTarjetaPrueba.verificarFecha(fecha, numeroTarjetaCliente);
+//        boolean esFechaValida = UtilidadesTarjetaNuevo.verificarFecha(fecha, numeroTarjetaCliente);
 //
-//        String numeroCVV = UtilidadesTarjetaPrueba.pedirCVV();
-//        boolean esValidoCVV = UtilidadesTarjetaPrueba.verificarCVV(numeroCVV, numeroTarjetaCliente);
+//        String numeroCVV = UtilidadesTarjetaNuevo.pedirCVV();
+//        boolean esValidoCVV = UtilidadesTarjetaNuevo.verificarCVV(numeroCVV, numeroTarjetaCliente);
 //
-//        boolean sePuedePagar = UtilidadesTarjetaPrueba.saldoSuficiente(numeroTarjetaCliente, importe);
+//        boolean sePuedePagar = UtilidadesTarjetaNuevo.saldoSuficiente(numeroTarjetaCliente, importe);
 
         if (verificarTarjetaCompleto(importe)) {
 

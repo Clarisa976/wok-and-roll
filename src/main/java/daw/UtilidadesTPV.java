@@ -91,7 +91,7 @@ public class UtilidadesTPV {
             Object val = entry.getValue();
 
         }
-        if (UtilidadesTarjetaPrueba.verificarTarjetaCompleto(importeTotal)) {
+        if (UtilidadesTarjetaNuevo.verificarTarjetaCompleto(importeTotal)) {
 //        if (UtilidadesTarjeta.verificarTarjetaCompleto(importeTotal)) {
 
             Ticket ticketCompra = new Ticket(listaDeProductos,
@@ -244,7 +244,7 @@ public class UtilidadesTPV {
                     case "Pagar":
                         /*hay que optener el importe del carrito*/
                         double importe = 25;
-                        Tarjeta tarjetaAux = UtilidadesTarjetaPrueba.TarjetaDefinitiva(importe);
+                        Tarjeta tarjetaAux = UtilidadesTarjetaNuevo.TarjetaDefinitiva(importe);
 
                         UtilidadesTPV.finalizarCompra(tpv, tarjetaAux);
                         System.out.println("Pagando");

@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  *
  * @author clara
  */
-public class UtilidadesTarjeta {
+public class UtilidadesTarjetaObsoleto {
 
     //método para pedir la tarjeta
     public static String pedirTarjeta() {
@@ -173,22 +173,22 @@ public class UtilidadesTarjeta {
 
         do {
             //comprobar si la tarjeta está registrada
-            if (UtilidadesTarjeta.verificarTarjeta(numeroTarjeta)) {
+            if (UtilidadesTarjetaObsoleto.verificarTarjeta(numeroTarjeta)) {
                 tarjetaAux.setNumeroTarjeta(numeroTarjeta);
             }
 
             //comprobar si la fecha de caducidad es válida (no posterior a la fecha actual)
-            if (UtilidadesTarjeta.verificarFecha(fecha, numeroTarjeta)) {
+            if (UtilidadesTarjetaObsoleto.verificarFecha(fecha, numeroTarjeta)) {
                 tarjetaAux.setFechaCaducidadTarjeta(fecha);
             }
 
             //comprobar si el CVV coincide
-            if (UtilidadesTarjeta.verificarCVV(numeroCVV, numeroCVV)) {
+            if (UtilidadesTarjetaObsoleto.verificarCVV(numeroCVV, numeroCVV)) {
                 tarjetaAux.setCvv(numeroCVV);
             }
 
             //comprobar si el saldo es suficiente para el importeTotal del ticket
-            if (!UtilidadesTarjeta.saldoSuficiente(numeroCVV, importeTotal)) {
+            if (!UtilidadesTarjetaObsoleto.saldoSuficiente(numeroCVV, importeTotal)) {
                 estaBien = false;
             }
 
