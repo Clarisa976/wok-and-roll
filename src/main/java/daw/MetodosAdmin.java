@@ -137,9 +137,9 @@ public class MetodosAdmin {
                     String opciones = MetodosAdmin.elegirCategoria();
                     switch (opciones) {
                         case "Ver comidas":
-                            List<Comida> listaComida = CatalogoCarta.comidasBD();
-                            String[] opcionesProductos = new String[listaComida.size()];
-                            mostrarProdComida(listaComida, opcionesProductos);
+                            List<Producto> lista = tpv.getProductos();
+                            String[] opcionesProductos = new String[lista.size()];
+                            MetodosProductos.mostrarProductos(lista, opcionesProductos);
 
                             String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                     "Selecciona un producto",
@@ -163,12 +163,12 @@ public class MetodosAdmin {
 
                                 if (opcionElegida == 0) {
                                     //creamos un producto auxiliar para modificarlo
-                                    Comida productoSeleccionado = CatalogoCarta.comidasBD()
+                                    Producto productoSeleccionado = tpv.getProductos()
                                             .get(Arrays.asList(opcionesProductos)
                                                     .indexOf(seleccionProducto));
                                     //metodos para pedir que modificar y tal
                                     
-                                    MetodosAdmin.modificarComida(productoSeleccionado, 
+                                    MetodosAdmin.modificarComida((Comida)productoSeleccionado, 
                                             MetodosProductos.elegirCategoriaACambiar());
                                     System.out.println("producto añadido pa modificar");
                                 } else if (opcionElegida != 0) {
@@ -181,7 +181,7 @@ public class MetodosAdmin {
                             List<Bebida> listaBebida = CatalogoCarta.bebidasBD();
                             String[] opcionesProductosBebidas = new String[listaBebida.size()];
 
-                            mostrarProdBebida(listaBebida, opcionesProductosBebidas);
+                            MetodosProductos.mostrarProdBebida(listaBebida, opcionesProductosBebidas);
 
                             String seleccionProductoBebidas = (String) JOptionPane.showInputDialog(null,
                                     "Selecciona un producto",
@@ -222,7 +222,7 @@ public class MetodosAdmin {
 
                             List<Postre> listaPostre = CatalogoCarta.postresBD();
                             String[] opcionesProductosPostres = new String[listaPostre.size()];
-                            mostrarProdPostre(listaPostre, opcionesProductosPostres);
+                            MetodosProductos.mostrarProdPostre(listaPostre, opcionesProductosPostres);
 
                             String seleccionProductoPostre = (String) JOptionPane.showInputDialog(null,
                                     "Selecciona un producto",
@@ -291,30 +291,6 @@ public class MetodosAdmin {
             }
 
         } while (!salirAdmin);
-    }
-
-    private static void mostrarProdComida(List<Comida> aux, String[] opciones) {
-        for (int i = 0; i < aux.size(); i++) {
-            Comida comida = aux.get(i);
-            opciones[i] = comida.getNombre() + " - Precio: "
-                    + comida.getPrecioConIVA() + "€";
-        }
-    }
-
-    private static void mostrarProdBebida(List<Bebida> aux, String[] opciones) {
-        for (int i = 0; i < aux.size(); i++) {
-            Bebida bebida = aux.get(i);
-            opciones[i] = bebida.getNombre() + " - Precio: "
-                    + bebida.getPrecioConIVA() + "€";
-        }
-    }
-
-    private static void mostrarProdPostre(List<Postre> aux, String[] opciones) {
-        for (int i = 0; i < aux.size(); i++) {
-            Postre postre = aux.get(i);
-            opciones[i] = postre.getNombre() + " - Precio: "
-                    + postre.getPrecioConIVA() + "€";
-        }
     }
 
     //métodos

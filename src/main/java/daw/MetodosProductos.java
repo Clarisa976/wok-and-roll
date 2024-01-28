@@ -15,8 +15,6 @@ public class MetodosProductos {
 
     //método para mostrar un desplegable de subcategoría comida
     public static TipoComida elegirTipoComida() {
-        //Creamos un array de String para hacer un desplegable y que elija qué
-        //es lo que quiere cambiar
         Object[] opciones = TipoComida.values();
 
         TipoComida eleccion = (TipoComida) JOptionPane.showInputDialog(null,
@@ -28,8 +26,6 @@ public class MetodosProductos {
     }
 
     public static TipoIVA elegirTipoIVA() {
-        //Creamos un array de String para hacer un desplegable y que elija qué
-        //es lo que quiere cambiar
         TipoIVA[] opciones = TipoIVA.values();
 
         TipoIVA eleccion = (TipoIVA) JOptionPane.showInputDialog(null,
@@ -58,11 +54,19 @@ public class MetodosProductos {
         }
     }
 
+    public static void mostrarProductos(List<Producto> aux, String[] opciones) {
+        for (int i = 0; i < aux.size(); i++) {
+            Producto tmp = aux.get(i);
+            opciones[i] = tmp.getNombre() + " - Precio: "
+                    + tmp.getPrecioConIVA() + "€" + " - Stock: " + tmp.getStock();
+        }
+    }
+
     public static void mostrarProdComida(List<Comida> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
             Comida comida = aux.get(i);
             opciones[i] = comida.getNombre() + " - Precio: "
-                    + comida.getPrecioConIVA() + "€";
+                    + comida.getPrecioConIVA() + "€" + " - Stock: " + comida.getStock();
         }
     }
 
