@@ -24,6 +24,11 @@ import javax.swing.JOptionPane;
 
  */
 public class MetodosAdmin {
+    
+    public static String pedirContrasenia(){
+        String contrasenia = JOptionPane.showInputDialog("Introduce la contraseña.");
+        return contrasenia;
+    }
 
     //método para cambiar cualquier dato de los productos a excepción de su ID
     public static void modificarProducto(Producto aux) {

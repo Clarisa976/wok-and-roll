@@ -140,8 +140,15 @@ public class UtilidadesTPV {
                     break;
                 //si elige la opción administrador se mostrará el método que contiene las opciones de administrador    
                 case "Administrador":
-                    MetodosAdmin.modoMantenimiento(tpv);
+                    String pedirPass = MetodosAdmin.pedirContrasenia();
+                    if(tpv.getPassAdministrador().equals(pedirPass)){
+                        MetodosAdmin.modoMantenimiento(tpv);
                     System.out.println("Modo admin");
+                    }else{
+                        JOptionPane.showMessageDialog(null,"No deberías de estar por aquí.");
+                        break;
+                    }
+                    
                     break;
                 //si elige salir se apagará el programa
                 case "Salir":
