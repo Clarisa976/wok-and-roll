@@ -53,6 +53,67 @@ public class MetodosProductos {
             return opcionElegida = "Volver";
         }
     }
+    
+        public static String elegirCategoria() {
+        String[] opcionesCategoria = {"Ver comidas", "Ver bebidas",
+            "Ver postres", "Salir"};
+        //mensaje de JOptionPane par mostrar dichas opciones
+        String opcionCategoria = (String) JOptionPane.showInputDialog(null,
+                "Seleccione una opción",
+                "Wok and Roll -- DAWFOOD",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opcionesCategoria, opcionesCategoria[0]);
+        if (!opcionCategoria.equals(null)) {
+            return opcionCategoria;
+        } else {
+            return opcionCategoria = "Salir";
+        }
+    }
+
+    public static String elegirSubcategoriaComida() {
+        String[] opcionesSubcategoriaComdia = {"Ramen", "Sushi", "Wok"};
+
+        String opcionSubcategoriaComdia = (String) JOptionPane.showInputDialog(null,
+                "Seleccione una opción",
+                "Wok and Roll -- DAWFOOD",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opcionesSubcategoriaComdia, opcionesSubcategoriaComdia[0]);
+        if (!opcionSubcategoriaComdia.equals(null)) {
+            return opcionSubcategoriaComdia;
+        } else {
+            return opcionSubcategoriaComdia = "Salir";
+        }
+    }
+
+    public static String elegirSubcategoriaBebidas() {
+        String[] opcionesSubcategoriaBebidas = {"Refrescos", "Alcoholicas", "Otras"};
+
+        String opcionSubcategoria = (String) JOptionPane.showInputDialog(null,
+                "Seleccione una opción",
+                "Wok and Roll -- DAWFOOD",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opcionesSubcategoriaBebidas, opcionesSubcategoriaBebidas[0]);
+        if (!opcionSubcategoria.equals(null)) {
+            return opcionSubcategoria;
+        } else {
+            return opcionSubcategoria = "Salir";
+        }
+    }
+
+    public static String elegirSubcategoriaPostres() {
+        String[] opcionesSubcategoriaPostre = {"Mochis", "Frutitas", "Otros"};
+
+        String opcionSubcategoria = (String) JOptionPane.showInputDialog(null,
+                "Seleccione una opción",
+                "Wok and Roll -- DAWFOOD",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opcionesSubcategoriaPostre, opcionesSubcategoriaPostre[0]);
+        if (!opcionSubcategoria.equals(null)) {
+            return opcionSubcategoria;
+        } else {
+            return opcionSubcategoria = "Salir";
+        }
+    }
 
     public static void mostrarProductos(List<Producto> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
@@ -62,8 +123,6 @@ public class MetodosProductos {
                     + comidaAux.getPrecioConIVA() + "€" + " - Stock: " 
                         + comidaAux.getStock();
             }
-//            opciones[i] = tmp.getNombre() + " - Precio: "
-//                    + tmp.getPrecioConIVA() + "€" + " - Stock: " + tmp.getStock();
         }
     }
 

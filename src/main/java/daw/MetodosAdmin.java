@@ -134,7 +134,7 @@ public class MetodosAdmin {
                 //con cada opcion llamamos a su método correspondiente
                 //si elige salir vuelve al menú de inicio
                 case "Modificar producto" -> {
-                    String opciones = MetodosAdmin.elegirCategoria();
+                    String opciones = MetodosProductos.elegirCategoria();
                     switch (opciones) {
                         case "Ver comidas":
                             List<Producto> lista = tpv.getProductos();
@@ -267,9 +267,6 @@ public class MetodosAdmin {
                     }
                 }
 
-//
-//                    System.out.println("Modificar producto");
-//                    MetodosAdmin.modificarProducto(aux);
                 case "Dar de alta un producto" -> {
                     System.out.println("Dar de alta un producto");
 //                    MetodosAdmin.altaProducto(tpv.getProductos(), productoNuevo);
@@ -294,66 +291,7 @@ public class MetodosAdmin {
     }
 
     //métodos
-    public static String elegirCategoria() {
-        String[] opcionesCategoria = {"Ver comidas", "Ver bebidas",
-            "Ver postres", "Salir"};
-        //mensaje de JOptionPane par mostrar dichas opciones
-        String opcionCategoria = (String) JOptionPane.showInputDialog(null,
-                "Seleccione una opción",
-                "Wok and Roll -- DAWFOOD",
-                JOptionPane.QUESTION_MESSAGE, null,
-                opcionesCategoria, opcionesCategoria[0]);
-        if (!opcionCategoria.equals(null)) {
-            return opcionCategoria;
-        } else {
-            return opcionCategoria = "Salir";
-        }
-    }
 
-    public static String elegirSubcategoriaComida() {
-        String[] opcionesSubcategoriaComdia = {"Ramen", "Sushi", "Wok"};
-
-        String opcionSubcategoriaComdia = (String) JOptionPane.showInputDialog(null,
-                "Seleccione una opción",
-                "Wok and Roll -- DAWFOOD",
-                JOptionPane.QUESTION_MESSAGE, null,
-                opcionesSubcategoriaComdia, opcionesSubcategoriaComdia[0]);
-        if (!opcionSubcategoriaComdia.equals(null)) {
-            return opcionSubcategoriaComdia;
-        } else {
-            return opcionSubcategoriaComdia = "Salir";
-        }
-    }
-
-    public static String elegirSubcategoriaBebidas() {
-        String[] opcionesSubcategoriaBebidas = {"Refrescos", "Alcoholicas", "Otras"};
-
-        String opcionSubcategoria = (String) JOptionPane.showInputDialog(null,
-                "Seleccione una opción",
-                "Wok and Roll -- DAWFOOD",
-                JOptionPane.QUESTION_MESSAGE, null,
-                opcionesSubcategoriaBebidas, opcionesSubcategoriaBebidas[0]);
-        if (!opcionSubcategoria.equals(null)) {
-            return opcionSubcategoria;
-        } else {
-            return opcionSubcategoria = "Salir";
-        }
-    }
-
-    public static String elegirSubcategoriaPostres() {
-        String[] opcionesSubcategoriaPostre = {"Mochis", "Frutitas", "Otros"};
-
-        String opcionSubcategoria = (String) JOptionPane.showInputDialog(null,
-                "Seleccione una opción",
-                "Wok and Roll -- DAWFOOD",
-                JOptionPane.QUESTION_MESSAGE, null,
-                opcionesSubcategoriaPostre, opcionesSubcategoriaPostre[0]);
-        if (!opcionSubcategoria.equals(null)) {
-            return opcionSubcategoria;
-        } else {
-            return opcionSubcategoria = "Salir";
-        }
-    }
 
     public static String opcionesUsuarioAdministrador() {
         //creamos las opciones del admin
@@ -371,7 +309,7 @@ public class MetodosAdmin {
             return opcionUsuarioAdmin = "Salir";
         }
     }
-
+//método que le pasas un Producto de tipo Comida y un String aux y elige que atributos de la comida cambiar
     public static void modificarComida(Comida comidaAux, String tmp) {
         //si deja algo en null no se cambiará
         if (comidaAux != null && tmp != null) {
@@ -381,8 +319,8 @@ public class MetodosAdmin {
                             "Introduce el nuevo nombre para " 
                             + comidaAux.getNombre());
                     comidaAux.setNombre(nuevoNombre);
-                    System.out.println(comidaAux.getNombre());
                 }
+                //atributo propio de la comida
                 case "Descripcion" -> {
                     String nuevaDescripcion = JOptionPane.showInputDialog(
                             "Introduce la nueva descripción del producto");
@@ -407,6 +345,7 @@ public class MetodosAdmin {
                 case "IVA" -> {
                     comidaAux.setTipoIVA(MetodosProductos.elegirTipoIVA());
                 }
+                //atributo propio de la comida
                 case "Tipo de Comida" -> {
                     comidaAux.setTipoComida(MetodosProductos.elegirTipoComida());
                 }
@@ -420,12 +359,68 @@ public class MetodosAdmin {
                         System.out.println("Introduce un número entero");
                     }
                     comidaAux.setStock(nuevoStock);
-                }
-
-
-                
+                }                
             }
         }
     }
-
+        //método que le pasas un Producto de tipo Bebida y un String aux y elige que atributos de la bebida cambiar
+        public static void modificarBebida(Comida comidaAux, String tmp) {
+        //si deja algo en null no se cambiará
+        if (comidaAux != null && tmp != null) {
+            switch (tmp) {
+                case "Nombre" -> {
+                    String nuevoNombre = JOptionPane.showInputDialog(
+                            "Introduce el nuevo nombre para " 
+                            + comidaAux.getNombre());
+                    comidaAux.setNombre(nuevoNombre);
+                    System.out.println(comidaAux.getNombre());
+                }
+                //atributo propio de la bebida
+                case "Tamanio Bebida" -> {
+                    int nuevoStock = 0;
+                    try {
+                        nuevoStock = Integer.parseInt(
+                                JOptionPane.showInputDialog(
+                                        "Introduce el nuevo tamaño del producto"));
+                    } catch (NumberFormatException nfe) {
+                        System.out.println("Introduce un número entero");
+                    }
+                    comidaAux.setStock(nuevoStock);
+                }            
+                case "Precio sin IVA" -> {
+                    double nuevoPrecioSinIVA;
+                    try {
+                        String nuevoPrecio = JOptionPane.showInputDialog(
+                                "Introduce el nuevo precio sin IVA");
+                        if (nuevoPrecio != null) {
+                            //parseamos el string introducido para comprobar que es un double
+                            nuevoPrecioSinIVA = Double.parseDouble(nuevoPrecio);
+                            comidaAux.setPrecioSinIVA(nuevoPrecioSinIVA);
+                        } else {
+                            System.out.println("No has introducido número decimal");
+                        }
+                    } catch (NumberFormatException nfe) {
+                        System.out.println("No has introducido número decimal");
+                    }
+                }
+                case "IVA" -> {
+                    comidaAux.setTipoIVA(MetodosProductos.elegirTipoIVA());
+                }
+                case "Tipo de Bebida" -> {
+                    comidaAux.setTipoComida(MetodosProductos.elegirTipoComida());
+                }
+                case "Stock" -> {
+                    int nuevoStock = 0;
+                    try {
+                        nuevoStock = Integer.parseInt(
+                                JOptionPane.showInputDialog(
+                                        "Introduce el nuevo stock del producto"));
+                    } catch (NumberFormatException nfe) {
+                        System.out.println("Introduce un número entero");
+                    }
+                    comidaAux.setStock(nuevoStock);
+                }                
+            }
+        }
+    }
 }
