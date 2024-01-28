@@ -742,15 +742,22 @@ public class MetodosAdmin {
             return opcionSubcategoria = "Salir";
         }
     }
-}
-/*
-ring[] opcionesSubCategorias = {"Ramen", "Sushi", "Wok"};
-                        //mensaje de JOptionPane par mostrar las opciones de comida
-                        int opcionSubCategorias = JOptionPane.showOptionDialog(null,
-                                "Seleccione una opción",
-                                "Wok and Roll -- DAWFOOD -- Modo Usuario",
-                                JOptionPane.DEFAULT_OPTION,
-                                JOptionPane.PLAIN_MESSAGE, null,
-                                opcionesSubCategorias, opcionesSubCategorias[0]);
 
- */
+    public static String opcionesUsuarioAdministrador() {
+        //creamos las opciones del admin
+        String[] opcionesUsuarioAdmin = {"Modificar producto", "Dar de alta un producto",
+            "Borrar producto", "Ver ventas", "Salir"};
+        //mensaje de JOptionPane par mostrar dichas opciones
+        String opcionUsuarioAdmin = (String) JOptionPane.showInputDialog(null,
+                "Seleccione una opción",
+                "Wok and Roll -- DAWFOOD -- Modo Mantenimiento",
+                JOptionPane.QUESTION_MESSAGE, null,
+                opcionesUsuarioAdmin, opcionesUsuarioAdmin[0]);
+        if (!opcionUsuarioAdmin.equals(null)) {
+            return opcionUsuarioAdmin;
+        } else {
+            return opcionUsuarioAdmin = "Salir";
+        }
+    }
+
+}
