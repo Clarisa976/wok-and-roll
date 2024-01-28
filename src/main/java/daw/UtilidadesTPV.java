@@ -4,7 +4,6 @@
  */
 package daw;
 
-import static daw.UtilidadesTarjetaNuevo.pedirNumeroEntero;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,19 +19,20 @@ import javax.swing.JOptionPane;
  */
 public class UtilidadesTPV {
 
-    public static void agregarAlCarrito(TPV tpv, Producto producto) {
-
+    public static void agregarAlCarrito(TPV tpv, Producto producto, int cantidad) {
         List<Producto> carritoTmp = tpv.getCarrito();
 
-        if (producto.getStock() > 1) {
+    if (producto.getStock() >= cantidad) {
+        // Crea una nueva instancia del producto con el stock ajustado a la cantidad
+        Producto productoParaAgregar = new Producto(producto.getNombre(), 
+                producto.getPrecio(), producto.getTipoIVA(), 
+                cantidad);
+        carritoTmp.add(productoParaAgregar);
 
-            carritoTmp.add(producto);
-
-            tpv.setCarrito(carritoTmp);
-
+        producto.setStock(producto.getStock() - cantidad); // reduce el stock del producto
+        tpv.setCarrito(carritoTmp);
         } else {
-
-            System.out.println("No queda Stock del artículo seleccionado.");
+            System.out.println("No hay suficiente stock del artículo seleccionado.");
         }
     }
 
@@ -213,25 +213,27 @@ public class UtilidadesTPV {
 
     //método para ver los productos que hay en el carrito
     private static void verCarrito(TPV tpv) {
+
         double importeTotal = 0;
 
         String infoCarrito = "\t\t Wok and Roll -- DAWFOOD\n\n";
 
         if (!tpv.getCarrito().isEmpty()) {
             String[] opcionesProductos = new String[tpv.getCarrito().size()];
+
             //con un bucle for vamos recorriendo el carrito del tpv
             for (int i = 0; i < tpv.getCarrito().size(); i++) {
+                Producto producto = tpv.getCarrito().get(i);
                 //primero añadimos el nombre, el estoc y el precio de los productos añadidos
-                infoCarrito += tpv.getCarrito().get(i).getNombre()
-                        + " x " + tpv.getCarrito().get(i).getStock()
-                        + " " + tpv.getCarrito().get(i).getPrecio()
+                infoCarrito += producto.getNombre() + " x " 
+                        + producto.getStock() + " " + producto.getPrecio() 
                         + "€\n";
                 //luego calculamos los precios
-                importeTotal += tpv.getCarrito().get(i).getPrecio()
-                        * tpv.getCarrito().get(i).getStock();
+                importeTotal += producto.getPrecio() * producto.getStock();
                 //llenamos las opciones de productos
-                opcionesProductos[i] = tpv.getCarrito().get(i).getNombre();
+                opcionesProductos[i] = producto.getNombre();
             }
+            
             //por último fomateamos el precio
             infoCarrito += "*************************************\n"
                     + "\t Importe total a pagar: %.2f€\n".formatted(importeTotal);
@@ -275,6 +277,71 @@ public class UtilidadesTPV {
             }
         } else {
             JOptionPane.showMessageDialog(null, "El carrito está vacío...");
+            modoUsuario(tpv);
+        }
+
+    }
+
+    private static void verCarritoViejo(TPV tpv) {
+
+        //Producto productotmp = new Producto("lo que sea", 3, TipoIVA.IVA_DIEZ, 2);
+        //agregarAlCarrito(tpv, productotmp);
+        List<Producto> listaCarrito = tpv.getCarrito();
+
+        if (!listaCarrito.isEmpty()) {
+            String[] opcionesProductos = new String[listaCarrito.size()];
+
+            double totalPagar = 0;
+            for (int i = 0; i < listaCarrito.size(); i++) {
+                Producto producto = listaCarrito.get(i);
+                opcionesProductos[i] = producto.getNombre() + " - Precio: "
+                        + producto.getPrecio() + "€";
+                totalPagar += producto.getPrecio();
+            }
+
+            //mensajes para elegir
+            String seleccionProducto = (String) JOptionPane.showInputDialog(null,
+                    "Este es tu carrito actualmente:",
+                    "Elegir producto",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    opcionesProductos,
+                    opcionesProductos[0]);
+            if (seleccionProducto != null) {
+                // El usuario seleccionó un producto
+                //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
+                String[] opcionesElegidas = {"Pagar", "Cancelar compra", "Volver"};
+                int opcionElegida = JOptionPane.showOptionDialog(null,
+                        "¿Qué deseas hacer con este producto?",
+                        "Wok and Roll -- DAWFOOD --",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        opcionesElegidas,
+                        opcionesElegidas[0]);
+
+                //opciones de elección
+                switch (opcionesElegidas[opcionElegida]) {
+                    case "Pagar":
+                        /*hay que optener el importe del carrito*/
+                        double importe = 25;
+                        Tarjeta tarjetaAux = UtilidadesTarjetaNuevo.TarjetaDefinitiva(importe);
+
+                        UtilidadesTPV.finalizarCompra(tpv, tarjetaAux);
+                        System.out.println("Pagando");
+                        break;
+
+                    case "Cancelar compra":
+                        tpv.getCarrito().clear();//vaciamos el carrito
+                        break;
+                    case "Volver":
+
+                        System.out.println("Volver");
+                        return;
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "El carrito esta vacío...");
             modoUsuario(tpv);
         }
 
@@ -335,7 +402,6 @@ public class UtilidadesTPV {
         }
     }
 
-   
     private static void verCategorias(String nombreCategoria, TPV tpv) {
         //atributo boolean para el bucle
         boolean salirCategorias = false;
@@ -386,9 +452,25 @@ public class UtilidadesTPV {
                             if (opcionElegida != 1) {
                                 /*creamos un producto auxiliar para poder 
                                 añadir el producto seleccionado al carrito*/
-                                Producto productoSeleccionado = listaComida.get(Arrays.asList(opcionesProductos).indexOf(seleccionProducto));
-                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado);
-                                System.out.println("producto añadido");
+                                Producto productoSeleccionado = listaComida
+                                        .get(Arrays.asList(opcionesProductos)
+                                                .indexOf(seleccionProducto));
+
+                                //añadimos una cantidad del producto seleccionado
+                                String cantidadStr = JOptionPane.showInputDialog("Introduce la cantidad del producto seleccionado que deseas añadir.");
+                                int cantidad = Integer.parseInt(cantidadStr);
+
+                                //comprobamos que no haya o no se pase
+                                if (cantidad > 0 && cantidad <= productoSeleccionado.getStock()) {
+                                    // Añade la cantidad especificada del producto al carrito
+
+                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado, cantidad);
+
+                                    System.out.println("Producto añadido");
+                                } else {
+                                    System.out.println("Cantidad no válida");
+                                }
+
                             } else if (opcionElegida != 0) {
                                 System.out.println("volver");
                                 return;
@@ -427,9 +509,25 @@ public class UtilidadesTPV {
                             if (opcionElegida != 1) {
                                 /*creamos un producto auxiliar para poder 
                                 añadir el producto seleccionado al carrito*/
-                                Producto productoSeleccionado = listaBebida.get(Arrays.asList(opcionesProductos).indexOf(seleccionProducto));
-                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado);
-                                System.out.println("producto añadido");
+                                Producto productoSeleccionado = listaBebida
+                                        .get(Arrays.asList(opcionesProductos)
+                                                .indexOf(seleccionProducto));
+
+                                //añadimos una cantidad del producto seleccionado
+                                String cantidadStr = JOptionPane.showInputDialog("Introduce la cantidad del producto seleccionado que deseas añadir.");
+                                int cantidad = Integer.parseInt(cantidadStr);
+
+                                //comprobamos que no haya o no se pase
+                                if (cantidad > 0 && cantidad <= productoSeleccionado.getStock()) {
+                                    // Añade la cantidad especificada del producto al carrito
+     
+                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado, cantidad);
+                                    
+                                    System.out.println("Producto añadido");
+                                } else {
+                                    System.out.println("Cantidad no válida");
+                                }
+
                             } else if (opcionElegida != 0) {
                                 System.out.println("volver");
                                 return;
@@ -439,7 +537,8 @@ public class UtilidadesTPV {
 
                         List<Postre> listaPostre = CatalogoCarta.postresBD();
                         String[] opcionesProductos = new String[listaPostre.size()];
-                        MetodosProductos.mostrarProdPostre(listaPostre, opcionesProductos);
+                        MetodosProductos.mostrarProdPostre(listaPostre,
+                                opcionesProductos);
 
                         String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                 "Selecciona un producto",
@@ -465,22 +564,38 @@ public class UtilidadesTPV {
                             if (opcionElegida != 1) {
                                 /*creamos un producto auxiliar para poder 
                                 añadir el producto seleccionado al carrito*/
-                                Producto productoSeleccionado = listaPostre.get(Arrays.asList(opcionesProductos).indexOf(seleccionProducto));
-                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado);
-                                System.out.println("producto añadido");
+                                Producto productoSeleccionado = listaPostre
+                                        .get(Arrays.asList(opcionesProductos)
+                                                .indexOf(seleccionProducto));
+
+                                //añadimos una cantidad del producto seleccionado
+                                String cantidadStr = JOptionPane.showInputDialog("Introduce la cantidad del producto seleccionado que deseas añadir.");
+                                int cantidad = Integer.parseInt(cantidadStr);
+
+                                //comprobamos que no haya o no se pase
+                                if (cantidad > 0 && cantidad <= productoSeleccionado.getStock()) {
+                                    // Añade la cantidad especificada del producto al carrito
+                                    
+                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado, cantidad);
+                                    
+                                    System.out.println("Producto añadido");
+                                } else {
+                                    System.out.println("Cantidad no válida");
+                                }
+
                             } else if (opcionElegida != 0) {
                                 System.out.println("volver");
                                 return;
                             }
                         }
                     }
-                    System.out.println("toda la lista");
+
                     break;
                 case "Ver subcategorias":
                     //si selecciona comida →
                     if (nombreCategoria.equalsIgnoreCase("comidas")) {
 
-                        String[] opcionesSubCategorias = {"Ramen", "Sushi", "Wok"};
+                        String[] opcionesSubCategorias = {"Ramen", "Sushi", "Wok", "Volver"};
                         //mensaje de JOptionPane par mostrar las opciones de comida
                         int opcionSubCategorias = JOptionPane.showOptionDialog(null,
                                 "Seleccione una opción",
@@ -532,9 +647,25 @@ public class UtilidadesTPV {
                                     if (opcionElegida != 1) {
                                         /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                        Producto productoSeleccionadoRamen = listaRamen.get(Arrays.asList(opcionesProductosRamen).indexOf(seleccionProducto));
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                        System.out.println("producto añadido");
+                                        Producto productoSeleccionadoRamen = listaRamen
+                                                .get(Arrays.asList(opcionesProductosRamen)
+                                                        .indexOf(seleccionProducto));
+
+                                        //añadimos una cantidad del producto seleccionado
+                                        String cantidadStr = JOptionPane.showInputDialog("Introduce la cantidad del producto seleccionado que deseas añadir.");
+                                        int cantidad = Integer.parseInt(cantidadStr);
+
+                                        //comprobamos que no haya o no se pase
+                                        if (cantidad > 0 && cantidad <= productoSeleccionadoRamen.getStock()) {
+                                            // Añade la cantidad especificada del producto al carrito
+                                            
+                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
+                                            
+                                            System.out.println("Producto añadido");
+                                        } else {
+                                            System.out.println("Cantidad no válida");
+                                        }
+
                                     } else if (opcionElegida != 0) {
                                         System.out.println("volver");
                                         return;
@@ -552,7 +683,8 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosSushi = new String[listaSushi.size()];
-                                MetodosProductos.mostrarProdComida(listaSushi, opcionesProductosSushi);
+                                MetodosProductos.mostrarProdComida(listaSushi,
+                                        opcionesProductosSushi);
 
                                 String seleccionProductoSushi = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Sushi",
@@ -578,11 +710,28 @@ public class UtilidadesTPV {
                                     if (opcionElegida != 1) {
                                         /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                        Producto productoSeleccionado = listaSushi.get(Arrays.asList(opcionesProductosSushi).indexOf(seleccionProductoSushi));
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado);
-                                        System.out.println("producto añadido");
+                                        Producto productoSeleccionado = listaSushi
+                                                .get(Arrays.asList(opcionesProductosSushi)
+                                                        .indexOf(seleccionProductoSushi));
+
+                                        //añadimos una cantidad del producto seleccionado
+                                        String cantidadStr = JOptionPane.showInputDialog("Introduce la cantidad del producto seleccionado que deseas añadir.");
+                                        int cantidad = Integer.parseInt(cantidadStr);
+
+                                        //comprobamos que no haya o no se pase
+                                        if (cantidad > 0 && cantidad <= productoSeleccionado.getStock()) {
+                                            // Añade la cantidad especificada del producto al carrito
+                                            for (int i = 0; i < cantidad; i++) {
+                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado, cantidad);
+                                            }
+                                            System.out.println("Producto añadido");
+                                        } else {
+                                            System.out.println("Cantidad no válida");
+                                        }
+
                                     } else if (opcionElegida != 0) {
-                                        break;
+                                        System.out.println("volver");
+                                        return;
                                     }
                                 }
                             case "Wok":
@@ -597,7 +746,8 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosWok = new String[listaWok.size()];
-                                MetodosProductos.mostrarProdComida(listaWok, opcionesProductosWok);
+                                MetodosProductos.mostrarProdComida(listaWok,
+                                        opcionesProductosWok);
 
                                 String seleccionProductoWok = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Wok",
@@ -623,19 +773,35 @@ public class UtilidadesTPV {
                                     if (opcionElegida != 1) {
                                         /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                        Producto productoSeleccionadoRamen = listaWok.get(Arrays.asList(opcionesProductosWok).indexOf(seleccionProductoWok));
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                        System.out.println("producto añadido");
+                                        Producto productoSeleccionadoRamen = listaWok
+                                                .get(Arrays.asList(opcionesProductosWok)
+                                                        .indexOf(seleccionProductoWok));
+
+                                        //añadimos una cantidad del producto seleccionado
+                                        String cantidadStr = JOptionPane.showInputDialog("Introduce la cantidad del producto seleccionado que deseas añadir.");
+                                        int cantidad = Integer.parseInt(cantidadStr);
+
+                                        //comprobamos que no haya o no se pase
+                                        if (cantidad > 0 && cantidad <= productoSeleccionadoRamen.getStock()) {
+                                            // Añade la cantidad especificada del producto al carrito
+                                           
+                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
+                                            
+                                            System.out.println("Producto añadido");
+                                        } else {
+                                            System.out.println("Cantidad no válida");
+                                        }
+
                                     } else if (opcionElegida != 0) {
-                                        break;
+                                        System.out.println("volver");
+                                        return;
                                     }
                                 }
                                 break;
-                            default:
-                                throw new AssertionError();
+
                         }
                     } else if (nombreCategoria.equalsIgnoreCase("bebidas")) {
-                        String[] opcionesSubCategorias = {"Refrescos", "Alcoholicas", "Otras"};
+                        String[] opcionesSubCategorias = {"Refrescos", "Alcoholicas", "Otras", "Volver"};
                         //mensaje de JOptionPane par mostrar las opciones de comida
                         int opcionSubCategorias = JOptionPane.showOptionDialog(null,
                                 "Seleccione una opción",
@@ -661,7 +827,8 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosRefresco = new String[listaRefrescos.size()];
-                                MetodosProductos.mostrarProdBebida(listaRefrescos, opcionesProductosRefresco);
+                                MetodosProductos.mostrarProdBebida(listaRefrescos,
+                                        opcionesProductosRefresco);
 
                                 String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Refrescos",
@@ -687,9 +854,25 @@ public class UtilidadesTPV {
                                     if (opcionElegida != 1) {
                                         /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                        Producto productoSeleccionadoRamen = listaRefrescos.get(Arrays.asList(opcionesProductosRefresco).indexOf(seleccionProducto));
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                        System.out.println("producto añadido");
+                                        Producto productoSeleccionadoRamen = listaRefrescos
+                                                .get(Arrays.asList(opcionesProductosRefresco)
+                                                        .indexOf(seleccionProducto));
+
+                                        //añadimos una cantidad del producto seleccionado
+                                        String cantidadStr = JOptionPane.showInputDialog("Introduce la cantidad del producto seleccionado que deseas añadir.");
+                                        int cantidad = Integer.parseInt(cantidadStr);
+
+                                        //comprobamos que no haya o no se pase
+                                        if (cantidad > 0 && cantidad <= productoSeleccionadoRamen.getStock()) {
+                                            // Añade la cantidad especificada del producto al carrito
+                                            
+                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
+                                            
+                                            System.out.println("Producto añadido");
+                                        } else {
+                                            System.out.println("Cantidad no válida");
+                                        }
+
                                     } else if (opcionElegida != 0) {
                                         System.out.println("volver");
                                         return;
@@ -706,7 +889,8 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosAlcoholicas = new String[listaAlcoholicas.size()];
-                                MetodosProductos.mostrarProdBebida(listaAlcoholicas, opcionesProductosAlcoholicas);
+                                MetodosProductos.mostrarProdBebida(listaAlcoholicas,
+                                        opcionesProductosAlcoholicas);
 
                                 String seleccionAlcoholicas = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Alcoholicas",
@@ -732,9 +916,25 @@ public class UtilidadesTPV {
                                     if (opcionElegida != 1) {
                                         /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                        Producto productoSeleccionadoRamen = listaAlcoholicas.get(Arrays.asList(opcionesProductosAlcoholicas).indexOf(seleccionAlcoholicas));
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                        System.out.println("producto añadido");
+                                        Producto productoSeleccionadoRamen = listaAlcoholicas
+                                                .get(Arrays.asList(opcionesProductosAlcoholicas)
+                                                        .indexOf(seleccionAlcoholicas));
+
+                                        //añadimos una cantidad del producto seleccionado
+                                        String cantidadStr = JOptionPane.showInputDialog("Introduce la cantidad del producto seleccionado que deseas añadir.");
+                                        int cantidad = Integer.parseInt(cantidadStr);
+
+                                        //comprobamos que no haya o no se pase
+                                        if (cantidad > 0 && cantidad <= productoSeleccionadoRamen.getStock()) {
+                                            // Añade la cantidad especificada del producto al carrito
+                                           
+                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
+                                            
+                                            System.out.println("Producto añadido");
+                                        } else {
+                                            System.out.println("Cantidad no válida");
+                                        }
+
                                     } else if (opcionElegida != 0) {
                                         System.out.println("volver");
                                         return;
@@ -777,20 +977,35 @@ public class UtilidadesTPV {
                                     if (opcionElegida != 1) {
                                         /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                        Producto productoSeleccionadoRamen = listaOtras.get(Arrays.asList(opcionesProductosOtras).indexOf(seleccionOtras));
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                        System.out.println("producto añadido");
+                                        Producto productoSeleccionadoRamen = listaOtras
+                                                .get(Arrays.asList(opcionesProductosOtras)
+                                                        .indexOf(seleccionOtras));
+
+                                        //añadimos una cantidad del producto seleccionado
+                                        String cantidadStr = JOptionPane.showInputDialog("Introduce la cantidad del producto seleccionado que deseas añadir.");
+                                        int cantidad = Integer.parseInt(cantidadStr);
+
+                                        //comprobamos que no haya o no se pase
+                                        if (cantidad > 0 && cantidad <= productoSeleccionadoRamen.getStock()) {
+                                            // Añade la cantidad especificada del producto al carrito
+                                            
+                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
+                                            
+                                            System.out.println("Producto añadido");
+                                        } else {
+                                            System.out.println("Cantidad no válida");
+                                        }
+
                                     } else if (opcionElegida != 0) {
                                         System.out.println("volver");
                                         return;
                                     }
                                 }
                                 break;
-                            default:
-                                throw new AssertionError();
+
                         }
                     } else if (nombreCategoria.equalsIgnoreCase("postres")) {
-                        String[] opcionesSubCategorias = {"Mochis", "Frutitas", "Otros"};
+                        String[] opcionesSubCategorias = {"Mochis", "Frutitas", "Otros", "Volver"};
                         //mensaje de JOptionPane par mostrar las opciones de comida
                         int opcionSubCategorias = JOptionPane.showOptionDialog(null,
                                 "Seleccione una opción",
@@ -816,7 +1031,8 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosMochi = new String[listaPostres.size()];
-                                MetodosProductos.mostrarProdPostre(listaPostres, opcionesProductosMochi);
+                                MetodosProductos.mostrarProdPostre(listaPostres,
+                                        opcionesProductosMochi);
 
                                 String seleccionProductoPostre = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Mochis",
@@ -842,9 +1058,25 @@ public class UtilidadesTPV {
                                     if (opcionElegida != 1) {
                                         /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                        Producto productoSeleccionadoMochi = listaPostres.get(Arrays.asList(opcionesProductosMochi).indexOf(seleccionProductoPostre));
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoMochi);
-                                        System.out.println("producto añadido");
+                                        Producto productoSeleccionadoMochi = listaPostres
+                                                .get(Arrays.asList(opcionesProductosMochi)
+                                                        .indexOf(seleccionProductoPostre));
+
+                                        //añadimos una cantidad del producto seleccionado
+                                        String cantidadStr = JOptionPane.showInputDialog("Introduce la cantidad del producto seleccionado que deseas añadir.");
+                                        int cantidad = Integer.parseInt(cantidadStr);
+
+                                        //comprobamos que no haya o no se pase
+                                        if (cantidad > 0 && cantidad <= productoSeleccionadoMochi.getStock()) {
+                                            // Añade la cantidad especificada del producto al carrito
+                                            
+                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoMochi, cantidad);
+                                            
+                                            System.out.println("Producto añadido");
+                                        } else {
+                                            System.out.println("Cantidad no válida");
+                                        }
+
                                     } else if (opcionElegida != 0) {
                                         System.out.println("volver");
                                         return;
@@ -862,7 +1094,8 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosFrutitas = new String[listaFrutitas.size()];
-                                MetodosProductos.mostrarProdPostre(listaFrutitas, opcionesProductosFrutitas);
+                                MetodosProductos.mostrarProdPostre(listaFrutitas,
+                                        opcionesProductosFrutitas);
 
                                 String seleccionFrutitas = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Frutitas",
@@ -888,9 +1121,25 @@ public class UtilidadesTPV {
                                     if (opcionElegida != 1) {
                                         /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                        Producto productoSeleccionadoRamen = listaFrutitas.get(Arrays.asList(opcionesProductosFrutitas).indexOf(seleccionFrutitas));
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen);
-                                        System.out.println("producto añadido");
+                                        Producto productoSeleccionadoRamen = listaFrutitas
+                                                .get(Arrays.asList(opcionesProductosFrutitas)
+                                                        .indexOf(seleccionFrutitas));
+
+                                        //añadimos una cantidad del producto seleccionado
+                                        String cantidadStr = JOptionPane.showInputDialog("Introduce la cantidad del producto seleccionado que deseas añadir.");
+                                        int cantidad = Integer.parseInt(cantidadStr);
+
+                                        //comprobamos que no haya o no se pase
+                                        if (cantidad > 0 && cantidad <= productoSeleccionadoRamen.getStock()) {
+                                            // Añade la cantidad especificada del producto al carrito
+                                           
+                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
+                                            
+                                            System.out.println("Producto añadido");
+                                        } else {
+                                            System.out.println("Cantidad no válida");
+                                        }
+
                                     } else if (opcionElegida != 0) {
                                         System.out.println("volver");
                                         return;
@@ -907,7 +1156,8 @@ public class UtilidadesTPV {
                                 }
 
                                 String[] opcionesProductosOtros = new String[listaOtras.size()];
-                                MetodosProductos.mostrarProdPostre(listaOtras, opcionesProductosOtros);
+                                MetodosProductos.mostrarProdPostre(listaOtras,
+                                        opcionesProductosOtros);
 
                                 String seleccionOtros = (String) JOptionPane.showInputDialog(null,
                                         "Selecciona un producto: Otros",
@@ -933,9 +1183,25 @@ public class UtilidadesTPV {
                                     if (opcionElegida != 1) {
                                         /*creamos un producto auxiliar para poder 
                                                     añadir el producto seleccionado al carrito*/
-                                        Producto productoSeleccionadoOtros = listaOtras.get(Arrays.asList(opcionesProductosOtros).indexOf(seleccionOtros));
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoOtros);
-                                        System.out.println("producto añadido");
+                                        Producto productoSeleccionadoOtros = listaOtras
+                                                .get(Arrays.asList(opcionesProductosOtros)
+                                                        .indexOf(seleccionOtros));
+
+                                        //añadimos una cantidad del producto seleccionado
+                                        String cantidadStr = JOptionPane.showInputDialog("Introduce la cantidad del producto seleccionado que deseas añadir.");
+                                        int cantidad = Integer.parseInt(cantidadStr);
+
+                                        //comprobamos que no haya o no se pase
+                                        if (cantidad > 0 && cantidad <= productoSeleccionadoOtros.getStock()) {
+                                            // Añade la cantidad especificada del producto al carrito
+
+                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoOtros, cantidad);
+                                            
+                                            System.out.println("Producto añadido");
+                                        } else {
+                                            System.out.println("Cantidad no válida");
+                                        }
+
                                     } else if (opcionElegida != 0) {
                                         System.out.println("volver");
                                         return;
@@ -943,11 +1209,9 @@ public class UtilidadesTPV {
                                 }
                                 break;
 
-                            default:
-                                throw new AssertionError();
                         }
                     }
-                    System.out.println("enums");
+
                     break;
                 //si elige salir vuelve al menú de anterior
                 case "Volver":
@@ -957,40 +1221,5 @@ public class UtilidadesTPV {
 
         } while (!salirCategorias);
     }
-//
-//    public static int pedirEntero(String mensaje) {
-//        while (true) {
-//            try {
-////                String entrada = JOptionPane.showInputDialog(mensaje);
-//                int numero = Integer.parseInt(mensaje);
-//                return numero;
-//            } catch (NumberFormatException e) {
-//                JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
-//            }
-//        }
-//    }
-//
-//    private static String pedirEnteroString(String mensaje) {
-//        while (true) {
-////            try {
-//            if (esEntero(mensaje)) {
-//                return mensaje;
-//            } else {
-////                String aux = JOptionPane.showInputDialog(mensaje);
-////                Integer.parseInt(aux); // Intentamos convertir a entero para validar la entrada
-////                return aux; // Si no se lanza una excepción, la entrada es válida como cadena.
-////            } catch (NumberFormatException e) {
-//                JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
-//            }
-//        }
-//    }
-//
-//    private static boolean esEntero(String mensaje) {
-//        try {
-//            Integer.parseInt(mensaje);
-//            return true;
-//        } catch (NumberFormatException e) {
-//            return false;
-//        }
-//    }
+
 }

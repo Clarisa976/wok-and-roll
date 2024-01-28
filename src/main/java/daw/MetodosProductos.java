@@ -184,8 +184,7 @@ public class MetodosProductos {
             Producto tmp = aux.get(i);
             if (tmp instanceof Comida comidaAux) {
                 opciones[i] = comidaAux.getNombre() + " - Precio: "
-                        + comidaAux.getPrecio() + "€" + " - Stock: "
-                        + comidaAux.getStock();
+                        + comidaAux.getPrecio();
 
             }
         }
@@ -196,8 +195,7 @@ public class MetodosProductos {
             Producto tmp = aux.get(i);
             if (tmp instanceof Bebida bebidaAux) {
                 opciones[i] = bebidaAux.getNombre() + " - Precio: "
-                        + bebidaAux.getPrecio() + "€" + " - Stock: "
-                        + bebidaAux.getStock();
+                        + bebidaAux.getPrecio();
 
             }
         }
@@ -208,8 +206,7 @@ public class MetodosProductos {
             Producto tmp = aux.get(i);
             if (tmp instanceof Postre postreAux) {
                 opciones[i] = postreAux.getNombre() + " - Precio: "
-                        + postreAux.getPrecio() + "€" + " - Stock: "
-                        + postreAux.getStock();
+                        + postreAux.getPrecio() + "€";
             }
 
         }
@@ -219,7 +216,7 @@ public class MetodosProductos {
         for (int i = 0; i < aux.size(); i++) {
             Comida comida = aux.get(i);
             opciones[i] = comida.getNombre() + " - Precio: "
-                    + comida.getPrecio() + "€" + " - Stock: " + comida.getStock();
+                    + comida.getPrecio() + "€";
         }
     }
 
