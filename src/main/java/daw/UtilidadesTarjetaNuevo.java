@@ -92,9 +92,9 @@ public class UtilidadesTarjetaNuevo {
                 throw new IllegalArgumentException("Has introducido un mes no válido");
             }
         } catch (IllegalArgumentException iae) {
-            JOptionPane.showMessageDialog(null, 
+            JOptionPane.showMessageDialog(null,
                     "Has introducido un mes no válido. "
-                            + "Por favor, introduce un número entre 1 y 12");
+                    + "Por favor, introduce un número entre 1 y 12");
         }
 
         try {
@@ -107,7 +107,7 @@ public class UtilidadesTarjetaNuevo {
                 throw new IllegalArgumentException("El año debe ser posterior al año actual");
             }
         } catch (IllegalArgumentException iae) {
-            JOptionPane.showMessageDialog(null, 
+            JOptionPane.showMessageDialog(null,
                     "El año debe ser posterior al año actual");
         }
 
@@ -176,6 +176,7 @@ public class UtilidadesTarjetaNuevo {
     // método para verificar si una tarjeta es válida y tiene saldo suficiente
     public static boolean verificarTarjetaCompleto(double importeTotal) {
 
+
         boolean estaBien = false;
 
         do {
@@ -209,38 +210,28 @@ public class UtilidadesTarjetaNuevo {
         List<Tarjeta> tarjetasBD = Tarjeta.tarjetasRegistradasBD();
         Tarjeta tarjetaTmp = new Tarjeta();
 
-        String numeroTarjetaCliente = UtilidadesTarjetaNuevo.pedirTarjeta();
-        boolean esValidoNumeroTarjeta = UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjetaCliente);
+        boolean esValidoNumeroTarjeta = false;
+        String numeroTarjetaCliente = "";
 
-        if (esValidoNumeroTarjeta && verificarTarjetaCompleto(importe)) {
+        while (!esValidoNumeroTarjeta) {
+            numeroTarjetaCliente = UtilidadesTarjetaNuevo.pedirTarjeta();
+            esValidoNumeroTarjeta = UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjetaCliente);
+            if (!esValidoNumeroTarjeta) {
+                JOptionPane.showMessageDialog(null, "El número de tarjeta no es válido");
+            }
+        }
 
+        if (verificarTarjetaCompleto(importe)) {
             for (int i = 0; i < tarjetasBD.size(); i++) {
                 if (numeroTarjetaCliente.equals(tarjetasBD.get(i).getNumeroTarjeta()
                         .substring(tarjetasBD.get(i).getNumeroTarjeta().length() - 4,
                                 tarjetasBD.get(i).getNumeroTarjeta().length()))) {
                     tarjetaTmp = tarjetasBD.get(i);
                 }
-
             }
         }
+
         return tarjetaTmp;
-//        List<Tarjeta> tarjetasBD = Tarjeta.tarjetasRegistradasBD();
-//        Tarjeta tarjetaTmp = new Tarjeta();
-//
-//        String numeroTarjetaCliente = UtilidadesTarjetaNuevo.pedirTarjeta();
-//        boolean esValidoNumeroTarjeta = UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjetaCliente);
-//
-//        if (verificarTarjetaCompleto(importe)) {
-//
-//            for (int i = 0; i < tarjetasBD.size(); i++) {
-//                if (numeroTarjetaCliente.equals(tarjetasBD.get(i).getNumeroTarjeta()
-//                        .substring(tarjetasBD.get(i).getNumeroTarjeta().length() - 4,
-//                                tarjetasBD.get(i).getNumeroTarjeta().length()))) {
-//                    tarjetaTmp = tarjetasBD.get(i);
-//                }
-//
-//            }
-//        }
-//        return tarjetaTmp;
+
     }
 }

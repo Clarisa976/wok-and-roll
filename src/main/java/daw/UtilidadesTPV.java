@@ -4,6 +4,8 @@
  */
 package daw;
 
+import static daw.UtilidadesTarjetaNuevo.pedirNumeroEntero;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -91,6 +93,7 @@ public class UtilidadesTPV {
             Object val = entry.getValue();
 
         }
+
         if (UtilidadesTarjetaNuevo.verificarTarjetaCompleto(importeTotal)) {
 //        if (UtilidadesTarjeta.verificarTarjetaCompleto(importeTotal)) {
 
@@ -142,15 +145,15 @@ public class UtilidadesTPV {
                 //si elige la opción administrador se mostrará el método que contiene las opciones de administrador    
                 case "Administrador":
                     String pedirPass = MetodosAdmin.pedirContrasenia();
-                    if(tpv.getPassAdministrador().equals(pedirPass)){
+                    if (tpv.getPassAdministrador().equals(pedirPass)) {
                         MetodosAdmin2.modoMantenimiento(tpv);
-                        
-                    System.out.println("Modo admin");
-                    }else{
-                        JOptionPane.showMessageDialog(null,"No deberías de estar por aquí.");
+
+                        System.out.println("Modo admin");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No deberías de estar por aquí.");
                         break;
                     }
-                    
+
                     break;
                 //si elige salir se apagará el programa
                 case "Salir":
@@ -207,10 +210,103 @@ public class UtilidadesTPV {
         } while (!salirUsuario);
     }
 
+    //método para ver los productos que hay en el carrito
+    private static void verCarrito(TPV tpv) {
+        double importeTotal = 0;
+
+        String infoCarrito = "\t\t Wok and Roll -- DAWFOOD\n\n";
+
+        if (!tpv.getCarrito().isEmpty()) {
+            String[] opcionesProductos = new String[tpv.getCarrito().size()];
+            //con un bucle for vamos recorriendo el carrito del tpv
+            for (int i = 0; i < tpv.getCarrito().size(); i++) {
+                //primero añadimos el nombre, el estoc y el precio de los productos añadidos
+                infoCarrito += tpv.getCarrito().get(i).getNombre()
+                        + " x " + tpv.getCarrito().get(i).getStock()
+                        + " " + tpv.getCarrito().get(i).getPrecio()
+                        + "€\n";
+                //luego calculamos los precios
+                importeTotal += tpv.getCarrito().get(i).getPrecio()
+                        * tpv.getCarrito().get(i).getStock();
+                //por último fomateamos el precio
+                infoCarrito += "*************************************\n"
+                        + "\t Importe total a pagar: %.2f€\n".formatted(importeTotal);
+
+//                Producto producto = listaCarrito.get(i);
+                //                opcionesProductos[i] = producto.getNombre() + " - Precio: "
+                //                        + producto.getPrecio() + "€";
+                //                totalPagar += producto.getPrecio();
+            }
+
+            //mensajes para elegir
+            String seleccionProducto = (String) JOptionPane.showInputDialog(null,
+                    "Este es tu carrito actualmente:",
+                    "Elegir producto",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    opcionesProductos,
+                    opcionesProductos[0]);
+            if (seleccionProducto != null) {
+                // El usuario seleccionó un producto
+                //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
+                String[] opcionesElegidas = {"Pagar", "Cancelar compra", "Volver"};
+                int opcionElegida = JOptionPane.showOptionDialog(null,
+                        "¿Qué deseas hacer con este producto?",
+                        "Wok and Roll -- DAWFOOD --",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        opcionesElegidas,
+                        opcionesElegidas[0]);
+
+                //opciones de elección
+                switch (opcionesElegidas[opcionElegida]) {
+                    case "Pagar":
+                        /*hay que optener el importe del carrito*/
+                        double importe = 25;
+                        Tarjeta tarjetaAux = UtilidadesTarjetaNuevo.TarjetaDefinitiva(importe);
+
+                        UtilidadesTPV.finalizarCompra(tpv, tarjetaAux);
+                        System.out.println("Pagando");
+                        break;
+
+                    case "Cancelar compra":
+                        tpv.getCarrito().clear();//vaciamos el carrito
+                        break;
+                    case "Volver":
+
+                        System.out.println("Volver");
+                        return;
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "El carrito esta vacío...");
+            modoUsuario(tpv);
+        }
+
+    }
+
+    //método para confirmar que la tarjeta es correcta y pagar
+    private static void pagar(TPV tpv, double importeTotal) {
+        String numeroTarjeta = UtilidadesTarjetaNuevo.pedirTarjeta();
+        LocalDate fechaTarjeta = UtilidadesTarjetaNuevo.pedirFechaTarjeta();
+        String numeroCVV = UtilidadesTarjetaNuevo.pedirCVV();
+        //verificamos si el número es correcto
+        if (UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjeta)) {
+            //comprobamos la fecha
+            if (UtilidadesTarjetaNuevo.verificarFecha(fechaTarjeta, numeroTarjeta)) {
+                //comprobamos el cvv
+                if(UtilidadesTarjetaNuevo.verificarCVV(numeroCVV, numeroTarjeta)){
+                    //comprobamos si hay saldo
+                }
+            }
+        }
+    }
+
     /*método del usuario para ver las clases hijas de la clase Producto
     pasandole un String con el tipo de categoría, que optenemos en el switch del 
     modoUsuario.*/
-    private static void verCarrito(TPV tpv) {
+    private static void verCarritoViejo(TPV tpv) {
 
         //Producto productotmp = new Producto("lo que sea", 3, TipoIVA.IVA_DIEZ, 2);
         //agregarAlCarrito(tpv, productotmp);
@@ -333,7 +429,6 @@ public class UtilidadesTPV {
                                 return;
                             }
                         }
-
 
                         break;
                     } else if (nombreCategoria.equalsIgnoreCase("bebidas")) {
