@@ -103,57 +103,47 @@ public class UtilidadesTarjetaPrueba {
     //método para verificar la fecha de la tarjeta
     public static boolean verificarFecha(LocalDate fecha, String numeroCliente) {
         boolean esValida = false;
-        Tarjeta tarjetaCliente = obtenerTarjeta(numeroCliente);
+        Tarjeta tarjetaClienteTmp = obtenerTarjeta(numeroCliente);
 
         //comprobamos que la fecha introducida es la misma que está guardada
         //en los datos de la tarjeta de nuestra base de datos
-        if (fecha.equals(tarjetaCliente.getFechaCaducidadTarjeta())) {
+        if (fecha.equals(tarjetaClienteTmp.getFechaCaducidadTarjeta())) {
             esValida = true;
         }
 
         return esValida;
     }
-//
-//    //método para verificar si la tarjeta está registrada en la base de datos por los últimos 4 dígitos
-//    public static boolean verificarTarjeta(String numeroTarjeta) {
-//        boolean esValida = false;
-//        List<Tarjeta> tarjetaBD = tarjetasRegistradasBD();
-//
-//        for (int i = 0; i < tarjetaBD.size(); i++) {
-//
-//            if (numeroTarjeta.equals(tarjetaBD.get(i)
-//                    .getNumeroTarjeta()
-//                    .substring(tarjetaBD.get(i).getNumeroTarjeta().length() - 4,
-//                            tarjetaBD.get(i).getNumeroTarjeta().length()))) {
-//                esValida = true;
-//                return esValida;
-//            }
-//        }
-//        return esValida;
-//    }
 
-//
-//    //método para pedir la fecha al cliente
-//
-//    //método para pedir el CVV
-//    public static String pedirCVV() {
-//        String mensajeCVV = JOptionPane.showInputDialog("Introduce el CVV de tu tarjeta.");
-//        String CVVTarjeta = pedirEnteroString(mensajeCVV);
-//        return CVVTarjeta;
-//    }
-//
-//    //método para verificar el CVV
-//    public static boolean verificarCVV(String CVV, String numeroCliente) {
-//        boolean esValida = false;
-//        Tarjeta tarjetaCliente = obtenerTarjetaCliente(numeroCliente);
-//
-//        if (CVV.equals(tarjetaCliente.getCvv())) {
-//            esValida = true;
-//            return esValida;
-//        }
-//
-//        return esValida;
-//    }
+    //método para pedir el CVV
+    public static String pedirCVV() {
+        String mensajeCVV = JOptionPane.showInputDialog("Introduce el CVV de tu tarjeta.");
+        String CVVTarjeta = pedirNumeroString(mensajeCVV);
+        return CVVTarjeta;
+    }
+
+    //método para verificar el CVV
+    public static boolean verificarCVV(String CVV, String numeroCliente) {
+        boolean esValida = false;
+        Tarjeta tarjetaClienteTmp = obtenerTarjeta(numeroCliente);
+
+        if (CVV.equals(tarjetaClienteTmp.getCvv())) {
+            esValida = true;
+            return esValida;
+        }
+
+        return esValida;
+    }
+    
+    //método que comprueba el saldo del cliente con la cantidad a pagar
+    public static boolean saldoSuficiente (String numeroCliente, double totalPagar){
+        boolean esValida = false;
+        Tarjeta tarjetaClienteTmp = obtenerTarjeta(numeroCliente);
+        if(tarjetaClienteTmp.getSaldoTarjeta()>= totalPagar){
+            esValida = true;
+            return esValida;
+        }
+        return esValida;
+    }
 //
 //    //método para pedir un entero y controlar excepciones
     public static int pedirNumeroEntero(String mensaje) {
@@ -167,48 +157,6 @@ public class UtilidadesTarjetaPrueba {
         }
     }
 
-//    private static String pedirEnteroString(String mensaje) {
-//
-//        boolean  = false;
-//
-//        do {
-//            if (esEntero(mensaje)) {
-//                esEntero = true;
-//                return mensaje;
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Introduce un número entero válido.");
-//            }
-//        } while (!esEntero);
-//        return null;
-//    }
-//
-//    private static boolean esEntero(String mensaje) {
-//        try {
-//            Integer.parseInt(mensaje);
-//            return true;
-//        } catch (NumberFormatException nfe) {
-//            return false;
-//        }
-//    }
-//
-//    //método que verifica si hay saldo suficiente
-//    public static boolean saldoSuficiente(String numeroCliente, double totalPagar) {
-//        Tarjeta tarjetaCliente = new Tarjeta();
-//        
-//        List<Tarjeta> listaTmp = Tarjeta.tarjetasRegistradasBD();
-//        
-//        for (Tarjeta tarjeta : listaTmp) {
-//            if (tarjeta.getNumeroTarjeta().equals(numeroCliente)) {
-//                tarjetaCliente = tarjeta;
-//            }
-//        }
-//        
-//        if (tarjetaCliente.getSaldoTarjeta() >= totalPagar) {
-//            return true;
-//        }
-//        return false;
-//    }
-//
 //    // método para verificar si una tarjeta es válida y tiene saldo suficiente
 //    public static boolean verificarTarjetaCompleto(double importeTotal) {
 //

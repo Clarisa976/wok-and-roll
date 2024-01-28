@@ -31,6 +31,14 @@ public class Pruebitas {
         }
         boolean esFechaValida = UtilidadesTarjetaPrueba.verificarFecha(fecha, numeroPrueba);
         System.out.println("Es una fecha válida? " + esFechaValida);
+
+        String numeroCVV = UtilidadesTarjetaPrueba.pedirCVV();
+        boolean esValidoCVV = UtilidadesTarjetaPrueba.verificarCVV(numeroCVV, numeroPrueba);
+        System.out.println("Es válido? " + esValidoCVV);
+
+        double importe = 23;
+        boolean sePaga = UtilidadesTarjetaPrueba.saldoSuficiente(numeroPrueba, importe);
+        System.out.println("Come? " + sePaga);
     }
 
 }
