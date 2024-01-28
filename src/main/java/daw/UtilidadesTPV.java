@@ -6,6 +6,7 @@ package daw;
 
 import static daw.UtilidadesTarjetaNuevo.pedirNumeroEntero;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -187,19 +188,19 @@ public class UtilidadesTPV {
                 //si elige salir vuelve al menú de inicio
                 case "Ver comidas" -> {
                     verCategorias("comidas", tpv);
-                    System.out.println("comidas");
+
                 }
                 case "Ver bebidas" -> {
                     verCategorias("bebidas", tpv);
-                    System.out.println("bebidas");
+
                 }
                 case "Ver postres" -> {
                     verCategorias("postres", tpv);
-                    System.out.println("postre");
+
                 }
                 case "Ver carrito" -> {
                     verCarrito(tpv);
-                    System.out.println("carrito");
+
                 }
                 case "Salir" -> {
                     System.out.println("volver a inicio");
@@ -228,15 +229,12 @@ public class UtilidadesTPV {
                 //luego calculamos los precios
                 importeTotal += tpv.getCarrito().get(i).getPrecio()
                         * tpv.getCarrito().get(i).getStock();
-                //por último fomateamos el precio
-                infoCarrito += "*************************************\n"
-                        + "\t Importe total a pagar: %.2f€\n".formatted(importeTotal);
-
-//                Producto producto = listaCarrito.get(i);
-                //                opcionesProductos[i] = producto.getNombre() + " - Precio: "
-                //                        + producto.getPrecio() + "€";
-                //                totalPagar += producto.getPrecio();
+                //llenamos las opciones de productos
+                opcionesProductos[i] = tpv.getCarrito().get(i).getNombre();
             }
+            //por último fomateamos el precio
+            infoCarrito += "*************************************\n"
+                    + "\t Importe total a pagar: %.2f€\n".formatted(importeTotal);
 
             //mensajes para elegir
             String seleccionProducto = (String) JOptionPane.showInputDialog(null,
@@ -251,7 +249,7 @@ public class UtilidadesTPV {
                 //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
                 String[] opcionesElegidas = {"Pagar", "Cancelar compra", "Volver"};
                 int opcionElegida = JOptionPane.showOptionDialog(null,
-                        "¿Qué deseas hacer con este producto?",
+                        infoCarrito,
                         "Wok and Roll -- DAWFOOD --",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE,
@@ -262,12 +260,8 @@ public class UtilidadesTPV {
                 //opciones de elección
                 switch (opcionesElegidas[opcionElegida]) {
                     case "Pagar":
-                        /*hay que optener el importe del carrito*/
-                        double importe = 25;
-                        Tarjeta tarjetaAux = UtilidadesTarjetaNuevo.TarjetaDefinitiva(importe);
+                        UtilidadesTPV.pagar(tpv, importeTotal);
 
-                        UtilidadesTPV.finalizarCompra(tpv, tarjetaAux);
-                        System.out.println("Pagando");
                         break;
 
                     case "Cancelar compra":
@@ -280,7 +274,7 @@ public class UtilidadesTPV {
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "El carrito esta vacío...");
+            JOptionPane.showMessageDialog(null, "El carrito está vacío...");
             modoUsuario(tpv);
         }
 
@@ -296,81 +290,52 @@ public class UtilidadesTPV {
             //comprobamos la fecha
             if (UtilidadesTarjetaNuevo.verificarFecha(fechaTarjeta, numeroTarjeta)) {
                 //comprobamos el cvv
-                if(UtilidadesTarjetaNuevo.verificarCVV(numeroCVV, numeroTarjeta)){
+                if (UtilidadesTarjetaNuevo.verificarCVV(numeroCVV, numeroTarjeta)) {
                     //comprobamos si hay saldo
+                    if (UtilidadesTarjetaNuevo.saldoSuficiente(numeroTarjeta, importeTotal)) {
+                        /*si hay saldo usamos un for para buscar esa tarjeta en 
+                        la lista de tarjetas creadas y restarle la cantidad*/
+                        for (int i = 0; i < Tarjeta.tarjetasRegistradasBD().size(); i++) {
+                            if (numeroTarjeta.equals(Tarjeta.tarjetasRegistradasBD()
+                                    .get(i).getNumeroTarjeta()
+                                    .substring(Tarjeta.tarjetasRegistradasBD()
+                                            .get(i).getNumeroTarjeta()
+                                            .length() - 4,
+                                            Tarjeta.tarjetasRegistradasBD()
+                                                    .get(i).getNumeroTarjeta()
+                                                    .length()))) {
+                                Tarjeta.tarjetasRegistradasBD().get(i)
+                                        .setSaldoTarjeta(Tarjeta.tarjetasRegistradasBD()
+                                                .get(i).getSaldoTarjeta()
+                                                - importeTotal);
+                            }
+                        }
+                        //restamso la cantidad total de stock de la base de datos creada
+                        for (Producto cesta : tpv.getCarrito()) {
+                            for (Producto menu : tpv.getProductos()) {
+                                if (cesta.equals(menu)) {
+                                    menu.setStock(menu.getStock() - cesta.getStock());
+
+                                }
+                            }
+                        }
+                        //creamos el ticket
+                        Ticket tmp = new Ticket(new ArrayList<Producto>(
+                                tpv.getCarrito()), importeTotal,
+                                LocalDateTime.now());
+
+                        //agregamos los productos al ticket
+                        tpv.getListaTickets().add(tmp);
+                        tmp.toString();
+                        //nos aseguramos de que se vacía la cesta
+                        tpv.getCarrito().clear();
+                    }
                 }
             }
         }
     }
 
-    /*método del usuario para ver las clases hijas de la clase Producto
-    pasandole un String con el tipo de categoría, que optenemos en el switch del 
-    modoUsuario.*/
-    private static void verCarritoViejo(TPV tpv) {
-
-        //Producto productotmp = new Producto("lo que sea", 3, TipoIVA.IVA_DIEZ, 2);
-        //agregarAlCarrito(tpv, productotmp);
-        List<Producto> listaCarrito = tpv.getCarrito();
-
-        if (!listaCarrito.isEmpty()) {
-            String[] opcionesProductos = new String[listaCarrito.size()];
-
-            double totalPagar = 0;
-            for (int i = 0; i < listaCarrito.size(); i++) {
-                Producto producto = listaCarrito.get(i);
-                opcionesProductos[i] = producto.getNombre() + " - Precio: "
-                        + producto.getPrecio() + "€";
-                totalPagar += producto.getPrecio();
-            }
-
-            //mensajes para elegir
-            String seleccionProducto = (String) JOptionPane.showInputDialog(null,
-                    "Este es tu carrito actualmente:",
-                    "Elegir producto",
-                    JOptionPane.QUESTION_MESSAGE,
-                    null,
-                    opcionesProductos,
-                    opcionesProductos[0]);
-            if (seleccionProducto != null) {
-                // El usuario seleccionó un producto
-                //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                String[] opcionesElegidas = {"Pagar", "Cancelar compra", "Volver"};
-                int opcionElegida = JOptionPane.showOptionDialog(null,
-                        "¿Qué deseas hacer con este producto?",
-                        "Wok and Roll -- DAWFOOD --",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        opcionesElegidas,
-                        opcionesElegidas[0]);
-
-                //opciones de elección
-                switch (opcionesElegidas[opcionElegida]) {
-                    case "Pagar":
-                        /*hay que optener el importe del carrito*/
-                        double importe = 25;
-                        Tarjeta tarjetaAux = UtilidadesTarjetaNuevo.TarjetaDefinitiva(importe);
-
-                        UtilidadesTPV.finalizarCompra(tpv, tarjetaAux);
-                        System.out.println("Pagando");
-                        break;
-
-                    case "Cancelar compra":
-                        tpv.getCarrito().clear();//vaciamos el carrito
-                        break;
-                    case "Volver":
-
-                        System.out.println("Volver");
-                        return;
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "El carrito esta vacío...");
-            modoUsuario(tpv);
-        }
-
-    }
-
+   
     private static void verCategorias(String nombreCategoria, TPV tpv) {
         //atributo boolean para el bucle
         boolean salirCategorias = false;

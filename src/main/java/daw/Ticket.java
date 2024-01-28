@@ -22,8 +22,7 @@ public class Ticket {
     private int idPedido;
     private final String numeroPedido;//random de 4 dígitos
     private List<Producto> productos;
-    private List<Integer> cantidad; //por cada producto elegido
-    private final double importeTotal; //el precio de cada producto (con iva) * cantidad
+    private double importeTotal; //el precio de cada producto (con iva) * cantidad
     private LocalDateTime fechaEmision;
 
     //constructor
@@ -36,8 +35,15 @@ public class Ticket {
         contadorTickets++;
         this.numeroPedido = RandomStringUtils.randomNumeric(4);
         this.productos = productos;
-        this.cantidad = cantidad;
-        this.importeTotal = calcularImporteTotal();
+        this.fechaEmision = LocalDateTime.now();
+    }
+
+    public Ticket(List<Producto> productos, double importeTotal, LocalDateTime fechaEmision) {
+        this.idPedido = contadorTickets;
+        contadorTickets++;
+        this.numeroPedido = RandomStringUtils.randomNumeric(4);
+        this.productos = productos;
+        this.importeTotal = importeTotal;
         this.fechaEmision = LocalDateTime.now();
     }
 
@@ -61,14 +67,14 @@ public class Ticket {
     public LocalDateTime getFechaEmision() {
         return fechaEmision;
     }
-    
-    
+
     //toString
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("================================\n");
         sb.append("          TICKET DE COMPRA       \n");
+        sb.append("            Wok and Roll         \n");
         sb.append("================================\n");
         sb.append("ID del Pedido: ").append(idPedido).append("\n");
         sb.append("Número de Pedido: ").append(numeroPedido).append("\n");
@@ -76,7 +82,7 @@ public class Ticket {
         sb.append("================================\n");
         sb.append("Productos:\n");
         for (int i = 0; i < productos.size(); i++) {
-            sb.append("- ").append(productos.get(i).getNombre()).append(" x ").append(cantidad.get(i)).append("\n");
+            sb.append("- ").append(productos.get(i).getNombre()).append(" x ").append("\n");
         }
         sb.append("================================\n");
         sb.append("Cantidad de Productos: ").append(productos.size()).append("\n");
@@ -85,24 +91,24 @@ public class Ticket {
         return sb.toString();
     }
 
-    //método para calcular el importe total
-    private double calcularImporteTotal() {
-        double total = 0;
-        for (int i = 0; i < productos.size(); i++) {
-            total += productos.get(i).getPrecio() * cantidad.get(i);
-        }
-        return total;
-    }
-    
-     public void imprimirTicket(){
-    
-        String rutaArchivo = "tickets/ticket" + this.getIdPedido() 
+//    //método para calcular el importe total
+//    private double calcularImporteTotal() {
+//        double total = 0;
+//        for (int i = 0; i < productos.size(); i++) {
+//            total += productos.get(i).getPrecio() * cantidad.get(i);
+//        }
+//        return total;
+//    }
+
+    public void imprimirTicket() {
+
+        String rutaArchivo = "tickets/ticket" + this.getIdPedido()
                 + "_" + this.getFechaEmision().getDayOfMonth()
                 + "-" + this.getFechaEmision().getMonthValue()
                 + "-" + this.getFechaEmision().getYear()
                 + "_" + this.getFechaEmision().getHour()
                 + ":" + this.getFechaEmision().getMinute();
-        
+
         try (FileWriter writer = new FileWriter(rutaArchivo)) {
 
             writer.write(this.toString());
