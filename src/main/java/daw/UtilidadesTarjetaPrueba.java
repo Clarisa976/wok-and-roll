@@ -49,11 +49,11 @@ public class UtilidadesTarjetaPrueba {
         while (!esValido) {
             try {
                 numero = mensaje;
-                if (numero.length() < 5) {
+                if (numero.length() <= 5) {
                     esValido = true;
                 } else {
                     JOptionPane.showMessageDialog(null,
-                            "Por favor, intoduzca solo cuatro dígitos");
+                            "Intoduzca solo cuatro dígitos");
                 }
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(null,
