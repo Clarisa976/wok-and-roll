@@ -17,28 +17,29 @@ public class Pruebitas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String numeroPrueba = "5678";
-        numeroPrueba = UtilidadesTarjetaPrueba.pedirTarjeta();
+//        String numeroPrueba;
+//        numeroPrueba = UtilidadesTarjetaPrueba.pedirTarjeta();
+//
+//        boolean esValido = UtilidadesTarjetaPrueba.numeroTarjetaValido(numeroPrueba);
+//        System.out.println("Es válido el número?" + esValido);
+//        LocalDate fecha = null;
+//        try {
+//            fecha = UtilidadesTarjetaPrueba.pedirFechaTarjeta();
+//
+//        } catch (IllegalArgumentException iae) {
+//            System.out.println("Te has colado con la fecha");
+//        }
+//        boolean esFechaValida = UtilidadesTarjetaPrueba.verificarFecha(fecha, numeroPrueba);
+//        System.out.println("Es una fecha válida? " + esFechaValida);
+//
+//        String numeroCVV = UtilidadesTarjetaPrueba.pedirCVV();
+//        boolean esValidoCVV = UtilidadesTarjetaPrueba.verificarCVV(numeroCVV, numeroPrueba);
+//        System.out.println("Es válido? " + esValidoCVV);
 
-        boolean esValido = UtilidadesTarjetaPrueba.numeroTarjetaValido(numeroPrueba);
-        System.out.println("Es válido el número?" + esValido);
-        LocalDate fecha = null;
-        try {
-            fecha = UtilidadesTarjetaPrueba.pedirFechaTarjeta();
+        
+//        boolean sePaga = UtilidadesTarjetaPrueba.saldoSuficiente(numeroPrueba, importe);
+//        System.out.println("Come? " + sePaga);
 
-        } catch (IllegalArgumentException iae) {
-            System.out.println("Te has colado con la fecha");
-        }
-        boolean esFechaValida = UtilidadesTarjetaPrueba.verificarFecha(fecha, numeroPrueba);
-        System.out.println("Es una fecha válida? " + esFechaValida);
-
-        String numeroCVV = UtilidadesTarjetaPrueba.pedirCVV();
-        boolean esValidoCVV = UtilidadesTarjetaPrueba.verificarCVV(numeroCVV, numeroPrueba);
-        System.out.println("Es válido? " + esValidoCVV);
-
-        double importe = 23;
-        boolean sePaga = UtilidadesTarjetaPrueba.saldoSuficiente(numeroPrueba, importe);
-        System.out.println("Come? " + sePaga);
     }
 
 }

@@ -85,14 +85,14 @@ public class UtilidadesTPV {
                 mapCantidadProductos.keySet());
         List<Integer> listaDeCantidades = List.copyOf(
                 mapCantidadProductos.values());
-        
+
         for (Map.Entry<Producto, Integer> entry : mapCantidadProductos.entrySet()) {
             Object key = entry.getKey();
             Object val = entry.getValue();
-            
-        }
 
-        if (UtilidadesTarjeta.verificarTarjetaCompleto(importeTotal)) {
+        }
+        if (UtilidadesTarjetaPrueba.verificarTarjetaCompleto(importeTotal)) {
+//        if (UtilidadesTarjeta.verificarTarjetaCompleto(importeTotal)) {
 
             Ticket ticketCompra = new Ticket(listaDeProductos,
                     listaDeCantidades);
@@ -241,9 +241,11 @@ public class UtilidadesTPV {
 
                 //opciones de elección
                 switch (opcionesElegidas[opcionElegida]) {
-                    case "Pagar":                        
-                        Tarjeta tarjetaAux = UtilidadesTarjeta.eTarjetaDefinitiva(totalPagar);
-                        
+                    case "Pagar":
+                        /*hay que optener el importe del carrito*/
+                        double importe = 25;
+                        Tarjeta tarjetaAux = UtilidadesTarjetaPrueba.TarjetaDefinitiva(importe);
+
                         UtilidadesTPV.finalizarCompra(tpv, tarjetaAux);
                         System.out.println("Pagando");
                         break;
@@ -718,8 +720,7 @@ public class UtilidadesTPV {
                             default:
                                 throw new AssertionError();
                         }
-                    }
-                    else if (nombreCategoria.equalsIgnoreCase("postres")) {
+                    } else if (nombreCategoria.equalsIgnoreCase("postres")) {
                         String[] opcionesSubCategorias = {"Mochis", "Frutitas", "Otros"};
                         //mensaje de JOptionPane par mostrar las opciones de comida
                         int opcionSubCategorias = JOptionPane.showOptionDialog(null,
@@ -903,7 +904,7 @@ public class UtilidadesTPV {
                     + bebida.getPrecioConIVA() + "€";
         }
     }
-    
+
     private static void mostrarProdPostre(List<Postre> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
             Postre postre = aux.get(i);
