@@ -184,8 +184,9 @@ public class MetodosProductos {
         for (int i = 0; i < aux.size(); i++) {
             Producto tmp = aux.get(i);
             if (tmp instanceof Comida comidaAux) {
-                opciones[contador] = comidaAux.getNombre() + " - Precio: "
-                        + comidaAux.getPrecioSinIVA() + "€";
+                opciones[contador] = comidaAux.getNombre() + " - Precio sin IVA: "
+                        + comidaAux.getPrecioSinIVA() + "€" + " - Precio con IVA: "
+                        + comidaAux.getPrecioConIVA() + "€";
                 contador++;
             }
         }
@@ -196,8 +197,9 @@ public class MetodosProductos {
         for (int i = 0; i < aux.size(); i++) {
             Producto tmp = aux.get(i);
             if (tmp instanceof Bebida bebidaAux) {
-                opciones[contador] = bebidaAux.getNombre() + " - Precio: "
-                        + bebidaAux.getPrecioSinIVA() + "€";
+                opciones[contador] = bebidaAux.getNombre() + " - Precio sin IVA: "
+                        + bebidaAux.getPrecioSinIVA() + "€" + " - Precio con IVA: "
+                        + bebidaAux.getPrecioConIVA() + "€";
                 contador++;
             }
         }
@@ -208,8 +210,9 @@ public class MetodosProductos {
         for (int i = 0; i < aux.size(); i++) {
             Producto tmp = aux.get(i);
             if (tmp instanceof Postre postreAux) {
-                opciones[contador] = postreAux.getNombre() + " - Precio: "
-                        + postreAux.getPrecioSinIVA() + "€";
+                opciones[contador] = postreAux.getNombre() + " - Precio sin IVA: "
+                        + postreAux.getPrecioSinIVA() + "€" + " - Precio con IVA: "
+                        + postreAux.getPrecioConIVA() + "€";
                 contador++;
             }
         }
@@ -218,24 +221,27 @@ public class MetodosProductos {
     public static void mostrarProdComida(List<Comida> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
             Comida comida = aux.get(i);
-            opciones[i] = comida.getNombre() + " - Precio: "
-                    + comida.getPrecioSinIVA() + "€";
+            opciones[i] = comida.getNombre() + " - Precio sin IVA: "
+                    + comida.getPrecioSinIVA() + "€" + " - Precio con IVA: "
+                    + comida.getPrecioConIVA() + "€";
         }
     }
 
     public static void mostrarProdBebida(List<Bebida> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
             Bebida bebida = aux.get(i);
-            opciones[i] = bebida.getNombre() + " - Precio: "
-                    + bebida.getPrecioSinIVA() + "€";
+            opciones[i] = bebida.getNombre() + " - Precio sin IVA: "
+                    + bebida.getPrecioSinIVA() + "€" + " - Precio con IVA: "
+                    + bebida.getPrecioConIVA() + "€";
         }
     }
 
     public static void mostrarProdPostre(List<Postre> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
             Postre postre = aux.get(i);
-            opciones[i] = postre.getNombre() + " - Precio: "
-                    + postre.getPrecioSinIVA() + "€";
+            opciones[i] = postre.getNombre() + " - Precio sin IVA: "
+                    + postre.getPrecioSinIVA() + "€" + " - Precio con IVA: "
+                    + postre.getPrecioConIVA() + "€";
         }
     }
 
@@ -243,8 +249,9 @@ public class MetodosProductos {
     public static void mostrarProd(List<Producto> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {
             Producto producto = aux.get(i);
-            opciones[i] = producto.getNombre() + " - Precio: "
-                    + producto.getPrecioSinIVA() + "€";
+            opciones[i] = producto.getNombre() + " - Precio sin IVA: "
+                    + producto.getPrecioSinIVA() + "€" + " - Precio con IVA: "
+                    + producto.getPrecioConIVA() + "€";
         }
     }
 }
