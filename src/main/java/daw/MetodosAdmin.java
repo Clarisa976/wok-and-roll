@@ -271,11 +271,49 @@ public class MetodosAdmin {
                     }
 
                 }
+                
                 case "Borrar producto" -> {
+                    
+                    List<Producto> listaProducto = CatalogoCarta.cartaMenu();
+                    String[] opcionesProductos = new String[listaProducto.size()];
+                    MetodosProductos.mostrarProd(listaProducto, opcionesProductos);
 
-//                    CatalogoCarta catalogo = CatalogoCarta getCarta();
-//                    
-//                    MetodosAdmin.bajaProducto(tpv.getProductos(), productoABorrar);
+                    String seleccionProducto = (String) JOptionPane.showInputDialog(null,
+                            "Selecciona un producto",
+                            "Wok and Roll -- DAWFOOD --",
+                            JOptionPane.QUESTION_MESSAGE,
+                            null,
+                            opcionesProductos,
+                            opcionesProductos[0]);
+
+                    if (seleccionProducto != null) {
+                        // El usuario seleccionó un producto
+                        String[] opcionesElegidas = {"Borrar", "Volver"};
+                        int opcionElegida = JOptionPane.showOptionDialog(null,
+                                "¿Qué deseas hacer con este producto?",
+                                "Wok and Roll -- DAWFOOD --",
+                                JOptionPane.YES_NO_OPTION,
+                                JOptionPane.QUESTION_MESSAGE,
+                                null,
+                                opcionesElegidas,
+                                opcionesElegidas[0]);
+
+                        if (opcionElegida == 0) {
+
+                            //creamos un producto auxiliar para borrarlo
+                            Producto productoSeleccionado = listaProducto
+                                    .get(Arrays.asList(opcionesProductos)
+                                            .indexOf(seleccionProducto));
+
+                            //metodos para borrarlo
+                            borrarProducto(productoSeleccionado);
+                            System.out.println("borrado");
+
+                        } else if (opcionElegida == 1) {
+                            System.out.println("volver");
+                            return;
+                        }
+                    }
                 }
                 case "Ver ventas" -> {
                     System.out.println("Ver ventas de hoy");
@@ -632,5 +670,56 @@ public class MetodosAdmin {
         postreAux.setStock(nuevoStock);
 
         return postreAux;
+    }
+    
+    //borrar Producto 
+    public static void borrarProducto(Producto producto) {
+
+        // si no es nulo
+        if (producto != null) {
+
+            // recorremos la lista para ver si el producto esta en la lista de 
+            // comida y en el caso en el que este lo borro de la lista de comidas
+            // y del catalogo de productos
+            for (Comida comida : CatalogoCarta.comidasBD()) {
+
+                // si tiene el mismo nombre se borra de las 2 listas
+                if (producto.getNombre().equalsIgnoreCase(comida.getNombre())) {
+
+                    CatalogoCarta.comidasBD().remove(comida);
+                    CatalogoCarta.cartaMenu().remove(comida);
+
+                    break;
+                }
+            }
+
+            // recorro la lista igualmente para ver si es bebida y la borro
+            for (Bebida bebida : CatalogoCarta.bebidasBD()) {
+                
+                // si tiene el mismo nombre se borra de las 2 listas
+                if (producto.getNombre().equalsIgnoreCase(bebida.getNombre())) {
+
+                    CatalogoCarta.bebidasBD().remove(bebida);
+                    CatalogoCarta.cartaMenu().remove(bebida);
+
+                    break;
+                }
+            }
+            
+            // recorro la lista igualmente para ver si es postre y la borro
+            for (Postre postre : CatalogoCarta.postresBD()) {
+
+                // si tiene el mismo nombre se borra de las 2 listas
+                if (producto.getNombre().equalsIgnoreCase(postre.getNombre())) {
+
+                    CatalogoCarta.comidasBD().remove(postre);
+                    CatalogoCarta.cartaMenu().remove(postre);
+
+                    break;
+                }
+            }
+        } else {
+            System.out.println("Algo ha ido mal...");
+        }
     }
 }

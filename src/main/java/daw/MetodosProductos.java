@@ -235,5 +235,14 @@ public class MetodosProductos {
                     + postre.getPrecio() + "€";
         }
     }
+    
+    // mostrar todos los productos
+    public static void mostrarProd(List<Producto> aux, String[] opciones) {
+        for (int i = 0; i < aux.size(); i++) {
+            Producto producto = aux.get(i);
+            opciones[i] = producto.getNombre() + " - Precio: "
+                    + producto.getPrecio() + "€";
+        }
+    }
 
 }
