@@ -1332,7 +1332,8 @@ public class UtilidadesTPV {
     public static void apagarTPV(TPV tpv, List<Producto> productosTPV) {
         if (!productosTPV.isEmpty()) {
             //obtenemos la lista del menu
-            List<Producto> catalogo = CatalogoCarta.cartaMenu();
+//            List<Producto> catalogo = CatalogoCarta.cartaMenu();
+            List<Producto> catalogo = tpv.getProductos();
 
             for (Producto productoAux : productosTPV) {
                 //comprobamos que el producto ya exista
@@ -1371,7 +1372,9 @@ public class UtilidadesTPV {
 
                         }
                     }
-
+                    for (Producto producto : catalogo) {
+                        System.out.println(" | "+ producto);
+                    }
                     break;
                 }
 
