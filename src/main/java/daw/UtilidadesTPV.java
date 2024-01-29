@@ -848,7 +848,9 @@ public class UtilidadesTPV {
                                 break;
 
                         }
+                        //en caso de elegir ver bebidas:
                     } else if (nombreCategoria.equalsIgnoreCase("bebidas")) {
+                        
                         String[] opcionesSubCategorias = {"Refrescos", "Alcoholicas", "Otras", "Volver"};
                         //mensaje de JOptionPane par mostrar las opciones de comida
                         int opcionSubCategorias = JOptionPane.showOptionDialog(null,
@@ -1081,8 +1083,10 @@ public class UtilidadesTPV {
                                 break;
 
                         }
+                        //en caso de ver postres
                     } else if (nombreCategoria.equalsIgnoreCase("postres")) {
-                        String[] opcionesSubCategorias = {"Mochis", "Frutitas", "Otros", "Volver"};
+                        
+                        String[] opcionesSubCategorias = {"Mochi", "Frutita", "Otros", "Volver"};
                         //mensaje de JOptionPane par mostrar las opciones de comida
                         int opcionSubCategorias = JOptionPane.showOptionDialog(null,
                                 "Seleccione una opción",
@@ -1091,13 +1095,13 @@ public class UtilidadesTPV {
                                 JOptionPane.PLAIN_MESSAGE, null,
                                 opcionesSubCategorias, opcionesSubCategorias[0]);
 
-                        //switch segun el tipo de bebida
+                        //switch segun el tipo de postre
                         List<Producto> listaPostreTmp = tpv.getProductos();
 
                         switch (opcionesSubCategorias[opcionSubCategorias]) {
 
-                            case "Mochis":
-                                listaPostreTmp = tpv.getProductos();
+                            case "Mochi":
+//                                listaPostreTmp = tpv.getProductos();
                                 List<Postre> listaPostres = new ArrayList<>();
 
                                 for (Producto postre : listaPostreTmp) {
@@ -1169,7 +1173,7 @@ public class UtilidadesTPV {
                                     }
                                 }
 
-                            case "Frutitas":
+                            case "Frutita":
 
                                 listaPostreTmp = tpv.getProductos();
                                 List<Postre> listaFrutitas = new ArrayList<>();
@@ -1330,66 +1334,72 @@ public class UtilidadesTPV {
     }
 
     public static void apagarTPV(TPV tpv, List<Producto> productosTPV) {
-        if (!productosTPV.isEmpty()) {
-            //obtenemos la lista del menu
+        
+//        if (!productosTPV.isEmpty()) {
+//            //obtenemos la lista del menu
 //            List<Producto> catalogo = CatalogoCarta.cartaMenu();
-            List<Producto> catalogo = tpv.getProductos();
+//            productosTPV = tpv.getProductos();
+//
+//            //creamos una lista de productos donde se guardarán los existentes y la llenamos con los productos que hay en la tpv
+//            List<Producto> productosSinCambios = new ArrayList<>(productosTPV);
+//
+//            for (Producto productoAux : productosTPV) {
+//                //comprobamos que el producto ya exista
+//                boolean productoEnCatalogo = false;
+//
+//                for (Producto productoCatalogo : catalogo) {
+//                    //hacemos instanceof para buscar cada clase hija de Producto
+//                    if (productoCatalogo.getCodProducto().equals(productoAux.getCodProducto())) {
+//                        productoEnCatalogo = true; //encontramos el producto en el catálogo
+//
+//                        //actualizamos los atributos que se hayan podido cambiar
+//                        if (productoCatalogo instanceof Comida && productoAux instanceof Comida) {
+//                            productoCatalogo.setNombre(productoAux.getNombre());
+//                            ((Comida) productoCatalogo).setDescripcionComida(((Comida) productoAux).getDescripcionComida());
+//                            ((Comida) productoCatalogo).setTipoComida(((Comida) productoAux).getTipoComida());
+//                            productoCatalogo.setPrecio(productoAux.getPrecio());
+//                            productoCatalogo.setStock(productoAux.getStock());
+//                            productoCatalogo.setTipoIVA(productoAux.getTipoIVA());
+//                        } else if (productoCatalogo instanceof Bebida && productoAux instanceof Bebida) {
+//                            productoCatalogo.setNombre(productoAux.getNombre());
+//                            ((Bebida) productoCatalogo).setTamanioBebida(((Bebida) productoAux).getTamanioBebida());
+//                            ((Bebida) productoCatalogo).setTipoBebida(((Bebida) productoAux).getTipoBebida());
+//                            productoCatalogo.setPrecio(productoAux.getPrecio());
+//                            productoCatalogo.setStock(productoAux.getStock());
+//                            productoCatalogo.setTipoIVA(productoAux.getTipoIVA());
+//                        } else if (productoCatalogo instanceof Postre && productoAux instanceof Postre) {
+//                            productoCatalogo.setNombre(productoAux.getNombre());
+//                            ((Postre) productoCatalogo).setKcal(((Postre) productoAux).getKcal());
+//                            ((Postre) productoCatalogo).setTipoPostre(((Postre) productoAux).getTipoPostre());
+//                            productoCatalogo.setPrecio(productoAux.getPrecio());
+//                            productoCatalogo.setStock(productoAux.getStock());
+//                            productoCatalogo.setTipoIVA(productoAux.getTipoIVA());
+//                        }
+//
+//                        break;
+//                    }
+//                }
+//
+//                //si el producto no existe se agrega
+//                if (!productoEnCatalogo) {
+//                    catalogo.add(productoAux);
+//                }
+//            }
+//            //comprobamos los productos ya cambiados con los que ya teníamos
+//            for (int i = 0; i < productosTPV.size(); i++) {
+//                Producto viejo = productosSinCambios.get(i);
+//                Producto nuevo = productosTPV.get(i);
+//                //si no son igual se muestra
+//                System.out.println("Productos actualizados: \n");
+//                if(!viejo.equals(nuevo)){
+//                    System.out.println(nuevo.toString());
+//                }
+//            }
+//
+//            //borramos la lista del tpv para que al iniciar no cree conflictos
+//            productosTPV.clear();
+//        }
 
-            for (Producto productoAux : productosTPV) {
-                //comprobamos que el producto ya exista
-                boolean productoEnCatalogo = false;
-
-                for (Producto productoCatalogo : catalogo) {
-                    //hacemos instanceof para buscar cada clase hija de Producto
-                    if (productoCatalogo instanceof Comida comidaAux) {
-                        if (productoCatalogo.getCodProducto().equals(comidaAux.getCodProducto())) {
-                            productoCatalogo.setNombre(comidaAux.getNombre());
-                            ((Comida) productoCatalogo).setDescripcionComida(comidaAux.getDescripcionComida());
-                            ((Comida) productoCatalogo).setTipoComida(comidaAux.getTipoComida());
-                            productoCatalogo.setPrecio(comidaAux.getPrecio());
-                            productoCatalogo.setStock(comidaAux.getStock());
-                            productoCatalogo.setTipoIVA(comidaAux.getTipoIVA());
-
-                        }
-                    } else if (productoCatalogo instanceof Bebida bebidaAux) {
-                        if (productoCatalogo.getCodProducto().equals(bebidaAux.getCodProducto())) {
-                            productoCatalogo.setNombre(bebidaAux.getNombre());
-                            ((Bebida) productoCatalogo).setTamanioBebida(bebidaAux.getTamanioBebida());
-                            ((Bebida) productoCatalogo).setTipoBebida(bebidaAux.getTipoBebida());
-                            productoCatalogo.setPrecio(bebidaAux.getPrecio());
-                            productoCatalogo.setStock(bebidaAux.getStock());
-                            productoCatalogo.setTipoIVA(bebidaAux.getTipoIVA());
-
-                        }
-                    } else if (productoCatalogo instanceof Postre postreAux) {
-                        if (productoCatalogo.getCodProducto().equals(postreAux.getCodProducto())) {
-                            productoCatalogo.setNombre(postreAux.getNombre());
-                            ((Postre) productoCatalogo).setKcal(postreAux.getKcal());
-                            ((Postre) productoCatalogo).setTipoPostre(postreAux.getTipoPostre());
-                            productoCatalogo.setPrecio(postreAux.getPrecio());
-                            productoCatalogo.setStock(postreAux.getStock());
-                            productoCatalogo.setTipoIVA(postreAux.getTipoIVA());
-
-                        }
-                    }
-                    for (Producto producto : catalogo) {
-                        System.out.println(" | "+ producto);
-                        
-                    }
-                    List<Producto> a = CatalogoCarta.cartaMenu();
-                    
-                    break;
-                }
-
-                //si el producto no existe se agrega
-                if (!productoEnCatalogo) {
-                    catalogo.add(productoAux);
-                }
-            }
-
-            //borramos la lista del tpv para que al iniciar no cree confictos
-            productosTPV.clear();
-        }
     }
 
     public static void gestionarTPV() {
@@ -1411,7 +1421,7 @@ public class UtilidadesTPV {
             if (respuesta != 1) {
                 encenderTPV(tpv);
             } else if (respuesta != 0) {
-                apagarTPV(tpv, productosTPV);
+//                apagarTPV(tpv, productosTPV);
                 continuar = true;
             }
         }
