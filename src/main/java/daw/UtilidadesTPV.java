@@ -611,18 +611,21 @@ public class UtilidadesTPV {
                                 opcionesSubCategorias, opcionesSubCategorias[0]);
 
                         //switch segun el tipo de comida
-                        List<Comida> listaComidaTmp = CatalogoCarta.comidasBD();
+//                        List<Comida> listaComidaTmp = CatalogoCarta.comidasBD();
+                        List<Producto> listaComidaTmp = tpv.getProductos();
 
                         switch (opcionesSubCategorias[opcionSubCategorias]) {
 
                             case "Ramen":
 
-                                listaComidaTmp = CatalogoCarta.comidasBD();
+                                listaComidaTmp = tpv.getProductos();
                                 List<Comida> listaRamen = new ArrayList<>();
 
-                                for (Comida comida : listaComidaTmp) {
-                                    if (comida.getTipoComida().equals(TipoComida.RAMEN)) {
-                                        listaRamen.add(comida);
+                                for (Producto comida : listaComidaTmp) {
+                                    if (comida instanceof Comida comidaAux) {
+                                        if (comidaAux.getTipoComida().equals(TipoComida.RAMEN)) {
+                                            listaRamen.add(comidaAux);
+                                        }
                                     }
                                 }
 
@@ -679,14 +682,25 @@ public class UtilidadesTPV {
                                 }
                             case "Sushi":
 
-                                listaComidaTmp = CatalogoCarta.comidasBD();
+                                listaComidaTmp = tpv.getProductos();
                                 List<Comida> listaSushi = new ArrayList<>();
 
-                                for (Comida comida : listaComidaTmp) {
-                                    if (comida.getTipoComida().equals(TipoComida.SUSHI)) {
-                                        listaSushi.add(comida);
+                                for (Producto comida : listaComidaTmp) {
+                                    if (comida instanceof Comida comidaAux) {
+                                        if (comidaAux.getTipoComida().equals(TipoComida.SUSHI)) {
+                                            listaSushi.add(comidaAux);
+                                        }
                                     }
                                 }
+
+//                                listaComidaTmp = CatalogoCarta.comidasBD();
+//                                List<Comida> listaSushi = new ArrayList<>();
+//
+//                                for (Comida comida : listaComidaTmp) {
+//                                    if (comida.getTipoComida().equals(TipoComida.SUSHI)) {
+//                                        listaSushi.add(comida);
+//                                    }
+//                                }
 
                                 String[] opcionesProductosSushi = new String[listaSushi.size()];
                                 MetodosProductos.mostrarProdComida(listaSushi,
@@ -741,15 +755,24 @@ public class UtilidadesTPV {
                                     }
                                 }
                             case "Wok":
-
-                                listaComidaTmp = CatalogoCarta.comidasBD();
+                                listaComidaTmp = tpv.getProductos();
                                 List<Comida> listaWok = new ArrayList<>();
 
-                                for (Comida comida : listaComidaTmp) {
-                                    if (comida.getTipoComida().equals(TipoComida.WOK)) {
-                                        listaWok.add(comida);
+                                for (Producto comida : listaComidaTmp) {
+                                    if (comida instanceof Comida comidaAux) {
+                                        if (comidaAux.getTipoComida().equals(TipoComida.WOK)) {
+                                            listaWok.add(comidaAux);
+                                        }
                                     }
                                 }
+//                                listaComidaTmp = CatalogoCarta.comidasBD();
+//                                List<Comida> listaWok = new ArrayList<>();
+//
+//                                for (Comida comida : listaComidaTmp) {
+//                                    if (comida.getTipoComida().equals(TipoComida.WOK)) {
+//                                        listaWok.add(comida);
+//                                    }
+//                                }
 
                                 String[] opcionesProductosWok = new String[listaWok.size()];
                                 MetodosProductos.mostrarProdComida(listaWok,
@@ -817,20 +840,30 @@ public class UtilidadesTPV {
                                 opcionesSubCategorias, opcionesSubCategorias[0]);
 
                         //switch segun el tipo de bebida
-                        List<Bebida> listaBebidaTmp = new ArrayList<>();
+                        List<Producto> listaBebidaTmp = tpv.getProductos();
 
                         switch (opcionesSubCategorias[opcionSubCategorias]) {
 
                             case "Refrescos":
-
-                                listaBebidaTmp = CatalogoCarta.bebidasBD();
+                                listaBebidaTmp = tpv.getProductos();
                                 List<Bebida> listaRefrescos = new ArrayList<>();
 
-                                for (Bebida bebida : listaBebidaTmp) {
-                                    if (bebida.getTipoBebida().equals(TipoBebida.REFRESCOS)) {
-                                        listaRefrescos.add(bebida);
+                                for (Producto bebida : listaBebidaTmp) {
+                                    if (bebida instanceof Bebida bebidaAux) {
+                                        if (bebidaAux.getTipoBebida().equals(TipoBebida.REFRESCOS)) {
+                                            listaRefrescos.add(bebidaAux);
+                                        }
                                     }
                                 }
+
+//                                listaBebidaTmp = CatalogoCarta.bebidasBD();
+//                                List<Bebida> listaRefrescos = new ArrayList<>();
+//
+//                                for (Bebida bebida : listaBebidaTmp) {
+//                                    if (bebida.getTipoBebida().equals(TipoBebida.REFRESCOS)) {
+//                                        listaRefrescos.add(bebida);
+//                                    }
+//                                }
 
                                 String[] opcionesProductosRefresco = new String[listaRefrescos.size()];
                                 MetodosProductos.mostrarProdBebida(listaRefrescos,
@@ -885,14 +918,25 @@ public class UtilidadesTPV {
                                     }
                                 }
                             case "Alcoholicas":
-                                listaBebidaTmp = CatalogoCarta.bebidasBD();
+                                listaBebidaTmp = tpv.getProductos();
                                 List<Bebida> listaAlcoholicas = new ArrayList<>();
 
-                                for (Bebida bebida : listaBebidaTmp) {
-                                    if (bebida.getTipoBebida().equals(TipoBebida.ALCOHOLICAS)) {
-                                        listaAlcoholicas.add(bebida);
+                                for (Producto bebida : listaBebidaTmp) {
+                                    if (bebida instanceof Bebida bebidaAux) {
+                                        if (bebidaAux.getTipoBebida().equals(TipoBebida.ALCOHOLICAS)) {
+                                            listaAlcoholicas.add(bebidaAux);
+                                        }
                                     }
                                 }
+                                
+//                                listaBebidaTmp = CatalogoCarta.bebidasBD();
+//                                List<Bebida> listaAlcoholicas = new ArrayList<>();
+//
+//                                for (Bebida bebida : listaBebidaTmp) {
+//                                    if (bebida.getTipoBebida().equals(TipoBebida.ALCOHOLICAS)) {
+//                                        listaAlcoholicas.add(bebida);
+//                                    }
+//                                }
 
                                 String[] opcionesProductosAlcoholicas = new String[listaAlcoholicas.size()];
                                 MetodosProductos.mostrarProdBebida(listaAlcoholicas,
@@ -947,14 +991,24 @@ public class UtilidadesTPV {
                                     }
                                 }
                             case "Otras":
-                                listaBebidaTmp = CatalogoCarta.bebidasBD();
+                                listaBebidaTmp = tpv.getProductos();
                                 List<Bebida> listaOtras = new ArrayList<>();
 
-                                for (Bebida bebida : listaBebidaTmp) {
-                                    if (bebida.getTipoBebida().equals(TipoBebida.OTROS)) {
-                                        listaOtras.add(bebida);
+                                for (Producto bebida : listaBebidaTmp) {
+                                    if (bebida instanceof Bebida bebidaAux) {
+                                        if (bebidaAux.getTipoBebida().equals(TipoBebida.OTROS)) {
+                                            listaOtras.add(bebidaAux);
+                                        }
                                     }
                                 }
+//                                listaBebidaTmp = CatalogoCarta.bebidasBD();
+//                                List<Bebida> listaOtras = new ArrayList<>();
+//
+//                                for (Bebida bebida : listaBebidaTmp) {
+//                                    if (bebida.getTipoBebida().equals(TipoBebida.OTROS)) {
+//                                        listaOtras.add(bebida);
+//                                    }
+//                                }
 
                                 String[] opcionesProductosOtras = new String[listaOtras.size()];
                                 MetodosProductos.mostrarProdBebida(listaOtras, opcionesProductosOtras);
@@ -1021,20 +1075,30 @@ public class UtilidadesTPV {
                                 opcionesSubCategorias, opcionesSubCategorias[0]);
 
                         //switch segun el tipo de bebida
-                        List<Postre> listaPostreTmp = new ArrayList<>();
+                        List<Producto> listaPostreTmp = tpv.getProductos();
 
                         switch (opcionesSubCategorias[opcionSubCategorias]) {
 
                             case "Mochis":
-
-                                listaPostreTmp = CatalogoCarta.postresBD();
+                                listaPostreTmp = tpv.getProductos();
                                 List<Postre> listaPostres = new ArrayList<>();
 
-                                for (Postre postre : listaPostreTmp) {
-                                    if (postre.getTipoPostre().equals(TipoPostre.MOCHI)) {
-                                        listaPostres.add(postre);
+                                for (Producto postre : listaPostreTmp) {
+                                    if (postre instanceof Postre postreAux) {
+                                        if (postreAux.getTipoPostre().equals(TipoPostre.MOCHI)) {
+                                            listaPostreTmp.add(postreAux);
+                                        }
                                     }
                                 }
+
+//                                listaPostreTmp = CatalogoCarta.postresBD();
+//                                List<Postre> listaPostres = new ArrayList<>();
+//
+//                                for (Postre postre : listaPostreTmp) {
+//                                    if (postre.getTipoPostre().equals(TipoPostre.MOCHI)) {
+//                                        listaPostres.add(postre);
+//                                    }
+//                                }
 
                                 String[] opcionesProductosMochi = new String[listaPostres.size()];
                                 MetodosProductos.mostrarProdPostre(listaPostres,
@@ -1090,14 +1154,25 @@ public class UtilidadesTPV {
                                 }
 
                             case "Frutitas":
-                                listaPostreTmp = CatalogoCarta.postresBD();
+                                
+                                listaPostreTmp = tpv.getProductos();
                                 List<Postre> listaFrutitas = new ArrayList<>();
 
-                                for (Postre postre : listaPostreTmp) {
-                                    if (postre.getTipoPostre().equals(TipoPostre.FRUTITA)) {
-                                        listaFrutitas.add(postre);
+                                for (Producto postre : listaPostreTmp) {
+                                    if (postre instanceof Postre postreAux) {
+                                        if (postreAux.getTipoPostre().equals(TipoPostre.FRUTITA)) {
+                                            listaPostreTmp.add(postreAux);
+                                        }
                                     }
                                 }
+//                                listaPostreTmp = CatalogoCarta.postresBD();
+//                                List<Postre> listaFrutitas = new ArrayList<>();
+//
+//                                for (Postre postre : listaPostreTmp) {
+//                                    if (postre.getTipoPostre().equals(TipoPostre.FRUTITA)) {
+//                                        listaFrutitas.add(postre);
+//                                    }
+//                                }
 
                                 String[] opcionesProductosFrutitas = new String[listaFrutitas.size()];
                                 MetodosProductos.mostrarProdPostre(listaFrutitas,
@@ -1152,14 +1227,24 @@ public class UtilidadesTPV {
                                     }
                                 }
                             case "Otros":
-                                listaPostreTmp = CatalogoCarta.postresBD();
+                                listaPostreTmp = tpv.getProductos();
                                 List<Postre> listaOtras = new ArrayList<>();
 
-                                for (Postre postre : listaPostreTmp) {
-                                    if (postre.getTipoPostre().equals(TipoPostre.OTROS)) {
-                                        listaOtras.add(postre);
+                                for (Producto postre : listaPostreTmp) {
+                                    if (postre instanceof Postre postreAux) {
+                                        if (postreAux.getTipoPostre().equals(TipoPostre.OTROS)) {
+                                            listaPostreTmp.add(postreAux);
+                                        }
                                     }
                                 }
+//                                listaPostreTmp = CatalogoCarta.postresBD();
+//                                List<Postre> listaOtras = new ArrayList<>();
+//
+//                                for (Postre postre : listaPostreTmp) {
+//                                    if (postre.getTipoPostre().equals(TipoPostre.OTROS)) {
+//                                        listaOtras.add(postre);
+//                                    }
+//                                }
 
                                 String[] opcionesProductosOtros = new String[listaOtras.size()];
                                 MetodosProductos.mostrarProdPostre(listaOtras,
@@ -1227,7 +1312,7 @@ public class UtilidadesTPV {
 
         } while (!salirCategorias);
     }
-/*
+    /*
     public static void apagarTPV(TPV tpv) {
         List<Producto> carrito = tpv.getProductos();
         if (!carrito.isEmpty()) {
@@ -1259,5 +1344,5 @@ public class UtilidadesTPV {
             carrito.clear();
         }
     }
-*/
+     */
 }
