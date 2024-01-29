@@ -147,7 +147,7 @@ public class UtilidadesTPV {
                 case "Administrador":
                     String pedirPass = MetodosAdmin.pedirContrasenia();
                     if (tpv.getPassAdministrador().equals(pedirPass)) {
-                        MetodosAdmin2.modoMantenimiento(tpv);
+                        MetodosAdmin.modoMantenimiento(tpv);
 
                         System.out.println("Modo admin");
                     } else {
