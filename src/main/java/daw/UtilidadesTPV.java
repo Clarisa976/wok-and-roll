@@ -22,15 +22,15 @@ public class UtilidadesTPV {
     public static void agregarAlCarrito(TPV tpv, Producto producto, int cantidad) {
         List<Producto> carritoTmp = tpv.getCarrito();
 
-    if (producto.getStock() >= cantidad) {
-        // Crea una nueva instancia del producto con el stock ajustado a la cantidad
-        Producto productoParaAgregar = new Producto(producto.getNombre(), 
-                producto.getPrecio(), producto.getTipoIVA(), 
-                cantidad);
-        carritoTmp.add(productoParaAgregar);
+        if (producto.getStock() >= cantidad) {
+            // Crea una nueva instancia del producto con el stock ajustado a la cantidad
+            Producto productoParaAgregar = new Producto(producto.getNombre(),
+                    producto.getPrecio(), producto.getTipoIVA(),
+                    cantidad);
+            carritoTmp.add(productoParaAgregar);
 
-        producto.setStock(producto.getStock() - cantidad); // reduce el stock del producto
-        tpv.setCarrito(carritoTmp);
+            producto.setStock(producto.getStock() - cantidad); // reduce el stock del producto
+            tpv.setCarrito(carritoTmp);
         } else {
             System.out.println("No hay suficiente stock del artículo seleccionado.");
         }
@@ -159,6 +159,7 @@ public class UtilidadesTPV {
                 //si elige salir se apagará el programa
                 case "Salir":
                     System.out.println("Apagar TPV");
+                    apagarTPV(tpv);
                     return;
             }
 
@@ -225,15 +226,15 @@ public class UtilidadesTPV {
             for (int i = 0; i < tpv.getCarrito().size(); i++) {
                 Producto producto = tpv.getCarrito().get(i);
                 //primero añadimos el nombre, el estoc y el precio de los productos añadidos
-                infoCarrito += producto.getNombre() + " x " 
-                        + producto.getStock() + " " + producto.getPrecio() 
+                infoCarrito += producto.getNombre() + " x "
+                        + producto.getStock() + " " + producto.getPrecio()
                         + "€\n";
                 //luego calculamos los precios
                 importeTotal += producto.getPrecio() * producto.getStock();
                 //llenamos las opciones de productos
                 opcionesProductos[i] = producto.getNombre();
             }
-            
+
             //por último fomateamos el precio
             infoCarrito += "*************************************\n"
                     + "\t Importe total a pagar: %.2f€\n".formatted(importeTotal);
@@ -355,8 +356,10 @@ public class UtilidadesTPV {
         //verificamos si el número es correcto
         if (UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjeta)) {
             //comprobamos la fecha
+            boolean esCorrecto = false;
 
             if (UtilidadesTarjetaNuevo.verificarFecha(fechaTarjeta, numeroTarjeta)) {
+
                 //comprobamos el cvv
                 if (UtilidadesTarjetaNuevo.verificarCVV(numeroCVV, numeroTarjeta)) {
                     //comprobamos si hay saldo
@@ -400,6 +403,7 @@ public class UtilidadesTPV {
                     }
                 }
             }
+
         }
     }
 
@@ -465,7 +469,7 @@ public class UtilidadesTPV {
                                 if (cantidad > 0 && cantidad <= productoSeleccionado.getStock()) {
                                     // Añade la cantidad especificada del producto al carrito
 
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado, cantidad);
+                                    UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado, cantidad);
 
                                     System.out.println("Producto añadido");
                                 } else {
@@ -521,9 +525,9 @@ public class UtilidadesTPV {
                                 //comprobamos que no haya o no se pase
                                 if (cantidad > 0 && cantidad <= productoSeleccionado.getStock()) {
                                     // Añade la cantidad especificada del producto al carrito
-     
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado, cantidad);
-                                    
+
+                                    UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado, cantidad);
+
                                     System.out.println("Producto añadido");
                                 } else {
                                     System.out.println("Cantidad no válida");
@@ -576,9 +580,9 @@ public class UtilidadesTPV {
                                 //comprobamos que no haya o no se pase
                                 if (cantidad > 0 && cantidad <= productoSeleccionado.getStock()) {
                                     // Añade la cantidad especificada del producto al carrito
-                                    
-                                        UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado, cantidad);
-                                    
+
+                                    UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionado, cantidad);
+
                                     System.out.println("Producto añadido");
                                 } else {
                                     System.out.println("Cantidad no válida");
@@ -659,9 +663,9 @@ public class UtilidadesTPV {
                                         //comprobamos que no haya o no se pase
                                         if (cantidad > 0 && cantidad <= productoSeleccionadoRamen.getStock()) {
                                             // Añade la cantidad especificada del producto al carrito
-                                            
-                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
-                                            
+
+                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
+
                                             System.out.println("Producto añadido");
                                         } else {
                                             System.out.println("Cantidad no válida");
@@ -785,9 +789,9 @@ public class UtilidadesTPV {
                                         //comprobamos que no haya o no se pase
                                         if (cantidad > 0 && cantidad <= productoSeleccionadoRamen.getStock()) {
                                             // Añade la cantidad especificada del producto al carrito
-                                           
-                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
-                                            
+
+                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
+
                                             System.out.println("Producto añadido");
                                         } else {
                                             System.out.println("Cantidad no válida");
@@ -866,9 +870,9 @@ public class UtilidadesTPV {
                                         //comprobamos que no haya o no se pase
                                         if (cantidad > 0 && cantidad <= productoSeleccionadoRamen.getStock()) {
                                             // Añade la cantidad especificada del producto al carrito
-                                            
-                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
-                                            
+
+                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
+
                                             System.out.println("Producto añadido");
                                         } else {
                                             System.out.println("Cantidad no válida");
@@ -928,9 +932,9 @@ public class UtilidadesTPV {
                                         //comprobamos que no haya o no se pase
                                         if (cantidad > 0 && cantidad <= productoSeleccionadoRamen.getStock()) {
                                             // Añade la cantidad especificada del producto al carrito
-                                           
-                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
-                                            
+
+                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
+
                                             System.out.println("Producto añadido");
                                         } else {
                                             System.out.println("Cantidad no válida");
@@ -989,9 +993,9 @@ public class UtilidadesTPV {
                                         //comprobamos que no haya o no se pase
                                         if (cantidad > 0 && cantidad <= productoSeleccionadoRamen.getStock()) {
                                             // Añade la cantidad especificada del producto al carrito
-                                            
-                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
-                                            
+
+                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
+
                                             System.out.println("Producto añadido");
                                         } else {
                                             System.out.println("Cantidad no válida");
@@ -1070,9 +1074,9 @@ public class UtilidadesTPV {
                                         //comprobamos que no haya o no se pase
                                         if (cantidad > 0 && cantidad <= productoSeleccionadoMochi.getStock()) {
                                             // Añade la cantidad especificada del producto al carrito
-                                            
-                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoMochi, cantidad);
-                                            
+
+                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoMochi, cantidad);
+
                                             System.out.println("Producto añadido");
                                         } else {
                                             System.out.println("Cantidad no válida");
@@ -1133,9 +1137,9 @@ public class UtilidadesTPV {
                                         //comprobamos que no haya o no se pase
                                         if (cantidad > 0 && cantidad <= productoSeleccionadoRamen.getStock()) {
                                             // Añade la cantidad especificada del producto al carrito
-                                           
-                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
-                                            
+
+                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoRamen, cantidad);
+
                                             System.out.println("Producto añadido");
                                         } else {
                                             System.out.println("Cantidad no válida");
@@ -1196,8 +1200,8 @@ public class UtilidadesTPV {
                                         if (cantidad > 0 && cantidad <= productoSeleccionadoOtros.getStock()) {
                                             // Añade la cantidad especificada del producto al carrito
 
-                                                UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoOtros, cantidad);
-                                            
+                                            UtilidadesTPV.agregarAlCarrito(tpv, productoSeleccionadoOtros, cantidad);
+
                                             System.out.println("Producto añadido");
                                         } else {
                                             System.out.println("Cantidad no válida");
@@ -1221,6 +1225,38 @@ public class UtilidadesTPV {
             }
 
         } while (!salirCategorias);
+    }
+
+    public static void apagarTPV(TPV tpv) {
+        List<Producto> carrito = tpv.getProductos();
+        if (!carrito.isEmpty()) {
+            
+            List<Producto> catalogo = CatalogoCarta.cartaMenu(); // Obtener la lista de productos de catalogoCarta
+
+            for (Producto productoCarrito : carrito) {
+                // Verificar si el producto del carrito ya existe en el catalogoCarta
+                boolean productoEnCatalogo = false;
+
+                for (Producto productoCatalogo : catalogo) {
+                    if (productoCatalogo.getCodProducto().equals(productoCarrito.getCodProducto())) {
+                        // Actualizar los atributos del producto en catalogoCarta
+                        productoCatalogo.setPrecio(productoCarrito.getPrecio());
+                        productoCatalogo.setPrecio(productoCarrito.getPrecio());
+                        productoCatalogo.setStock(productoCarrito.getStock());
+                        productoEnCatalogo = true;
+                        break;
+                    }
+                }
+
+                // Si el producto no existe en catalogoCarta, agregarlo
+                if (!productoEnCatalogo) {
+                    catalogo.add(productoCarrito);
+                }
+            }
+
+            // Limpiar la lista de productos del carrito
+            carrito.clear();
+        }
     }
 
 }

@@ -26,6 +26,5 @@ public class Prueba {
         
         //añadir un método pa apagartpv
         
-        //poner el return bien en los metodos del admin
     }
 }

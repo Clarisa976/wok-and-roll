@@ -324,7 +324,7 @@ public class MetodosAdmin {
                 }
                 case "Salir" -> {
                     System.out.println("volver a inicio");
-                    MetodosAdmin.modoMantenimiento(tpv);
+                    UtilidadesTPV.apagarTPV(tpv);
                 }
             }
 
