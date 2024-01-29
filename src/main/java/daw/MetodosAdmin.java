@@ -184,7 +184,7 @@ public class MetodosAdmin {
 
                                 if (opcionElegida != 1) {
                                     //creamos un producto auxiliar para modificarlo
-                                    
+
                                     Producto productoSeleccionado = listaBebidas
                                             .get(Arrays.asList(opcionesProductosBebidas)
                                                     .indexOf(seleccionProductoBebidas));
@@ -228,7 +228,7 @@ public class MetodosAdmin {
 
                                 if (opcionElegida != 1) {
                                     //creamos un producto auxiliar para modificarlo
-                                    
+
                                     Producto productoSeleccionado = listaPostre
                                             .get(Arrays.asList(opcionesProductosPostre)
                                                     .indexOf(seleccionProductoPostre));
@@ -266,7 +266,7 @@ public class MetodosAdmin {
                         }
                         case "Salir" -> {
                             System.out.println("Volviendo al menú de mantenimiento");
-                            
+
                             return;
                         }
                     }
@@ -306,7 +306,7 @@ public class MetodosAdmin {
                                             .indexOf(seleccionProducto));
 
                             System.out.println(productoSeleccionado.toString());
-                            
+
                             //metodos para borrarlo
                             borrarProducto(productoSeleccionado, tpv);
                             System.out.println("borrado");
@@ -346,7 +346,7 @@ public class MetodosAdmin {
         if (!opcionUsuarioAdmin.equals(null)) {
             return opcionUsuarioAdmin;
         } else {
-            opcionUsuarioAdmin= "Salir";
+            opcionUsuarioAdmin = "Salir";
             return opcionUsuarioAdmin;
         }
     }
@@ -400,6 +400,9 @@ public class MetodosAdmin {
                         System.out.println("Introduce un número entero");
                     }
                     comidaAux.setStock(nuevoStock);
+                }
+                case "Volver" -> {
+                    return;
                 }
             }
         }
@@ -461,6 +464,9 @@ public class MetodosAdmin {
                     }
                     bebidaAux.setStock(nuevoStock);
                 }
+                case "Volver" -> {
+                    return;
+                }
             }
         }
     }
@@ -520,6 +526,9 @@ public class MetodosAdmin {
                         System.out.println("Introduce un número entero");
                     }
                     postreAux.setStock(nuevoStock);
+                }
+                case "Volver" -> {
+                    return;
                 }
             }
         }
@@ -668,7 +677,7 @@ public class MetodosAdmin {
                     JOptionPane.showInputDialog(
                             "Introduce el nuevo stock del producto"));
         } catch (NumberFormatException nfe) {
-            
+
             System.out.println("Introduce un número entero");
         }
         postreAux.setStock(nuevoStock);
