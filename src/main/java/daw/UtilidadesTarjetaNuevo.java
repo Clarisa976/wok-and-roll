@@ -83,11 +83,12 @@ public class UtilidadesTarjetaNuevo {
 
     //método para pedir la fecha de caducidad al cliente
     public static LocalDate pedirFechaTarjeta() {
+int diaTarjeta = LocalDate.MIN.getDayOfMonth();
+    int mesTarjeta = 0;
+    int anioTarjeta = 0;
+    boolean datosCorrectos = false;
 
-        int diaTarjeta = LocalDate.MIN.getDayOfMonth();
-        int mesTarjeta = 0;
-        int anioTarjeta = 0;
-
+    while (!datosCorrectos) {
         try {
             String mesNumero = JOptionPane.showInputDialog(
                     "Introduce el mes en el que caduca tu tarjeta");
@@ -95,13 +96,7 @@ public class UtilidadesTarjetaNuevo {
             if (mesTarjeta < 1 || mesTarjeta > 12) {
                 throw new IllegalArgumentException("Has introducido un mes no válido");
             }
-        } catch (IllegalArgumentException iae) {
-            JOptionPane.showMessageDialog(null,
-                    "Has introducido un mes no válido. "
-                    + "Por favor, introduce un número entre 1 y 12");
-        }
 
-        try {
             String anioNumero = JOptionPane.showInputDialog(
                     "Introduce el año en el que caduca tu tarjeta");
             anioTarjeta = pedirNumeroEntero(anioNumero);
@@ -110,15 +105,51 @@ public class UtilidadesTarjetaNuevo {
             if (anioTarjeta <= anioActual) {
                 throw new IllegalArgumentException("El año debe ser posterior al año actual");
             }
+
+            datosCorrectos = true; // Si llegamos aquí, los datos son correctos
         } catch (IllegalArgumentException iae) {
-            JOptionPane.showMessageDialog(null,
-                    "El año debe ser posterior al año actual");
+            JOptionPane.showMessageDialog(null, iae.getMessage());
         }
-
-        LocalDate fechaTarjeta = LocalDate.of(anioTarjeta, mesTarjeta, diaTarjeta);
-
-        return fechaTarjeta;
     }
+
+    LocalDate fechaTarjeta = LocalDate.of(anioTarjeta, mesTarjeta, diaTarjeta);
+    return fechaTarjeta;
+}
+//        int diaTarjeta = LocalDate.MIN.getDayOfMonth();
+//        int mesTarjeta = 0;
+//        int anioTarjeta = 0;
+//
+//        try {
+//            String mesNumero = JOptionPane.showInputDialog(
+//                    "Introduce el mes en el que caduca tu tarjeta");
+//            mesTarjeta = pedirNumeroEntero(mesNumero);
+//            if (mesTarjeta < 1 || mesTarjeta > 12) {
+//                throw new IllegalArgumentException("Has introducido un mes no válido");
+//            }
+//        } catch (IllegalArgumentException iae) {
+//            JOptionPane.showMessageDialog(null,
+//                    "Has introducido un mes no válido. "
+//                    + "Por favor, introduce un número entre 1 y 12");
+//        }
+//
+//        try {
+//            String anioNumero = JOptionPane.showInputDialog(
+//                    "Introduce el año en el que caduca tu tarjeta");
+//            anioTarjeta = pedirNumeroEntero(anioNumero);
+//            LocalDate fechaActual = LocalDate.now();
+//            int anioActual = fechaActual.getYear();
+//            if (anioTarjeta <= anioActual) {
+//                throw new IllegalArgumentException("El año debe ser posterior al año actual");
+//            }
+//        } catch (IllegalArgumentException iae) {
+//            JOptionPane.showMessageDialog(null,
+//                    "El año debe ser posterior al año actual");
+//        }
+//
+//        LocalDate fechaTarjeta = LocalDate.of(anioTarjeta, mesTarjeta, diaTarjeta);
+//
+//        return fechaTarjeta;
+//    }
 
     //método para verificar la fecha de la tarjeta
     public static boolean verificarFecha(LocalDate fecha, String numeroCliente) {
