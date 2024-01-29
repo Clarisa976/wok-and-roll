@@ -272,10 +272,10 @@ public class MetodosAdmin {
                     }
 
                 }
-                
+
                 case "Borrar producto" -> {
-                    
-                    List<Producto> listaProducto = CatalogoCarta.cartaMenu();
+
+                    List<Producto> listaProducto = tpv.getProductos();
                     String[] opcionesProductos = new String[listaProducto.size()];
                     MetodosProductos.mostrarProd(listaProducto, opcionesProductos);
 
@@ -300,14 +300,15 @@ public class MetodosAdmin {
                                 opcionesElegidas[0]);
 
                         if (opcionElegida == 0) {
-
                             //creamos un producto auxiliar para borrarlo
                             Producto productoSeleccionado = listaProducto
                                     .get(Arrays.asList(opcionesProductos)
                                             .indexOf(seleccionProducto));
 
+                            System.out.println(productoSeleccionado.toString());
+                            
                             //metodos para borrarlo
-                            borrarProducto(productoSeleccionado);
+                            borrarProducto(productoSeleccionado, tpv);
                             System.out.println("borrado");
 
                         } else if (opcionElegida == 1) {
@@ -666,15 +667,16 @@ public class MetodosAdmin {
                     JOptionPane.showInputDialog(
                             "Introduce el nuevo stock del producto"));
         } catch (NumberFormatException nfe) {
+            
             System.out.println("Introduce un número entero");
         }
         postreAux.setStock(nuevoStock);
 
         return postreAux;
     }
-    
+
     //borrar Producto 
-    public static void borrarProducto(Producto producto) {
+    public static void borrarProducto(Producto producto, TPV tpv) {
 
         // si no es nulo
         if (producto != null) {
@@ -682,39 +684,12 @@ public class MetodosAdmin {
             // recorremos la lista para ver si el producto esta en la lista de 
             // comida y en el caso en el que este lo borro de la lista de comidas
             // y del catalogo de productos
-            for (Comida comida : CatalogoCarta.comidasBD()) {
+            for (Producto productoAux : tpv.getProductos()) {
 
                 // si tiene el mismo nombre se borra de las 2 listas
-                if (producto.getNombre().equalsIgnoreCase(comida.getNombre())) {
+                if (producto.getNombre().equalsIgnoreCase(productoAux.getNombre())) {
 
-                    CatalogoCarta.comidasBD().remove(comida);
-                    CatalogoCarta.cartaMenu().remove(comida);
-
-                    break;
-                }
-            }
-
-            // recorro la lista igualmente para ver si es bebida y la borro
-            for (Bebida bebida : CatalogoCarta.bebidasBD()) {
-                
-                // si tiene el mismo nombre se borra de las 2 listas
-                if (producto.getNombre().equalsIgnoreCase(bebida.getNombre())) {
-
-                    CatalogoCarta.bebidasBD().remove(bebida);
-                    CatalogoCarta.cartaMenu().remove(bebida);
-
-                    break;
-                }
-            }
-            
-            // recorro la lista igualmente para ver si es postre y la borro
-            for (Postre postre : CatalogoCarta.postresBD()) {
-
-                // si tiene el mismo nombre se borra de las 2 listas
-                if (producto.getNombre().equalsIgnoreCase(postre.getNombre())) {
-
-                    CatalogoCarta.comidasBD().remove(postre);
-                    CatalogoCarta.cartaMenu().remove(postre);
+                    tpv.getProductos().remove(productoAux);
 
                     break;
                 }
