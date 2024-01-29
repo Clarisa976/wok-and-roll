@@ -118,7 +118,6 @@ public class UtilidadesTPV {
     public static void encenderTPV(TPV tpv) {
 
 //        TPV tpv = new TPV();
-
         //generamos y mostrabmos la contraseña del administrador
         System.out.println("Contraseña: " + tpv.getPassAdministrador());
 
@@ -1342,24 +1341,38 @@ public class UtilidadesTPV {
                 for (Producto productoCatalogo : catalogo) {
                     //hacemos instanceof para buscar cada clase hija de Producto
                     if (productoCatalogo instanceof Comida comidaAux) {
-                        if(productoCatalogo.getCodProducto().equals(comidaAux.getCodProducto())){
+                        if (productoCatalogo.getCodProducto().equals(comidaAux.getCodProducto())) {
                             productoCatalogo.setNombre(comidaAux.getNombre());
                             ((Comida) productoCatalogo).setDescripcionComida(comidaAux.getDescripcionComida());
                             ((Comida) productoCatalogo).setTipoComida(comidaAux.getTipoComida());
                             productoCatalogo.setPrecio(comidaAux.getPrecio());
                             productoCatalogo.setStock(comidaAux.getStock());
                             productoCatalogo.setTipoIVA(comidaAux.getTipoIVA());
-                            
+
+                        }
+                    } else if (productoCatalogo instanceof Bebida bebidaAux) {
+                        if (productoCatalogo.getCodProducto().equals(bebidaAux.getCodProducto())) {
+                            productoCatalogo.setNombre(bebidaAux.getNombre());
+                            ((Bebida) productoCatalogo).setTamanioBebida(bebidaAux.getTamanioBebida());
+                            ((Bebida) productoCatalogo).setTipoBebida(bebidaAux.getTipoBebida());
+                            productoCatalogo.setPrecio(bebidaAux.getPrecio());
+                            productoCatalogo.setStock(bebidaAux.getStock());
+                            productoCatalogo.setTipoIVA(bebidaAux.getTipoIVA());
+
+                        }
+                    } else if (productoCatalogo instanceof Postre postreAux) {
+                        if (productoCatalogo.getCodProducto().equals(postreAux.getCodProducto())) {
+                            productoCatalogo.setNombre(postreAux.getNombre());
+                            ((Postre) productoCatalogo).setKcal(postreAux.getKcal());
+                            ((Postre) productoCatalogo).setTipoPostre(postreAux.getTipoPostre());
+                            productoCatalogo.setPrecio(postreAux.getPrecio());
+                            productoCatalogo.setStock(postreAux.getStock());
+                            productoCatalogo.setTipoIVA(postreAux.getTipoIVA());
+
                         }
                     }
-//                    if (productoCatalogo.getCodProducto().equals(productoAux.getCodProducto())) {
-//                        // Actualizar los atributos del producto en catalogoCarta
-//                        productoCatalogo.setNombre(productoAux.getNombre());                
-//                        productoCatalogo.setPrecio(productoAux.getPrecio());
-//                        productoCatalogo.setStock(productoAux.getStock());
-//                        productoEnCatalogo = true;
-//                        break;
-//                    }
+
+                    break;
                 }
 
                 //si el producto no existe se agrega
@@ -1372,30 +1385,30 @@ public class UtilidadesTPV {
             productosTPV.clear();
         }
     }
-    
-    public static void gestionarTPV() {
-    String[] opciones = {"Encender TPV", "Apagar TPV"};
-    boolean continuar = false;
-    //Creamos el TPV
-    TPV tpv = new TPV(); 
-    //Creamos la lista de productos
-    List<Producto> productosTPV = CatalogoCarta.cartaMenu();
-    
-    while (!continuar) {
-        int respuesta = JOptionPane.showOptionDialog(null,
-                "¿Quieres encender o apagar el TPV?",
-                "TPV",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.PLAIN_MESSAGE, null,
-                opciones, opciones[0]);
 
-        if (respuesta != 1) {
-            encenderTPV(tpv);
-        } else if (respuesta != 0) {
-            apagarTPV(tpv, productosTPV);
-            continuar = true;
-        } 
+    public static void gestionarTPV() {
+        String[] opciones = {"Encender TPV", "Apagar TPV"};
+        boolean continuar = false;
+        //Creamos el TPV
+        TPV tpv = new TPV();
+        //Creamos la lista de productos
+        List<Producto> productosTPV = CatalogoCarta.cartaMenu();
+
+        while (!continuar) {
+            int respuesta = JOptionPane.showOptionDialog(null,
+                    "¿Quieres encender o apagar el TPV?",
+                    "TPV",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null,
+                    opciones, opciones[0]);
+
+            if (respuesta != 1) {
+                encenderTPV(tpv);
+            } else if (respuesta != 0) {
+                apagarTPV(tpv, productosTPV);
+                continuar = true;
+            }
+        }
     }
-}
 
 }
