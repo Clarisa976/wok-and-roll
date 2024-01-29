@@ -202,13 +202,14 @@ public class MetodosProductos {
     }
 
     public static void mostrarProductosPostre(List<Producto> aux, String[] opciones) {
+        int contador = 0;
         for (int i = 0; i < aux.size(); i++) {
             Producto tmp = aux.get(i);
             if (tmp instanceof Postre postreAux) {
-                opciones[i] = postreAux.getNombre() + " - Precio: "
+                opciones[contador] = postreAux.getNombre() + " - Precio: "
                         + postreAux.getPrecio() + "€";
+                contador++;
             }
-
         }
     }
 
@@ -235,7 +236,7 @@ public class MetodosProductos {
                     + postre.getPrecio() + "€";
         }
     }
-    
+
     // mostrar todos los productos
     public static void mostrarProd(List<Producto> aux, String[] opciones) {
         for (int i = 0; i < aux.size(); i++) {

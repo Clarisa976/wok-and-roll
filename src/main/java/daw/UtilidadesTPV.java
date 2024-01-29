@@ -457,7 +457,7 @@ public class UtilidadesTPV {
 
                         String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                 "Selecciona un producto",
-                                "Wok and Roll -- DAWFOOD --",
+                                "Wok and Roll -- DAWFOOD -- Comidas",
                                 JOptionPane.QUESTION_MESSAGE,
                                 null,
                                 opcionesProductos,
@@ -514,7 +514,7 @@ public class UtilidadesTPV {
 
                         String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                 "Selecciona un producto",
-                                "Wok and Roll -- DAWFOOD --",
+                                "Wok and Roll -- DAWFOOD -- Bebidas",
                                 JOptionPane.QUESTION_MESSAGE,
                                 null,
                                 opcionesProductos,
@@ -568,7 +568,7 @@ public class UtilidadesTPV {
 
                         String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                 "Selecciona un producto",
-                                "Wok and Roll -- DAWFOOD --",
+                                "Wok and Roll -- DAWFOOD -- Postres",
                                 JOptionPane.QUESTION_MESSAGE,
                                 null,
                                 opcionesProductos,
