@@ -1380,6 +1380,7 @@ public class UtilidadesTPV {
             encenderTPV(tpv);
         } else if (respuesta == 1) {
             apagarTPV(tpv, productosTPV);
+            continuar = true;
         } 
     }
 }

@@ -30,7 +30,7 @@ public class MetodosAdmin {
         String contrasenia = JOptionPane.showInputDialog("Introduce la contraseña.");
         return contrasenia;
     }
-
+/*
     //método para dar de alta un nuevo producto
     public static void bajaProducto(CatalogoCarta catalogoCarta, Producto productoABorrar) {
 
@@ -44,7 +44,7 @@ public class MetodosAdmin {
 
         catalogoCarta.setCarta(catalogoCartaTmp);
     }
-
+*/
     //consultar todos los tickets del tpv
     public static void consultarTickets(TPV tpv) {
         List<Ticket> listaTickets = tpv.getListaTickets();
