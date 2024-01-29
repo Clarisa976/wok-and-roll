@@ -31,6 +31,11 @@ public class UtilidadesTPV {
 
             producto.setStock(producto.getStock() - cantidad); // reduce el stock del producto
             tpv.setCarrito(carritoTmp);
+            //calcula el precio con IVA y lo muestra
+            productoParaAgregar.calcularPrecio();
+            double precioConIVA = productoParaAgregar.getPrecioConIVA();
+            System.out.println("Producto añadido al carrito: " + productoParaAgregar.getNombre()
+                    + " - Precio con IVA: " + String.format("%.2f", precioConIVA) + "€");
         } else {
             System.out.println("No hay suficiente stock del artículo seleccionado.");
         }
@@ -158,7 +163,8 @@ public class UtilidadesTPV {
                 //si elige salir se apagará el programa
                 case "Salir":
                     System.out.println("Apagar TPV");
-//                    apagarTPV(tpv);
+                    //apagarTPV(tpv);
+                    System.out.println("Bye!!");
                     return;
             }
 
@@ -226,10 +232,10 @@ public class UtilidadesTPV {
                 Producto producto = tpv.getCarrito().get(i);
                 //primero añadimos el nombre, el estoc y el precio de los productos añadidos
                 infoCarrito += producto.getNombre() + " x "
-                        + producto.getStock() + " " + producto.getPrecioSinIVA()
+                        + producto.getStock() + " " + producto.getPrecioConIVA()
                         + "€\n";
                 //luego calculamos los precios
-                importeTotal += producto.getPrecioSinIVA() * producto.getStock();
+                importeTotal += producto.getPrecioConIVA() * producto.getStock();
                 //llenamos las opciones de productos
                 opcionesProductos[i] = producto.getNombre();
             }
@@ -1352,74 +1358,6 @@ public class UtilidadesTPV {
         } while (!salirCategorias);
     }
 
-    public static void apagarTPV(TPV tpv, List<Producto> productosTPV) {
-
-//        if (!productosTPV.isEmpty()) {
-//            //obtenemos la lista del menu
-//            List<Producto> catalogo = CatalogoCarta.cartaMenu();
-//            productosTPV = tpv.getProductos();
-//
-//            //creamos una lista de productos donde se guardarán los existentes y la llenamos con los productos que hay en la tpv
-//            List<Producto> productosSinCambios = new ArrayList<>(productosTPV);
-//
-//            for (Producto productoAux : productosTPV) {
-//                //comprobamos que el producto ya exista
-//                boolean productoEnCatalogo = false;
-//
-//                for (Producto productoCatalogo : catalogo) {
-//                    //hacemos instanceof para buscar cada clase hija de Producto
-//                    if (productoCatalogo.getCodProducto().equals(productoAux.getCodProducto())) {
-//                        productoEnCatalogo = true; //encontramos el producto en el catálogo
-//
-//                        //actualizamos los atributos que se hayan podido cambiar
-//                        if (productoCatalogo instanceof Comida && productoAux instanceof Comida) {
-//                            productoCatalogo.setNombre(productoAux.getNombre());
-//                            ((Comida) productoCatalogo).setDescripcionComida(((Comida) productoAux).getDescripcionComida());
-//                            ((Comida) productoCatalogo).setTipoComida(((Comida) productoAux).getTipoComida());
-//                            productoCatalogo.setPrecio(productoAux.getPrecio());
-//                            productoCatalogo.setStock(productoAux.getStock());
-//                            productoCatalogo.setTipoIVA(productoAux.getTipoIVA());
-//                        } else if (productoCatalogo instanceof Bebida && productoAux instanceof Bebida) {
-//                            productoCatalogo.setNombre(productoAux.getNombre());
-//                            ((Bebida) productoCatalogo).setTamanioBebida(((Bebida) productoAux).getTamanioBebida());
-//                            ((Bebida) productoCatalogo).setTipoBebida(((Bebida) productoAux).getTipoBebida());
-//                            productoCatalogo.setPrecio(productoAux.getPrecio());
-//                            productoCatalogo.setStock(productoAux.getStock());
-//                            productoCatalogo.setTipoIVA(productoAux.getTipoIVA());
-//                        } else if (productoCatalogo instanceof Postre && productoAux instanceof Postre) {
-//                            productoCatalogo.setNombre(productoAux.getNombre());
-//                            ((Postre) productoCatalogo).setKcal(((Postre) productoAux).getKcal());
-//                            ((Postre) productoCatalogo).setTipoPostre(((Postre) productoAux).getTipoPostre());
-//                            productoCatalogo.setPrecio(productoAux.getPrecio());
-//                            productoCatalogo.setStock(productoAux.getStock());
-//                            productoCatalogo.setTipoIVA(productoAux.getTipoIVA());
-//                        }
-//
-//                        break;
-//                    }
-//                }
-//
-//                //si el producto no existe se agrega
-//                if (!productoEnCatalogo) {
-//                    catalogo.add(productoAux);
-//                }
-//            }
-//            //comprobamos los productos ya cambiados con los que ya teníamos
-//            for (int i = 0; i < productosTPV.size(); i++) {
-//                Producto viejo = productosSinCambios.get(i);
-//                Producto nuevo = productosTPV.get(i);
-//                //si no son igual se muestra
-//                System.out.println("Productos actualizados: \n");
-//                if(!viejo.equals(nuevo)){
-//                    System.out.println(nuevo.toString());
-//                }
-//            }
-//
-//            //borramos la lista del tpv para que al iniciar no cree conflictos
-//            productosTPV.clear();
-//        }
-    }
-
     public static void gestionarTPV() {
         String[] opciones = {"Encender TPV", "Apagar TPV"};
         boolean continuar = false;
@@ -1443,6 +1381,12 @@ public class UtilidadesTPV {
                 continuar = true;
             }
         }
+    }
+
+    public static void apagarTPV(TPV tpv, List<Producto> productosTPV) {
+
+        /*cuando se puedan guardar los artículos en una base de datos
+        servirá ello mientras no funciona*/
     }
 
 }
