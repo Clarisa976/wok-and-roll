@@ -26,5 +26,10 @@ public enum TipoIVA {
         this.valor = valor;
         this.descripcion = descripcion;
     }
+
+    public double getValor() {
+        return valor;
+    }
+    
     
 }

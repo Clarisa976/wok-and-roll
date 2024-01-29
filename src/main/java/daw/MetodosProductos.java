@@ -185,7 +185,7 @@ public class MetodosProductos {
             Producto tmp = aux.get(i);
             if (tmp instanceof Comida comidaAux) {
                 opciones[contador] = comidaAux.getNombre() + " - Precio: "
-                        + comidaAux.getPrecio() + "€";
+                        + comidaAux.getPrecioSinIVA() + "€";
                 contador++;
             }
         }
@@ -197,7 +197,7 @@ public class MetodosProductos {
             Producto tmp = aux.get(i);
             if (tmp instanceof Bebida bebidaAux) {
                 opciones[contador] = bebidaAux.getNombre() + " - Precio: "
-                        + bebidaAux.getPrecio() + "€";
+                        + bebidaAux.getPrecioSinIVA() + "€";
                 contador++;
             }
         }
@@ -209,7 +209,7 @@ public class MetodosProductos {
             Producto tmp = aux.get(i);
             if (tmp instanceof Postre postreAux) {
                 opciones[contador] = postreAux.getNombre() + " - Precio: "
-                        + postreAux.getPrecio() + "€";
+                        + postreAux.getPrecioSinIVA() + "€";
                 contador++;
             }
         }
@@ -219,7 +219,7 @@ public class MetodosProductos {
         for (int i = 0; i < aux.size(); i++) {
             Comida comida = aux.get(i);
             opciones[i] = comida.getNombre() + " - Precio: "
-                    + comida.getPrecio() + "€";
+                    + comida.getPrecioSinIVA() + "€";
         }
     }
 
@@ -227,7 +227,7 @@ public class MetodosProductos {
         for (int i = 0; i < aux.size(); i++) {
             Bebida bebida = aux.get(i);
             opciones[i] = bebida.getNombre() + " - Precio: "
-                    + bebida.getPrecio() + "€";
+                    + bebida.getPrecioSinIVA() + "€";
         }
     }
 
@@ -235,7 +235,7 @@ public class MetodosProductos {
         for (int i = 0; i < aux.size(); i++) {
             Postre postre = aux.get(i);
             opciones[i] = postre.getNombre() + " - Precio: "
-                    + postre.getPrecio() + "€";
+                    + postre.getPrecioSinIVA() + "€";
         }
     }
 
@@ -244,7 +244,7 @@ public class MetodosProductos {
         for (int i = 0; i < aux.size(); i++) {
             Producto producto = aux.get(i);
             opciones[i] = producto.getNombre() + " - Precio: "
-                    + producto.getPrecio() + "€";
+                    + producto.getPrecioSinIVA() + "€";
         }
     }
 }

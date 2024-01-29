@@ -11,12 +11,13 @@ import org.apache.commons.lang3.RandomStringUtils;
  *
  * @author clara
  */
-public class Producto {
+public final class Producto {
 
     //atributos
     private final String codProducto;
     private String nombre;
-    private double precio;
+    private double precioSinIVA;
+    private double precioConIVA;
     private TipoIVA tipoIVA;//21% para las bebidas alcohólicas y 10% para el resto
     private int stock;
 
@@ -24,7 +25,8 @@ public class Producto {
     public Producto(String nombre, double precioSinIVA, TipoIVA tipoIVA, int stock) {
         this.codProducto = RandomStringUtils.randomNumeric(5);
         this.nombre = nombre;
-        this.precio = precioSinIVA;
+        this.precioSinIVA = precioSinIVA;
+        this.precioConIVA = calcularPrecio();
         this.tipoIVA = tipoIVA;
         this.stock = stock;
     }
@@ -32,7 +34,6 @@ public class Producto {
     public Producto() {
         this.codProducto = RandomStringUtils.randomNumeric(5);
     }
-
 
     //getters
     public String getCodProducto() {
@@ -43,8 +44,8 @@ public class Producto {
         return nombre;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getPrecioSinIVA() {
+        return precioSinIVA;
     }
 
     public TipoIVA getTipoIVA() {
@@ -55,15 +56,18 @@ public class Producto {
         return stock;
     }
 
+    public double getPrecioConIVA() {
+        return precioConIVA;
+    }
+
     //setters
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setPrecioSinIVA(double precioSinIVA) {
+        this.precioSinIVA = precioSinIVA;
     }
-
 
     public void setStock(int stock) {
         this.stock = stock;
@@ -71,6 +75,10 @@ public class Producto {
 
     public void setTipoIVA(TipoIVA tipoIVA) {
         this.tipoIVA = tipoIVA;
+    }
+
+    public void setPrecioConIVA(double precioConIVA) {
+        this.precioConIVA = precioConIVA;
     }
 
     //hashcode
@@ -104,23 +112,15 @@ public class Producto {
         sb.append("Producto{");
         sb.append("código del producto: ").append(codProducto);
         sb.append(", nombre: ").append(nombre);
-        sb.append(", precio: ").append(precio);
+        sb.append(", precio sin IVA: ").append(precioSinIVA);
+        sb.append(", precio con IVA: ").append(precioSinIVA);
         sb.append(", tipo de IVA: ").append(tipoIVA);
         sb.append(", stock: ").append(stock);
         return sb.toString();
     }
-//    //método para calcular el precio con iva
-//    public static double calcularPrecio() {
-//        Producto p = new Producto();
-//        //tipos de IVA
-//        final int DIEZ = 10;
-//        final int VEINTIUNO = 21;
-//        int porcentaje = (p.getTipoIVA()
-//                .equals(TipoIVA.IVA_DIEZ)) ? DIEZ : VEINTIUNO;
-//
-//        double precioFinal = p.getPrecioSinIVA() + ((porcentaje / 100)
-//                * p.getPrecioSinIVA());
-//
-//        return precioFinal;
-//    }
+//    //método para calcular el precioSinIVA con iva
+    public double calcularPrecio() {
+        double valorIVA = tipoIVA.getValor();
+        return precioConIVA = precioSinIVA * (1 + valorIVA);        
+    }
 }

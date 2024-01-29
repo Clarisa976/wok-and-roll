@@ -25,7 +25,7 @@ public class UtilidadesTPV {
         if (producto.getStock() >= cantidad) {
             // Crea una nueva instancia del producto con el stock ajustado a la cantidad
             Producto productoParaAgregar = new Producto(producto.getNombre(),
-                    producto.getPrecio(), producto.getTipoIVA(),
+                    producto.getPrecioSinIVA(), producto.getTipoIVA(),
                     cantidad);
             carritoTmp.add(productoParaAgregar);
 
@@ -70,7 +70,7 @@ public class UtilidadesTPV {
 
         for (Producto producto : carritoTmp) {
 
-            importeTotal += producto.getPrecio();
+            importeTotal += producto.getPrecioSinIVA();
         }
 
         Map<Producto, Integer> mapCantidadProductos = new HashMap<>();
@@ -226,10 +226,10 @@ public class UtilidadesTPV {
                 Producto producto = tpv.getCarrito().get(i);
                 //primero añadimos el nombre, el estoc y el precio de los productos añadidos
                 infoCarrito += producto.getNombre() + " x "
-                        + producto.getStock() + " " + producto.getPrecio()
+                        + producto.getStock() + " " + producto.getPrecioSinIVA()
                         + "€\n";
                 //luego calculamos los precios
-                importeTotal += producto.getPrecio() * producto.getStock();
+                importeTotal += producto.getPrecioSinIVA() * producto.getStock();
                 //llenamos las opciones de productos
                 opcionesProductos[i] = producto.getNombre();
             }
@@ -450,8 +450,15 @@ public class UtilidadesTPV {
                 case "Ver todo":
 
                     if (nombreCategoria.equalsIgnoreCase("comidas")) {
-                        List<Producto> listaComida = tpv.getProductos();
-//                        List<Comida> listaComida = CatalogoCarta.comidasBD();
+                        List<Producto> listaProductos = tpv.getProductos();
+
+                        List<Producto> listaComida = new ArrayList<>();
+
+                        for (Producto producto : listaProductos) {
+                            if (producto instanceof Comida) {
+                                listaComida.add(producto);
+                            }
+                        }
                         String[] opcionesProductos = new String[listaComida.size()];
                         MetodosProductos.mostrarProductosComida(listaComida, opcionesProductos);
 
@@ -506,8 +513,15 @@ public class UtilidadesTPV {
 
                         break;
                     } else if (nombreCategoria.equalsIgnoreCase("bebidas")) {
-                        List<Producto> listaBebida = tpv.getProductos();
-//                        List<Bebida> listaBebida = CatalogoCarta.bebidasBD();
+                        List<Producto> listaProductos = tpv.getProductos();
+
+                        List<Producto> listaBebida = new ArrayList<>();
+
+                        for (Producto producto : listaProductos) {
+                            if (producto instanceof Bebida) {
+                                listaBebida.add(producto);
+                            }
+                        }
                         String[] opcionesProductos = new String[listaBebida.size()];
 
                         MetodosProductos.mostrarProductosBebida(listaBebida, opcionesProductos);
@@ -561,11 +575,16 @@ public class UtilidadesTPV {
                             }
                         }
                     } else if (nombreCategoria.equalsIgnoreCase("postres")) {
-                        List<Producto> listaPostre = tpv.getProductos();
-                        //List<Postre> listaPostre = CatalogoCarta.postresBD();
+                        List<Producto> listaProductos = tpv.getProductos();
+                        List<Producto> listaPostre = new ArrayList<>();
+
+                        for (Producto producto : listaProductos) {
+                            if (producto instanceof Postre) {
+                                listaPostre.add(producto);
+                            }
+                        }
                         String[] opcionesProductos = new String[listaPostre.size()];
                         MetodosProductos.mostrarProductosPostre(listaPostre, opcionesProductos);
-
                         String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                 "Selecciona un producto",
                                 "Wok and Roll -- DAWFOOD -- Postres",
@@ -850,7 +869,7 @@ public class UtilidadesTPV {
                         }
                         //en caso de elegir ver bebidas:
                     } else if (nombreCategoria.equalsIgnoreCase("bebidas")) {
-                        
+
                         String[] opcionesSubCategorias = {"Refrescos", "Alcoholicas", "Otras", "Volver"};
                         //mensaje de JOptionPane par mostrar las opciones de comida
                         int opcionSubCategorias = JOptionPane.showOptionDialog(null,
@@ -1085,7 +1104,7 @@ public class UtilidadesTPV {
                         }
                         //en caso de ver postres
                     } else if (nombreCategoria.equalsIgnoreCase("postres")) {
-                        
+
                         String[] opcionesSubCategorias = {"Mochi", "Frutita", "Otros", "Volver"};
                         //mensaje de JOptionPane par mostrar las opciones de comida
                         int opcionSubCategorias = JOptionPane.showOptionDialog(null,
@@ -1334,9 +1353,7 @@ public class UtilidadesTPV {
     }
 
     public static void apagarTPV(TPV tpv, List<Producto> productosTPV) {
-        
-        
-        
+
 //        if (!productosTPV.isEmpty()) {
 //            //obtenemos la lista del menu
 //            List<Producto> catalogo = CatalogoCarta.cartaMenu();
@@ -1401,7 +1418,6 @@ public class UtilidadesTPV {
 //            //borramos la lista del tpv para que al iniciar no cree conflictos
 //            productosTPV.clear();
 //        }
-
     }
 
     public static void gestionarTPV() {
