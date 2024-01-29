@@ -1361,7 +1361,7 @@ public class UtilidadesTPV {
     }
     
     public static void gestionarTPV() {
-    String[] opciones = {"Encender TPV", "Apagar TPV", "Salir"};
+    String[] opciones = {"Encender TPV", "Apagar TPV"};
     boolean continuar = false;
     //Creamos el TPV
     TPV tpv = new TPV(); 
@@ -1371,7 +1371,7 @@ public class UtilidadesTPV {
     while (!continuar) {
         int respuesta = JOptionPane.showOptionDialog(null,
                 "¿Quieres encender o apagar el TPV?",
-                "Gestión del TPV",
+                "TPV",
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE, null,
                 opciones, opciones[0]);
@@ -1380,9 +1380,7 @@ public class UtilidadesTPV {
             encenderTPV(tpv);
         } else if (respuesta == 1) {
             apagarTPV(tpv, productosTPV);
-        } else if (respuesta == 2) {
-            continuar = false; // Salir del bucle
-        }
+        } 
     }
 }
 
