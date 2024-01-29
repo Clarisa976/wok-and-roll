@@ -51,20 +51,30 @@ public class MetodosAdmin {
         if (!listaTickets.isEmpty()) {
             String[] opcionesTickets = new String[listaTickets.size()];
             for (int i = 0; i < listaTickets.size(); i++) {
-                opcionesTickets[i] = listaTickets.get(i).toString();
+                //mostramos un resumen del ticket en el desplegable
+                opcionesTickets[i] = "Ticket " + (i + 1) + ": " + listaTickets.get(i).getIdPedido();
             }
             String seleccionTicket = (String) JOptionPane.showInputDialog(null,
                     "Consultar las ventas", "Wok and roll -- DAWFOOD", JOptionPane.QUESTION_MESSAGE,
                     null, opcionesTickets, opcionesTickets[0]);
+
+            //mostramos el ticket completo del ticket seleccionado
+            if (seleccionTicket != null) {
+                int indiceSeleccionado = Arrays.asList(opcionesTickets).indexOf(seleccionTicket);
+                JOptionPane.showMessageDialog(null, listaTickets.get(indiceSeleccionado).toString());
+            }
         } else {
             JOptionPane.showMessageDialog(null, "No se ha vendido nada");
         }
-//        tpv.getListaTickets();
-//        if (!(tpv.getListaTickets().isEmpty())) {
-//            Ticket TodasLasVentas = (Ticket) JOptionPane.showInputDialog(null,
+//        List<Ticket> listaTickets = tpv.getListaTickets();
+//        if (!listaTickets.isEmpty()) {
+//            String[] opcionesTickets = new String[listaTickets.size()];
+//            for (int i = 0; i < listaTickets.size(); i++) {
+//                opcionesTickets[i] = listaTickets.get(i).toString();
+//            }
+//            String seleccionTicket = (String) JOptionPane.showInputDialog(null,
 //                    "Consultar las ventas", "Wok and roll -- DAWFOOD", JOptionPane.QUESTION_MESSAGE,
-//                    null, tpv.getListaTickets().toArray(),
-//                    tpv.getListaTickets().get(0));
+//                    null, opcionesTickets, opcionesTickets[0]);
 //        } else {
 //            JOptionPane.showMessageDialog(null, "No se ha vendido nada");
 //        }
@@ -107,10 +117,10 @@ public class MetodosAdmin {
 
         //iniciamos el bucle
         do {
-           //creamos las opciones del admin
-        String[] opcionesUsuarioAdmin = {"Modificar producto", "Dar de alta un producto",
-            "Borrar producto", "Ver ventas", "Salir"};
-        int opcionUsuarioAdmin = JOptionPane.showOptionDialog(null,
+            //creamos las opciones del admin
+            String[] opcionesUsuarioAdmin = {"Modificar producto", "Dar de alta un producto",
+                "Borrar producto", "Ver ventas", "Salir"};
+            int opcionUsuarioAdmin = JOptionPane.showOptionDialog(null,
                     "Seleccione una opción",
                     "Wok and Roll -- DAWFOOD -- Modo Usuario",
                     JOptionPane.DEFAULT_OPTION,
@@ -351,7 +361,7 @@ public class MetodosAdmin {
                 "Wok and Roll -- DAWFOOD -- Modo Mantenimiento",
                 JOptionPane.QUESTION_MESSAGE, null,
                 opcionesUsuarioAdmin, opcionesUsuarioAdmin[0]);
-        
+
         if (!opcionUsuarioAdmin.equals(null)) {
             return opcionUsuarioAdmin;
         } else {
@@ -410,7 +420,7 @@ public class MetodosAdmin {
                     }
                     comidaAux.setStock(nuevoStock);
                 }
-                
+
             }
         }
     }
