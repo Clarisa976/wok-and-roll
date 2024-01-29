@@ -31,15 +31,19 @@ public class UtilidadesTarjetaNuevo {
                 estaRegistrada = true;
                 return estaRegistrada;
             }
-
         }
         return estaRegistrada;
     }
 
     //método para pedir la tarjeta al usuario usando JOptionPane
     public static String pedirTarjeta() {
+
+        boolean valida = true;
+        String numeroTarjeta = "";
+
         String mensajeNumero = JOptionPane.showInputDialog("Introduce los cuatro últimos dígitos de tu tarjeta.");
-        String numeroTarjeta = pedirNumeroString(mensajeNumero);
+        numeroTarjeta = pedirNumeroString(mensajeNumero);
+
         return numeroTarjeta;
     }
 
@@ -175,7 +179,6 @@ public class UtilidadesTarjetaNuevo {
 
     // método para verificar si una tarjeta es válida y tiene saldo suficiente
     public static boolean verificarTarjetaCompleto(double importeTotal) {
-
 
         boolean estaBien = false;
 

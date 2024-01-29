@@ -345,7 +345,6 @@ public class UtilidadesTPV {
             JOptionPane.showMessageDialog(null, "El carrito esta vacío...");
             modoUsuario(tpv);
         }
-
     }
 
     //método para confirmar que la tarjeta es correcta y pagar
@@ -356,16 +355,14 @@ public class UtilidadesTPV {
         //verificamos si el número es correcto
         if (UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjeta)) {
             //comprobamos la fecha
-            boolean esCorrecto = false;
+            boolean esCorrecto = true;
 
             if (UtilidadesTarjetaNuevo.verificarFecha(fechaTarjeta, numeroTarjeta)) {
-
-                //comprobamos el cvv
                 if (UtilidadesTarjetaNuevo.verificarCVV(numeroCVV, numeroTarjeta)) {
                     //comprobamos si hay saldo
                     if (UtilidadesTarjetaNuevo.saldoSuficiente(numeroTarjeta, importeTotal)) {
-                        /*si hay saldo usamos un for para buscar esa tarjeta en 
-                        la lista de tarjetas creadas y restarle la cantidad*/
+                        /*si hay saldo usamos un for para buscar esa tarjeta en
+                                                la lista de tarjetas creadas y restarle la cantidad*/
                         for (int i = 0; i < Tarjeta.tarjetasRegistradasBD().size(); i++) {
                             if (numeroTarjeta.equals(Tarjeta.tarjetasRegistradasBD()
                                     .get(i).getNumeroTarjeta()
@@ -404,7 +401,6 @@ public class UtilidadesTPV {
                     }
                 }
             }
-
         }
     }
 
@@ -1231,7 +1227,7 @@ public class UtilidadesTPV {
     public static void apagarTPV(TPV tpv) {
         List<Producto> carrito = tpv.getProductos();
         if (!carrito.isEmpty()) {
-            
+
             List<Producto> catalogo = CatalogoCarta.cartaMenu(); // Obtener la lista de productos de catalogoCarta
 
             for (Producto productoCarrito : carrito) {
