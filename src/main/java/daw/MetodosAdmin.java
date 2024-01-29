@@ -26,11 +26,12 @@ import javax.swing.JOptionPane;
  */
 public class MetodosAdmin {
 
+    //método para pedir una contraseña
     public static String pedirContrasenia() {
         String contrasenia = JOptionPane.showInputDialog("Introduce la contraseña.");
         return contrasenia;
     }
-
+    //método para ver las opciones del administrador del tpv
     public static void modoMantenimiento(TPV tpv) {
         boolean salirAdmin = false;
 
