@@ -1101,13 +1101,13 @@ public class UtilidadesTPV {
                         switch (opcionesSubCategorias[opcionSubCategorias]) {
 
                             case "Mochi":
-//                                listaPostreTmp = tpv.getProductos();
+                                listaPostreTmp = tpv.getProductos();
                                 List<Postre> listaPostres = new ArrayList<>();
 
                                 for (Producto postre : listaPostreTmp) {
                                     if (postre instanceof Postre postreAux) {
                                         if (postreAux.getTipoPostre().equals(TipoPostre.MOCHI)) {
-                                            listaPostreTmp.add(postreAux);
+                                            listaPostres.add(postreAux);
                                         }
                                     }
                                 }
@@ -1181,7 +1181,7 @@ public class UtilidadesTPV {
                                 for (Producto postre : listaPostreTmp) {
                                     if (postre instanceof Postre postreAux) {
                                         if (postreAux.getTipoPostre().equals(TipoPostre.FRUTITA)) {
-                                            listaPostreTmp.add(postreAux);
+                                            listaFrutitas.add(postreAux);
                                         }
                                     }
                                 }
@@ -1253,7 +1253,7 @@ public class UtilidadesTPV {
                                 for (Producto postre : listaPostreTmp) {
                                     if (postre instanceof Postre postreAux) {
                                         if (postreAux.getTipoPostre().equals(TipoPostre.OTROS)) {
-                                            listaPostreTmp.add(postreAux);
+                                            listaOtras.add(postreAux);
                                         }
                                     }
                                 }
@@ -1334,6 +1334,8 @@ public class UtilidadesTPV {
     }
 
     public static void apagarTPV(TPV tpv, List<Producto> productosTPV) {
+        
+        
         
 //        if (!productosTPV.isEmpty()) {
 //            //obtenemos la lista del menu
