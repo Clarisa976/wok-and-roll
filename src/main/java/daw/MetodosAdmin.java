@@ -107,10 +107,18 @@ public class MetodosAdmin {
 
         //iniciamos el bucle
         do {
-            String opcionesUsuarioAdmin = MetodosAdmin.opcionesUsuarioAdministrador();
+           //creamos las opciones del admin
+        String[] opcionesUsuarioAdmin = {"Modificar producto", "Dar de alta un producto",
+            "Borrar producto", "Ver ventas", "Salir"};
+        int opcionUsuarioAdmin = JOptionPane.showOptionDialog(null,
+                    "Seleccione una opción",
+                    "Wok and Roll -- DAWFOOD -- Modo Usuario",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null,
+                    opcionesUsuarioAdmin, opcionesUsuarioAdmin[0]);
 
             //switch con las diferentes opciones dadas
-            switch (opcionesUsuarioAdmin) {
+            switch (opcionesUsuarioAdmin[opcionUsuarioAdmin]) {
                 //con cada opcion llamamos a su método correspondiente
                 //si elige salir vuelve al menú de inicio
                 case "Modificar producto" -> {
@@ -343,6 +351,7 @@ public class MetodosAdmin {
                 "Wok and Roll -- DAWFOOD -- Modo Mantenimiento",
                 JOptionPane.QUESTION_MESSAGE, null,
                 opcionesUsuarioAdmin, opcionesUsuarioAdmin[0]);
+        
         if (!opcionUsuarioAdmin.equals(null)) {
             return opcionUsuarioAdmin;
         } else {
@@ -401,9 +410,7 @@ public class MetodosAdmin {
                     }
                     comidaAux.setStock(nuevoStock);
                 }
-                case "Volver" -> {
-                    return;
-                }
+                
             }
         }
     }
