@@ -1340,13 +1340,26 @@ public class UtilidadesTPV {
                 boolean productoEnCatalogo = false;
 
                 for (Producto productoCatalogo : catalogo) {
-                    if (productoCatalogo.getCodProducto().equals(productoAux.getCodProducto())) {
-                        // Actualizar los atributos del producto en catalogoCarta
-                        productoCatalogo.setPrecio(productoAux.getPrecio());
-                        productoCatalogo.setStock(productoAux.getStock());
-                        productoEnCatalogo = true;
-                        break;
+                    //hacemos instanceof para buscar cada clase hija de Producto
+                    if (productoCatalogo instanceof Comida comidaAux) {
+                        if(productoCatalogo.getCodProducto().equals(comidaAux.getCodProducto())){
+                            productoCatalogo.setNombre(comidaAux.getNombre());
+                            ((Comida) productoCatalogo).setDescripcionComida(comidaAux.getDescripcionComida());
+                            ((Comida) productoCatalogo).setTipoComida(comidaAux.getTipoComida());
+                            productoCatalogo.setPrecio(comidaAux.getPrecio());
+                            productoCatalogo.setStock(comidaAux.getStock());
+                            productoCatalogo.setTipoIVA(comidaAux.getTipoIVA());
+                            
+                        }
                     }
+//                    if (productoCatalogo.getCodProducto().equals(productoAux.getCodProducto())) {
+//                        // Actualizar los atributos del producto en catalogoCarta
+//                        productoCatalogo.setNombre(productoAux.getNombre());                
+//                        productoCatalogo.setPrecio(productoAux.getPrecio());
+//                        productoCatalogo.setStock(productoAux.getStock());
+//                        productoEnCatalogo = true;
+//                        break;
+//                    }
                 }
 
                 //si el producto no existe se agrega
@@ -1376,9 +1389,9 @@ public class UtilidadesTPV {
                 JOptionPane.PLAIN_MESSAGE, null,
                 opciones, opciones[0]);
 
-        if (respuesta == 0) {
+        if (respuesta != 1) {
             encenderTPV(tpv);
-        } else if (respuesta == 1) {
+        } else if (respuesta != 0) {
             apagarTPV(tpv, productosTPV);
             continuar = true;
         } 
