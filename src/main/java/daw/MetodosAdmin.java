@@ -31,6 +31,7 @@ public class MetodosAdmin {
         String contrasenia = JOptionPane.showInputDialog("Introduce la contraseña.");
         return contrasenia;
     }
+
     //método para ver las opciones del administrador del tpv
     public static void modoMantenimiento(TPV tpv) {
         boolean salirAdmin = false;
@@ -56,8 +57,15 @@ public class MetodosAdmin {
                     switch (opciones) {
                         case "Comidas":
                             List<Producto> lista = tpv.getProductos();
-                            String[] opcionesProductos = new String[lista.size()];
-                            MetodosProductos.mostrarProductosComida(lista, opcionesProductos);
+                            List<Producto> listaComida = new ArrayList<>();
+                            //recorremos la listaComida de todos los productos y agregamos los que son de tipo comida
+                            for (Producto producto : lista) {
+                                if (producto instanceof Comida) {
+                                    listaComida.add(producto);                                    
+                                }
+                            }
+                            String[] opcionesProductos = new String[listaComida.size()];
+                            MetodosProductos.mostrarProductosComida(listaComida, opcionesProductos);
 
                             String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                     "Selecciona un producto",
@@ -84,20 +92,33 @@ public class MetodosAdmin {
                                     Producto productoSeleccionado = tpv.getProductos()
                                             .get(Arrays.asList(opcionesProductos)
                                                     .indexOf(seleccionProducto));
-
+                                    //comprobamos que el producto seleccionado sea comida
+                                    if(productoSeleccionado instanceof Comida){
                                     //metodos para pedir que modificar y tal
                                     MetodosAdmin.modificarComida((Comida) productoSeleccionado,
                                             MetodosProductos.elegirCategoriaACambiarComdia());
+                                    }else{
+                                        System.out.println("Nada que hacer aquí");
+                                    }
                                 } else if (opcionElegida != 0) {
                                     System.out.println("volver");
                                     return;
                                 }
                             }
                             break;
+
                         case "Bebidas":
-                            List<Producto> listaBebidas = tpv.getProductos();
+                            List<Producto> listaProductos = tpv.getProductos();
+                            List<Producto> listaBebidas = new ArrayList<>();
+                            //recorremos la listaComida de todos los productos y agregamos los que son de tipo bebida
+                            for (Producto producto : listaProductos) {
+                                if (producto instanceof Bebida) {
+                                    listaBebidas.add(producto);
+                                }
+                            }
                             String[] opcionesProductosBebidas = new String[listaBebidas.size()];
-                            MetodosProductos.mostrarProductosBebida(listaBebidas, opcionesProductosBebidas);
+                            MetodosProductos.mostrarProductosBebida(listaBebidas,
+                                    opcionesProductosBebidas);
 
                             String seleccionProductoBebidas = (String) JOptionPane.showInputDialog(null,
                                     "Selecciona un producto",
@@ -126,10 +147,14 @@ public class MetodosAdmin {
                                     Producto productoSeleccionado = listaBebidas
                                             .get(Arrays.asList(opcionesProductosBebidas)
                                                     .indexOf(seleccionProductoBebidas));
-
-                                    //metodos para pedir que modificar y tal
-                                    MetodosAdmin.modificarBebida((Bebida) productoSeleccionado,
-                                            MetodosProductos.elegirCategoriaACambiarBebida());
+                                    //controlamos que el producto seleccionado sea bebida
+                                    if (productoSeleccionado instanceof Bebida) {
+                                        //metodos para pedir que modificar y tal
+                                        MetodosAdmin.modificarBebida((Bebida) productoSeleccionado,
+                                                MetodosProductos.elegirCategoriaACambiarBebida());
+                                    } else {
+                                        System.out.println("Nada que hacer aquí");
+                                    }
                                 } else if (opcionElegida != 0) {
                                     System.out.println("volver");
                                     return;
@@ -138,8 +163,16 @@ public class MetodosAdmin {
                             break;
 
                         case "Postres":
-
-                            List<Producto> listaPostre = tpv.getProductos();
+                            
+                            List<Producto> listaProducto = tpv.getProductos();
+                            List<Producto> listaPostre = new ArrayList<>();
+                            //recorremos la listaComida de todos los productos y agregamos los que son de tipo postre
+                            for (Producto producto : listaProducto) {
+                                if (producto instanceof Postre) {
+                                    listaPostre.add(producto);                                    
+                                }
+                            }
+                            //creamos el array para almacenar los productos que se vana  mostrar
                             String[] opcionesProductosPostre = new String[listaPostre.size()];
                             MetodosProductos.mostrarProductosPostre(listaPostre, opcionesProductosPostre);
 
@@ -166,14 +199,17 @@ public class MetodosAdmin {
 
                                 if (opcionElegida != 1) {
                                     //creamos un producto auxiliar para modificarlo
-
                                     Producto productoSeleccionado = listaPostre
                                             .get(Arrays.asList(opcionesProductosPostre)
                                                     .indexOf(seleccionProductoPostre));
-
+                                    //controlamos que el producto seleccionado sea un postre
+                                    if(productoSeleccionado instanceof Postre){
                                     //metodos para pedir que modificar y tal
                                     MetodosAdmin.modificarPostre((Postre) productoSeleccionado,
-                                            MetodosProductos.elegirCategoriaACambiarBebida());
+                                            MetodosProductos.elegirCategoriaACambiarPostre());
+                                    }else{
+                                        System.out.println("Nada que hacer aquí");
+                                    }
                                 } else if (opcionElegida != 0) {
                                     System.out.println("volver");
                                     return;
@@ -268,9 +304,8 @@ public class MetodosAdmin {
             }
 
         } while (!salirAdmin);
-    }
+    } //consultar todos los tickets del tpv
 
-    //consultar todos los tickets del tpv
     public static void consultarTickets(TPV tpv) {
         List<Ticket> listaTickets = tpv.getListaTickets();
         if (!listaTickets.isEmpty()) {
@@ -663,8 +698,8 @@ public class MetodosAdmin {
         // si no es nulo
         if (producto != null) {
 
-            // recorremos la lista para ver si el producto esta en la lista de 
-            // comida y en el caso en el que este lo borro de la lista de comidas
+            // recorremos la listaComida para ver si el producto esta en la listaComida de 
+            // comida y en el caso en el que este lo borro de la listaComida de comidas
             // y del catalogo de productos
             for (Producto productoAux : tpv.getProductos()) {
 
