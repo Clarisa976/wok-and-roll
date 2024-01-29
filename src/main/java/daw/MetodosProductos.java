@@ -180,23 +180,25 @@ public class MetodosProductos {
     }
 
     public static void mostrarProductosComida(List<Producto> aux, String[] opciones) {
+        int contador = 0;
         for (int i = 0; i < aux.size(); i++) {
             Producto tmp = aux.get(i);
             if (tmp instanceof Comida comidaAux) {
-                opciones[i] = comidaAux.getNombre() + " - Precio: "
-                        + comidaAux.getPrecio();
-
+                opciones[contador] = comidaAux.getNombre() + " - Precio: "
+                        + comidaAux.getPrecio() + "€";
+                contador++;
             }
         }
     }
 
     public static void mostrarProductosBebida(List<Producto> aux, String[] opciones) {
+        int contador = 0;
         for (int i = 0; i < aux.size(); i++) {
             Producto tmp = aux.get(i);
             if (tmp instanceof Bebida bebidaAux) {
-                opciones[i] = bebidaAux.getNombre() + " - Precio: "
-                        + bebidaAux.getPrecio();
-
+                opciones[contador] = bebidaAux.getNombre() + " - Precio: "
+                        + bebidaAux.getPrecio() + "€";
+                contador++;
             }
         }
     }
