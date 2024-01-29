@@ -9,10 +9,10 @@ package daw;
  *
  * @author clara
  */
-public class Prueba {
+public class Main {
 
-    /**
-     * @param args the command line arguments
+    /*
+     https://github.com/Clarisa976/wok-and-roll.git
      */
     public static void main(String[] args) {
         UtilidadesTPV.gestionarTPV();
