@@ -115,9 +115,9 @@ public class UtilidadesTPV {
     }
 
     //método para encender el tpv
-    public static void encenderTPV() {
+    public static void encenderTPV(TPV tpv) {
 
-        TPV tpv = new TPV();
+//        TPV tpv = new TPV();
 
         //generamos y mostrabmos la contraseña del administrador
         System.out.println("Contraseña: " + tpv.getPassAdministrador());
@@ -349,136 +349,84 @@ public class UtilidadesTPV {
      */
     //método para confirmar que la tarjeta es correcta y pagar
     private static void pagar(TPV tpv, double importeTotal) {
-            boolean datosCorrectos = false;
-    String numeroTarjeta = "";
-    LocalDate fechaTarjeta = null;
-    String numeroCVV = "";
-    do {
-        numeroTarjeta = UtilidadesTarjetaNuevo.pedirTarjeta();
-        if (UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjeta)) {
-            do {
-                fechaTarjeta = UtilidadesTarjetaNuevo.pedirFechaTarjeta();
-                if (UtilidadesTarjetaNuevo.verificarFecha(fechaTarjeta, numeroTarjeta)) {
-                    do {
-                        numeroCVV = UtilidadesTarjetaNuevo.pedirCVV();
-                        if (UtilidadesTarjetaNuevo.verificarCVV(numeroCVV, numeroTarjeta)) {
-                            datosCorrectos = true;
-                        } else {
-                            System.out.println("El CVV introducido no es correcto. Por favor, inténtelo de nuevo.");
-                        }
-                    } while (!datosCorrectos);
-                } else {
-                    System.out.println("La fecha introducida no es correcta. Por favor, inténtelo de nuevo.");
-                }
-            } while (!datosCorrectos);
-        } else {
-            System.out.println("El número de tarjeta introducido no es correcto. Por favor, inténtelo de nuevo.");
-        }
-    } while (!datosCorrectos);
-
-    //verificamos si el número es correcto
-    if (UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjeta)) {
-        //comprobamos la fecha
-        boolean esCorrecto = true;
-
-        if (UtilidadesTarjetaNuevo.verificarFecha(fechaTarjeta, numeroTarjeta)) {
-            if (UtilidadesTarjetaNuevo.verificarCVV(numeroCVV, numeroTarjeta)) {
-                //comprobamos si hay saldo
-                if (UtilidadesTarjetaNuevo.saldoSuficiente(numeroTarjeta, importeTotal)) {
-                    /*si hay saldo usamos un for para buscar esa tarjeta en
-                                            la lista de tarjetas creadas y restarle la cantidad*/
-                    for (int i = 0; i < Tarjeta.tarjetasRegistradasBD().size(); i++) {
-                        if (numeroTarjeta.equals(Tarjeta.tarjetasRegistradasBD()
-                                .get(i).getNumeroTarjeta()
-                                .substring(Tarjeta.tarjetasRegistradasBD()
-                                        .get(i).getNumeroTarjeta()
-                                        .length() - 4,
-                                        Tarjeta.tarjetasRegistradasBD()
-                                                .get(i).getNumeroTarjeta()
-                                                .length()))) {
-                            Tarjeta.tarjetasRegistradasBD().get(i)
-                                    .setSaldoTarjeta(Tarjeta.tarjetasRegistradasBD()
-                                            .get(i).getSaldoTarjeta()
-                                            - importeTotal);
-                        }
+        boolean datosCorrectos = false;
+        String numeroTarjeta = "";
+        LocalDate fechaTarjeta = null;
+        String numeroCVV = "";
+        do {
+            numeroTarjeta = UtilidadesTarjetaNuevo.pedirTarjeta();
+            if (UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjeta)) {
+                do {
+                    fechaTarjeta = UtilidadesTarjetaNuevo.pedirFechaTarjeta();
+                    if (UtilidadesTarjetaNuevo.verificarFecha(fechaTarjeta, numeroTarjeta)) {
+                        do {
+                            numeroCVV = UtilidadesTarjetaNuevo.pedirCVV();
+                            if (UtilidadesTarjetaNuevo.verificarCVV(numeroCVV, numeroTarjeta)) {
+                                datosCorrectos = true;
+                            } else {
+                                System.out.println("El CVV introducido no es correcto. Por favor, inténtelo de nuevo.");
+                            }
+                        } while (!datosCorrectos);
+                    } else {
+                        System.out.println("La fecha introducida no es correcta. Por favor, inténtelo de nuevo.");
                     }
-                    //restamso la cantidad total de stock de la base de datos creada
-                    for (Producto cesta : tpv.getCarrito()) {
-                        for (Producto menu : tpv.getProductos()) {
-                            if (cesta.equals(menu)) {
-                                menu.setStock(menu.getStock() - cesta.getStock());
+                } while (!datosCorrectos);
+            } else {
+                System.out.println("El número de tarjeta introducido no es correcto. Por favor, inténtelo de nuevo.");
+            }
+        } while (!datosCorrectos);
 
+        //verificamos si el número es correcto
+        if (UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjeta)) {
+            //comprobamos la fecha
+            boolean esCorrecto = true;
+
+            if (UtilidadesTarjetaNuevo.verificarFecha(fechaTarjeta, numeroTarjeta)) {
+                if (UtilidadesTarjetaNuevo.verificarCVV(numeroCVV, numeroTarjeta)) {
+                    //comprobamos si hay saldo
+                    if (UtilidadesTarjetaNuevo.saldoSuficiente(numeroTarjeta, importeTotal)) {
+                        /*si hay saldo usamos un for para buscar esa tarjeta en
+                                            la lista de tarjetas creadas y restarle la cantidad*/
+                        for (int i = 0; i < Tarjeta.tarjetasRegistradasBD().size(); i++) {
+                            if (numeroTarjeta.equals(Tarjeta.tarjetasRegistradasBD()
+                                    .get(i).getNumeroTarjeta()
+                                    .substring(Tarjeta.tarjetasRegistradasBD()
+                                            .get(i).getNumeroTarjeta()
+                                            .length() - 4,
+                                            Tarjeta.tarjetasRegistradasBD()
+                                                    .get(i).getNumeroTarjeta()
+                                                    .length()))) {
+                                Tarjeta.tarjetasRegistradasBD().get(i)
+                                        .setSaldoTarjeta(Tarjeta.tarjetasRegistradasBD()
+                                                .get(i).getSaldoTarjeta()
+                                                - importeTotal);
                             }
                         }
+                        //restamso la cantidad total de stock de la base de datos creada
+                        for (Producto cesta : tpv.getCarrito()) {
+                            for (Producto menu : tpv.getProductos()) {
+                                if (cesta.equals(menu)) {
+                                    menu.setStock(menu.getStock() - cesta.getStock());
+
+                                }
+                            }
+                        }
+                        //creamos el ticket
+                        Ticket tmp = new Ticket(new ArrayList<Producto>(
+                                tpv.getCarrito()), importeTotal,
+                                LocalDateTime.now());
+                        System.out.println("pagado correctamente");
+                        JOptionPane.showMessageDialog(null, tmp);
+                        //agregamos los productos al ticket
+                        tpv.getListaTickets().add(tmp);
+                        tmp.toString();
+                        //nos aseguramos de que se vacía la cesta
+                        tpv.getCarrito().clear();
                     }
-                    //creamos el ticket
-                    Ticket tmp = new Ticket(new ArrayList<Producto>(
-                            tpv.getCarrito()), importeTotal,
-                            LocalDateTime.now());
-                    System.out.println("pagado correctamente");
-                    JOptionPane.showMessageDialog(null, tmp);
-                    //agregamos los productos al ticket
-                    tpv.getListaTickets().add(tmp);
-                    tmp.toString();
-                    //nos aseguramos de que se vacía la cesta
-                    tpv.getCarrito().clear();
                 }
             }
         }
-    }
-//        String numeroTarjeta = UtilidadesTarjetaNuevo.pedirTarjeta();
-//        LocalDate fechaTarjeta = UtilidadesTarjetaNuevo.pedirFechaTarjeta();
-//        String numeroCVV = UtilidadesTarjetaNuevo.pedirCVV();
-//        //verificamos si el número es correcto
-//        if (UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjeta)) {
-//            //comprobamos la fecha
-//            boolean esCorrecto = true;
-//
-//            if (UtilidadesTarjetaNuevo.verificarFecha(fechaTarjeta, numeroTarjeta)) {
-//                if (UtilidadesTarjetaNuevo.verificarCVV(numeroCVV, numeroTarjeta)) {
-//                    //comprobamos si hay saldo
-//                    if (UtilidadesTarjetaNuevo.saldoSuficiente(numeroTarjeta, importeTotal)) {
-//                        /*si hay saldo usamos un for para buscar esa tarjeta en
-//                                                la lista de tarjetas creadas y restarle la cantidad*/
-//                        for (int i = 0; i < Tarjeta.tarjetasRegistradasBD().size(); i++) {
-//                            if (numeroTarjeta.equals(Tarjeta.tarjetasRegistradasBD()
-//                                    .get(i).getNumeroTarjeta()
-//                                    .substring(Tarjeta.tarjetasRegistradasBD()
-//                                            .get(i).getNumeroTarjeta()
-//                                            .length() - 4,
-//                                            Tarjeta.tarjetasRegistradasBD()
-//                                                    .get(i).getNumeroTarjeta()
-//                                                    .length()))) {
-//                                Tarjeta.tarjetasRegistradasBD().get(i)
-//                                        .setSaldoTarjeta(Tarjeta.tarjetasRegistradasBD()
-//                                                .get(i).getSaldoTarjeta()
-//                                                - importeTotal);
-//                            }
-//                        }
-//                        //restamso la cantidad total de stock de la base de datos creada
-//                        for (Producto cesta : tpv.getCarrito()) {
-//                            for (Producto menu : tpv.getProductos()) {
-//                                if (cesta.equals(menu)) {
-//                                    menu.setStock(menu.getStock() - cesta.getStock());
-//
-//                                }
-//                            }
-//                        }
-//                        //creamos el ticket
-//                        Ticket tmp = new Ticket(new ArrayList<Producto>(
-//                                tpv.getCarrito()), importeTotal,
-//                                LocalDateTime.now());
-//                        System.out.println("pagado correctamente");
-//                        JOptionPane.showMessageDialog(null, tmp);
-//                        //agregamos los productos al ticket
-//                        tpv.getListaTickets().add(tmp);
-//                        tmp.toString();
-//                        //nos aseguramos de que se vacía la cesta
-//                        tpv.getCarrito().clear();
-//                    }
-//                }
-//            }
-//        }
+
     }
 
     private static void verCategorias(String nombreCategoria, TPV tpv) {
@@ -774,7 +722,6 @@ public class UtilidadesTPV {
 //                                        listaSushi.add(comida);
 //                                    }
 //                                }
-
                                 String[] opcionesProductosSushi = new String[listaSushi.size()];
                                 MetodosProductos.mostrarProdComida(listaSushi,
                                         opcionesProductosSushi);
@@ -937,7 +884,6 @@ public class UtilidadesTPV {
 //                                        listaRefrescos.add(bebida);
 //                                    }
 //                                }
-
                                 String[] opcionesProductosRefresco = new String[listaRefrescos.size()];
                                 MetodosProductos.mostrarProdBebida(listaRefrescos,
                                         opcionesProductosRefresco);
@@ -1001,7 +947,7 @@ public class UtilidadesTPV {
                                         }
                                     }
                                 }
-                                
+
 //                                listaBebidaTmp = CatalogoCarta.bebidasBD();
 //                                List<Bebida> listaAlcoholicas = new ArrayList<>();
 //
@@ -1010,7 +956,6 @@ public class UtilidadesTPV {
 //                                        listaAlcoholicas.add(bebida);
 //                                    }
 //                                }
-
                                 String[] opcionesProductosAlcoholicas = new String[listaAlcoholicas.size()];
                                 MetodosProductos.mostrarProdBebida(listaAlcoholicas,
                                         opcionesProductosAlcoholicas);
@@ -1172,7 +1117,6 @@ public class UtilidadesTPV {
 //                                        listaPostres.add(postre);
 //                                    }
 //                                }
-
                                 String[] opcionesProductosMochi = new String[listaPostres.size()];
                                 MetodosProductos.mostrarProdPostre(listaPostres,
                                         opcionesProductosMochi);
@@ -1227,7 +1171,7 @@ public class UtilidadesTPV {
                                 }
 
                             case "Frutitas":
-                                
+
                                 listaPostreTmp = tpv.getProductos();
                                 List<Postre> listaFrutitas = new ArrayList<>();
 
@@ -1385,37 +1329,61 @@ public class UtilidadesTPV {
 
         } while (!salirCategorias);
     }
-    /*
-    public static void apagarTPV(TPV tpv) {
-        List<Producto> carrito = tpv.getProductos();
-        if (!carrito.isEmpty()) {
 
-            List<Producto> catalogo = CatalogoCarta.cartaMenu(); // Obtener la lista de productos de catalogoCarta
+    public static void apagarTPV(TPV tpv, List<Producto> productosTPV) {
+        if (!productosTPV.isEmpty()) {
+            //obtenemos la lista del menu
+            List<Producto> catalogo = CatalogoCarta.cartaMenu();
 
-            for (Producto productoCarrito : carrito) {
-                // Verificar si el producto del carrito ya existe en el catalogoCarta
+            for (Producto productoAux : productosTPV) {
+                //comprobamos que el producto ya exista
                 boolean productoEnCatalogo = false;
 
                 for (Producto productoCatalogo : catalogo) {
-                    if (productoCatalogo.getCodProducto().equals(productoCarrito.getCodProducto())) {
+                    if (productoCatalogo.getCodProducto().equals(productoAux.getCodProducto())) {
                         // Actualizar los atributos del producto en catalogoCarta
-                        productoCatalogo.setPrecio(productoCarrito.getPrecio());
-                        productoCatalogo.setPrecio(productoCarrito.getPrecio());
-                        productoCatalogo.setStock(productoCarrito.getStock());
+                        productoCatalogo.setPrecio(productoAux.getPrecio());
+                        productoCatalogo.setStock(productoAux.getStock());
                         productoEnCatalogo = true;
                         break;
                     }
                 }
 
-                // Si el producto no existe en catalogoCarta, agregarlo
+                //si el producto no existe se agrega
                 if (!productoEnCatalogo) {
-                    catalogo.add(productoCarrito);
+                    catalogo.add(productoAux);
                 }
             }
 
-            // Limpiar la lista de productos del carrito
-            carrito.clear();
+            //borramos la lista del tpv para que al iniciar no cree confictos
+            productosTPV.clear();
         }
     }
-     */
+    
+    public static void gestionarTPV() {
+    String[] opciones = {"Encender TPV", "Apagar TPV", "Salir"};
+    boolean continuar = false;
+    //Creamos el TPV
+    TPV tpv = new TPV(); 
+    //Creamos la lista de productos
+    List<Producto> productosTPV = CatalogoCarta.cartaMenu();
+    
+    while (!continuar) {
+        int respuesta = JOptionPane.showOptionDialog(null,
+                "¿Quieres encender o apagar el TPV?",
+                "Gestión del TPV",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE, null,
+                opciones, opciones[0]);
+
+        if (respuesta == 0) {
+            encenderTPV(tpv);
+        } else if (respuesta == 1) {
+            apagarTPV(tpv, productosTPV);
+        } else if (respuesta == 2) {
+            continuar = false; // Salir del bucle
+        }
+    }
+}
+
 }

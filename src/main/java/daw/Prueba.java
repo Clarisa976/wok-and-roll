@@ -16,12 +16,7 @@ public class Prueba {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //creamos un TPV
-        TPV tpv1 = new TPV();
-        
-        List<Producto> listaMenu = CatalogoCarta.cartaMenu();
-        //lo encendemos
-        UtilidadesTPV.encenderTPV();
+        UtilidadesTPV.gestionarTPV();
 
         
     }
