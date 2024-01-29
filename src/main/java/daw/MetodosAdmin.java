@@ -30,75 +30,6 @@ public class MetodosAdmin {
         String contrasenia = JOptionPane.showInputDialog("Introduce la contraseña.");
         return contrasenia;
     }
-/*
-    //método para dar de alta un nuevo producto
-    public static void bajaProducto(CatalogoCarta catalogoCarta, Producto productoABorrar) {
-
-        List<Producto> catalogoCartaTmp = catalogoCarta.getCarta();
-
-        for (Producto producto : catalogoCartaTmp) {
-            if (productoABorrar.equals(producto)) {
-                catalogoCartaTmp.remove(productoABorrar);
-            }
-        }
-
-        catalogoCarta.setCarta(catalogoCartaTmp);
-    }
-*/
-    //consultar todos los tickets del tpv
-    public static void consultarTickets(TPV tpv) {
-        List<Ticket> listaTickets = tpv.getListaTickets();
-        if (!listaTickets.isEmpty()) {
-            String[] opcionesTickets = new String[listaTickets.size()];
-            for (int i = 0; i < listaTickets.size(); i++) {
-                //mostramos un resumen del ticket en el desplegable
-                opcionesTickets[i] = "Ticket " + (i + 1) + ": " + listaTickets.get(i).getIdPedido();
-            }
-            String seleccionTicket = (String) JOptionPane.showInputDialog(null,
-                    "Consultar las ventas", "Wok and roll -- DAWFOOD", JOptionPane.QUESTION_MESSAGE,
-                    null, opcionesTickets, opcionesTickets[0]);
-
-            //mostramos el ticket completo del ticket seleccionado
-            if (seleccionTicket != null) {
-                int indiceSeleccionado = Arrays.asList(opcionesTickets).indexOf(seleccionTicket);
-                JOptionPane.showMessageDialog(null, listaTickets.get(indiceSeleccionado).toString());
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "No se ha vendido nada");
-        }
-
-    }
-
-    //consultar tickets del tpv segun un dia concreto
-    public static List<Ticket> consultarTicketsDia(TPV tpv, int diaDelMes) {
-
-        List<Ticket> listaTickets = tpv.getListaTickets();
-        List<Ticket> listaTicketsDia = new ArrayList<>();
-
-        for (Ticket ticket : listaTickets) {
-
-            if (ticket.getFechaEmision().getDayOfMonth() == diaDelMes) {
-                listaTicketsDia.add(ticket);
-            }
-        }
-
-        return listaTicketsDia;
-    }
-
-    //consultar tickets del tpv segun un dia concreto
-    public static List<Ticket> consultarTicketsFecha(TPV tpv, LocalDateTime fecha) {
-
-        List<Ticket> listaTickets = tpv.getListaTickets();
-        List<Ticket> listaTicketsFecha = new ArrayList<>();
-
-        for (Ticket ticket : listaTickets) {
-            if (ticket.getFechaEmision().isEqual(fecha)) {
-                listaTicketsFecha.add(ticket);
-            }
-        }
-
-        return listaTicketsFecha;
-    }
 
     public static void modoMantenimiento(TPV tpv) {
         boolean salirAdmin = false;
@@ -338,6 +269,60 @@ public class MetodosAdmin {
         } while (!salirAdmin);
     }
 
+    //consultar todos los tickets del tpv
+    public static void consultarTickets(TPV tpv) {
+        List<Ticket> listaTickets = tpv.getListaTickets();
+        if (!listaTickets.isEmpty()) {
+            String[] opcionesTickets = new String[listaTickets.size()];
+            for (int i = 0; i < listaTickets.size(); i++) {
+                //mostramos un resumen del ticket en el desplegable
+                opcionesTickets[i] = "Ticket " + (i + 1) + ": " + listaTickets.get(i).getIdPedido();
+            }
+            String seleccionTicket = (String) JOptionPane.showInputDialog(null,
+                    "Consultar las ventas", "Wok and roll -- DAWFOOD", JOptionPane.QUESTION_MESSAGE,
+                    null, opcionesTickets, opcionesTickets[0]);
+
+            //mostramos el ticket completo del ticket seleccionado
+            if (seleccionTicket != null) {
+                int indiceSeleccionado = Arrays.asList(opcionesTickets).indexOf(seleccionTicket);
+                JOptionPane.showMessageDialog(null, listaTickets.get(indiceSeleccionado).toString());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha vendido nada");
+        }
+
+    }
+
+    //consultar tickets del tpv segun un dia concreto
+    public static List<Ticket> consultarTicketsDia(TPV tpv, int diaDelMes) {
+
+        List<Ticket> listaTickets = tpv.getListaTickets();
+        List<Ticket> listaTicketsDia = new ArrayList<>();
+
+        for (Ticket ticket : listaTickets) {
+
+            if (ticket.getFechaEmision().getDayOfMonth() == diaDelMes) {
+                listaTicketsDia.add(ticket);
+            }
+        }
+
+        return listaTicketsDia;
+    }
+
+    //consultar tickets del tpv segun un dia concreto
+    public static List<Ticket> consultarTicketsFecha(TPV tpv, LocalDateTime fecha) {
+
+        List<Ticket> listaTickets = tpv.getListaTickets();
+        List<Ticket> listaTicketsFecha = new ArrayList<>();
+
+        for (Ticket ticket : listaTickets) {
+            if (ticket.getFechaEmision().isEqual(fecha)) {
+                listaTicketsFecha.add(ticket);
+            }
+        }
+
+        return listaTicketsFecha;
+    }
 
     //método que le pasas un Producto de tipo Comida y un String aux y elige que atributos de la comida cambiar
     public static void modificarComida(Comida comidaAux, String tmp) {

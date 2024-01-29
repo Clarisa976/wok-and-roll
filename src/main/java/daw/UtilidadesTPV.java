@@ -18,7 +18,104 @@ import javax.swing.JOptionPane;
  * @author miguel
  */
 public class UtilidadesTPV {
+//método para encender el tpv
+    public static void encenderTPV(TPV tpv) {
 
+        //generamos y mostrabmos la contraseña del administrador
+        System.out.println("Contraseña: " + tpv.getPassAdministrador());
+
+        //booleano para el bucle
+        boolean salirTPV = false;
+        //bucle para poder elegir entre usuario o administrador hasta que le den a salir
+        do {
+            //las opciones a mostrar
+            String[] opcionesInicioTPV = {"Usuario", "Administrador", "Salir"};
+
+            //mensaje de JOption para seleccionar una de las opciones
+            int opcionInicioTPV = JOptionPane.showOptionDialog(null,
+                    "Bienvenido \nPor favor seleccione una opción", "TPV",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null,
+                    opcionesInicioTPV, opcionesInicioTPV[0]);
+
+            //switch con las diferentes opciones dadas
+            switch (opcionesInicioTPV[opcionInicioTPV]) {
+                //si elige la opción usuario se llamará al método usuario para mostrar sus opciones
+                case "Usuario":
+                    System.out.println("Modo usuario");
+                    modoUsuario(tpv);
+                    break;
+                //si elige la opción administrador se mostrará el método que contiene las opciones de administrador    
+                case "Administrador":
+                    String pedirPass = MetodosAdmin.pedirContrasenia();
+                    if (tpv.getPassAdministrador().equals(pedirPass)) {
+                        MetodosAdmin.modoMantenimiento(tpv);
+
+                        System.out.println("Modo admin");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No deberías de estar por aquí.");
+                        break;
+                    }
+
+                    break;
+                //si elige salir se apagará el programa
+                case "Salir":
+                    System.out.println("Apagar TPV");
+                    //apagarTPV(tpv);
+                    System.out.println("Bye!!");
+                    return;
+            }
+
+        } while (!salirTPV);
+    }
+
+    //método para las opciones del usuario
+    private static void modoUsuario(TPV tpv) {
+        boolean salirUsuario = false;
+
+        //iniciamos el bucle
+        do {
+            //creamos las opciones del usuario
+            String[] opcionesUsuario = {"Ver comidas", "Ver bebidas",
+                "Ver postres", "Ver carrito", "Salir"};
+            //mensaje de JOptionPane par mostrar dichas opciones
+            int opcionUsuario = JOptionPane.showOptionDialog(null,
+                    "Seleccione una opción",
+                    "Wok and Roll -- DAWFOOD -- Modo Usuario",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null,
+                    opcionesUsuario, opcionesUsuario[0]);
+
+            //switch con las diferentes opciones dadas
+            switch (opcionesUsuario[opcionUsuario]) {
+                //con cada opcion llamamos a su método correspondiente
+                //si elige salir vuelve al menú de inicio
+                case "Ver comidas" -> {
+                    verCategorias("comidas", tpv);
+
+                }
+                case "Ver bebidas" -> {
+                    verCategorias("bebidas", tpv);
+
+                }
+                case "Ver postres" -> {
+                    verCategorias("postres", tpv);
+
+                }
+                case "Ver carrito" -> {
+                    verCarrito(tpv);
+
+                }
+                case "Salir" -> {
+                    System.out.println("volver a inicio");
+                    return;
+                }
+            }
+
+        } while (!salirUsuario);
+    }
+
+    //método que te permite agregar un producto seleccionado y una cantidad para meterlo en el carrito 
     public static void agregarAlCarrito(TPV tpv, Producto producto, int cantidad) {
         List<Producto> carritoTmp = tpv.getCarrito();
 
@@ -119,104 +216,7 @@ public class UtilidadesTPV {
         tpv.setCarrito(carritoTmp);
     }
 
-    //método para encender el tpv
-    public static void encenderTPV(TPV tpv) {
-
-//        TPV tpv = new TPV();
-        //generamos y mostrabmos la contraseña del administrador
-        System.out.println("Contraseña: " + tpv.getPassAdministrador());
-
-        //booleano para el bucle
-        boolean salirTPV = false;
-        //bucle para poder elegir entre usuario o administrador hasta que le den a salir
-        do {
-            //las opciones a mostrar
-            String[] opcionesInicioTPV = {"Usuario", "Administrador", "Salir"};
-
-            //mensaje de JOption para seleccionar una de las opciones
-            int opcionInicioTPV = JOptionPane.showOptionDialog(null,
-                    "Bienvenido \nPor favor seleccione una opción", "TPV",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.PLAIN_MESSAGE, null,
-                    opcionesInicioTPV, opcionesInicioTPV[0]);
-
-            //switch con las diferentes opciones dadas
-            switch (opcionesInicioTPV[opcionInicioTPV]) {
-                //si elige la opción usuario se llamará al método usuario para mostrar sus opciones
-                case "Usuario":
-                    System.out.println("Modo usuario");
-                    modoUsuario(tpv);
-                    break;
-                //si elige la opción administrador se mostrará el método que contiene las opciones de administrador    
-                case "Administrador":
-                    String pedirPass = MetodosAdmin.pedirContrasenia();
-                    if (tpv.getPassAdministrador().equals(pedirPass)) {
-                        MetodosAdmin.modoMantenimiento(tpv);
-
-                        System.out.println("Modo admin");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No deberías de estar por aquí.");
-                        break;
-                    }
-
-                    break;
-                //si elige salir se apagará el programa
-                case "Salir":
-                    System.out.println("Apagar TPV");
-                    //apagarTPV(tpv);
-                    System.out.println("Bye!!");
-                    return;
-            }
-
-        } while (!salirTPV);
-    }
-
-    //método para las opciones del usuario
-    private static void modoUsuario(TPV tpv) {
-        boolean salirUsuario = false;
-
-        //iniciamos el bucle
-        do {
-            //creamos las opciones del usuario
-            String[] opcionesUsuario = {"Ver comidas", "Ver bebidas",
-                "Ver postres", "Ver carrito", "Salir"};
-            //mensaje de JOptionPane par mostrar dichas opciones
-            int opcionUsuario = JOptionPane.showOptionDialog(null,
-                    "Seleccione una opción",
-                    "Wok and Roll -- DAWFOOD -- Modo Usuario",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.PLAIN_MESSAGE, null,
-                    opcionesUsuario, opcionesUsuario[0]);
-
-            //switch con las diferentes opciones dadas
-            switch (opcionesUsuario[opcionUsuario]) {
-                //con cada opcion llamamos a su método correspondiente
-                //si elige salir vuelve al menú de inicio
-                case "Ver comidas" -> {
-                    verCategorias("comidas", tpv);
-
-                }
-                case "Ver bebidas" -> {
-                    verCategorias("bebidas", tpv);
-
-                }
-                case "Ver postres" -> {
-                    verCategorias("postres", tpv);
-
-                }
-                case "Ver carrito" -> {
-                    verCarrito(tpv);
-
-                }
-                case "Salir" -> {
-                    System.out.println("volver a inicio");
-                    return;
-                }
-            }
-
-        } while (!salirUsuario);
-    }
-
+    
     //método para ver los productos que hay en el carrito
     private static void verCarrito(TPV tpv) {
 
@@ -288,70 +288,6 @@ public class UtilidadesTPV {
 
     }
 
-    /*
-    private static void verCarritoViejo(TPV tpv) {
-
-        //Producto productotmp = new Producto("lo que sea", 3, TipoIVA.IVA_DIEZ, 2);
-        //agregarAlCarrito(tpv, productotmp);
-        List<Producto> listaCarrito = tpv.getCarrito();
-
-        if (!listaCarrito.isEmpty()) {
-            String[] opcionesProductos = new String[listaCarrito.size()];
-
-            double totalPagar = 0;
-            for (int i = 0; i < listaCarrito.size(); i++) {
-                Producto producto = listaCarrito.get(i);
-                opcionesProductos[i] = producto.getNombre() + " - Precio: "
-                        + producto.getPrecio() + "€";
-                totalPagar += producto.getPrecio();
-            }
-
-            //mensajes para elegir
-            String seleccionProducto = (String) JOptionPane.showInputDialog(null,
-                    "Este es tu carrito actualmente:",
-                    "Elegir producto",
-                    JOptionPane.QUESTION_MESSAGE,
-                    null,
-                    opcionesProductos,
-                    opcionesProductos[0]);
-            if (seleccionProducto != null) {
-                // El usuario seleccionó un producto
-                //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                String[] opcionesElegidas = {"Pagar", "Cancelar compra", "Volver"};
-                int opcionElegida = JOptionPane.showOptionDialog(null,
-                        "¿Qué deseas hacer con este producto?",
-                        "Wok and Roll -- DAWFOOD --",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        opcionesElegidas,
-                        opcionesElegidas[0]);
-
-                //opciones de elección
-                switch (opcionesElegidas[opcionElegida]) {
-                    case "Pagar":
-                        /
-                        Tarjeta tarjetaAux = UtilidadesTarjetaNuevo.TarjetaDefinitiva(importe);
-
-                        UtilidadesTPV.finalizarCompra(tpv, tarjetaAux);
-                        System.out.println("Pagando");
-                        break;
-
-                    case "Cancelar compra":
-                        tpv.getCarrito().clear();//vaciamos el carrito
-                        break;
-                    case "Volver":
-
-                        System.out.println("Volver");
-                        return;
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "El carrito esta vacío...");
-            modoUsuario(tpv);
-        }
-    }
-     */
     //método para confirmar que la tarjeta es correcta y pagar
     private static void pagar(TPV tpv, double importeTotal) {
         boolean datosCorrectos = false;
@@ -434,6 +370,7 @@ public class UtilidadesTPV {
 
     }
 
+    //método para ver las categorías
     private static void verCategorias(String nombreCategoria, TPV tpv) {
         //atributo boolean para el bucle
         boolean salirCategorias = false;
@@ -1358,6 +1295,7 @@ public class UtilidadesTPV {
         } while (!salirCategorias);
     }
 
+    //método que te da las opciones de encender o apagar el TPV
     public static void gestionarTPV() {
         String[] opciones = {"Encender TPV", "Apagar TPV"};
         boolean continuar = false;
