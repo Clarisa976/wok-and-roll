@@ -107,10 +107,18 @@ public class MetodosAdmin {
 
         //iniciamos el bucle
         do {
-            String opcionesUsuarioAdmin = MetodosAdmin.opcionesUsuarioAdministrador();
+           //creamos las opciones del admin
+        String[] opcionesUsuarioAdmin = {"Modificar producto", "Dar de alta un producto",
+            "Borrar producto", "Ver ventas", "Salir"};
+        int opcionUsuarioAdmin = JOptionPane.showOptionDialog(null,
+                    "Seleccione una opción",
+                    "Wok and Roll -- DAWFOOD -- Modo Usuario",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null,
+                    opcionesUsuarioAdmin, opcionesUsuarioAdmin[0]);
 
             //switch con las diferentes opciones dadas
-            switch (opcionesUsuarioAdmin) {
+            switch (opcionesUsuarioAdmin[opcionUsuarioAdmin]) {
                 //con cada opcion llamamos a su método correspondiente
                 //si elige salir vuelve al menú de inicio
                 case "Modificar producto" -> {
@@ -184,7 +192,7 @@ public class MetodosAdmin {
 
                                 if (opcionElegida != 1) {
                                     //creamos un producto auxiliar para modificarlo
-                                    
+
                                     Producto productoSeleccionado = listaBebidas
                                             .get(Arrays.asList(opcionesProductosBebidas)
                                                     .indexOf(seleccionProductoBebidas));
@@ -228,7 +236,7 @@ public class MetodosAdmin {
 
                                 if (opcionElegida != 1) {
                                     //creamos un producto auxiliar para modificarlo
-                                    
+
                                     Producto productoSeleccionado = listaPostre
                                             .get(Arrays.asList(opcionesProductosPostre)
                                                     .indexOf(seleccionProductoPostre));
@@ -266,7 +274,7 @@ public class MetodosAdmin {
                         }
                         case "Salir" -> {
                             System.out.println("Volviendo al menú de mantenimiento");
-                            
+
                             return;
                         }
                     }
@@ -306,7 +314,7 @@ public class MetodosAdmin {
                                             .indexOf(seleccionProducto));
 
                             System.out.println(productoSeleccionado.toString());
-                            
+
                             //metodos para borrarlo
                             borrarProducto(productoSeleccionado, tpv);
                             System.out.println("borrado");
@@ -343,10 +351,12 @@ public class MetodosAdmin {
                 "Wok and Roll -- DAWFOOD -- Modo Mantenimiento",
                 JOptionPane.QUESTION_MESSAGE, null,
                 opcionesUsuarioAdmin, opcionesUsuarioAdmin[0]);
+        
         if (!opcionUsuarioAdmin.equals(null)) {
             return opcionUsuarioAdmin;
         } else {
-            return opcionUsuarioAdmin = "Salir";
+            opcionUsuarioAdmin = "Salir";
+            return opcionUsuarioAdmin;
         }
     }
 
@@ -400,6 +410,7 @@ public class MetodosAdmin {
                     }
                     comidaAux.setStock(nuevoStock);
                 }
+                
             }
         }
     }
@@ -460,6 +471,9 @@ public class MetodosAdmin {
                     }
                     bebidaAux.setStock(nuevoStock);
                 }
+                case "Volver" -> {
+                    return;
+                }
             }
         }
     }
@@ -519,6 +533,9 @@ public class MetodosAdmin {
                         System.out.println("Introduce un número entero");
                     }
                     postreAux.setStock(nuevoStock);
+                }
+                case "Volver" -> {
+                    return;
                 }
             }
         }
@@ -667,7 +684,7 @@ public class MetodosAdmin {
                     JOptionPane.showInputDialog(
                             "Introduce el nuevo stock del producto"));
         } catch (NumberFormatException nfe) {
-            
+
             System.out.println("Introduce un número entero");
         }
         postreAux.setStock(nuevoStock);

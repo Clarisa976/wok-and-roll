@@ -82,7 +82,7 @@ public class Ticket {
         sb.append("================================\n");
         sb.append("Productos:\n");
         for (int i = 0; i < productos.size(); i++) {
-            sb.append("- ").append(productos.get(i).getNombre()).append(" x ").append("\n");
+            sb.append("- ").append(productos.get(i).getNombre()).append("\n");
         }
         sb.append("================================\n");
         sb.append("Cantidad de Productos: ").append(productos.size()).append("\n");
