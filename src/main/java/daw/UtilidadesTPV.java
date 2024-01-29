@@ -159,7 +159,7 @@ public class UtilidadesTPV {
                 //si elige salir se apagará el programa
                 case "Salir":
                     System.out.println("Apagar TPV");
-                    apagarTPV(tpv);
+//                    apagarTPV(tpv);
                     return;
             }
 
@@ -395,7 +395,7 @@ public class UtilidadesTPV {
                                 tpv.getCarrito()), importeTotal,
                                 LocalDateTime.now());
                         System.out.println("pagado correctamente");
-                        JOptionPane.showInputDialog(tmp);
+                        JOptionPane.showMessageDialog(null, tmp);
                         //agregamos los productos al ticket
                         tpv.getListaTickets().add(tmp);
                         tmp.toString();
@@ -1227,7 +1227,7 @@ public class UtilidadesTPV {
 
         } while (!salirCategorias);
     }
-
+/*
     public static void apagarTPV(TPV tpv) {
         List<Producto> carrito = tpv.getProductos();
         if (!carrito.isEmpty()) {
@@ -1259,5 +1259,5 @@ public class UtilidadesTPV {
             carrito.clear();
         }
     }
-
+*/
 }
