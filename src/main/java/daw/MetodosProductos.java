@@ -186,7 +186,7 @@ public class MetodosProductos {
             if (tmp instanceof Comida comidaAux) {
                 opciones[contador] = comidaAux.getNombre() + " - Precio sin IVA: "
                         + comidaAux.getPrecioSinIVA() + "€" + " - Precio con IVA: "
-                        + comidaAux.getPrecioConIVA() + "€";
+                        + String.format("%.2f",comidaAux.getPrecioConIVA()) + "€";
                 contador++;
             }
         }
@@ -199,7 +199,7 @@ public class MetodosProductos {
             if (tmp instanceof Bebida bebidaAux) {
                 opciones[contador] = bebidaAux.getNombre() + " - Precio sin IVA: "
                         + bebidaAux.getPrecioSinIVA() + "€" + " - Precio con IVA: "
-                        + bebidaAux.getPrecioConIVA() + "€";
+                        + String.format("%.2f",bebidaAux.getPrecioConIVA()) + "€";
                 contador++;
             }
         }
@@ -212,7 +212,7 @@ public class MetodosProductos {
             if (tmp instanceof Postre postreAux) {
                 opciones[contador] = postreAux.getNombre() + " - Precio sin IVA: "
                         + postreAux.getPrecioSinIVA() + "€" + " - Precio con IVA: "
-                        + postreAux.getPrecioConIVA() + "€";
+                        + String.format("%.2f",postreAux.getPrecioConIVA()) + "€";
                 contador++;
             }
         }
@@ -232,7 +232,7 @@ public class MetodosProductos {
             Bebida bebida = aux.get(i);
             opciones[i] = bebida.getNombre() + " - Precio sin IVA: "
                     + bebida.getPrecioSinIVA() + "€" + " - Precio con IVA: "
-                    + bebida.getPrecioConIVA() + "€";
+                    + String.format("%.2f",bebida.getPrecioConIVA()) + "€";
         }
     }
 
@@ -241,7 +241,7 @@ public class MetodosProductos {
             Postre postre = aux.get(i);
             opciones[i] = postre.getNombre() + " - Precio sin IVA: "
                     + postre.getPrecioSinIVA() + "€" + " - Precio con IVA: "
-                    + postre.getPrecioConIVA() + "€";
+                    + String.format("%.2f",postre.getPrecioConIVA()) + "€";
         }
     }
 
@@ -251,7 +251,7 @@ public class MetodosProductos {
             Producto producto = aux.get(i);
             opciones[i] = producto.getNombre() + " - Precio sin IVA: "
                     + producto.getPrecioSinIVA() + "€" + " - Precio con IVA: "
-                    + producto.getPrecioConIVA() + "€";
+                    + String.format("%.2f",producto.getPrecioConIVA()) + "€";
         }
     }
 }
