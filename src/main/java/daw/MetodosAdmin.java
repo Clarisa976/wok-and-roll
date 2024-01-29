@@ -184,7 +184,7 @@ public class MetodosAdmin {
 
                                 if (opcionElegida != 1) {
                                     //creamos un producto auxiliar para modificarlo
-                                    /*AQUI PETA*/
+                                    
                                     Producto productoSeleccionado = listaBebidas
                                             .get(Arrays.asList(opcionesProductosBebidas)
                                                     .indexOf(seleccionProductoBebidas));
@@ -228,7 +228,7 @@ public class MetodosAdmin {
 
                                 if (opcionElegida != 1) {
                                     //creamos un producto auxiliar para modificarlo
-                                    /*AQUI PETA*/
+                                    
                                     Producto productoSeleccionado = listaPostre
                                             .get(Arrays.asList(opcionesProductosPostre)
                                                     .indexOf(seleccionProductoPostre));
@@ -266,6 +266,7 @@ public class MetodosAdmin {
                         }
                         case "Salir" -> {
                             System.out.println("Volviendo al menú de mantenimiento");
+                            MetodosAdmin.modoMantenimiento(tpv);
                             return;
                         }
                     }
@@ -323,7 +324,7 @@ public class MetodosAdmin {
                 }
                 case "Salir" -> {
                     System.out.println("volver a inicio");
-                    salirAdmin = true;
+                    MetodosAdmin.modoMantenimiento(tpv);
                 }
             }
 

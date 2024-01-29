@@ -355,6 +355,7 @@ public class UtilidadesTPV {
         //verificamos si el número es correcto
         if (UtilidadesTarjetaNuevo.numeroTarjetaValido(numeroTarjeta)) {
             //comprobamos la fecha
+
             if (UtilidadesTarjetaNuevo.verificarFecha(fechaTarjeta, numeroTarjeta)) {
                 //comprobamos el cvv
                 if (UtilidadesTarjetaNuevo.verificarCVV(numeroCVV, numeroTarjeta)) {
