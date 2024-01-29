@@ -266,7 +266,7 @@ public class MetodosAdmin {
                         }
                         case "Salir" -> {
                             System.out.println("Volviendo al menú de mantenimiento");
-                            MetodosAdmin.modoMantenimiento(tpv);
+                            
                             return;
                         }
                     }
@@ -324,7 +324,7 @@ public class MetodosAdmin {
                 }
                 case "Salir" -> {
                     System.out.println("volver a inicio");
-                    UtilidadesTPV.apagarTPV(tpv);
+                    return;
                 }
             }
 

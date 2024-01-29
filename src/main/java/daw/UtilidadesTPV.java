@@ -394,7 +394,8 @@ public class UtilidadesTPV {
                         Ticket tmp = new Ticket(new ArrayList<Producto>(
                                 tpv.getCarrito()), importeTotal,
                                 LocalDateTime.now());
-
+                        System.out.println("pagado correctamente");
+                        JOptionPane.showInputDialog(tmp);
                         //agregamos los productos al ticket
                         tpv.getListaTickets().add(tmp);
                         tmp.toString();
