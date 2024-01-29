@@ -11,7 +11,7 @@ import org.apache.commons.lang3.RandomStringUtils;
  *
  * @author clara
  */
-public final class Producto {
+public class Producto {
 
     //atributos
     private final String codProducto;

@@ -72,23 +72,29 @@ public class Ticket {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("================================\n");
-        sb.append("          TICKET DE COMPRA       \n");
-        sb.append("            Wok and Roll         \n");
-        sb.append("================================\n");
-        sb.append("ID del Pedido: ").append(idPedido).append("\n");
-        sb.append("Número de Pedido: ").append(numeroPedido).append("\n");
-        sb.append("Fecha de Emisión: ").append(fechaEmision.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))).append("\n");
-        sb.append("================================\n");
-        sb.append("Productos:\n");
-        for (int i = 0; i < productos.size(); i++) {
-            sb.append("- ").append(productos.get(i).getNombre()).append("\n");
-        }
-        sb.append("================================\n");
-        sb.append("Cantidad de Productos: ").append(productos.size()).append("\n");
-        sb.append("Importe Total: ").append(importeTotal).append("€\n");
-        sb.append("================================\n");
-        return sb.toString();
+    sb.append("================================\n");
+    sb.append("          TICKET DE COMPRA       \n");
+    sb.append("            Wok and Roll         \n");
+    sb.append("================================\n");
+    sb.append("ID del Pedido: ").append(idPedido).append("\n");
+    sb.append("Número de Pedido: ").append(numeroPedido).append("\n");
+    sb.append("Fecha de Emisión: ").append(fechaEmision.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))).append("\n");
+    sb.append("================================\n");
+    sb.append("Productos:\n");
+    double totalSinIVA = 0;
+    double totalConIVA = 0;
+    for (int i = 0; i < productos.size(); i++) {
+        Producto producto = productos.get(i);
+        sb.append("- ").append(producto.getNombre()).append(" - ").append(String.format("%.2f", producto.getPrecioConIVA())).append("€\n");
+        totalSinIVA += producto.getPrecioSinIVA();
+        totalConIVA += producto.getPrecioConIVA();
+    }
+    sb.append("================================\n");
+    sb.append("Cantidad de Productos: ").append(productos.size()).append("\n");
+    sb.append("Importe Total sin IVA: ").append(String.format("%.2f", totalSinIVA)).append("€\n");
+    sb.append("Importe Total con IVA: ").append(String.format("%.2f", totalConIVA)).append("€\n");
+    sb.append("================================\n");
+    return sb.toString();
     }
 
 //    //método para calcular el importe total
