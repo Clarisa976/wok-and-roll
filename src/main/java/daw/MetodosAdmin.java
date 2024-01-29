@@ -66,18 +66,6 @@ public class MetodosAdmin {
         } else {
             JOptionPane.showMessageDialog(null, "No se ha vendido nada");
         }
-//        List<Ticket> listaTickets = tpv.getListaTickets();
-//        if (!listaTickets.isEmpty()) {
-//            String[] opcionesTickets = new String[listaTickets.size()];
-//            for (int i = 0; i < listaTickets.size(); i++) {
-//                opcionesTickets[i] = listaTickets.get(i).toString();
-//            }
-//            String seleccionTicket = (String) JOptionPane.showInputDialog(null,
-//                    "Consultar las ventas", "Wok and roll -- DAWFOOD", JOptionPane.QUESTION_MESSAGE,
-//                    null, opcionesTickets, opcionesTickets[0]);
-//        } else {
-//            JOptionPane.showMessageDialog(null, "No se ha vendido nada");
-//        }
 
     }
 
@@ -350,25 +338,6 @@ public class MetodosAdmin {
         } while (!salirAdmin);
     }
 
-    //método para ver las opciones del usuario administrador
-    public static String opcionesUsuarioAdministrador() {
-        //creamos las opciones del admin
-        String[] opcionesUsuarioAdmin = {"Modificar producto", "Dar de alta un producto",
-            "Borrar producto", "Ver ventas", "Salir"};
-        //mensaje de JOptionPane par mostrar dichas opciones
-        String opcionUsuarioAdmin = (String) JOptionPane.showInputDialog(null,
-                "Seleccione una opción",
-                "Wok and Roll -- DAWFOOD -- Modo Mantenimiento",
-                JOptionPane.QUESTION_MESSAGE, null,
-                opcionesUsuarioAdmin, opcionesUsuarioAdmin[0]);
-
-        if (!opcionUsuarioAdmin.equals(null)) {
-            return opcionUsuarioAdmin;
-        } else {
-            opcionUsuarioAdmin = "Salir";
-            return opcionUsuarioAdmin;
-        }
-    }
 
     //método que le pasas un Producto de tipo Comida y un String aux y elige que atributos de la comida cambiar
     public static void modificarComida(Comida comidaAux, String tmp) {
