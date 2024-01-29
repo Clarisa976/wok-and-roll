@@ -346,7 +346,8 @@ public class MetodosAdmin {
         if (!opcionUsuarioAdmin.equals(null)) {
             return opcionUsuarioAdmin;
         } else {
-            return opcionUsuarioAdmin = "Salir";
+            opcionUsuarioAdmin= "Salir";
+            return opcionUsuarioAdmin;
         }
     }
 
