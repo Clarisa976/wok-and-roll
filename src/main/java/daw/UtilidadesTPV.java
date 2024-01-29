@@ -1374,7 +1374,10 @@ public class UtilidadesTPV {
                     }
                     for (Producto producto : catalogo) {
                         System.out.println(" | "+ producto);
+                        
                     }
+                    List<Producto> a = CatalogoCarta.cartaMenu();
+
                     break;
                 }
 
