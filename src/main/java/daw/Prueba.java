@@ -18,13 +18,11 @@ public class Prueba {
     public static void main(String[] args) {
         //creamos un TPV
         TPV tpv1 = new TPV();
-        List<Producto> a = CatalogoCarta.cartaMenu();
+        
+        List<Producto> listaMenu = CatalogoCarta.cartaMenu();
         //lo encendemos
         UtilidadesTPV.encenderTPV();
 
-        //hay que controlar que pida la fecha hasta que si no peta
-        
-        //añadir un método pa apagartpv
         
     }
 }
