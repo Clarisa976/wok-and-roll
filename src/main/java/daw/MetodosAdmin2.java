@@ -47,15 +47,27 @@ public class MetodosAdmin2 {
 
     //consultar todos los tickets del tpv
     public static void consultarTickets(TPV tpv) {
-        tpv.getListaTickets();
-        if (!(tpv.getListaTickets().isEmpty())) {
-            Ticket TodasLasVentas = (Ticket) JOptionPane.showInputDialog(null,
+        List<Ticket> listaTickets = tpv.getListaTickets();
+        if (!listaTickets.isEmpty()) {
+            String[] opcionesTickets = new String[listaTickets.size()];
+            for (int i = 0; i < listaTickets.size(); i++) {
+                opcionesTickets[i] = listaTickets.get(i).toString();
+            }
+            String seleccionTicket = (String) JOptionPane.showInputDialog(null,
                     "Consultar las ventas", "Wok and roll -- DAWFOOD", JOptionPane.QUESTION_MESSAGE,
-                    null, tpv.getListaTickets().toArray(),
-                    tpv.getListaTickets().get(0));
+                    null, opcionesTickets, opcionesTickets[0]);
         } else {
             JOptionPane.showMessageDialog(null, "No se ha vendido nada");
         }
+//        tpv.getListaTickets();
+//        if (!(tpv.getListaTickets().isEmpty())) {
+//            Ticket TodasLasVentas = (Ticket) JOptionPane.showInputDialog(null,
+//                    "Consultar las ventas", "Wok and roll -- DAWFOOD", JOptionPane.QUESTION_MESSAGE,
+//                    null, tpv.getListaTickets().toArray(),
+//                    tpv.getListaTickets().get(0));
+//        } else {
+//            JOptionPane.showMessageDialog(null, "No se ha vendido nada");
+//        }
 
     }
 
@@ -173,9 +185,9 @@ public class MetodosAdmin2 {
                                 if (opcionElegida != 1) {
                                     //creamos un producto auxiliar para modificarlo
                                     /*AQUI PETA*/
-                                    Producto productoSeleccionado = tpv.getProductos()
+                                    Producto productoSeleccionado = listaBebidas
                                             .get(Arrays.asList(opcionesProductosBebidas)
-                                                    .indexOf(opcionesProductosBebidas));
+                                                    .indexOf(seleccionProductoBebidas));
 
                                     //metodos para pedir que modificar y tal
                                     MetodosAdmin2.modificarBebida((Bebida) productoSeleccionado,
@@ -204,7 +216,7 @@ public class MetodosAdmin2 {
                             if (seleccionProductoPostre != null) {
                                 // El usuario seleccionó un producto
                                 //opciones a mostrar: ver todo, ver los subtipos para elegir, volver
-                                String[] opcionesElegidas = {"Agregar al carrito", "Volver"};
+                                String[] opcionesElegidas = {"Modificar", "Volver"};
                                 int opcionElegida = JOptionPane.showOptionDialog(null,
                                         "¿Qué deseas hacer con este producto?",
                                         "Wok and Roll -- DAWFOOD --",
@@ -216,18 +228,20 @@ public class MetodosAdmin2 {
 
                                 if (opcionElegida != 1) {
                                     //creamos un producto auxiliar para modificarlo
-                                    Producto productoSeleccionado = tpv.getProductos()
+                                    /*AQUI PETA*/
+                                    Producto productoSeleccionado = listaPostre
                                             .get(Arrays.asList(opcionesProductosPostre)
-                                                    .indexOf(opcionesProductosPostre));
+                                                    .indexOf(seleccionProductoPostre));
 
                                     //metodos para pedir que modificar y tal
                                     MetodosAdmin2.modificarPostre((Postre) productoSeleccionado,
-                                            MetodosProductos.elegirCategoriaACambiarPostre());
+                                            MetodosProductos.elegirCategoriaACambiarBebida());
                                 } else if (opcionElegida != 0) {
                                     System.out.println("volver");
                                     return;
                                 }
                             }
+                            break;
 
                         //si elige salir vuelve al menú de anterior
                         case "Salir":
@@ -255,7 +269,7 @@ public class MetodosAdmin2 {
                             return;
                         }
                     }
-//                    MetodosAdmin.altaProducto(tpv.getProductos(), productoNuevo);
+
                 }
                 case "Borrar producto" -> {
 
