@@ -283,6 +283,7 @@ public class UtilidadesTPV {
 
     }
 
+    /*
     private static void verCarritoViejo(TPV tpv) {
 
         //Producto productotmp = new Producto("lo que sea", 3, TipoIVA.IVA_DIEZ, 2);
@@ -324,8 +325,7 @@ public class UtilidadesTPV {
                 //opciones de elección
                 switch (opcionesElegidas[opcionElegida]) {
                     case "Pagar":
-                        /*hay que optener el importe del carrito*/
-                        double importe = 25;
+                        /
                         Tarjeta tarjetaAux = UtilidadesTarjetaNuevo.TarjetaDefinitiva(importe);
 
                         UtilidadesTPV.finalizarCompra(tpv, tarjetaAux);
@@ -347,7 +347,7 @@ public class UtilidadesTPV {
         }
 
     }
-
+     */
     //método para confirmar que la tarjeta es correcta y pagar
     private static void pagar(TPV tpv, double importeTotal) {
         String numeroTarjeta = UtilidadesTarjetaNuevo.pedirTarjeta();
@@ -430,9 +430,10 @@ public class UtilidadesTPV {
                 case "Ver todo":
 
                     if (nombreCategoria.equalsIgnoreCase("comidas")) {
-                        List<Comida> listaComida = CatalogoCarta.comidasBD();
+                        List<Producto> listaComida = tpv.getProductos();
+//                        List<Comida> listaComida = CatalogoCarta.comidasBD();
                         String[] opcionesProductos = new String[listaComida.size()];
-                        MetodosProductos.mostrarProdComida(listaComida, opcionesProductos);
+                        MetodosProductos.mostrarProductosComida(listaComida, opcionesProductos);
 
                         String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                 "Selecciona un producto",
@@ -485,11 +486,11 @@ public class UtilidadesTPV {
 
                         break;
                     } else if (nombreCategoria.equalsIgnoreCase("bebidas")) {
-
-                        List<Bebida> listaBebida = CatalogoCarta.bebidasBD();
+                        List<Producto> listaBebida = tpv.getProductos();
+//                        List<Bebida> listaBebida = CatalogoCarta.bebidasBD();
                         String[] opcionesProductos = new String[listaBebida.size()];
 
-                        MetodosProductos.mostrarProdBebida(listaBebida, opcionesProductos);
+                        MetodosProductos.mostrarProductosBebida(listaBebida, opcionesProductos);
 
                         String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                 "Selecciona un producto",
@@ -540,11 +541,10 @@ public class UtilidadesTPV {
                             }
                         }
                     } else if (nombreCategoria.equalsIgnoreCase("postres")) {
-
-                        List<Postre> listaPostre = CatalogoCarta.postresBD();
+                        List<Producto> listaPostre = tpv.getProductos();
+                        //List<Postre> listaPostre = CatalogoCarta.postresBD();
                         String[] opcionesProductos = new String[listaPostre.size()];
-                        MetodosProductos.mostrarProdPostre(listaPostre,
-                                opcionesProductos);
+                        MetodosProductos.mostrarProductosPostre(listaPostre, opcionesProductos);
 
                         String seleccionProducto = (String) JOptionPane.showInputDialog(null,
                                 "Selecciona un producto",
@@ -1231,7 +1231,7 @@ public class UtilidadesTPV {
     public static void apagarTPV(TPV tpv) {
         List<Producto> carrito = tpv.getProductos();
         if (!carrito.isEmpty()) {
-            
+
             List<Producto> catalogo = CatalogoCarta.cartaMenu(); // Obtener la lista de productos de catalogoCarta
 
             for (Producto productoCarrito : carrito) {
