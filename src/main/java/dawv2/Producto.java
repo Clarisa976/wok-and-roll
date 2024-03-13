@@ -94,7 +94,7 @@ public abstract class Producto {
 
     //hashcode
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         int hash = 3;
         hash = 41 * hash + Objects.hashCode(this.codProducto);
         return hash;
@@ -102,7 +102,7 @@ public abstract class Producto {
 
     //equals
     @Override
-    public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
@@ -129,9 +129,10 @@ public abstract class Producto {
         sb.append(", stock: ").append(stock);
         return sb.toString();
     }
-//    //método para calcular el precioSinIVA con iva
 
-    public abstract double calcularPrecio();
-    /*double valorIVA = tipoIVA.getValor();
-        return precioConIVA = precioSinIVA * (1 + valorIVA);*/
+    //método para calcular el precioSinIVA con iva
+    public final double calcularPrecio(){
+    double valorIVA = tipoIVA.getValor();
+        return precioConIVA = precioSinIVA * (1 + valorIVA);
+    }
 }

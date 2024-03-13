@@ -385,6 +385,8 @@ public class MetodosAdmin {
                             //parseamos el string introducido para comprobar que es un double
                             nuevoPrecioSinIVA = Double.parseDouble(nuevoPrecio);
                             comidaAux.setPrecioSinIVA(nuevoPrecioSinIVA);
+                            double nuevoPrecioConIVA = comidaAux.calcularPrecio();
+                            comidaAux.setPrecioConIVA(nuevoPrecioConIVA);
                         } else {
                             System.out.println("No has introducido número decimal");
                         }
@@ -447,6 +449,8 @@ public class MetodosAdmin {
                             //parseamos el string introducido para comprobar que es un double
                             nuevoPrecioSinIVA = Double.parseDouble(nuevoPrecio);
                             bebidaAux.setPrecioSinIVA(nuevoPrecioSinIVA);
+                            double nuevoPrecioConIVA = bebidaAux.calcularPrecio();
+                            bebidaAux.setPrecioConIVA(nuevoPrecioConIVA);
                         } else {
                             System.out.println("No has introducido número decimal");
                         }
@@ -510,6 +514,8 @@ public class MetodosAdmin {
                             //parseamos el string introducido para comprobar que es un double
                             nuevoPrecioSinIVA = Double.parseDouble(nuevoPrecio);
                             postreAux.setPrecioSinIVA(nuevoPrecioSinIVA);
+                            double nuevoPrecioConIVA = postreAux.calcularPrecio();
+                            postreAux.setPrecioConIVA(nuevoPrecioConIVA);
                         } else {
                             System.out.println("No has introducido número decimal");
                         }

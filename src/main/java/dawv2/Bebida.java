@@ -51,10 +51,5 @@ public class Bebida extends Producto {
         return sb.toString();
     }
 
-    @Override
-    public double calcularPrecio() {
-        double valorIVA = this.getTipoIVA().getValor();
-        double precioConIVA = this.getPrecioSinIVA() * (1 + valorIVA);
-        return precioConIVA;
-    }
+    
 }

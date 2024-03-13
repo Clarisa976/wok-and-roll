@@ -125,14 +125,14 @@ public class UtilidadesTPV {
             // Crea una nueva instancia del producto con el stock ajustado a la cantidad
             Producto productoParaAgregar = new Producto(producto.getNombre(),
                     producto.getPrecioSinIVA(), producto.getTipoIVA(),
-                    cantidad) {
-                @Override
-                public double calcularPrecio() {
-                    double valorIVA = this.getTipoIVA().getValor();
-                    double precioConIVA = this.getPrecioSinIVA() * (1 + valorIVA);
-                    return precioConIVA;
-                }
-            };
+                    cantidad) {};// {
+//                @Override
+//                public double calcularPrecio() {
+//                    double valorIVA = this.getTipoIVA().getValor();
+//                    double precioConIVA = this.getPrecioSinIVA() * (1 + valorIVA);
+//                    return precioConIVA;
+//                }
+//            };
 //                tpv.getCarrito().put(producto, cantidad);
 
             //verifica si el producto ya está en el carrito
@@ -269,14 +269,14 @@ public class UtilidadesTPV {
         String[] opcionesProductos = new String[tpv.getCarrito().size()];
         List<Producto> productoLista = new ArrayList<>();
         List<Producto> listaCarta = CatalogoCarta.cartaMenu();
-        Producto aux = new Producto() {
-                @Override
-                public double calcularPrecio() {
-                    double valorIVA = this.getTipoIVA().getValor();
-                    double precioConIVA = this.getPrecioSinIVA() * (1 + valorIVA);
-                    return precioConIVA;
-                }
-            };
+        Producto aux = new Producto() {};// {
+//                @Override
+//                public double calcularPrecio() {
+//                    double valorIVA = this.getTipoIVA().getValor();
+//                    double precioConIVA = this.getPrecioSinIVA() * (1 + valorIVA);
+//                    return precioConIVA;
+//                }
+//            };
         //con un bucle for vamos recorriendo el carrito del tpv
 //            for (int i = 0; i < listaCarta.size(); i++) {
 //                if(opcionesProductos.equals(listaCarta.get(i).getNombre())){
