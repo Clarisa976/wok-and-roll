@@ -16,10 +16,11 @@ public class Comida extends Producto {
 
     //constructor
     public Comida(String nombre, String descripcionComida, TipoComida tipoComida,
-            double precioSinIVA, TipoIVA tipoIVA, int stock) {
+            double precioSinIVA, TipoIVA tipoIVA,  int stock) {
         super(nombre, precioSinIVA, tipoIVA, stock);
         this.descripcionComida = descripcionComida;
         this.tipoComida = tipoComida;
+        //precioConIVA = calcularPrecio();
     }
 
     public Comida() {
@@ -47,9 +48,14 @@ public class Comida extends Producto {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(super.toString());
+        sb.append(super.getCodProducto());
+        sb.append(super.getNombre());
         sb.append("descripción: ").append(descripcionComida);
         sb.append(", tipo: ").append(tipoComida);
+        sb.append(super.getPrecioSinIVA());
+        sb.append(super.getTipoIVA());
+        sb.append(super.getPrecioConIVA());
+        sb.append(super.getStock());
         sb.append('}');
         return sb.toString();
     }

@@ -26,7 +26,6 @@ public abstract class Producto {
         this.codProducto = RandomStringUtils.randomNumeric(5);
         this.nombre = nombre;
         this.precioSinIVA = precioSinIVA;
-
         this.tipoIVA = tipoIVA;
         this.stock = stock;
         this.precioConIVA = calcularPrecio();
@@ -40,7 +39,6 @@ public abstract class Producto {
         this.codProducto = copia.codProducto;
         this.nombre = copia.nombre;
         this.precioSinIVA = copia.precioSinIVA;
-
         this.tipoIVA = copia.tipoIVA;
         this.stock = copia.stock;
         this.precioConIVA = calcularPrecio();

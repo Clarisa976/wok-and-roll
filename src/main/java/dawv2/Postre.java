@@ -47,9 +47,14 @@ public class Postre extends Producto {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(super.toString());
+        sb.append(super.getCodProducto());
+        sb.append(super.getNombre());
         sb.append("kcal: ").append(kcal);
         sb.append(", tipo de postre: ").append(tipoPostre);
+        sb.append(super.getPrecioSinIVA());
+        sb.append(super.getTipoIVA());
+        sb.append(super.getPrecioConIVA());
+        sb.append(super.getStock());
         sb.append('}');
         return sb.toString();
     }

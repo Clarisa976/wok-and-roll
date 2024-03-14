@@ -44,9 +44,14 @@ public class Bebida extends Producto {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(super.toString());
+        sb.append(super.getCodProducto());
+        sb.append(super.getNombre());
         sb.append("tamaño bebida: ").append(tamanioBebida);
         sb.append(", tipo bebida: ").append(tipoBebida);
+        sb.append(super.getPrecioSinIVA());
+        sb.append(super.getTipoIVA());
+        sb.append(super.getPrecioConIVA());
+        sb.append(super.getStock());        
         sb.append('}');
         return sb.toString();
     }
