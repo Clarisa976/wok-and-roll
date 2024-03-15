@@ -1,0 +1,101 @@
+codProducto,nombre,kcal,tipoPostre,precioSinIVA,tipoIVA,precioConIVA,stock
+CODPOS001,Mochi de helado de oreo (2 unidades),217,MOCHI,2.91,IVA_DIEZ,3.2,10
+CODPOS002,Helado de matcha con vainilla,432,OTROS,2.73,IVA_DIEZ,3.0,18
+CODPOS003,Helado de pistacho y chocolate con nata,320,OTROS,3.26,IVA_DIEZ,3.59,13
+CODPOS004,Mochi de helado de mango (2 unidades),203,MOCHI,2.57,IVA_DIEZ,2.83,26
+CODPOS005,Helado de matcha con vainilla,483,OTROS,2.26,IVA_DIEZ,2.49,29
+CODPOS006,Bol de fresitas con nata,102,FRUTITA,2.47,IVA_DIEZ,2.72,16
+CODPOS007,Bol de piña con leche de coco y nata,117,FRUTITA,3.1,IVA_DIEZ,3.41,30
+CODPOS008,Bol de kiwi con leche y muesli,102,FRUTITA,2.89,IVA_DIEZ,3.18,13
+CODPOS009,Mochi de helado de oreo (2 unidades),211,MOCHI,2.93,IVA_DIEZ,3.22,23
+CODPOS010,Bol de fresitas con nata,56,FRUTITA,2.17,IVA_DIEZ,2.39,27
+CODPOS011,Helado de limón y mango,358,OTROS,2.53,IVA_DIEZ,2.78,12
+CODPOS012,Helado de pistacho y chocolate con nata,406,OTROS,3.31,IVA_DIEZ,3.64,26
+CODPOS013,Bol de fresitas con nata,151,FRUTITA,2.49,IVA_DIEZ,2.74,20
+CODPOS014,Helado de limón y mango,435,OTROS,2.8,IVA_DIEZ,3.08,28
+CODPOS015,Helado de pistacho y chocolate con nata,467,OTROS,3.18,IVA_DIEZ,3.5,20
+CODPOS016,Mochi de helado de mango (2 unidades),182,MOCHI,2.43,IVA_DIEZ,2.67,21
+CODPOS017,Bol de kiwi con leche y muesli,133,FRUTITA,3.06,IVA_DIEZ,3.37,28
+CODPOS018,Helado de limón y mango,389,OTROS,2.46,IVA_DIEZ,2.71,26
+CODPOS019,Bol de kiwi con leche y muesli,64,FRUTITA,3.19,IVA_DIEZ,3.51,29
+CODPOS020,Bol de kiwi con leche y muesli,137,FRUTITA,2.2,IVA_DIEZ,2.42,14
+CODPOS021,Bol de kiwi con leche y muesli,156,FRUTITA,3.33,IVA_DIEZ,3.66,29
+CODPOS022,Bol de piña con leche de coco y nata,243,FRUTITA,2.81,IVA_DIEZ,3.09,29
+CODPOS023,Mochi de helado de coco (2 unidades),196,MOCHI,3.3,IVA_DIEZ,3.63,26
+CODPOS024,Bol de fresitas con nata,146,FRUTITA,2.74,IVA_DIEZ,3.01,21
+CODPOS025,Mochi de helado de mango (2 unidades),289,MOCHI,3.4,IVA_DIEZ,3.74,27
+CODPOS026,Mochi de helado de oreo (2 unidades),284,MOCHI,2.73,IVA_DIEZ,3.0,27
+CODPOS027,Mochi de helado de coco (2 unidades),251,MOCHI,3.08,IVA_DIEZ,3.39,14
+CODPOS028,Mochi de helado de mango (2 unidades),238,MOCHI,2.99,IVA_DIEZ,3.29,11
+CODPOS029,Bol de fresitas con nata,244,FRUTITA,3.05,IVA_DIEZ,3.35,14
+CODPOS030,Helado de matcha con vainilla,402,OTROS,2.99,IVA_DIEZ,3.29,26
+CODPOS031,Bol de piña con leche de coco y nata,239,FRUTITA,2.81,IVA_DIEZ,3.09,19
+CODPOS032,Bol de kiwi con leche y muesli,140,FRUTITA,2.42,IVA_DIEZ,2.66,19
+CODPOS033,Helado de matcha con vainilla,377,OTROS,3.23,IVA_DIEZ,3.55,18
+CODPOS034,Bol de fresitas con nata,188,FRUTITA,2.68,IVA_DIEZ,2.95,20
+CODPOS035,Helado de pistacho y chocolate con nata,301,OTROS,2.11,IVA_DIEZ,2.32,27
+CODPOS036,Mochi de helado de mango (2 unidades),285,MOCHI,2.17,IVA_DIEZ,2.39,11
+CODPOS037,Bol de kiwi con leche y muesli,79,FRUTITA,2.45,IVA_DIEZ,2.7,22
+CODPOS038,Mochi de helado de oreo (2 unidades),199,MOCHI,3.19,IVA_DIEZ,3.51,18
+CODPOS039,Mochi de helado de coco (2 unidades),180,MOCHI,2.72,IVA_DIEZ,2.99,22
+CODPOS040,Helado de matcha con vainilla,320,OTROS,2.93,IVA_DIEZ,3.22,15
+CODPOS041,Bol de piña con leche de coco y nata,246,FRUTITA,2.37,IVA_DIEZ,2.61,23
+CODPOS042,Helado de limón y mango,475,OTROS,2.55,IVA_DIEZ,2.81,26
+CODPOS043,Helado de pistacho y chocolate con nata,463,OTROS,2.44,IVA_DIEZ,2.68,18
+CODPOS044,Mochi de helado de coco (2 unidades),277,MOCHI,3.08,IVA_DIEZ,3.39,11
+CODPOS045,Bol de kiwi con leche y muesli,137,FRUTITA,2.96,IVA_DIEZ,3.26,25
+CODPOS046,Mochi de helado de oreo (2 unidades),261,MOCHI,3.38,IVA_DIEZ,3.72,23
+CODPOS047,Helado de matcha con vainilla,395,OTROS,2.11,IVA_DIEZ,2.32,24
+CODPOS048,Helado de matcha con vainilla,419,OTROS,2.04,IVA_DIEZ,2.24,14
+CODPOS049,Helado de pistacho y chocolate con nata,371,OTROS,3.24,IVA_DIEZ,3.56,25
+CODPOS050,Helado de limón y mango,342,OTROS,3.47,IVA_DIEZ,3.82,23
+CODPOS051,Helado de pistacho y chocolate con nata,500,OTROS,2.08,IVA_DIEZ,2.29,14
+CODPOS052,Helado de matcha con vainilla,433,OTROS,3.31,IVA_DIEZ,3.64,19
+CODPOS053,Mochi de helado de oreo (2 unidades),280,MOCHI,2.58,IVA_DIEZ,2.84,29
+CODPOS054,Bol de piña con leche de coco y nata,213,FRUTITA,3.1,IVA_DIEZ,3.41,14
+CODPOS055,Mochi de helado de oreo (2 unidades),173,MOCHI,2.63,IVA_DIEZ,2.89,15
+CODPOS056,Mochi de helado de oreo (2 unidades),176,MOCHI,2.79,IVA_DIEZ,3.07,26
+CODPOS057,Helado de limón y mango,442,OTROS,3.45,IVA_DIEZ,3.8,16
+CODPOS058,Bol de fresitas con nata,168,FRUTITA,3.45,IVA_DIEZ,3.8,14
+CODPOS059,Bol de piña con leche de coco y nata,133,FRUTITA,3.42,IVA_DIEZ,3.76,13
+CODPOS060,Bol de piña con leche de coco y nata,72,FRUTITA,2.72,IVA_DIEZ,2.99,13
+CODPOS061,Bol de piña con leche de coco y nata,196,FRUTITA,2.15,IVA_DIEZ,2.37,16
+CODPOS062,Bol de kiwi con leche y muesli,95,FRUTITA,2.2,IVA_DIEZ,2.42,15
+CODPOS063,Bol de kiwi con leche y muesli,98,FRUTITA,2.95,IVA_DIEZ,3.25,14
+CODPOS064,Bol de kiwi con leche y muesli,246,FRUTITA,3.23,IVA_DIEZ,3.55,13
+CODPOS065,Bol de fresitas con nata,206,FRUTITA,2.4,IVA_DIEZ,2.64,10
+CODPOS066,Mochi de helado de mango (2 unidades),204,MOCHI,2.0,IVA_DIEZ,2.2,18
+CODPOS067,Mochi de helado de coco (2 unidades),279,MOCHI,2.05,IVA_DIEZ,2.25,19
+CODPOS068,Bol de piña con leche de coco y nata,144,FRUTITA,2.15,IVA_DIEZ,2.37,28
+CODPOS069,Mochi de helado de mango (2 unidades),174,MOCHI,3.11,IVA_DIEZ,3.42,12
+CODPOS070,Bol de piña con leche de coco y nata,175,FRUTITA,2.22,IVA_DIEZ,2.44,15
+CODPOS071,Helado de limón y mango,328,OTROS,3.41,IVA_DIEZ,3.75,17
+CODPOS072,Bol de piña con leche de coco y nata,180,FRUTITA,3.12,IVA_DIEZ,3.43,12
+CODPOS073,Helado de limón y mango,438,OTROS,2.21,IVA_DIEZ,2.43,15
+CODPOS074,Mochi de helado de mango (2 unidades),223,MOCHI,2.1,IVA_DIEZ,2.31,27
+CODPOS075,Mochi de helado de coco (2 unidades),288,MOCHI,3.14,IVA_DIEZ,3.45,13
+CODPOS076,Bol de piña con leche de coco y nata,121,FRUTITA,3.05,IVA_DIEZ,3.35,23
+CODPOS077,Bol de kiwi con leche y muesli,161,FRUTITA,2.92,IVA_DIEZ,3.21,11
+CODPOS078,Mochi de helado de coco (2 unidades),214,MOCHI,3.46,IVA_DIEZ,3.81,24
+CODPOS079,Mochi de helado de mango (2 unidades),162,MOCHI,2.68,IVA_DIEZ,2.95,18
+CODPOS080,Mochi de helado de oreo (2 unidades),240,MOCHI,3.2,IVA_DIEZ,3.52,10
+CODPOS081,Mochi de helado de oreo (2 unidades),164,MOCHI,2.47,IVA_DIEZ,2.72,18
+CODPOS082,Bol de piña con leche de coco y nata,195,FRUTITA,2.23,IVA_DIEZ,2.45,21
+CODPOS083,Mochi de helado de oreo (2 unidades),202,MOCHI,2.98,IVA_DIEZ,3.28,26
+CODPOS084,Mochi de helado de mango (2 unidades),295,MOCHI,2.39,IVA_DIEZ,2.63,17
+CODPOS085,Helado de matcha con vainilla,347,OTROS,2.94,IVA_DIEZ,3.23,17
+CODPOS086,Helado de pistacho y chocolate con nata,313,OTROS,2.71,IVA_DIEZ,2.98,27
+CODPOS087,Helado de matcha con vainilla,396,OTROS,2.42,IVA_DIEZ,2.66,23
+CODPOS088,Helado de matcha con vainilla,450,OTROS,2.44,IVA_DIEZ,2.68,17
+CODPOS089,Bol de kiwi con leche y muesli,57,FRUTITA,3.4,IVA_DIEZ,3.74,11
+CODPOS090,Mochi de helado de oreo (2 unidades),269,MOCHI,2.37,IVA_DIEZ,2.61,15
+CODPOS091,Bol de piña con leche de coco y nata,59,FRUTITA,3.43,IVA_DIEZ,3.77,25
+CODPOS092,Bol de fresitas con nata,192,FRUTITA,2.59,IVA_DIEZ,2.85,21
+CODPOS093,Bol de piña con leche de coco y nata,57,FRUTITA,2.61,IVA_DIEZ,2.87,30
+CODPOS094,Helado de matcha con vainilla,365,OTROS,3.31,IVA_DIEZ,3.64,16
+CODPOS095,Helado de limón y mango,456,OTROS,2.38,IVA_DIEZ,2.62,21
+CODPOS096,Bol de kiwi con leche y muesli,143,FRUTITA,2.53,IVA_DIEZ,2.78,26
+CODPOS097,Mochi de helado de coco (2 unidades),226,MOCHI,2.39,IVA_DIEZ,2.63,29
+CODPOS098,Mochi de helado de oreo (2 unidades),182,MOCHI,2.56,IVA_DIEZ,2.82,20
+CODPOS099,Helado de limón y mango,333,OTROS,3.25,IVA_DIEZ,3.58,11
+CODPOS100,Bol de kiwi con leche y muesli,77,FRUTITA,2.23,IVA_DIEZ,2.45,13

@@ -1,0 +1,101 @@
+codProducto,nombre,descripcionComida,tipoComida,precioSinIVA,tipoIVA,precioConIVA,stock
+CODCOM001,Wok de carne,Wok de carnecita,WOK,5.72,IVA_DIEZ,6.29,13
+CODCOM002,Wok de marisco,Wok de carnecita,WOK,5.93,IVA_DIEZ,6.52,12
+CODCOM003,Nigiri de salmón,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,3.19,IVA_DIEZ,3.51,12
+CODCOM004,Uramame de pollo crujiente,Rollo de arroz relleno de pollo rebozado con panko y alga nori,SUSHI,4.54,IVA_DIEZ,4.99,30
+CODCOM005,Ramen de miso,Delicioso ramen con fideos udon, tonkatsu y sopa de curry,RAMEN,8.08,IVA_DIEZ,8.89,15
+CODCOM006,Wok de carne,Wok de gambas de Cádiz,WOK,5.19,IVA_DIEZ,5.71,14
+CODCOM007,Uramame de pollo crujiente,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,3.52,IVA_DIEZ,3.87,19
+CODCOM008,Nigiri de salmón,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,3.5,IVA_DIEZ,3.85,19
+CODCOM009,Nigiri de atún,Dos piezas de nigiri de salmón,SUSHI,4.54,IVA_DIEZ,4.99,11
+CODCOM010,Nigiri de atún,Dos piezas de nigiri de salmón,SUSHI,2.88,IVA_DIEZ,3.17,29
+CODCOM011,Nigiri de atún,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,4.57,IVA_DIEZ,5.03,20
+CODCOM012,Uramame de pollo crujiente,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,4.07,IVA_DIEZ,4.48,16
+CODCOM013,Wok de carne,Wok de verduritas,WOK,5.34,IVA_DIEZ,5.87,18
+CODCOM014,Ramen de pollo,Clásico ramen de pollo,RAMEN,7.26,IVA_DIEZ,7.99,17
+CODCOM015,Wok de carne,Wok de gambas de Cádiz,WOK,4.48,IVA_DIEZ,4.93,28
+CODCOM016,Ramen de pollo,Delicioso ramen con fideos udon, tonkatsu y sopa de curry,RAMEN,8.04,IVA_DIEZ,8.84,15
+CODCOM017,Wok de verduras,Wok de verduritas,WOK,5.76,IVA_DIEZ,6.34,22
+CODCOM018,Ramen de miso,Delicioso ramen con fideos udon, tonkatsu y sopa de curry,RAMEN,6.75,IVA_DIEZ,7.43,26
+CODCOM019,Ramen de curry,Clásico ramen de pollo,RAMEN,9.81,IVA_DIEZ,10.79,25
+CODCOM020,Nigiri de salmón,Dos piezas de nigiri de salmón,SUSHI,4.31,IVA_DIEZ,4.74,22
+CODCOM021,Wok de verduras,Wok de carnecita,WOK,4.06,IVA_DIEZ,4.47,26
+CODCOM022,Ramen de curry,Delicioso ramen con fideos udon, tonkatsu y sopa de curry,RAMEN,6.66,IVA_DIEZ,7.33,11
+CODCOM023,Uramame de pollo crujiente,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,4.56,IVA_DIEZ,5.02,10
+CODCOM024,Wok de marisco,Wok de verduritas,WOK,4.47,IVA_DIEZ,4.92,18
+CODCOM025,Ramen de miso,Ramen de miso sosillo,RAMEN,8.51,IVA_DIEZ,9.36,16
+CODCOM026,Nigiri de atún,Dos piezas de nigiri de salmón,SUSHI,4.67,IVA_DIEZ,5.14,28
+CODCOM027,Ramen de pollo,Ramen de miso sosillo,RAMEN,8.04,IVA_DIEZ,8.84,19
+CODCOM028,Ramen de curry,Ramen de miso sosillo,RAMEN,7.87,IVA_DIEZ,8.66,24
+CODCOM029,Nigiri de salmón,Dos piezas de nigiri de salmón,SUSHI,2.58,IVA_DIEZ,2.84,22
+CODCOM030,Nigiri de atún,Dos piezas de nigiri de salmón,SUSHI,4.88,IVA_DIEZ,5.37,14
+CODCOM031,Uramame de pollo crujiente,Dos piezas de nigiri de salmón,SUSHI,2.6,IVA_DIEZ,2.86,29
+CODCOM032,Wok de verduras,Wok de verduritas,WOK,4.35,IVA_DIEZ,4.79,23
+CODCOM033,Nigiri de atún,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,2.28,IVA_DIEZ,2.51,27
+CODCOM034,Wok de verduras,Wok de gambas de Cádiz,WOK,5.45,IVA_DIEZ,6.0,21
+CODCOM035,Nigiri de atún,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,2.09,IVA_DIEZ,2.3,11
+CODCOM036,Uramame de pollo crujiente,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,4.14,IVA_DIEZ,4.55,16
+CODCOM037,Ramen de pollo,Clásico ramen de pollo,RAMEN,7.13,IVA_DIEZ,7.84,24
+CODCOM038,Nigiri de atún,Dos piezas de nigiri de salmón,SUSHI,2.55,IVA_DIEZ,2.81,26
+CODCOM039,Wok de carne,Wok de carnecita,WOK,4.93,IVA_DIEZ,5.42,25
+CODCOM040,Wok de verduras,Wok de gambas de Cádiz,WOK,4.24,IVA_DIEZ,4.66,25
+CODCOM041,Ramen de pollo,Ramen de miso sosillo,RAMEN,6.59,IVA_DIEZ,7.25,24
+CODCOM042,Wok de marisco,Wok de gambas de Cádiz,WOK,5.4,IVA_DIEZ,5.94,24
+CODCOM043,Ramen de pollo,Delicioso ramen con fideos udon, tonkatsu y sopa de curry,RAMEN,7.74,IVA_DIEZ,8.51,14
+CODCOM044,Wok de marisco,Wok de gambas de Cádiz,WOK,4.3,IVA_DIEZ,4.73,29
+CODCOM045,Uramame de pollo crujiente,Rollo de arroz relleno de pollo rebozado con panko y alga nori,SUSHI,3.69,IVA_DIEZ,4.06,13
+CODCOM046,Wok de marisco,Wok de verduritas,WOK,4.12,IVA_DIEZ,4.53,22
+CODCOM047,Uramame de pollo crujiente,Rollo de arroz relleno de pollo rebozado con panko y alga nori,SUSHI,2.88,IVA_DIEZ,3.17,19
+CODCOM048,Nigiri de atún,Rollo de arroz relleno de pollo rebozado con panko y alga nori,SUSHI,2.95,IVA_DIEZ,3.25,27
+CODCOM049,Wok de verduras,Wok de carnecita,WOK,4.55,IVA_DIEZ,5.0,15
+CODCOM050,Wok de carne,Wok de gambas de Cádiz,WOK,5.36,IVA_DIEZ,5.9,15
+CODCOM051,Nigiri de atún,Rollo de arroz relleno de pollo rebozado con panko y alga nori,SUSHI,3.85,IVA_DIEZ,4.24,18
+CODCOM052,Nigiri de salmón,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,3.58,IVA_DIEZ,3.94,30
+CODCOM053,Uramame de pollo crujiente,Rollo de arroz relleno de pollo rebozado con panko y alga nori,SUSHI,4.77,IVA_DIEZ,5.25,15
+CODCOM054,Nigiri de atún,Rollo de arroz relleno de pollo rebozado con panko y alga nori,SUSHI,4.54,IVA_DIEZ,4.99,21
+CODCOM055,Uramame de pollo crujiente,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,2.12,IVA_DIEZ,2.33,24
+CODCOM056,Ramen de curry,Ramen de miso sosillo,RAMEN,7.24,IVA_DIEZ,7.96,14
+CODCOM057,Ramen de pollo,Clásico ramen de pollo,RAMEN,7.0,IVA_DIEZ,7.7,13
+CODCOM058,Ramen de curry,Ramen de miso sosillo,RAMEN,8.02,IVA_DIEZ,8.82,14
+CODCOM059,Nigiri de atún,Rollo de arroz relleno de pollo rebozado con panko y alga nori,SUSHI,3.68,IVA_DIEZ,4.05,23
+CODCOM060,Ramen de miso,Delicioso ramen con fideos udon, tonkatsu y sopa de curry,RAMEN,6.48,IVA_DIEZ,7.13,21
+CODCOM061,Wok de verduras,Wok de carnecita,WOK,5.4,IVA_DIEZ,5.94,19
+CODCOM062,Ramen de curry,Delicioso ramen con fideos udon, tonkatsu y sopa de curry,RAMEN,8.02,IVA_DIEZ,8.82,30
+CODCOM063,Nigiri de salmón,Rollo de arroz relleno de pollo rebozado con panko y alga nori,SUSHI,4.29,IVA_DIEZ,4.72,24
+CODCOM064,Ramen de pollo,Ramen de miso sosillo,RAMEN,6.03,IVA_DIEZ,6.63,17
+CODCOM065,Wok de marisco,Wok de carnecita,WOK,5.73,IVA_DIEZ,6.3,16
+CODCOM066,Ramen de curry,Ramen de miso sosillo,RAMEN,7.04,IVA_DIEZ,7.74,10
+CODCOM067,Nigiri de salmón,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,3.62,IVA_DIEZ,3.98,22
+CODCOM068,Ramen de miso,Ramen de miso sosillo,RAMEN,6.17,IVA_DIEZ,6.79,28
+CODCOM069,Uramame de pollo crujiente,Dos piezas de nigiri de salmón,SUSHI,3.71,IVA_DIEZ,4.08,23
+CODCOM070,Ramen de curry,Delicioso ramen con fideos udon, tonkatsu y sopa de curry,RAMEN,7.85,IVA_DIEZ,8.63,11
+CODCOM071,Nigiri de salmón,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,3.49,IVA_DIEZ,3.84,14
+CODCOM072,Wok de verduras,Wok de verduritas,WOK,5.08,IVA_DIEZ,5.59,24
+CODCOM073,Nigiri de salmón,Dos piezas de nigiri de salmón,SUSHI,2.41,IVA_DIEZ,2.65,16
+CODCOM074,Ramen de miso,Clásico ramen de pollo,RAMEN,7.34,IVA_DIEZ,8.07,25
+CODCOM075,Ramen de curry,Ramen de miso sosillo,RAMEN,7.19,IVA_DIEZ,7.91,10
+CODCOM076,Uramame de pollo crujiente,Dos piezas de nigiri de salmón,SUSHI,4.84,IVA_DIEZ,5.32,24
+CODCOM077,Wok de carne,Wok de verduritas,WOK,5.09,IVA_DIEZ,5.6,21
+CODCOM078,Ramen de miso,Ramen de miso sosillo,RAMEN,6.26,IVA_DIEZ,6.89,13
+CODCOM079,Ramen de curry,Delicioso ramen con fideos udon, tonkatsu y sopa de curry,RAMEN,9.21,IVA_DIEZ,10.13,25
+CODCOM080,Wok de carne,Wok de gambas de Cádiz,WOK,5.28,IVA_DIEZ,5.81,11
+CODCOM081,Wok de marisco,Wok de carnecita,WOK,4.61,IVA_DIEZ,5.07,16
+CODCOM082,Ramen de pollo,Clásico ramen de pollo,RAMEN,6.4,IVA_DIEZ,7.04,12
+CODCOM083,Ramen de miso,Clásico ramen de pollo,RAMEN,8.24,IVA_DIEZ,9.06,15
+CODCOM084,Nigiri de atún,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,2.79,IVA_DIEZ,3.07,15
+CODCOM085,Ramen de pollo,Delicioso ramen con fideos udon, tonkatsu y sopa de curry,RAMEN,6.72,IVA_DIEZ,7.39,27
+CODCOM086,Wok de verduras,Wok de verduritas,WOK,5.72,IVA_DIEZ,6.29,22
+CODCOM087,Nigiri de atún,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,3.08,IVA_DIEZ,3.39,15
+CODCOM088,Wok de carne,Wok de carnecita,WOK,5.83,IVA_DIEZ,6.41,21
+CODCOM089,Wok de carne,Wok de verduritas,WOK,5.31,IVA_DIEZ,5.84,29
+CODCOM090,Ramen de pollo,Delicioso ramen con fideos udon, tonkatsu y sopa de curry,RAMEN,8.37,IVA_DIEZ,9.21,21
+CODCOM091,Wok de carne,Wok de carnecita,WOK,4.89,IVA_DIEZ,5.38,27
+CODCOM092,Ramen de miso,Ramen de miso sosillo,RAMEN,6.04,IVA_DIEZ,6.64,14
+CODCOM093,Uramame de pollo crujiente,Rollo de arroz relleno de pollo rebozado con panko y alga nori,SUSHI,3.26,IVA_DIEZ,3.59,24
+CODCOM094,Ramen de pollo,Ramen de miso sosillo,RAMEN,7.83,IVA_DIEZ,8.61,20
+CODCOM095,Wok de marisco,Wok de gambas de Cádiz,WOK,4.21,IVA_DIEZ,4.63,22
+CODCOM096,Wok de marisco,Wok de gambas de Cádiz,WOK,4.15,IVA_DIEZ,4.57,10
+CODCOM097,Wok de marisco,Wok de gambas de Cádiz,WOK,5.61,IVA_DIEZ,6.17,24
+CODCOM098,Wok de carne,Wok de gambas de Cádiz,WOK,4.75,IVA_DIEZ,5.23,23
+CODCOM099,Uramame de pollo crujiente,Dos piezas de nigiri de atún rojo de remolacha,SUSHI,3.86,IVA_DIEZ,4.25,10
+CODCOM100,Wok de carne,Wok de verduritas,WOK,5.18,IVA_DIEZ,5.7,30
